@@ -1,0 +1,25 @@
+PODS:
+  - Alamofire (4.4.0)
+  - IQKeyboardManager (4.0.10)
+  - MagicalRecord (2.3.2):
+    - MagicalRecord/Core (= 2.3.2)
+  - MagicalRecord/Core (2.3.2)
+  - SDWebImage (4.0.0):
+    - SDWebImage/Core (= 4.0.0)
+  - SDWebImage/Core (4.0.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.4)
+  - IQKeyboardManager
+  - MagicalRecord
+  - SDWebImage (~> 4.0)
+
+SPEC CHECKSUMS:
+  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  IQKeyboardManager: 593ee99b88381f4b9ccb22bd680f22606351bd41
+  MagicalRecord: 53bed74b4323b930992a725be713e53b37d19755
+  SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
+
+PODFILE CHECKSUM: 67abe7ebbd0607b8ce3fcf70ced2a663a2b0486d
+
+COCOAPODS: 1.3.1
