@@ -8,21 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		31B72F691F475A15007D24E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B72F681F475A15007D24E6 /* AppDelegate.swift */; };
-		31B72F6B1F475A15007D24E6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B72F6A1F475A15007D24E6 /* ViewController.swift */; };
 		31B72F6E1F475A15007D24E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31B72F6C1F475A15007D24E6 /* Main.storyboard */; };
 		31B72F701F475A15007D24E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31B72F6F1F475A15007D24E6 /* Assets.xcassets */; };
 		31B72F731F475A15007D24E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31B72F711F475A15007D24E6 /* LaunchScreen.storyboard */; };
+		31B72F7E1F4760FD007D24E6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B72F7D1F4760FD007D24E6 /* LoginViewController.swift */; };
+		31B72F831F476A12007D24E6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 31B72F851F476A12007D24E6 /* Localizable.strings */; };
+		31B72F881F4778C2007D24E6 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B72F871F4778C2007D24E6 /* SignUpViewController.swift */; };
 		98D0C745BBA0DAB0082F2BFD /* Pods_Tricky.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFA49A12562E72DD1E969AA9 /* Pods_Tricky.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		31B72F651F475A14007D24E6 /* Tricky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tricky.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31B72F681F475A15007D24E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		31B72F6A1F475A15007D24E6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		31B72F6D1F475A15007D24E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		31B72F6F1F475A15007D24E6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		31B72F721F475A15007D24E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		31B72F741F475A15007D24E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		31B72F7D1F4760FD007D24E6 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		31B72F841F476A12007D24E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		31B72F861F476A18007D24E6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		31B72F871F4778C2007D24E6 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		398C29F8BF70BE72AF396866 /* Pods-Tricky.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tricky.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tricky/Pods-Tricky.debug.xcconfig"; sourceTree = "<group>"; };
 		8B19D5D7AF9919607A2027D4 /* Pods-Tricky.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tricky.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tricky/Pods-Tricky.release.xcconfig"; sourceTree = "<group>"; };
 		AFA49A12562E72DD1E969AA9 /* Pods_Tricky.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tricky.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,14 +66,56 @@
 		31B72F671F475A14007D24E6 /* Tricky */ = {
 			isa = PBXGroup;
 			children = (
+				31B72F7F1F4769D7007D24E6 /* Utility */,
+				31B72F7C1F4760E3007D24E6 /* Model */,
+				31B72F7B1F4760DD007D24E6 /* View */,
+				31B72F7A1F4760A4007D24E6 /* Controller */,
 				31B72F681F475A15007D24E6 /* AppDelegate.swift */,
-				31B72F6A1F475A15007D24E6 /* ViewController.swift */,
 				31B72F6C1F475A15007D24E6 /* Main.storyboard */,
 				31B72F6F1F475A15007D24E6 /* Assets.xcassets */,
 				31B72F711F475A15007D24E6 /* LaunchScreen.storyboard */,
 				31B72F741F475A15007D24E6 /* Info.plist */,
 			);
 			path = Tricky;
+			sourceTree = "<group>";
+		};
+		31B72F7A1F4760A4007D24E6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				31B72F7D1F4760FD007D24E6 /* LoginViewController.swift */,
+				31B72F871F4778C2007D24E6 /* SignUpViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		31B72F7B1F4760DD007D24E6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		31B72F7C1F4760E3007D24E6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		31B72F7F1F4769D7007D24E6 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				31B72F801F4769EA007D24E6 /* Localizable */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		31B72F801F4769EA007D24E6 /* Localizable */ = {
+			isa = PBXGroup;
+			children = (
+				31B72F851F476A12007D24E6 /* Localizable.strings */,
+			);
+			path = Localizable;
 			sourceTree = "<group>";
 		};
 		7BAAE10DC7061EE8C8FF87ED /* Pods */ = {
@@ -151,6 +198,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				31B72F731F475A15007D24E6 /* LaunchScreen.storyboard in Resources */,
+				31B72F831F476A12007D24E6 /* Localizable.strings in Resources */,
 				31B72F701F475A15007D24E6 /* Assets.xcassets in Resources */,
 				31B72F6E1F475A15007D24E6 /* Main.storyboard in Resources */,
 			);
@@ -201,6 +249,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Tricky/Pods-Tricky-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
+				"${BUILT_PRODUCTS_DIR}/Localize-Swift/Localize_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/MagicalRecord/MagicalRecord.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 			);
@@ -208,6 +257,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Localize_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MagicalRecord.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 			);
@@ -223,7 +273,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				31B72F6B1F475A15007D24E6 /* ViewController.swift in Sources */,
+				31B72F881F4778C2007D24E6 /* SignUpViewController.swift in Sources */,
+				31B72F7E1F4760FD007D24E6 /* LoginViewController.swift in Sources */,
 				31B72F691F475A15007D24E6 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -245,6 +296,15 @@
 				31B72F721F475A15007D24E6 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		31B72F851F476A12007D24E6 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				31B72F841F476A12007D24E6 /* Base */,
+				31B72F861F476A18007D24E6 /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -390,6 +450,7 @@
 				31B72F791F475A15007D24E6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

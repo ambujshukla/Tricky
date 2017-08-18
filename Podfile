@@ -8,6 +8,7 @@ target 'Tricky' do
   pod "MagicalRecord"
   pod 'IQKeyboardManager'
   pod 'SDWebImage', '~> 4.0'
+  pod 'Localize-Swift', '~> 1.7'
   # Pods for Tricky
 
 end
