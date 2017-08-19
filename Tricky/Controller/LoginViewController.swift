@@ -64,7 +64,8 @@ class LoginViewController: UIViewController {
     
     @IBAction func doClickLogin(sender: UIButton)
     {
-        
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfileViewIdentifier") as! ProfileViewController
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func doClickForgotPassword(sender: UIButton)

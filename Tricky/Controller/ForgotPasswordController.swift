@@ -30,7 +30,6 @@ class ForgotPasswordController: UIViewController {
         self.btnReset.layer.borderColor = UIColor.white.cgColor
         self.btnReset.layer.borderWidth = 1.0
         self.btnReset.layer.masksToBounds = true
-        
     }
     
     
