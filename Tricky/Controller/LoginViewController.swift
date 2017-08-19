@@ -69,7 +69,8 @@ class LoginViewController: UIViewController {
     
     @IBAction func doClickForgotPassword(sender: UIButton)
     {
-        
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ForgotPasswordController") as! ForgotPasswordController
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func doClickSignUp(sender: UIButton)
@@ -78,7 +79,9 @@ class LoginViewController: UIViewController {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

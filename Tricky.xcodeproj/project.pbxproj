@@ -8,6 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		3151CE791F48A3D000C322C3 /* Main_2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3151CE781F48A3D000C322C3 /* Main_2.storyboard */; };
+		3151CE7B1F48A8C900C322C3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3151CE7A1F48A8C900C322C3 /* ProfileViewController.swift */; };
+		3151CE7E1F48AAE800C322C3 /* ForgotPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3151CE7C1F48AAE800C322C3 /* ForgotPasswordController.swift */; };
+		3151CE7F1F48AAE800C322C3 /* VerifyOTPController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3151CE7D1F48AAE800C322C3 /* VerifyOTPController.swift */; };
+		3151CE811F48AC4F00C322C3 /* CommanUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3151CE801F48AC4F00C322C3 /* CommanUtility.swift */; };
+		3151CE831F48AC5C00C322C3 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3151CE821F48AC5C00C322C3 /* Constant.swift */; };
+		3151CE871F48ACEA00C322C3 /* WebAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3151CE861F48ACEA00C322C3 /* WebAPIManager.swift */; };
+		3151CE8A1F48AD6000C322C3 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3151CE881F48AD6000C322C3 /* ContactViewController.swift */; };
+		3151CE8B1F48AD6000C322C3 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3151CE891F48AD6000C322C3 /* MessageViewController.swift */; };
+		3151CE8D1F48ADBB00C322C3 /* ContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3151CE8C1F48ADBB00C322C3 /* ContactModel.swift */; };
+		3151CE8F1F48ADD100C322C3 /* ContactPickerUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3151CE8E1F48ADD100C322C3 /* ContactPickerUtils.swift */; };
 		31B72F691F475A15007D24E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B72F681F475A15007D24E6 /* AppDelegate.swift */; };
 		31B72F6E1F475A15007D24E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31B72F6C1F475A15007D24E6 /* Main.storyboard */; };
 		31B72F701F475A15007D24E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31B72F6F1F475A15007D24E6 /* Assets.xcassets */; };
@@ -20,6 +30,16 @@
 
 /* Begin PBXFileReference section */
 		3151CE781F48A3D000C322C3 /* Main_2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_2.storyboard; sourceTree = "<group>"; };
+		3151CE7A1F48A8C900C322C3 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		3151CE7C1F48AAE800C322C3 /* ForgotPasswordController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordController.swift; sourceTree = "<group>"; };
+		3151CE7D1F48AAE800C322C3 /* VerifyOTPController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyOTPController.swift; sourceTree = "<group>"; };
+		3151CE801F48AC4F00C322C3 /* CommanUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommanUtility.swift; sourceTree = "<group>"; };
+		3151CE821F48AC5C00C322C3 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		3151CE861F48ACEA00C322C3 /* WebAPIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebAPIManager.swift; sourceTree = "<group>"; };
+		3151CE881F48AD6000C322C3 /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
+		3151CE891F48AD6000C322C3 /* MessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
+		3151CE8C1F48ADBB00C322C3 /* ContactModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactModel.swift; sourceTree = "<group>"; };
+		3151CE8E1F48ADD100C322C3 /* ContactPickerUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactPickerUtils.swift; sourceTree = "<group>"; };
 		31B72F651F475A14007D24E6 /* Tricky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tricky.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31B72F681F475A15007D24E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		31B72F6D1F475A15007D24E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -84,8 +104,13 @@
 		31B72F7A1F4760A4007D24E6 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				3151CE881F48AD6000C322C3 /* ContactViewController.swift */,
+				3151CE891F48AD6000C322C3 /* MessageViewController.swift */,
+				3151CE7C1F48AAE800C322C3 /* ForgotPasswordController.swift */,
+				3151CE7D1F48AAE800C322C3 /* VerifyOTPController.swift */,
 				31B72F7D1F4760FD007D24E6 /* LoginViewController.swift */,
 				31B72F871F4778C2007D24E6 /* SignUpViewController.swift */,
+				3151CE7A1F48A8C900C322C3 /* ProfileViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -101,6 +126,7 @@
 		31B72F7C1F4760E3007D24E6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				3151CE8C1F48ADBB00C322C3 /* ContactModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -108,6 +134,10 @@
 		31B72F7F1F4769D7007D24E6 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				3151CE8E1F48ADD100C322C3 /* ContactPickerUtils.swift */,
+				3151CE801F48AC4F00C322C3 /* CommanUtility.swift */,
+				3151CE861F48ACEA00C322C3 /* WebAPIManager.swift */,
+				3151CE821F48AC5C00C322C3 /* Constant.swift */,
 				31B72F801F4769EA007D24E6 /* Localizable */,
 			);
 			path = Utility;
@@ -277,9 +307,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3151CE7E1F48AAE800C322C3 /* ForgotPasswordController.swift in Sources */,
+				3151CE871F48ACEA00C322C3 /* WebAPIManager.swift in Sources */,
+				3151CE8D1F48ADBB00C322C3 /* ContactModel.swift in Sources */,
 				31B72F881F4778C2007D24E6 /* SignUpViewController.swift in Sources */,
 				31B72F7E1F4760FD007D24E6 /* LoginViewController.swift in Sources */,
+				3151CE8F1F48ADD100C322C3 /* ContactPickerUtils.swift in Sources */,
+				3151CE831F48AC5C00C322C3 /* Constant.swift in Sources */,
+				3151CE811F48AC4F00C322C3 /* CommanUtility.swift in Sources */,
+				3151CE7B1F48A8C900C322C3 /* ProfileViewController.swift in Sources */,
+				3151CE8B1F48AD6000C322C3 /* MessageViewController.swift in Sources */,
+				3151CE7F1F48AAE800C322C3 /* VerifyOTPController.swift in Sources */,
 				31B72F691F475A15007D24E6 /* AppDelegate.swift in Sources */,
+				3151CE8A1F48AD6000C322C3 /* ContactViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
