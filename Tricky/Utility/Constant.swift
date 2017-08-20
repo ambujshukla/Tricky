@@ -243,3 +243,24 @@ func convertDateTOString (date : Date) -> String
 
 
 
+
+//////Tricky
+
+//Images
+let MOBILE_ICON = "mobileicon"
+let PASSWORD_ICON = "passwordicon"
+let LOGIN_BG = "loginBG"
+let SIGNUP_BG = "signUpBG"
+let FOROGT_PASSWORD_BG = "forgotPassword_BG"
+
+let BACK_BUTTON = "backbutton"
+let CHECKBOX_UNSELECTED = "checkbox_unselected"
+let CHECKBOX_SELECTED = "checkbox_selected"
+
+//Title
+let TITLE_LOGIN = "Login"
+let SIGNUP_LOGIN = "Signup"
+
+
+
+

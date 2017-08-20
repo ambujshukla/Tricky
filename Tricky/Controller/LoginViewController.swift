@@ -18,7 +18,7 @@ class LoginViewController: UIViewController {
     @IBOutlet  var btnForgotPassword : UIButton!
     @IBOutlet  var btnSignup : UIButton!
     @IBOutlet  var btnDontAccount : UIButton!
-
+    
     @IBOutlet  var imgMobile : UIImageView!
     @IBOutlet  var imgPassword : UIImageView!
     
@@ -35,29 +35,31 @@ class LoginViewController: UIViewController {
     
     func decorateUI()
     {
+        CommanUtility.decorateNavigationbar(target: self, strTitle: "txt_login".localized())
+        
         self.btnLogin.setTitle("txt_login".localized(), for: .normal)
         self.btnLogin.backgroundColor = UIColor.white
-        self.btnLogin.setTitleColor(UIColor.black, for: .normal)
+        self.btnLogin.setTitleColor(UIColor.darkGray, for: .normal)
         
-        self.imgBg.backgroundColor = UIColor.lightGray
+        self.imgBg.image = UIImage(named : LOGIN_BG)
         
-        self.imgMobile.backgroundColor = UIColor.red
-        self.imgPassword.backgroundColor = UIColor.red
+        self.imgMobile.image = UIImage(named : MOBILE_ICON)
+        self.imgPassword.image = UIImage(named : PASSWORD_ICON)
         
         self.btnForgotPassword.setTitle("txt_forgot_password".localized(), for: .normal)
         self.btnForgotPassword.titleLabel?.textColor = UIColor.white
         
         self.btnSignup.setTitle("txt_SignUp".localized(), for: .normal)
         self.btnSignup.titleLabel?.textColor = UIColor.white
-
+        
         self.btnDontAccount.setTitle("txt_don't_have_account".localized(), for: .normal)
         self.btnDontAccount.titleLabel?.textColor = UIColor.white
-
+        
         self.txtMobile.attributedPlaceholder = NSAttributedString(string: "txt_mobile".localized(),
-                                                                    attributes: [NSForegroundColorAttributeName: UIColor.white])
+                                                                  attributes: [NSForegroundColorAttributeName: UIColor.white])
         self.txtPassword.attributedPlaceholder = NSAttributedString(string: "txt_password".localized(),
-                                                               attributes: [NSForegroundColorAttributeName: UIColor.white])
-
+                                                                    attributes: [NSForegroundColorAttributeName: UIColor.white])
+        
         self.imgSeparator1.backgroundColor = UIColor.white
         self.imgSeparator2.backgroundColor = UIColor.white
     }

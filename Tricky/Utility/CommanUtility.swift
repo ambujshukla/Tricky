@@ -13,7 +13,7 @@ class CommanUtility: NSObject {
     
     class func decorateNavigationbar(target : UIViewController , strTitle : String) {
         
-        target.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+     //   target.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         target.navigationController?.navigationBar.shadowImage = UIImage()
         target.navigationController?.navigationBar.isTranslucent = true
         target.navigationController?.view.backgroundColor = UIColor.clear
@@ -63,10 +63,10 @@ class CommanUtility: NSObject {
     
     class func decorateNavigationbarWithBackButtonAndTitle (target : UIViewController , leftselect : Selector , strTitle : String , strBackImag : String , strFontName : String , size : CGFloat , color : UIColor) {
     
-        target.navigationController?.view.backgroundColor = UIColor.white
-        target.navigationItem.title =  strTitle as String
-        let  font = UIFont(name: strFontName , size:size)!
-        target.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: font,  NSForegroundColorAttributeName: color]
+//        target.navigationController?.view.backgroundColor = UIColor.white
+//        target.navigationItem.title =  strTitle as String
+//        let  font = UIFont(name: strFontName , size:size)!
+//        target.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: font,  NSForegroundColorAttributeName: color]
         
         let buttonBack: UIButton = UIButton(type: .custom)
         buttonBack.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
