@@ -2,7 +2,7 @@
   Localizable.strings
   Tricky
 
-  Created by Shweta Shukla on 19/08/17.
+  Created by gopalsara on 19/08/17.
   Copyright © 2017 Gopal Sara. All rights reserved.
 */
 
@@ -19,3 +19,17 @@
 "txt_save" = "Save";
 "txt_title_forgot_password" = "Forgot Password";
 "txt_reset" = "Reset";
+"txt_otp" = "OTP";
+"txt_verify" = "Verify";
+"txt_resend_otp" = "Resend OTP";
+"txt_otp_verify" = "OTP Verify";
+"txt_profile_photo" = "Profile Photo";
+"txt_cancel" = "Cancel";
+"txt_gallery" = "Gallery";
+"txt_photo" = "Photo";
+"txt_options" = "Option to select";
+"txt_profile" = "Profile";
+"txt_block_users" = "Block Users";
+"txt_search" = "Search";
+
+

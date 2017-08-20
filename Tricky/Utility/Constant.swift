@@ -118,7 +118,6 @@ let PROFILE_ALERT = "Please select profile image"
 
 //************************ Universal Images ***********************************//
 
-let PROFILE_BG = "profilebg.png" //profilebg.png
 let BACK_IMG = "back.png"
 let PROFILE_ICON = "profile_place_icon.png"
 
@@ -241,9 +240,6 @@ func convertDateTOString (date : Date) -> String
     return strDate
 }
 
-
-
-
 //////Tricky
 
 //Images
@@ -252,10 +248,17 @@ let PASSWORD_ICON = "passwordicon"
 let LOGIN_BG = "loginBG"
 let SIGNUP_BG = "signUpBG"
 let FOROGT_PASSWORD_BG = "forgotPassword_BG"
+let BLOCK_LIST_BG  = "blockUserBG"
+let PROFILE_BG = "ProfileBG"
+let BLOCK_ICON = "blockicon"
+let SEARCH_ICON = "searchicon"
+
+let OTP_BG = "OTP_BG"
 
 let BACK_BUTTON = "backbutton"
 let CHECKBOX_UNSELECTED = "checkbox_unselected"
 let CHECKBOX_SELECTED = "checkbox_selected"
+let EDIT_ICON = "editicon"
 
 //Title
 let TITLE_LOGIN = "Login"

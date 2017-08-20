@@ -2,7 +2,7 @@
 //  ProfileTableViewCell.swift
 //  Tricky
 //
-//  Created by Shweta Shukla on 19/08/17.
+//  Created by gopalsara on 19/08/17.
 //  Copyright © 2017 Gopal Sara. All rights reserved.
 //
 
@@ -15,7 +15,6 @@ class ProfileTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     

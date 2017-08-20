@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  Tricky
 //
-//  Created by Shweta Shukla on 18/08/17.
+//  Created by gopalsara on 18/08/17.
 //  Copyright © 2017 Gopal Sara. All rights reserved.
 //
 

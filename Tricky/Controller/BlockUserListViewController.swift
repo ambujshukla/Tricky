@@ -2,40 +2,53 @@
 //  BlockUserListViewController.swift
 //  Tricky
 //
-//  Created by Shweta Shukla on 20/08/17.
+//  Created by gopalsara on 20/08/17.
 //  Copyright © 2017 Gopal Sara. All rights reserved.
 //
 
 import UIKit
+import Localize_Swift
 
 class BlockUserListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
     @IBOutlet weak var tblView : UITableView!
+    @IBOutlet weak var imgBG : UIImageView!
+    
     var searchBar : UISearchBar!
     var shouldSearchStart : Bool = false
     
     var arrBlockList = ["Johnson Smith","Kenton","Martin","Prince","Tom Brady","Zack","Sammy","Rhydian"]
     var arrFilteredData = [String]()
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         self.decorateUI()
         self.configureInitialParameters()
     }
     
-    func  decorateUI(){
+    func  decorateUI()
+    {
+        CommanUtility.decorateNavigationbar(target: self, strTitle: "txt_block_users".localized())
+
         self.tblView.backgroundColor = UIColor.clear
-        self.view.backgroundColor = UIColor.black
-        CommanUtility.createCustomRightButton(self, navBarItem: self.navigationItem, strRightImage: "search", select: #selector(doClickSearch))
+        CommanUtility.createCustomRightButton(self, navBarItem: self.navigationItem, strRightImage: SEARCH_ICON as NSString, select: #selector(doClickSearch))
         self.searchBar = UISearchBar()
         self.searchBar.sizeToFit()
-        self.searchBar.placeholder = "Search"
+        self.searchBar.placeholder = "txt_search".localized()
         self.searchBar.delegate = self
-        navigationItem.titleView = self.searchBar
         self.searchBar.isHidden = true
+        self.imgBG.image = UIImage(named : BLOCK_LIST_BG)
+        
+        CommanUtility.decorateNavigationbarWithBackButtonAndTitle(target: self, leftselect: #selector(doClickBack), strTitle: "", strBackImag: BACK_BUTTON, strFontName: "Arial", size: 20, color: UIColor.white)
     }
     
-    func  configureInitialParameters(){
+    func doClickBack()
+    {
+       self.navigationController?.popViewController(animated: true)
+    }
+    func  configureInitialParameters()
+    {
         self.tblView.delegate = self
         self.tblView.dataSource = self
         self.tblView.tableFooterView = UIView()
@@ -54,11 +67,15 @@ class BlockUserListViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func doClickSearch(){
-        if shouldSearchStart == false{
+        if shouldSearchStart == false
+        {
+            navigationItem.titleView = self.searchBar
             self.searchBar.isHidden = false
         }else{
+            navigationItem.titleView = nil
             self.searchBar.isHidden = true
             self.searchBar.text = ""
+            CommanUtility.decorateNavigationbar(target: self, strTitle: "txt_block_users".localized())
         }
         shouldSearchStart = !(self.searchBar.isHidden)
     }

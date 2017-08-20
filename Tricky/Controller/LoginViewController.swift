@@ -2,7 +2,7 @@
 //  LoginViewController.swift
 //  Tricky
 //
-//  Created by Shweta Shukla on 18/08/17.
+//  Created by gopalsara on 18/08/17.
 //  Copyright © 2017 Gopal Sara. All rights reserved.
 //
 
@@ -62,6 +62,9 @@ class LoginViewController: UIViewController {
         
         self.imgSeparator1.backgroundColor = UIColor.white
         self.imgSeparator2.backgroundColor = UIColor.white
+        
+        self.txtMobile.textColor = UIColor.white
+        self.txtPassword.textColor = UIColor.white
     }
     
     @IBAction func doClickLogin(sender: UIButton)

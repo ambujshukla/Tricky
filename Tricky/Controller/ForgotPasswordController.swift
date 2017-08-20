@@ -54,6 +54,8 @@ class ForgotPasswordController: UIViewController {
         self.btnSignup.setTitleColor(UIColor.white, for: .normal)
         self.tfMobile.attributedPlaceholder = NSAttributedString(string: "txt_password".localized(),
                                                                     attributes: [NSForegroundColorAttributeName: UIColor.white])
+        self.tfMobile.textColor = UIColor.white
+        self.tfMobile.isSecureTextEntry = true
     }
     
     func doClickBack()
@@ -76,6 +78,9 @@ class ForgotPasswordController: UIViewController {
     {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "SignUpViewIdentifier") as! SignUpViewController
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
 }

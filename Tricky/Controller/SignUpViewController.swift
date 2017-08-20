@@ -2,7 +2,7 @@
 //  SignUpViewController.swift
 //  Tricky
 //
-//  Created by Shweta Shukla on 19/08/17.
+//  Created by gopalsara on 19/08/17.
 //  Copyright © 2017 Gopal Sara. All rights reserved.
 //
 
@@ -66,6 +66,10 @@ class SignUpViewController: UIViewController {
         self.btnTnC.isSelected = false
         
         CommanUtility.decorateNavigationbarWithBackButtonAndTitle(target: self, leftselect: #selector(doClickBack), strTitle: "", strBackImag: BACK_BUTTON, strFontName: "Arial", size: 20, color: UIColor.white)
+        
+        self.txtMobile.textColor = UIColor.white
+        self.txtMobile.textColor = UIColor.white
+        self.txtCnfPassword.textColor = UIColor.white
     }
     
     func doClickBack()

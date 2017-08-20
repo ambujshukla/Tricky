@@ -41,6 +41,10 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Tricky wants to access your library</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Tricky wants to access your camera.</string>
 	<key>NSContactsUsageDescription</key>
 	<string>Tricky needs to access your contacts to send invitations via email.</string>
 </dict>
