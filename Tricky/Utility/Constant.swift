@@ -229,7 +229,7 @@ func userResetPasswordDictionry (_ oldPassword : String , newPassword : String )
 
 func color(red : Float , green : Float , blue : Float) -> UIColor
 {
-    return UIColor.init(colorLiteralRed: red, green: green, blue: blue, alpha: 1.0)
+    return UIColor.init(colorLiteralRed: red/255, green: green/255, blue: blue/255, alpha: 1.0)
 }
 
 func convertDateTOString (date : Date) -> String

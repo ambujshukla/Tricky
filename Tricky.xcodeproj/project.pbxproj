@@ -7,17 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		183A10811F4B517A00579A7A /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183A10801F4B517A00579A7A /* ContactViewController.swift */; };
+		183A10831F4B519300579A7A /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183A10821F4B519300579A7A /* MenuViewController.swift */; };
+		183A10851F4B519900579A7A /* NewPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183A10841F4B519900579A7A /* NewPasswordController.swift */; };
+		183A10871F4B51A200579A7A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183A10861F4B51A200579A7A /* HomeViewController.swift */; };
+		183A10891F4B51AA00579A7A /* HomeMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183A10881F4B51AA00579A7A /* HomeMessageController.swift */; };
+		183A108B1F4B51B100579A7A /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183A108A1F4B51B100579A7A /* ChatViewController.swift */; };
+		183A108D1F4B51B900579A7A /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183A108C1F4B51B900579A7A /* PostViewController.swift */; };
+		183A108F1F4B51C000579A7A /* LanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183A108E1F4B51C000579A7A /* LanguageViewController.swift */; };
+		183A10AF1F4B529A00579A7A /* ViewPagerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183A10AB1F4B529A00579A7A /* ViewPagerController.swift */; };
+		183A10B01F4B529A00579A7A /* ViewPagerOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183A10AC1F4B529A00579A7A /* ViewPagerOptions.swift */; };
+		183A10B11F4B529A00579A7A /* ViewPagerTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183A10AD1F4B529A00579A7A /* ViewPagerTab.swift */; };
+		183A10B21F4B529A00579A7A /* ViewPagerTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183A10AE1F4B529A00579A7A /* ViewPagerTabView.swift */; };
+		183A10B71F4B52D000579A7A /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 183A10B61F4B52D000579A7A /* SWRevealViewController.m */; };
 		310139831F49F84800A69E5A /* blockUserBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 310139801F49F84800A69E5A /* blockUserBG.png */; };
 		310139841F49F84800A69E5A /* blockUserBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 310139811F49F84800A69E5A /* blockUserBG@2x.png */; };
 		310139851F49F84800A69E5A /* blockUserBG@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 310139821F49F84800A69E5A /* blockUserBG@3x.png */; };
-		3151CE791F48A3D000C322C3 /* Main_2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3151CE781F48A3D000C322C3 /* Main_2.storyboard */; };
 		3151CE7B1F48A8C900C322C3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3151CE7A1F48A8C900C322C3 /* ProfileViewController.swift */; };
 		3151CE7E1F48AAE800C322C3 /* ForgotPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3151CE7C1F48AAE800C322C3 /* ForgotPasswordController.swift */; };
 		3151CE7F1F48AAE800C322C3 /* VerifyOTPController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3151CE7D1F48AAE800C322C3 /* VerifyOTPController.swift */; };
 		3151CE811F48AC4F00C322C3 /* CommanUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3151CE801F48AC4F00C322C3 /* CommanUtility.swift */; };
 		3151CE831F48AC5C00C322C3 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3151CE821F48AC5C00C322C3 /* Constant.swift */; };
 		3151CE871F48ACEA00C322C3 /* WebAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3151CE861F48ACEA00C322C3 /* WebAPIManager.swift */; };
-		3151CE8A1F48AD6000C322C3 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3151CE881F48AD6000C322C3 /* ContactViewController.swift */; };
 		3151CE8B1F48AD6000C322C3 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3151CE891F48AD6000C322C3 /* MessageViewController.swift */; };
 		3151CE8D1F48ADBB00C322C3 /* ContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3151CE8C1F48ADBB00C322C3 /* ContactModel.swift */; };
 		3151CE8F1F48ADD100C322C3 /* ContactPickerUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3151CE8E1F48ADD100C322C3 /* ContactPickerUtils.swift */; };
@@ -74,17 +85,30 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		183A10801F4B517A00579A7A /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
+		183A10821F4B519300579A7A /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		183A10841F4B519900579A7A /* NewPasswordController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPasswordController.swift; sourceTree = "<group>"; };
+		183A10861F4B51A200579A7A /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		183A10881F4B51AA00579A7A /* HomeMessageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeMessageController.swift; sourceTree = "<group>"; };
+		183A108A1F4B51B100579A7A /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		183A108C1F4B51B900579A7A /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		183A108E1F4B51C000579A7A /* LanguageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageViewController.swift; sourceTree = "<group>"; };
+		183A10AB1F4B529A00579A7A /* ViewPagerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewPagerController.swift; sourceTree = "<group>"; };
+		183A10AC1F4B529A00579A7A /* ViewPagerOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewPagerOptions.swift; sourceTree = "<group>"; };
+		183A10AD1F4B529A00579A7A /* ViewPagerTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewPagerTab.swift; sourceTree = "<group>"; };
+		183A10AE1F4B529A00579A7A /* ViewPagerTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewPagerTabView.swift; sourceTree = "<group>"; };
+		183A10B41F4B52CE00579A7A /* Tricky-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tricky-Bridging-Header.h"; sourceTree = "<group>"; };
+		183A10B51F4B52D000579A7A /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		183A10B61F4B52D000579A7A /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		310139801F49F84800A69E5A /* blockUserBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blockUserBG.png; sourceTree = "<group>"; };
 		310139811F49F84800A69E5A /* blockUserBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blockUserBG@2x.png"; sourceTree = "<group>"; };
 		310139821F49F84800A69E5A /* blockUserBG@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blockUserBG@3x.png"; sourceTree = "<group>"; };
-		3151CE781F48A3D000C322C3 /* Main_2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_2.storyboard; sourceTree = "<group>"; };
 		3151CE7A1F48A8C900C322C3 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		3151CE7C1F48AAE800C322C3 /* ForgotPasswordController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordController.swift; sourceTree = "<group>"; };
 		3151CE7D1F48AAE800C322C3 /* VerifyOTPController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyOTPController.swift; sourceTree = "<group>"; };
 		3151CE801F48AC4F00C322C3 /* CommanUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommanUtility.swift; sourceTree = "<group>"; };
 		3151CE821F48AC5C00C322C3 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		3151CE861F48ACEA00C322C3 /* WebAPIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebAPIManager.swift; sourceTree = "<group>"; };
-		3151CE881F48AD6000C322C3 /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 		3151CE891F48AD6000C322C3 /* MessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		3151CE8C1F48ADBB00C322C3 /* ContactModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactModel.swift; sourceTree = "<group>"; };
 		3151CE8E1F48ADD100C322C3 /* ContactPickerUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactPickerUtils.swift; sourceTree = "<group>"; };
@@ -157,6 +181,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		183A10AA1F4B529A00579A7A /* ViewPager */ = {
+			isa = PBXGroup;
+			children = (
+				183A10AB1F4B529A00579A7A /* ViewPagerController.swift */,
+				183A10AC1F4B529A00579A7A /* ViewPagerOptions.swift */,
+				183A10AD1F4B529A00579A7A /* ViewPagerTab.swift */,
+				183A10AE1F4B529A00579A7A /* ViewPagerTabView.swift */,
+			);
+			path = ViewPager;
+			sourceTree = "<group>";
+		};
+		183A10B31F4B52BE00579A7A /* SWrevealViewController */ = {
+			isa = PBXGroup;
+			children = (
+				183A10B51F4B52D000579A7A /* SWRevealViewController.h */,
+				183A10B61F4B52D000579A7A /* SWRevealViewController.m */,
+				183A10B41F4B52CE00579A7A /* Tricky-Bridging-Header.h */,
+			);
+			path = SWrevealViewController;
+			sourceTree = "<group>";
+		};
 		3101397F1F49F83B00A69E5A /* BlockList */ = {
 			isa = PBXGroup;
 			children = (
@@ -265,7 +310,14 @@
 		31B72F7A1F4760A4007D24E6 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				3151CE881F48AD6000C322C3 /* ContactViewController.swift */,
+				183A108E1F4B51C000579A7A /* LanguageViewController.swift */,
+				183A108C1F4B51B900579A7A /* PostViewController.swift */,
+				183A108A1F4B51B100579A7A /* ChatViewController.swift */,
+				183A10881F4B51AA00579A7A /* HomeMessageController.swift */,
+				183A10861F4B51A200579A7A /* HomeViewController.swift */,
+				183A10821F4B519300579A7A /* MenuViewController.swift */,
+				183A10841F4B519900579A7A /* NewPasswordController.swift */,
+				183A10801F4B517A00579A7A /* ContactViewController.swift */,
 				3151CE891F48AD6000C322C3 /* MessageViewController.swift */,
 				3151CE7C1F48AAE800C322C3 /* ForgotPasswordController.swift */,
 				3151CE7D1F48AAE800C322C3 /* VerifyOTPController.swift */,
@@ -280,7 +332,6 @@
 		31B72F7B1F4760DD007D24E6 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				3151CE781F48A3D000C322C3 /* Main_2.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -296,6 +347,8 @@
 		31B72F7F1F4769D7007D24E6 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				183A10B31F4B52BE00579A7A /* SWrevealViewController */,
+				183A10AA1F4B529A00579A7A /* ViewPager */,
 				3151CE8E1F48ADD100C322C3 /* ContactPickerUtils.swift */,
 				3151CE801F48AC4F00C322C3 /* CommanUtility.swift */,
 				3151CE861F48ACEA00C322C3 /* WebAPIManager.swift */,
@@ -394,6 +447,7 @@
 				TargetAttributes = {
 					31B72F641F475A14007D24E6 = {
 						CreatedOnToolsVersion = 8.3.3;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -449,7 +503,6 @@
 				31D031BD1F49C43E00D41E4C /* blockicon@2x.png in Resources */,
 				31D031CC1F49C6F700D41E4C /* ProfileBG@2x.png in Resources */,
 				3151CEBE1F49615B00C322C3 /* checkbox_unselected@3x.png in Resources */,
-				3151CE791F48A3D000C322C3 /* Main_2.storyboard in Resources */,
 				31D031C71F49C43E00D41E4C /* searchicon@3x.png in Resources */,
 				3151CEAB1F4960E400C322C3 /* passwordicon@2x.png in Resources */,
 				3151CEA01F4960B400C322C3 /* loginBG@3x.png in Resources */,
@@ -541,21 +594,33 @@
 			buildActionMask = 2147483647;
 			files = (
 				3151CE7E1F48AAE800C322C3 /* ForgotPasswordController.swift in Sources */,
+				183A10811F4B517A00579A7A /* ContactViewController.swift in Sources */,
+				183A10AF1F4B529A00579A7A /* ViewPagerController.swift in Sources */,
+				183A10871F4B51A200579A7A /* HomeViewController.swift in Sources */,
 				3151CE921F48B2F900C322C3 /* ProfileTableViewCell.swift in Sources */,
 				3151CE871F48ACEA00C322C3 /* WebAPIManager.swift in Sources */,
 				3151CE941F48C56100C322C3 /* BlockUserListViewController.swift in Sources */,
+				183A10B71F4B52D000579A7A /* SWRevealViewController.m in Sources */,
 				3151CE8D1F48ADBB00C322C3 /* ContactModel.swift in Sources */,
 				31B72F881F4778C2007D24E6 /* SignUpViewController.swift in Sources */,
+				183A108F1F4B51C000579A7A /* LanguageViewController.swift in Sources */,
+				183A10891F4B51AA00579A7A /* HomeMessageController.swift in Sources */,
 				31B72F7E1F4760FD007D24E6 /* LoginViewController.swift in Sources */,
+				183A108D1F4B51B900579A7A /* PostViewController.swift in Sources */,
+				183A10B01F4B529A00579A7A /* ViewPagerOptions.swift in Sources */,
+				183A108B1F4B51B100579A7A /* ChatViewController.swift in Sources */,
 				3151CE8F1F48ADD100C322C3 /* ContactPickerUtils.swift in Sources */,
+				183A10851F4B519900579A7A /* NewPasswordController.swift in Sources */,
 				3151CE961F48C5F000C322C3 /* BlockUserListTableViewCell.swift in Sources */,
 				3151CE831F48AC5C00C322C3 /* Constant.swift in Sources */,
+				183A10831F4B519300579A7A /* MenuViewController.swift in Sources */,
 				3151CE811F48AC4F00C322C3 /* CommanUtility.swift in Sources */,
 				3151CE7B1F48A8C900C322C3 /* ProfileViewController.swift in Sources */,
 				3151CE8B1F48AD6000C322C3 /* MessageViewController.swift in Sources */,
 				3151CE7F1F48AAE800C322C3 /* VerifyOTPController.swift in Sources */,
+				183A10B21F4B529A00579A7A /* ViewPagerTabView.swift in Sources */,
+				183A10B11F4B529A00579A7A /* ViewPagerTab.swift in Sources */,
 				31B72F691F475A15007D24E6 /* AppDelegate.swift in Sources */,
-				3151CE8A1F48AD6000C322C3 /* ContactViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -690,10 +755,13 @@
 			baseConfigurationReference = 398C29F8BF70BE72AF396866 /* Pods-Tricky.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Tricky/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Tricky.app.Tricky;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Tricky/Utility/SWrevealViewController/Tricky-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -703,10 +771,12 @@
 			baseConfigurationReference = 8B19D5D7AF9919607A2027D4 /* Pods-Tricky.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Tricky/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Tricky.app.Tricky;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Tricky/Utility/SWrevealViewController/Tricky-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

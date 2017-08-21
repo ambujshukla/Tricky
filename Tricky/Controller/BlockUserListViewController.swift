@@ -29,7 +29,6 @@ class BlockUserListViewController: UIViewController, UITableViewDelegate, UITabl
     
     func  decorateUI()
     {
-        CommanUtility.decorateNavigationbar(target: self, strTitle: "txt_block_users".localized())
 
         self.tblView.backgroundColor = UIColor.clear
         CommanUtility.createCustomRightButton(self, navBarItem: self.navigationItem, strRightImage: SEARCH_ICON as NSString, select: #selector(doClickSearch))
@@ -40,7 +39,7 @@ class BlockUserListViewController: UIViewController, UITableViewDelegate, UITabl
         self.searchBar.isHidden = true
         self.imgBG.image = UIImage(named : BLOCK_LIST_BG)
         
-        CommanUtility.decorateNavigationbarWithBackButtonAndTitle(target: self, leftselect: #selector(doClickBack), strTitle: "", strBackImag: BACK_BUTTON, strFontName: "Arial", size: 20, color: UIColor.white)
+        CommanUtility.decorateNavigationbarWithBackButtonAndTitle(target: self, leftselect: #selector(doClickBack), strTitle: "txt_block_users".localized(), strBackImag: BACK_BUTTON, strFontName: "Arial", size: 20, color: UIColor.white)
     }
     
     func doClickBack()
@@ -75,7 +74,6 @@ class BlockUserListViewController: UIViewController, UITableViewDelegate, UITabl
             navigationItem.titleView = nil
             self.searchBar.isHidden = true
             self.searchBar.text = ""
-            CommanUtility.decorateNavigationbar(target: self, strTitle: "txt_block_users".localized())
         }
         shouldSearchStart = !(self.searchBar.isHidden)
     }

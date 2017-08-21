@@ -35,7 +35,6 @@ class LoginViewController: UIViewController {
     
     func decorateUI()
     {
-        CommanUtility.decorateNavigationbar(target: self, strTitle: "txt_login".localized())
         
         self.btnLogin.setTitle("txt_login".localized(), for: .normal)
         self.btnLogin.backgroundColor = UIColor.white
@@ -67,10 +66,16 @@ class LoginViewController: UIViewController {
         self.txtPassword.textColor = UIColor.white
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.navigationController?.navigationBar.barTintColor = color(red: 53, green: 100, blue: 120)
+    }
+
+    
     @IBAction func doClickLogin(sender: UIButton)
     {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfileViewIdentifier") as! ProfileViewController
-        self.navigationController?.pushViewController(vc, animated: true)
+        let controller = self.storyboard?.instantiateViewController(withIdentifier: "SWRevealViewController") as! SWRevealViewController
+        self.present(controller, animated: true, completion: nil)
     }
     
     @IBAction func doClickForgotPassword(sender: UIButton)

@@ -29,7 +29,6 @@ class VerifyOTPController: UIViewController
     
     func decorateUI ()
     {
-        self.btnOTP.setTitle("txt_verify".localized(), for: .normal)
         self.btnOTP.backgroundColor = UIColor.white
         self.btnOTP.setTitleColor(UIColor.darkGray, for: .normal)
         self.imgBG.image = UIImage(named : OTP_BG)
@@ -38,13 +37,17 @@ class VerifyOTPController: UIViewController
         self.btnResend.setTitle("txt_resend_otp".localized(), for: .normal)
         self.btnResend.setTitleColor(UIColor.darkGray, for: .normal)
         
-        CommanUtility.decorateNavigationbar(target: self, strTitle: "txt_otp_verify".localized())
-        
-        CommanUtility.decorateNavigationbarWithBackButtonAndTitle(target: self, leftselect: #selector(doClickBack), strTitle: "", strBackImag: BACK_BUTTON, strFontName: "Arial", size: 20, color: UIColor.white)
+        CommanUtility.decorateNavigationbarWithBackButtonAndTitle(target: self, leftselect: #selector(doClickBack), strTitle: "txt_verify".localized(), strBackImag: BACK_BUTTON, strFontName: "Arial", size: 20, color: color(red: 60, green: 120, blue: 101))
         
         self.tfOtp.textColor = UIColor.white
         self.btnResend.setTitleColor(UIColor.white, for: .normal)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.navigationController?.navigationBar.barTintColor = color(red: 60, green: 120, blue: 101)
+    }
+
     
     func doClickBack()
     {

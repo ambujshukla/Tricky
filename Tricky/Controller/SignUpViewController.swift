@@ -34,7 +34,6 @@ class SignUpViewController: UIViewController {
     }
     func decorateUI()
     {
-        CommanUtility.decorateNavigationbar(target: self, strTitle: "txt_SignUp".localized())
 
         self.btnTnC.setTitle("txt_TnC".localized(), for: .normal)
         self.btnTnC.setTitleColor(UIColor.white, for: .normal)
@@ -65,13 +64,18 @@ class SignUpViewController: UIViewController {
         self.btnTnC.setImage(UIImage(named : CHECKBOX_SELECTED) , for: .selected)
         self.btnTnC.isSelected = false
         
-        CommanUtility.decorateNavigationbarWithBackButtonAndTitle(target: self, leftselect: #selector(doClickBack), strTitle: "", strBackImag: BACK_BUTTON, strFontName: "Arial", size: 20, color: UIColor.white)
+        CommanUtility.decorateNavigationbarWithBackButtonAndTitle(target: self, leftselect: #selector(doClickBack), strTitle: "txt_SignUp".localized(), strBackImag: BACK_BUTTON, strFontName: "Arial", size: 20, color: UIColor.white)
         
         self.txtMobile.textColor = UIColor.white
         self.txtMobile.textColor = UIColor.white
         self.txtCnfPassword.textColor = UIColor.white
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.navigationController?.navigationBar.barTintColor = color(red: 151, green: 92, blue: 126)
+    }
+
     func doClickBack()
     {
        self.navigationController?.popViewController(animated: true)

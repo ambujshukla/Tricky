@@ -27,6 +27,7 @@ class ContactViewController: UIViewController , UITableViewDelegate , UITableVie
     
     func doGetContactFromConactBook(){
         
+      self.tblContact.tableFooterView = UIView()
       //  CommonUtil.showLoader()
         DispatchQueue.global(qos: .background).async {
             
@@ -41,6 +42,21 @@ class ContactViewController: UIViewController , UITableViewDelegate , UITableVie
                 }
             }
         }
+        CommanUtility.decorateNavigationbarWithBackButton(target: self, strTitle: "All Contacts", strBackButtonImage: BACK_BUTTON, selector: #selector(self.goTOBack), color: color(red: 142, green: 110, blue: 137))
+  
+        
+        //142 , 110 ,137 
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.navigationController?.navigationBar.barTintColor = color(red: 142, green: 110, blue: 137)
+    }
+    
+    func goTOBack()
+    {
+        self.navigationController?.popViewController(animated: true)
+        
     }
 
     

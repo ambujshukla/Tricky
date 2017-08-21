@@ -31,9 +31,8 @@ class ForgotPasswordController: UIViewController {
     
     func decorateUI ()
     {
-        CommanUtility.decorateNavigationbar(target: self, strTitle: "txt_title_forgot_password".localized())
         
-        CommanUtility.decorateNavigationbarWithBackButtonAndTitle(target: self, leftselect: #selector(doClickBack), strTitle: "", strBackImag: BACK_BUTTON, strFontName: "Arial", size: 20, color: UIColor.white)
+        CommanUtility.decorateNavigationbarWithBackButtonAndTitle(target: self, leftselect: #selector(doClickBack), strTitle: "txt_title_forgot_password".localized(), strBackImag: BACK_BUTTON, strFontName: "Arial", size: 20, color: UIColor.white)
         
         self.imgBG.image = UIImage(named : FOROGT_PASSWORD_BG)
         
@@ -56,6 +55,11 @@ class ForgotPasswordController: UIViewController {
                                                                     attributes: [NSForegroundColorAttributeName: UIColor.white])
         self.tfMobile.textColor = UIColor.white
         self.tfMobile.isSecureTextEntry = true
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.navigationController?.navigationBar.barTintColor = color(red: 100, green: 80, blue: 167)
     }
     
     func doClickBack()
