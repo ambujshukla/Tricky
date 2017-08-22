@@ -25,6 +25,8 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
     
     func decorateUI () {
    self.tblMessage.tableFooterView = UIView()
+        self.tblMessage.rowHeight = UITableViewAutomaticDimension;
+        self.tblMessage.estimatedRowHeight = 90.0;
     }
     
     

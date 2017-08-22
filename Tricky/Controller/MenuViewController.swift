@@ -82,8 +82,25 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
             navController.setViewControllers([contrlHome , vc], animated: true)
             self.revealViewController().pushFrontViewController(navController, animated: true)
         }
-        else if (indexPath.row == 0) {
+       
+        else if (indexPath.row == 2) {
             
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "FavouriteViewController") as! FavouriteViewController
+            let contrlHome = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+            let navController = UINavigationController.init()
+            navController.setViewControllers([contrlHome , vc], animated: true)
+            self.revealViewController().pushFrontViewController(navController, animated: true)
+        }
+
+            
+        else if (indexPath.row == 0) {
+          
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "BlockUserListViewIdentifier") as! BlockUserListViewController
+            let contrlHome = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+            let navController = UINavigationController.init()
+            navController.setViewControllers([contrlHome , vc], animated: true)
+            self.revealViewController().pushFrontViewController(navController, animated: true)
+
         }
         
     }
