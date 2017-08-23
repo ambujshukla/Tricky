@@ -69,6 +69,8 @@ class SignUpViewController: UIViewController {
         self.txtMobile.textColor = UIColor.white
         self.txtMobile.textColor = UIColor.white
         self.txtCnfPassword.textColor = UIColor.white
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -84,6 +86,21 @@ class SignUpViewController: UIViewController {
     @IBAction func doClickTnC()
     {
         self.btnTnC.isSelected = !self.btnTnC.isSelected
+        
+        self.doCallWebAPIForRegistration()
+    }
+    
+    
+    func doCallWebAPIForRegistration() {
+        
+        let dictData = ["version" : "" , "os" : "ios" , "language" : "english" , "mobile":"9713279803" , "password" : "12345678" , "url":"user1@trickychat.com" , "deviceToken" : "324343434343434343"]
+        
+     WebAPIManager.sharedWebAPIMAnager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "register", parameter: dictData , success: { (obj) in
+    print("this is object \(obj)")
+       }) { (error) in
+    
+        }
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

@@ -9,6 +9,7 @@ target 'Tricky' do
   pod 'IQKeyboardManager'
   pod 'SDWebImage', '~> 4.0'
   pod 'Localize-Swift', '~> 1.7'
+  pod 'AAPopUp'
   # Pods for Tricky
 
 end

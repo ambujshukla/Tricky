@@ -10,12 +10,12 @@ import Foundation
 import UIKit
 
 // Server constant
-//let kBaseUrl  = "http://192.168.0.77/ps-production/public/api/v1/"
-let kBaseUrl = "https://api.photospring.com/api/v1/"
-//let kBaseUrl = "http://staging.photospring.com/api/v1/"
+
+let kBaseUrl = "http://www.trickychat.com/api/"
+
 
 let kLoginService        = "users/login"
-let kReistration         = "users/register"
+let kReistration         = "register"
 let kUserVarification    = "users/checkVerfication"
 let kResendVarification  = "resendVerification"
 let kUpdateProfile       = "users/updateProfile"
@@ -153,6 +153,9 @@ let FONT_SIZE_22       = 22
 let FONT_SIZE_23       = 23
 let FONT_SIZE_24       = 24
 let FONT_SIZE_25       = 25
+
+
+
 
 ///////////////////////////////////////  Hard code deviceToken /////////////////////////////
 
