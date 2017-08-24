@@ -39,9 +39,6 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
     
     func decorateUI()
     {
-     //   self.textView.placeholder = "How are you?"
-     //   self.textView.placeholderColor = UIColor.lightGray // optional
-
         CommanUtility.decorateNavigationbarWithBackButtonAndTitle(target: self, leftselect: #selector(doClickBack), strTitle: "Michael Smith".localized(), strBackImag: BACK_BUTTON, strFontName: "Arial", size: 20, color: UIColor.white)
 
         self.tblView.backgroundColor = UIColor.clear
@@ -140,6 +137,12 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
         cellToShow.selectionStyle = .none
         return cellToShow
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserPostAnswerViewController") as! UserPostAnswerViewController
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     func keyboardWillHide(_ sender: Notification) {
         if let userInfo = (sender as NSNotification).userInfo {
             if let _ = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size.height {
@@ -185,6 +188,7 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
     @IBAction func doClickSend(id : UIButton)
     {
         self.heightConstrntTxtView.constant = 50;
+        self.txtChat.text = ""
     }
     
     @IBAction func doClickYesOrNo (id : UIButton)
