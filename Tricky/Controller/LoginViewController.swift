@@ -35,7 +35,6 @@ class LoginViewController: UIViewController {
     
     func decorateUI()
     {
-        
         self.btnLogin.setTitle("txt_login".localized(), for: .normal)
         self.btnLogin.backgroundColor = UIColor.white
         self.btnLogin.setTitleColor(UIColor.darkGray, for: .normal)
@@ -70,7 +69,6 @@ class LoginViewController: UIViewController {
         super.viewWillAppear(true)
         self.navigationController?.navigationBar.barTintColor = color(red: 53, green: 100, blue: 120)
     }
-
     
     @IBAction func doClickLogin(sender: UIButton)
     {

@@ -31,5 +31,8 @@
 "txt_profile" = "Profile";
 "txt_block_users" = "Block Users";
 "txt_search" = "Search";
+"txt_yes" = "Yes";
+"txt_no" = "No";
+"txt_type_message" = "Type a message";
 
 
