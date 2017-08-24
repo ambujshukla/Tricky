@@ -61,6 +61,8 @@
 		3151CECA1F497AF400C322C3 /* forgotPassword_BG.png in Resources */ = {isa = PBXBuildFile; fileRef = 3151CEC71F497AF400C322C3 /* forgotPassword_BG.png */; };
 		3151CECB1F497AF400C322C3 /* forgotPassword_BG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3151CEC81F497AF400C322C3 /* forgotPassword_BG@2x.png */; };
 		3151CECC1F497AF400C322C3 /* forgotPassword_BG@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3151CEC91F497AF400C322C3 /* forgotPassword_BG@3x.png */; };
+		3163FC261F4DF902004AA3CF /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3163FC251F4DF902004AA3CF /* ChatTableViewCell.swift */; };
+		3163FC281F4DFB62004AA3CF /* ChatDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3163FC271F4DFB62004AA3CF /* ChatDetailViewController.swift */; };
 		31B72F691F475A15007D24E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B72F681F475A15007D24E6 /* AppDelegate.swift */; };
 		31B72F6E1F475A15007D24E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31B72F6C1F475A15007D24E6 /* Main.storyboard */; };
 		31B72F701F475A15007D24E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31B72F6F1F475A15007D24E6 /* Assets.xcassets */; };
@@ -143,6 +145,8 @@
 		3151CEC71F497AF400C322C3 /* forgotPassword_BG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = forgotPassword_BG.png; sourceTree = "<group>"; };
 		3151CEC81F497AF400C322C3 /* forgotPassword_BG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "forgotPassword_BG@2x.png"; sourceTree = "<group>"; };
 		3151CEC91F497AF400C322C3 /* forgotPassword_BG@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "forgotPassword_BG@3x.png"; sourceTree = "<group>"; };
+		3163FC251F4DF902004AA3CF /* ChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
+		3163FC271F4DFB62004AA3CF /* ChatDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatDetailViewController.swift; sourceTree = "<group>"; };
 		31B72F651F475A14007D24E6 /* Tricky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tricky.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31B72F681F475A15007D24E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		31B72F6D1F475A15007D24E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -219,6 +223,7 @@
 		3151CE901F48B2E300C322C3 /* UITableViewCell */ = {
 			isa = PBXGroup;
 			children = (
+				3163FC251F4DF902004AA3CF /* ChatTableViewCell.swift */,
 				3151CE911F48B2F900C322C3 /* ProfileTableViewCell.swift */,
 				3151CE951F48C5F000C322C3 /* BlockUserListTableViewCell.swift */,
 				1833F9DD1F4CA7FD004AB7EE /* MessageTableViewCell.swift */,
@@ -331,6 +336,7 @@
 				3151CE7A1F48A8C900C322C3 /* ProfileViewController.swift */,
 				3151CE931F48C56000C322C3 /* BlockUserListViewController.swift */,
 				1833F9DB1F4C94E1004AB7EE /* FavouriteViewController.swift */,
+				3163FC271F4DFB62004AA3CF /* ChatDetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -579,6 +585,7 @@
 				"${BUILT_PRODUCTS_DIR}/Localize-Swift/Localize_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/MagicalRecord/MagicalRecord.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/UITextView+Placeholder/UITextView_Placeholder.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -588,6 +595,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Localize_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MagicalRecord.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UITextView_Placeholder.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -612,6 +620,7 @@
 				3151CE8D1F48ADBB00C322C3 /* ContactModel.swift in Sources */,
 				31B72F881F4778C2007D24E6 /* SignUpViewController.swift in Sources */,
 				183A108F1F4B51C000579A7A /* LanguageViewController.swift in Sources */,
+				3163FC281F4DFB62004AA3CF /* ChatDetailViewController.swift in Sources */,
 				183A10891F4B51AA00579A7A /* HomeMessageController.swift in Sources */,
 				31B72F7E1F4760FD007D24E6 /* LoginViewController.swift in Sources */,
 				183A108D1F4B51B900579A7A /* PostViewController.swift in Sources */,
@@ -627,6 +636,7 @@
 				1833F9DE1F4CA7FD004AB7EE /* MessageTableViewCell.swift in Sources */,
 				3151CE7B1F48A8C900C322C3 /* ProfileViewController.swift in Sources */,
 				3151CE8B1F48AD6000C322C3 /* MessageViewController.swift in Sources */,
+				3163FC261F4DF902004AA3CF /* ChatTableViewCell.swift in Sources */,
 				3151CE7F1F48AAE800C322C3 /* VerifyOTPController.swift in Sources */,
 				183A10B21F4B529A00579A7A /* ViewPagerTabView.swift in Sources */,
 				183A10B11F4B529A00579A7A /* ViewPagerTab.swift in Sources */,

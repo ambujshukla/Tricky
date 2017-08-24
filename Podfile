@@ -10,6 +10,7 @@ target 'Tricky' do
   pod 'SDWebImage', '~> 4.0'
   pod 'Localize-Swift', '~> 1.7'
   pod 'AAPopUp'
+  pod 'UITextView+Placeholder', '~> 1.2'
   # Pods for Tricky
 
 end

@@ -263,8 +263,11 @@ let SIGNUP_BG = "signUpBG"
 let FOROGT_PASSWORD_BG = "forgotPassword_BG"
 let BLOCK_LIST_BG  = "blockUserBG"
 let PROFILE_BG = "ProfileBG"
+let CHAT_BG = "chatScreenBG"
 let BLOCK_ICON = "blockicon"
 let SEARCH_ICON = "searchicon"
+let SEND_ICON = "sendicon"
+let REFRESH_ICON = "refreshicon"
 
 let OTP_BG = "OTP_BG"
 

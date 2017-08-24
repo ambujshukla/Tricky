@@ -14,10 +14,10 @@ class ChatViewController: UIViewController  , UITableViewDataSource , UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       self.decorateUI()
+        self.decorateUI()
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -28,7 +28,7 @@ class ChatViewController: UIViewController  , UITableViewDataSource , UITableVie
         
         self.tblChat.tableFooterView = UIView()
     }
-
+    
     //MARK: - Tableview delegate and datasource methods
     
     
@@ -37,8 +37,8 @@ class ChatViewController: UIViewController  , UITableViewDataSource , UITableVie
         return 1
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
         return 4
     }
     
@@ -46,11 +46,15 @@ class ChatViewController: UIViewController  , UITableViewDataSource , UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-    let cell = tableView.dequeueReusableCell(withIdentifier: "cell1", for: indexPath) as UITableViewCell
-    return cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell1", for: indexPath) as UITableViewCell
+        cell.selectionStyle = .none
+        return cell
         
     }
-
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChatDetailViewIdentifier") as! ChatDetailViewController
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     
 }
