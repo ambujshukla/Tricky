@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import AAPopUp
 class FavouriteViewController: UIViewController , UITableViewDelegate , UITableViewDataSource {
 
     @IBOutlet weak var tblFav : UITableView!
@@ -40,6 +40,18 @@ class FavouriteViewController: UIViewController , UITableViewDelegate , UITableV
     func goTOBack(){
     self.navigationController?.popViewController(animated: true)
     }
+    
+    func doactionOnReply()
+    {
+        let popup: AAPopUp = AAPopUp(popup: .demo2)
+        popup.present { popup in
+            // MARK:- View Did Appear Here
+            popup.dismissWithTag(9)
+        }
+        
+ 
+    }
+    
     //MARK: - Tableview delegate and datasource methods
     
     
@@ -60,6 +72,8 @@ class FavouriteViewController: UIViewController , UITableViewDelegate , UITableV
         if indexPath.row % 2 == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell1", for: indexPath) as! MessageTableViewCell
             cell.lblMessage.text = "fdgfgfdgfdgfdgfdgfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgdfgfdgfdgdfgdfgdfgfgfghfghgfhfghgfhfghfghgfhfghgfhgfhgfhgfhgfhgfhghgfhgfhghghghgfhgfhgfhgfhgfhgfhgfhghghghgfhghghghghghghghghghgfhgfhghghgfhghghbngbgfhfgfgfdggfgfggfhghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghfghgghjhjdfghdfgfdhghjghfdfsgdfhgfhjghkfdfghfdgdfgsdfgdsgfghfjjkghdfghfjhhgjhghasdfgddfdgfggasdfdsfsdfdsfdsfasdffasdfasdfadfdfaaaasdfgqwqwerqertrqwerwqerwerewrewreqewwewqerqwerewrwqewerewqewrewrerwewewrewrewrzxcvxzcvcxzvxcvcvcxvcxvcxvcxvcxvcxvcxvcxvxcvcxvcvcxvxcvcxvcxvcxvcxvcxvcxvxcvxcv"
+            cell.btnReply.addTarget(self, action: #selector(doactionOnReply), for: .touchUpInside)
+            
             return cell
         }
         else

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AAPopUp
+
 
 class HomeMessageController: UIViewController , UITableViewDelegate , UITableViewDataSource{
     
@@ -60,7 +62,16 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
     }
     
     
-   
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+      
+        let popup: AAPopUp = AAPopUp(popup: .demo2)
+        popup.present { popup in
+            // MARK:- View Did Appear Here
+            popup.dismissWithTag(9)
+        }
+        
+        
+    }
     
     
     
