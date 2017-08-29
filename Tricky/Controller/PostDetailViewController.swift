@@ -34,8 +34,8 @@ class PostDetailViewController: UIViewController , UITableViewDelegate , UITable
         // Dispose of any resources that can be recreated.
     }
     
-    func decorateUI () {
-        
+    func decorateUI ()
+    {
         CommanUtility.decorateNavigationbarWithBackButton(target: self, strTitle: "txt_post_detail".localized(), strBackButtonImage: BACK_BUTTON, selector: #selector(self.goTOBack), color: color(red: 181, green: 121, blue: 240))
 
         self.imgBG.backgroundColor = UIColor.black

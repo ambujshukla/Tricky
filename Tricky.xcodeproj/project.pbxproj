@@ -25,6 +25,7 @@
 		310139831F49F84800A69E5A /* blockUserBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 310139801F49F84800A69E5A /* blockUserBG.png */; };
 		310139841F49F84800A69E5A /* blockUserBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 310139811F49F84800A69E5A /* blockUserBG@2x.png */; };
 		310139851F49F84800A69E5A /* blockUserBG@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 310139821F49F84800A69E5A /* blockUserBG@3x.png */; };
+		312E38491F52C19A00F65651 /* CommonUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312E38481F52C19A00F65651 /* CommonUtil.swift */; };
 		3151CE7B1F48A8C900C322C3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3151CE7A1F48A8C900C322C3 /* ProfileViewController.swift */; };
 		3151CE7E1F48AAE800C322C3 /* ForgotPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3151CE7C1F48AAE800C322C3 /* ForgotPasswordController.swift */; };
 		3151CE7F1F48AAE800C322C3 /* VerifyOTPController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3151CE7D1F48AAE800C322C3 /* VerifyOTPController.swift */; };
@@ -111,6 +112,7 @@
 		310139801F49F84800A69E5A /* blockUserBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blockUserBG.png; sourceTree = "<group>"; };
 		310139811F49F84800A69E5A /* blockUserBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blockUserBG@2x.png"; sourceTree = "<group>"; };
 		310139821F49F84800A69E5A /* blockUserBG@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blockUserBG@3x.png"; sourceTree = "<group>"; };
+		312E38481F52C19A00F65651 /* CommonUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonUtil.swift; sourceTree = "<group>"; };
 		3151CE7A1F48A8C900C322C3 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		3151CE7C1F48AAE800C322C3 /* ForgotPasswordController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordController.swift; sourceTree = "<group>"; };
 		3151CE7D1F48AAE800C322C3 /* VerifyOTPController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyOTPController.swift; sourceTree = "<group>"; };
@@ -372,6 +374,7 @@
 				3151CE861F48ACEA00C322C3 /* WebAPIManager.swift */,
 				3151CE821F48AC5C00C322C3 /* Constant.swift */,
 				31B72F801F4769EA007D24E6 /* Localizable */,
+				312E38481F52C19A00F65651 /* CommonUtil.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -591,6 +594,8 @@
 				"${BUILT_PRODUCTS_DIR}/Localize-Swift/Localize_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/MagicalRecord/MagicalRecord.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/UITextView+Placeholder/UITextView_Placeholder.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -601,6 +606,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Localize_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MagicalRecord.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UITextView_Placeholder.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -628,6 +635,7 @@
 				183A108F1F4B51C000579A7A /* LanguageViewController.swift in Sources */,
 				3163FC281F4DFB62004AA3CF /* ChatDetailViewController.swift in Sources */,
 				183A10891F4B51AA00579A7A /* HomeMessageController.swift in Sources */,
+				312E38491F52C19A00F65651 /* CommonUtil.swift in Sources */,
 				31B72F7E1F4760FD007D24E6 /* LoginViewController.swift in Sources */,
 				183A108D1F4B51B900579A7A /* PostViewController.swift in Sources */,
 				183A10B01F4B529A00579A7A /* ViewPagerOptions.swift in Sources */,

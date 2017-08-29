@@ -281,5 +281,5 @@ let TITLE_LOGIN = "Login"
 let SIGNUP_LOGIN = "Signup"
 
 
-
+let METHOD_LOGIN = "login"
 

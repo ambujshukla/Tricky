@@ -91,16 +91,14 @@ class SignUpViewController: UIViewController {
     }
     
     
-    func doCallWebAPIForRegistration() {
-        
+    func doCallWebAPIForRegistration()
+    {
         let dictData = ["version" : "" , "os" : "ios" , "language" : "english" , "mobile":"9713279803" , "password" : "12345678" , "url":"user1@trickychat.com" , "deviceToken" : "324343434343434343"]
         
      WebAPIManager.sharedWebAPIMAnager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "register", parameter: dictData , success: { (obj) in
     print("this is object \(obj)")
        }) { (error) in
-    
         }
-        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

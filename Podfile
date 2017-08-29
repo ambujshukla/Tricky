@@ -11,6 +11,9 @@ target 'Tricky' do
   pod 'Localize-Swift', '~> 1.7'
   pod 'AAPopUp'
   pod 'UITextView+Placeholder', '~> 1.2'
+  pod 'SVProgressHUD'
+  pod 'Toast-Swift', '~> 2.0.0'
+  # pod 'ReachabilitySwift', '~> 2.4'
   # Pods for Tricky
 
 end
