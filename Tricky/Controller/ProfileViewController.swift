@@ -33,7 +33,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDa
     
     func decorateUI()
     {
-
         CommanUtility.decorateNavigationbarWithBackButtonAndTitle(target: self, leftselect: #selector(doClickBack), strTitle: "txt_profile".localized(), strBackImag: BACK_BUTTON, strFontName: "Arial", size: 20, color: UIColor.white)
 
         self.btnSave.setTitle("txt_save".localized(), for: .normal)
