@@ -31,7 +31,6 @@ class ForgotPasswordController: UIViewController {
     
     func decorateUI ()
     {
-        
         CommanUtility.decorateNavigationbarWithBackButtonAndTitle(target: self, leftselect: #selector(doClickBack), strTitle: "txt_title_forgot_password".localized(), strBackImag: BACK_BUTTON, strFontName: "Arial", size: 20, color: UIColor.white)
         
         self.imgBG.image = UIImage(named : FOROGT_PASSWORD_BG)

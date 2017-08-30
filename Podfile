@@ -13,6 +13,7 @@ target 'Tricky' do
   pod 'UITextView+Placeholder', '~> 1.2'
   pod 'SVProgressHUD'
   pod 'Toast-Swift', '~> 2.0.0'
+  pod 'ActionSheetPicker-3.0'
   # pod 'ReachabilitySwift', '~> 2.4'
   # Pods for Tricky
 
