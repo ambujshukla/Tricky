@@ -9,7 +9,7 @@
 import UIKit
 import AAPopUp
 class FavouriteViewController: UIViewController , UITableViewDelegate , UITableViewDataSource {
-
+    
     @IBOutlet weak var tblFav : UITableView!
     
     override func viewDidLoad() {
@@ -17,20 +17,20 @@ class FavouriteViewController: UIViewController , UITableViewDelegate , UITableV
         self.decorateUI()
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     func decorateUI () {
-
+        
         CommanUtility.decorateNavigationbarWithBackButton(target: self, strTitle: "Favourite", strBackButtonImage: BACK_BUTTON, selector: #selector(self.goTOBack), color: color(red: 181, green: 121, blue: 240))
         
         self.tblFav.rowHeight = UITableViewAutomaticDimension;
         self.tblFav.estimatedRowHeight = 90.0;
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.navigationController?.navigationBar.barTintColor = color(red: 181, green: 121, blue: 240)
@@ -38,7 +38,7 @@ class FavouriteViewController: UIViewController , UITableViewDelegate , UITableV
     
     
     func goTOBack(){
-    self.navigationController?.popViewController(animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
     
     func doactionOnReply()
@@ -49,7 +49,7 @@ class FavouriteViewController: UIViewController , UITableViewDelegate , UITableV
             popup.dismissWithTag(9)
         }
         
- 
+        
     }
     
     //MARK: - Tableview delegate and datasource methods
@@ -80,10 +80,10 @@ class FavouriteViewController: UIViewController , UITableViewDelegate , UITableV
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell2", for: indexPath) as! MessageTableViewCell
             cell.lblMessage.text = "fdgfgfdgfdgfdgfdgfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgdfgfdgfdgdfgdfgdfgfg"
-
+            
             return cell
         }
     }
     
-
+    
 }

@@ -46,22 +46,19 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
     }
     
     // MARK: - Table View Delegates
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.row % 2 == 0 {
-             let cell = tableView.dequeueReusableCell(withIdentifier: "cell1", for: indexPath) as UITableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell1", for: indexPath) as! MessageTableViewCell
             return cell
         }
         else
         {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell2", for: indexPath) as UITableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell2", for: indexPath) as! MessageTableViewCell
             return cell
         }
         
     }
-    
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
       
         let popup: AAPopUp = AAPopUp(popup: .demo2)

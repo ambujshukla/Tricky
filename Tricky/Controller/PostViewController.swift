@@ -50,6 +50,10 @@ class PostViewController: UIViewController , UITableViewDelegate , UITableViewDa
         return cell
         
     }
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let controller = self.storyboard?.instantiateViewController(withIdentifier: "UserPostViewController") as! UserPostViewController
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
 
 }

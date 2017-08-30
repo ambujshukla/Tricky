@@ -31,6 +31,11 @@ class HomeViewController: UIViewController {
     }
     
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.navigationController?.navigationBar.barTintColor = color(red: 107, green: 198, blue: 108)
+    }
+    
     func doCustomSetUp(){
         
         let revealViewController: SWRevealViewController? = self.revealViewController()

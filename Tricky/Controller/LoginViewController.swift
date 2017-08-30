@@ -72,8 +72,8 @@ class LoginViewController: UIViewController {
     
     @IBAction func doClickLogin(sender: UIButton)
     {
-        //        let controller = self.storyboard?.instantiateViewController(withIdentifier: "SWRevealViewController") as! SWRevealViewController
-        //        self.present(controller, animated: true, completion: nil)
+            let controller = self.storyboard?.instantiateViewController(withIdentifier: "SWRevealViewController") as! SWRevealViewController
+            self.present(controller, animated: true, completion: nil)
         var (boolValue , message) = CommonUtil.doValidateLogin(self)
         if boolValue == false
         {
