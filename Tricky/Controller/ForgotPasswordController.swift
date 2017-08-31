@@ -68,6 +68,7 @@ class ForgotPasswordController: UIViewController
     @IBAction func doActionOnResetButton()
     {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "VerifyOTPController") as! VerifyOTPController
+        vc.isFromForgotPasswordScren = true
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

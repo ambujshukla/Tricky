@@ -15,6 +15,8 @@ class VerifyOTPController: UIViewController
     @IBOutlet weak var btnResend  : UIButton!
     @IBOutlet weak var imgBG : UIImageView!
     
+    var isFromForgotPasswordScren : Bool = false
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -33,7 +35,7 @@ class VerifyOTPController: UIViewController
         self.btnOTP.setTitleColor(UIColor.darkGray, for: .normal)
         self.imgBG.image = UIImage(named : OTP_BG)
         self.tfOtp.attributedPlaceholder = NSAttributedString(string: "txt_otp".localized(),
-                                                                    attributes: [NSForegroundColorAttributeName: UIColor.white])
+                                                              attributes: [NSForegroundColorAttributeName: UIColor.white])
         self.btnResend.setTitle("txt_resend_otp".localized(), for: .normal)
         self.btnResend.setTitleColor(UIColor.darkGray, for: .normal)
         
@@ -47,7 +49,7 @@ class VerifyOTPController: UIViewController
         super.viewWillAppear(true)
         self.navigationController?.navigationBar.barTintColor = color(red: 60, green: 120, blue: 101)
     }
-
+    
     
     func doClickBack()
     {
@@ -56,8 +58,15 @@ class VerifyOTPController: UIViewController
     
     @IBAction func doClickReset()
     {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MessageViewController") as! MessageViewController
-        self.navigationController?.pushViewController(vc, animated: true)
+        //        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MessageViewController") as! MessageViewController
+        //        self.navigationController?.pushViewController(vc, animated: true)
+        if self.isFromForgotPasswordScren
+        {
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "NewPasswordController") as! NewPasswordController
+            self.navigationController?.pushViewController(vc, animated: true)
+        }else{
+            self.navigationController?.popToRootViewController(animated: true)
+        }
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)

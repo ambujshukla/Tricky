@@ -50,22 +50,24 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
         
         if indexPath.row % 2 == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell1", for: indexPath) as! MessageTableViewCell
+            cell.selectionStyle = .none
             return cell
         }
         else
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell2", for: indexPath) as! MessageTableViewCell
+            cell.selectionStyle = .none
             return cell
         }
         
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
       
-        let popup: AAPopUp = AAPopUp(popup: .demo2)
-        popup.present { popup in
-            // MARK:- View Did Appear Here
-            popup.dismissWithTag(9)
-        }
+//        let popup: AAPopUp = AAPopUp(popup: .demo2)
+//        popup.present { popup in
+//            // MARK:- View Did Appear Here
+//            popup.dismissWithTag(9)
+//        }
         
         
     }
