@@ -8,9 +8,8 @@
 
 import UIKit
 
-class ForgotPasswordController: UIViewController {
-    
-    
+class ForgotPasswordController: UIViewController
+{
     @IBOutlet weak var tfMobile   : UITextField!
     @IBOutlet weak var btnReset  : UIButton!
     @IBOutlet weak var imgBG : UIImageView!

@@ -161,6 +161,7 @@
 		3151CEC91F497AF400C322C3 /* forgotPassword_BG@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "forgotPassword_BG@3x.png"; sourceTree = "<group>"; };
 		3163FC251F4DF902004AA3CF /* ChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
 		3163FC271F4DFB62004AA3CF /* ChatDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatDetailViewController.swift; sourceTree = "<group>"; };
+		3164B02E1F587A71006B8E52 /* Tricky.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tricky.entitlements; sourceTree = "<group>"; };
 		31B72F651F475A14007D24E6 /* Tricky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tricky.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31B72F681F475A15007D24E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		31B72F6D1F475A15007D24E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -320,6 +321,7 @@
 		31B72F671F475A14007D24E6 /* Tricky */ = {
 			isa = PBXGroup;
 			children = (
+				3164B02E1F587A71006B8E52 /* Tricky.entitlements */,
 				3151CE971F48CB2E00C322C3 /* Image */,
 				3151CE901F48B2E300C322C3 /* UITableViewCell */,
 				31B72F7F1F4769D7007D24E6 /* Utility */,
@@ -483,8 +485,14 @@
 				TargetAttributes = {
 					31B72F641F475A14007D24E6 = {
 						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = SNQG7M8Z3K;
 						LastSwiftMigration = 0830;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -815,10 +823,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Tricky/Tricky.entitlements;
+				DEVELOPMENT_TEAM = SNQG7M8Z3K;
 				INFOPLIST_FILE = Tricky/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Tricky.app.Tricky;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Tricky.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "80607f29-0292-4e16-b390-ad3e4f97fbd0";
+				PROVISIONING_PROFILE_SPECIFIER = Tricky_Dev_Prov_310817;
 				SWIFT_OBJC_BRIDGING_HEADER = "Tricky/Utility/SWrevealViewController/Tricky-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -833,10 +845,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Tricky/Tricky.entitlements;
+				DEVELOPMENT_TEAM = SNQG7M8Z3K;
 				INFOPLIST_FILE = Tricky/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Tricky.app.Tricky;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Tricky.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "80607f29-0292-4e16-b390-ad3e4f97fbd0";
+				PROVISIONING_PROFILE_SPECIFIER = Tricky_Dev_Prov_310817;
 				SWIFT_OBJC_BRIDGING_HEADER = "Tricky/Utility/SWrevealViewController/Tricky-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;

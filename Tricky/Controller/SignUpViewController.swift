@@ -158,13 +158,12 @@ class SignUpViewController: UIViewController,UINavigationControllerDelegate, UII
     {
         ActionSheetMultipleStringPicker.show(withTitle: "Select Code", rows: [
             self.arrCountryCode
-            ], initialSelection: [2, 2], doneBlock: {
+            ], initialSelection: [0], doneBlock: {
                 picker, indexes, values in
                 
-                print("values = \(values)")
-                print("indexes = \(indexes)")
-                print("picker = \(picker)")
-              //  self.txtSelectCode.text = values as! String
+                if let arrValue = values as? [String] {
+                    self.txtSelectCode.text = arrValue[0]
+                }
                 return
         }, cancel: { ActionMultipleStringCancelBlock in return }, origin: sender)
     }

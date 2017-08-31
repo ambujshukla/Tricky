@@ -100,9 +100,16 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
             let navController = UINavigationController.init()
             navController.setViewControllers([contrlHome , vc], animated: true)
             self.revealViewController().pushFrontViewController(navController, animated: true)
-
         }
-        
+
+    }
+    @IBAction func doClickProfile()
+    {
+       let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfileViewIdentifier") as! ProfileViewController
+        let contrlHome = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+        let navController = UINavigationController.init()
+        navController.setViewControllers([contrlHome , vc], animated: true)
+        self.revealViewController().pushFrontViewController(navController, animated: true)
     }
 
 }

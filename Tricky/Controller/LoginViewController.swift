@@ -9,8 +9,8 @@
 import UIKit
 import Localize_Swift
 
-class LoginViewController: UIViewController {
-    
+class LoginViewController: UIViewController
+{
     @IBOutlet  var txtMobile : UITextField!
     @IBOutlet  var txtPassword : UITextField!
     
@@ -35,6 +35,8 @@ class LoginViewController: UIViewController {
     
     func decorateUI()
     {
+        self.title = "txt_login".localized()
+
         self.btnLogin.setTitle("txt_login".localized(), for: .normal)
         self.btnLogin.backgroundColor = UIColor.white
         self.btnLogin.setTitleColor(UIColor.darkGray, for: .normal)
@@ -63,6 +65,7 @@ class LoginViewController: UIViewController {
         
         self.txtMobile.textColor = UIColor.white
         self.txtPassword.textColor = UIColor.white
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
