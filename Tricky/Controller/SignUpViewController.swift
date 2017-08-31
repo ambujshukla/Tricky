@@ -140,6 +140,9 @@ class SignUpViewController: UIViewController,UINavigationControllerDelegate, UII
     let dictData = ["version" : "1.0" , "os" : "ios" , "language" : "english" , "mobile": self.txtMobile.text! , "password" : self.txtPassword.text! , "url":self.txtUrl , "deviceToken" : "324343434343434343"] as [String : Any]
         
      WebAPIManager.sharedWebAPIMAnager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "register", parameter: dictData , success: { (obj) in
+        
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "VerifyOTPController") as! VerifyOTPController
+        self.navigationController?.pushViewController(vc, animated: true)
     print("this is object \(obj)")
        }) { (error) in
         }

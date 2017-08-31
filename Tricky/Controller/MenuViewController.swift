@@ -73,7 +73,7 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
         }
         else if (indexPath.row == 3){
             
-       let controller = self.storyboard?.instantiateViewController(withIdentifier: "LanguageViewController") as! LanguageViewController
+        let controller = self.storyboard?.instantiateViewController(withIdentifier: "LanguageViewController") as! LanguageViewController
         let contrlHome = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
         let navController = UINavigationController.init()
         navController.setViewControllers([contrlHome , controller], animated: true)
