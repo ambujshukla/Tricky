@@ -89,7 +89,8 @@ class LoginViewController: UIViewController
     
     func doCallWebAPIForLogin()
     {
-        // let dictData = ["version" : "" , "os" : "ios" , "language" : "english" , "mobile":"9713279803" , "password" : "12345678" , "url":"user1@trickychat.com" , "deviceToken" : "324343434343434343"]
+        
+        
         let dictData = ["mobile" : self.txtMobile.text!,"password":self.txtPassword!.text!,"deviceToken":"324343434343434343"] as [String : Any]
         WebAPIManager.sharedWebAPIMAnager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: METHOD_LOGIN, parameter: dictData , success: { (obj) in
             print("this is object \(obj)")

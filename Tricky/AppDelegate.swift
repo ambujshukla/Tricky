@@ -19,6 +19,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         [UIApplicationLaunchOptionsKey: Any]?) -> Bool
     {
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+        
+//        let center = NotificationCenter.current()
+//        center.requestAuthorization(options:[.badge, .alert, .sound]) { (granted, error) in
+//            // Enable or disable features based on authorization.
+//        }
+//        application.registerForRemoteNotifications()
+//        
+        
    ///     UINavigationBar.appearance().barTintColor = UIColor(red: 105.0/255.0, green: 181.0/255.0, blue: 191.0/255.0, alpha: 1.0)
  
      //   IQKeyboardManager.sharedManager().enable = true
@@ -26,6 +34,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        
+        let deviceTokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
+        print(deviceTokenString)
+        
+        
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        
+        print("i am not available in simulator \(error)")
+        
+    }
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.

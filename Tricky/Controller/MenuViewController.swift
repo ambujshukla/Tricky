@@ -12,6 +12,7 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
 
     var menuData = [String]()
     @IBOutlet weak var tblMenu : UITableView!
+    @IBOutlet weak var  imgProfile  : UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +21,10 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
     }
 
     func decorateUI () {
+        
+        self.imgProfile.layer.cornerRadius = self.imgProfile.frame.size.width / 2
+        self.imgProfile.layer.masksToBounds = true
+
         
         self.menuData = ["Block users" , "contacts" , "Favorite" , "language" , "Filter to vulger message" , "Only Register user messgae" , "Logout"];
         self.tblMenu.tableFooterView = UIView()
@@ -92,7 +97,15 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
             self.revealViewController().pushFrontViewController(navController, animated: true)
         }
 
-            
+//        else if (indexPath.row == 6) {
+//            
+//            let vc = self.storyboard?.instantiateViewController(withIdentifier: "PostViewController") as! PostViewController
+//            let contrlHome = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+//            let navController = UINavigationController.init()
+//            navController.setViewControllers([contrlHome , vc], animated: true)
+//            self.revealViewController().pushFrontViewController(navController, animated: true)
+//        }
+      
         else if (indexPath.row == 0) {
           
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "BlockUserListViewIdentifier") as! BlockUserListViewController

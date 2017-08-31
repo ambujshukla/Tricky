@@ -137,7 +137,7 @@ class SignUpViewController: UIViewController,UINavigationControllerDelegate, UII
     
     func doCallWebAPIForRegistration()
     {
-        let dictData = ["version" : "" , "os" : "ios" , "language" : "english" , "mobile":"9713279803" , "password" : "12345678" , "url":"user1@trickychat.com" , "deviceToken" : "324343434343434343"]
+    let dictData = ["version" : "1.0" , "os" : "ios" , "language" : "english" , "mobile": self.txtMobile.text! , "password" : self.txtPassword.text! , "url":self.txtUrl , "deviceToken" : "324343434343434343"] as [String : Any]
         
      WebAPIManager.sharedWebAPIMAnager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "register", parameter: dictData , success: { (obj) in
     print("this is object \(obj)")

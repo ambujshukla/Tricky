@@ -31,8 +31,6 @@
 	<string>Tricky needs to access your contacts to send invitations via email.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Tricky wants to access your library</string>
-	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
