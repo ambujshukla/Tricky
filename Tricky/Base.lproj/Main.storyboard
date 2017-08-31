@@ -49,13 +49,13 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LZb-r0-gsz">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="238"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mah-nC-R0t">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="menubackground" translatesAutoresizingMaskIntoConstraints="NO" id="mah-nC-R0t">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="238"/>
                                         <color key="backgroundColor" red="0.67450980392156867" green="0.21176470588235294" blue="0.54117647058823526" alpha="1" colorSpace="calibratedRGB"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zPO-h5-CkN">
                                         <rect key="frame" x="78" y="40" width="94" height="94"/>
-                                        <color key="backgroundColor" red="0.75686274509803919" green="0.21176470588235294" blue="0.45490196078431372" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.21379415490000001" green="1" blue="0.31756154580000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="94" id="gio-nH-r9O"/>
                                             <constraint firstAttribute="width" constant="94" id="izv-v6-bpg"/>
@@ -653,12 +653,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="x08-pA-Uld">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="languagebackground" translatesAutoresizingMaskIntoConstraints="NO" id="x08-pA-Uld">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="40" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="g6u-hW-JqQ">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="40" id="1pX-xt-yKN">
                                         <rect key="frame" x="0.0" y="28" width="320" height="40"/>
@@ -710,7 +710,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="klO-0E-IXI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6757.5" y="-4.225352112676056"/>
+            <point key="canvasLocation" x="6681" y="607"/>
         </scene>
         <!--Favourite View Controller-->
         <scene sceneID="k3X-vu-Wkk">
@@ -724,7 +724,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eZ8-dB-Nvu">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="favoritebackground" translatesAutoresizingMaskIntoConstraints="NO" id="eZ8-dB-Nvu">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="92" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tBJ-fH-ggO">
@@ -2382,12 +2382,12 @@
                         <outlet property="imgBG" destination="yOd-cb-BGy" id="fPJ-Wu-9Fs"/>
                         <outlet property="lblHeader" destination="dQ8-sJ-Mla" id="eo9-A3-VZO"/>
                         <outlet property="lblLeaveAnswer" destination="Qde-K4-5oc" id="CIH-gn-DlF"/>
-                        <outlet property="txtViewComment" destination="QFJ-KD-usO" id="cyy-Mp-xhO"/>
+                        <outlet property="txtViewComment" destination="QFJ-KD-usO" id="CYi-eZ-5wz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aCP-Ql-cRm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5870.625" y="-61.267605633802816"/>
+            <point key="canvasLocation" x="6653" y="-157"/>
         </scene>
         <!--Post Detail View Controller-->
         <scene sceneID="mlp-rc-tT1">
@@ -2707,7 +2707,10 @@
         <image name="allcontbackground" width="320" height="480"/>
         <image name="blockicon" width="12" height="12"/>
         <image name="deleteicon" width="12" height="12"/>
+        <image name="favoritebackground" width="320" height="480"/>
         <image name="favoriteicon" width="12" height="12"/>
+        <image name="languagebackground" width="320" height="480"/>
+        <image name="menubackground" width="245" height="207"/>
         <image name="msgbackground" width="320" height="480"/>
         <image name="msgsendbackground" width="320" height="480"/>
         <image name="passwordicon" width="10" height="13"/>

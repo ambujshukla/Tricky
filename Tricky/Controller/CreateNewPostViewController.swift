@@ -11,7 +11,7 @@ import UIKit
 class CreateNewPostViewController: UIViewController {
 
     @IBOutlet weak var btnCreate : UIButton!
-    
+    @IBOutlet weak var txtViewComment : UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
          self.decorateUI()

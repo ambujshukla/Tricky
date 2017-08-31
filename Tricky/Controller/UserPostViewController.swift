@@ -30,7 +30,7 @@ class UserPostViewController: UIViewController, UITableViewDelegate , UITableVie
        // self.tblMessage.rowHeight = UITableViewAutomaticDimension;
        // self.tblMessage.estimatedRowHeight = 90.0;
         //57 74 143
-        CommanUtility.decorateNavigationbarWithBackButton(target: self, strTitle: "", strBackButtonImage: BACK_BUTTON, selector: #selector(self.goTOBack) , color: color(red: 134, green: 146, blue: 216)
+        CommanUtility.decorateNavigationbarWithBackButton(target: self, strTitle: "John Smith", strBackButtonImage: BACK_BUTTON, selector: #selector(self.goTOBack) , color: color(red: 134, green: 146, blue: 216)
         )
     }
     
