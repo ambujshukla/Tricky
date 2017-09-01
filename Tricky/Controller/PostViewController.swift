@@ -11,7 +11,8 @@ import UIKit
 class PostViewController: UIViewController , UITableViewDelegate , UITableViewDataSource {
 
     @IBOutlet weak var tblPost : UITableView!
-    
+    @IBOutlet weak var btnPlus : UIButton!
+
     override func viewDidLoad() {
         super.viewDidLoad()
       self.decorateUI()
@@ -56,5 +57,10 @@ class PostViewController: UIViewController , UITableViewDelegate , UITableViewDa
         let controller = self.storyboard?.instantiateViewController(withIdentifier: "UserPostViewController") as! UserPostViewController
         self.navigationController?.pushViewController(controller, animated: true)
     }
-
+    
+    @IBAction func doClickPlus()
+    {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "CreateNewPostViewController") as! CreateNewPostViewController
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }

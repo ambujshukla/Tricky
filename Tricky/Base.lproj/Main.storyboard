@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="yqX-iU-oy2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="yqX-iU-oy2">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -477,6 +477,16 @@
                                     <outlet property="delegate" destination="ksW-ER-j8B" id="9Xu-fV-vXS"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j58-wh-dEg">
+                                <rect key="frame" x="265" y="513" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="j58-wh-dEg" secondAttribute="height" multiplier="1:1" id="CoG-4e-cjm"/>
+                                </constraints>
+                                <state key="normal" image="plusicon"/>
+                                <connections>
+                                    <action selector="doClickPlus" destination="ksW-ER-j8B" eventType="touchUpInside" id="7b4-hL-Wgm"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -484,13 +494,17 @@
                             <constraint firstItem="ENO-Ib-Fsj" firstAttribute="top" secondItem="b6u-h4-fre" secondAttribute="bottom" id="5qd-70-TcS"/>
                             <constraint firstItem="ENO-Ib-Fsj" firstAttribute="top" secondItem="fWr-lE-hX7" secondAttribute="bottom" id="BY1-8m-v79"/>
                             <constraint firstAttribute="trailing" secondItem="b6u-h4-fre" secondAttribute="trailing" id="LV0-3a-KVt"/>
+                            <constraint firstAttribute="bottom" secondItem="j58-wh-dEg" secondAttribute="bottom" constant="15" id="TcZ-WE-5uT"/>
                             <constraint firstItem="fWr-lE-hX7" firstAttribute="top" secondItem="If7-H4-XM0" secondAttribute="top" id="aPO-ir-2la"/>
+                            <constraint firstAttribute="trailing" secondItem="j58-wh-dEg" secondAttribute="trailing" constant="15" id="bPx-6b-AUv"/>
                             <constraint firstItem="fWr-lE-hX7" firstAttribute="leading" secondItem="If7-H4-XM0" secondAttribute="leading" id="fxG-iu-fPj"/>
+                            <constraint firstItem="j58-wh-dEg" firstAttribute="height" secondItem="If7-H4-XM0" secondAttribute="height" multiplier="40:568" id="tqV-Vx-GmV"/>
                             <constraint firstAttribute="trailing" secondItem="fWr-lE-hX7" secondAttribute="trailing" id="uIg-TA-97E"/>
                             <constraint firstItem="b6u-h4-fre" firstAttribute="leading" secondItem="If7-H4-XM0" secondAttribute="leading" id="w5w-68-YTk"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="btnPlus" destination="j58-wh-dEg" id="Ffi-Ah-EjF"/>
                         <outlet property="tblMessage" destination="b6u-h4-fre" id="W7r-Wi-lNp"/>
                     </connections>
                 </viewController>
@@ -1007,6 +1021,16 @@
                                     <outlet property="delegate" destination="ysO-L9-Vg5" id="zvY-aS-7Gr"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pfB-q8-Qd9">
+                                <rect key="frame" x="265" y="513" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="pfB-q8-Qd9" secondAttribute="height" multiplier="1:1" id="5x5-Qu-wM1"/>
+                                </constraints>
+                                <state key="normal" image="plusicon"/>
+                                <connections>
+                                    <action selector="doClickPlus" destination="ysO-L9-Vg5" eventType="touchUpInside" id="ntW-5g-33c"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1018,13 +1042,17 @@
                             <constraint firstAttribute="trailing" secondItem="yeZ-4O-IyP" secondAttribute="trailing" id="KmA-Kq-CEq"/>
                             <constraint firstItem="yeZ-4O-IyP" firstAttribute="top" secondItem="yWN-pR-fIO" secondAttribute="top" id="Qod-hd-sPm"/>
                             <constraint firstAttribute="trailing" secondItem="yeZ-4O-IyP" secondAttribute="trailing" id="T00-kD-5d0"/>
+                            <constraint firstItem="pfB-q8-Qd9" firstAttribute="height" secondItem="yWN-pR-fIO" secondAttribute="height" multiplier="40:568" id="Z3O-Mm-KT5"/>
                             <constraint firstItem="iTO-EF-5Wm" firstAttribute="top" secondItem="Aoh-yh-fyg" secondAttribute="bottom" id="bCl-Ko-Sfb"/>
                             <constraint firstItem="iTO-EF-5Wm" firstAttribute="top" secondItem="yeZ-4O-IyP" secondAttribute="bottom" id="cQ4-K7-2Xt"/>
+                            <constraint firstAttribute="trailing" secondItem="pfB-q8-Qd9" secondAttribute="trailing" constant="15" id="dly-9N-az6"/>
                             <constraint firstItem="Aoh-yh-fyg" firstAttribute="top" secondItem="yWN-pR-fIO" secondAttribute="top" id="hsd-GP-wQo"/>
                             <constraint firstItem="iTO-EF-5Wm" firstAttribute="top" secondItem="yeZ-4O-IyP" secondAttribute="bottom" id="pRE-RZ-J3O"/>
+                            <constraint firstAttribute="bottom" secondItem="pfB-q8-Qd9" secondAttribute="bottom" constant="15" id="zbB-hw-Vb8"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="btnPlus" destination="pfB-q8-Qd9" id="lrJ-iD-Cin"/>
                         <outlet property="tblPost" destination="Aoh-yh-fyg" id="oo1-Xa-RcG"/>
                     </connections>
                 </viewController>
@@ -2714,6 +2742,7 @@
         <image name="msgbackground" width="320" height="480"/>
         <image name="msgsendbackground" width="320" height="480"/>
         <image name="passwordicon" width="10" height="13"/>
+        <image name="plusicon" width="39" height="39"/>
         <image name="receivemsgicon" width="6" height="6"/>
         <image name="replyicon" width="12" height="12"/>
         <image name="sendmsgicon" width="6" height="6"/>

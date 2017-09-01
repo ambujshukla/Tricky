@@ -13,6 +13,7 @@ import AAPopUp
 class HomeMessageController: UIViewController , UITableViewDelegate , UITableViewDataSource{
     
     @IBOutlet weak var tblMessage : UITableView!
+    @IBOutlet weak var btnPlus : UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +60,6 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
             cell.selectionStyle = .none
             return cell
         }
-        
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
       
@@ -68,12 +68,13 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
 //            // MARK:- View Did Appear Here
 //            popup.dismissWithTag(9)
 //        }
-        
-        
     }
     
-    
-    
+    @IBAction func doClickPlus()
+    {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ContactViewController") as! ContactViewController
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     
   
 }
