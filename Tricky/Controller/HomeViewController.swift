@@ -40,7 +40,7 @@ class HomeViewController: UIViewController {
         
         let revealViewController: SWRevealViewController? = self.revealViewController()
         if revealViewController != nil {
-        CommanUtility.decorateNavigationbarWithRevealToggleButton(target : revealViewController!, strTitle: "Home", strBackButtonImage: "menuicon", selector: #selector(SWRevealViewController.revealToggle(_:)) , controller : self , color:  color(red: 107, green: 198, blue: 108) )
+        CommanUtility.decorateNavigationbarWithRevealToggleButton(target : revealViewController!, strTitle: "Tricky Chat", strBackButtonImage: "menuicon", selector: #selector(SWRevealViewController.revealToggle(_:)) , controller : self , color:  color(red: 107, green: 198, blue: 108) )
             navigationController?.navigationBar.addGestureRecognizer(revealViewController!.panGestureRecognizer())
         }
         

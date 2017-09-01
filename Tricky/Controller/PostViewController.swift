@@ -11,6 +11,8 @@ import UIKit
 class PostViewController: UIViewController , UITableViewDelegate , UITableViewDataSource {
 
     @IBOutlet weak var tblPost : UITableView!
+    var isComeFromHome : Bool!
+    @IBOutlet weak var topConstraint : NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
