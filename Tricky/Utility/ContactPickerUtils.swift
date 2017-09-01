@@ -98,7 +98,6 @@ class ContactPickerUtils: NSObject {
                     DispatchQueue.main.async {
                         target.navigationController?.popViewController(animated: true)
                     }
-                    
                 }
                 else{
                self.getContctFromContactBook(target: target , completion)

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="yqX-iU-oy2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="yqX-iU-oy2">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -1330,7 +1330,7 @@
                                     <action selector="doClickChangeProfilePic" destination="OhT-Em-7dl" eventType="touchUpInside" id="90f-dn-rIf"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Gwf-cz-s9Q">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Gwf-cz-s9Q">
                                 <rect key="frame" x="36" y="205" width="248" height="203"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1388,7 +1388,7 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qyq-Q9-vM6">
-                                <rect key="frame" x="36" y="370" width="248" height="38.5"/>
+                                <rect key="frame" x="36" y="447" width="248" height="38.5"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="doClickSave" destination="OhT-Em-7dl" eventType="touchUpInside" id="rNc-H4-Mpk"/>
@@ -1408,7 +1408,7 @@
                             <constraint firstItem="Ls9-yg-4fb" firstAttribute="top" secondItem="f7W-53-GwG" secondAttribute="top" id="bHX-mV-BaQ"/>
                             <constraint firstItem="Qyq-Q9-vM6" firstAttribute="centerX" secondItem="f7W-53-GwG" secondAttribute="centerX" id="fDY-1G-ZVO"/>
                             <constraint firstItem="Gwf-cz-s9Q" firstAttribute="centerX" secondItem="f7W-53-GwG" secondAttribute="centerX" id="hw3-3w-MNd"/>
-                            <constraint firstItem="Qyq-Q9-vM6" firstAttribute="top" secondItem="f7W-53-GwG" secondAttribute="bottom" multiplier="418:504" constant="-101.07936507936512" id="o63-LI-RNd"/>
+                            <constraint firstItem="Qyq-Q9-vM6" firstAttribute="top" secondItem="f7W-53-GwG" secondAttribute="bottom" multiplier="447:568" id="o63-LI-RNd"/>
                             <constraint firstItem="Qyq-Q9-vM6" firstAttribute="height" secondItem="f7W-53-GwG" secondAttribute="height" multiplier="34:504" id="pxj-Zq-Wbb"/>
                             <constraint firstAttribute="trailing" secondItem="Ls9-yg-4fb" secondAttribute="trailing" id="qtU-fI-Vwn"/>
                             <constraint firstItem="5zJ-Va-x62" firstAttribute="centerX" secondItem="f7W-53-GwG" secondAttribute="centerX" constant="-6.5" id="sFp-zC-WF2"/>
