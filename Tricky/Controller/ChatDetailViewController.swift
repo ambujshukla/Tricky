@@ -28,7 +28,7 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
     
     var arrChat : NSArray = [
         ["chatMessage": "Are you Julia", "dateTime": "13:24"]
-        ,["chatMessage": "No, I am not Julia", "dateTime": "13:26"],["chatMessage": "I think you are Jon Snow. I think you are Jon Snow.I think you are Jon Snow", "dateTime": "13:28"]
+        ,["chatMessage": "No, I am not Julia", "dateTime": "13:26"]
     ]
     override func viewDidLoad()
     {
@@ -39,6 +39,8 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
     
     func decorateUI()
     {
+        self.navigationController?.navigationBar.barTintColor = color(red: 113, green: 136, blue: 154)
+
         CommanUtility.decorateNavigationbarWithBackButtonAndTitle(target: self, leftselect: #selector(doClickBack), strTitle: "Michael Smith".localized(), strBackImag: BACK_BUTTON, strFontName: "Arial", size: 20, color: UIColor.white)
 
         self.tblView.backgroundColor = UIColor.clear
@@ -99,15 +101,15 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 2
+    }
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 10
+        return 0
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -119,19 +121,21 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellToShow : UITableViewCell!
-        let dictChatData : [String : String] = self.arrChat[indexPath.section] as! [String : String]
-        if (indexPath.section%2) == 0 {
+        let dictChatData : [String : String] = self.arrChat[indexPath.row] as! [String : String]
+        if (indexPath.row%2) == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cellChat1") as! ChatTableViewCell
             cell.lblMessage.text = dictChatData["chatMessage"]
-            cell.lblDate.text = dictChatData["dateTime"]
+       //     cell.lblDate.text = dictChatData["dateTime"]
+            cell.imgBG.layer.cornerRadius = 10
             cellToShow = cell
         }else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cellChat2") as! ChatTableViewCell
             cell.lblMessage.text = dictChatData["chatMessage"]
-            cell.lblDate.text = dictChatData["dateTime"]
+        //     cell.lblDate.text = dictChatData["dateTime"]
+            cell.imgBG.layer.cornerRadius = 10
             cellToShow = cell
         }
-        cellToShow.layer.cornerRadius = 4.0
+       // cellToShow.layer.cornerRadius = 4.0
         cellToShow.backgroundColor = UIColor.clear
         cellToShow.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
         cellToShow.selectionStyle = .none
