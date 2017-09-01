@@ -71,7 +71,7 @@ class FavouriteViewController: UIViewController , UITableViewDelegate , UITableV
         
         if indexPath.row % 2 == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell1", for: indexPath) as! MessageTableViewCell
-            cell.lblMessage.text = "fdgfgfdgfdgfdgfdgfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgdfgfdgfdgdfgdfgdfgfgfghfghgfhfghgfhfghfghgfhfghgfhgfhgfhgfhgfhgfhghgfhgfhghghghgfhgfhgfhgfhgfhgfhgfhghghghgfhghghghghghghghghghgfhgfhghghgfhghghbngbgfhfgfgfdggfgfggfhghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghghfghgghjhjdfghdfgfdhghjghfdfsgdfhgfhjghkfdfghfdgdfgsdfgdsgfghfjjkghdfghfjhhgjhghasdfgddfdgfggasdfdsfsdfdsfdsfasdffasdfasdfadfdfaaaasdfgqwqwerqertrqwerwqerwerewrewreqewwewqerqwerewrwqewerewqewrewrerwewewrewrewrzxcvxzcvcxzvxcvcvcxvcxvcxvcxvcxvcxvcxvcxvxcvcxvcvcxvxcvcxvcxvcxvcxvcxvcxvxcvxcv"
+            cell.lblMessage.text = "Hi jack how are you whats going on dude"
             cell.btnReply.addTarget(self, action: #selector(doactionOnReply), for: .touchUpInside)
             
             return cell
@@ -79,7 +79,7 @@ class FavouriteViewController: UIViewController , UITableViewDelegate , UITableV
         else
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell2", for: indexPath) as! MessageTableViewCell
-            cell.lblMessage.text = "fdgfgfdgfdgfdgfdgfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgfdgdfgdfgfdgfdgdfgdfgdfgfg"
+            cell.lblMessage.text = "hi jhon i am fine how about you. hope you are doing well and how about your work"
             
             return cell
         }

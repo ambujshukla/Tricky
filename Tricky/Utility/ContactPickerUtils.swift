@@ -67,7 +67,7 @@ class ContactPickerUtils: NSObject {
     }
 
    
-    func getContctFromContactBook(_ completion:  @escaping ContactsHandler) {
+    func getContctFromContactBook( target : UIViewController ,_ completion:  @escaping ContactsHandler) {
       
         if contactsStore == nil {
             //ContactStore is control for accessing the Contacts
@@ -82,17 +82,26 @@ class ContactPickerUtils: NSObject {
             
             let alert = UIAlertController(title: "Unable to access contacts", message: "\(productName) does not have access to contacts. Kindly enable it in privacy settings ", preferredStyle: UIAlertControllerStyle.alert)
             let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: {  action in
+                
+                target.navigationController?.popViewController(animated: true)
             })
             alert.addAction(okAction)
+            
+            target.present(alert, animated: true, completion: nil)
             
         case CNAuthorizationStatus.notDetermined:
             //This case means the user is prompted for the first time for allowing contacts
             contactsStore?.requestAccess(for: CNEntityType.contacts, completionHandler: { (granted, error) -> Void in
                 //At this point an alert is provided to the user to provide access to contacts. This will get invoked if a user responds to the alert
                 if  (!granted ){
-                
+                 
+                    DispatchQueue.main.async {
+                        target.navigationController?.popViewController(animated: true)
+                    }
                 }
                 else{
+               self.getContctFromContactBook(target: target , completion)
+                    
                 }
             })
         case  CNAuthorizationStatus.authorized:

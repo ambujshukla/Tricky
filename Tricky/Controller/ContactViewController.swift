@@ -31,7 +31,7 @@ class ContactViewController: UIViewController , UITableViewDelegate , UITableVie
       //  CommonUtil.showLoader()
         DispatchQueue.global(qos: .background).async {
             
-            ContactPickerUtils.sharedContactPicker.getContctFromContactBook { (contacts, error) in
+            ContactPickerUtils.sharedContactPicker.getContctFromContactBook(target: self) { (contacts, error) in
               //  self.filteredContacts = contacts
                 DispatchQueue.main.async {
                  //   CommonUtil.hideLoader()
