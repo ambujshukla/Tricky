@@ -91,8 +91,6 @@ class LoginViewController: UIViewController
     
     func doCallWebAPIForLogin()
     {
-        self.goTOHomeScreen()
-
         let dictData = ["mobile" : self.txtMobile.text!,"password":self.txtPassword!.text!,"deviceToken":"324343434343434343"] as [String : Any]
         print(dictData)
         
