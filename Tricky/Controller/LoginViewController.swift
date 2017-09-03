@@ -8,6 +8,7 @@
 
 import UIKit
 import Localize_Swift
+import ObjectMapper
 
 class LoginViewController: UIViewController
 {
@@ -75,8 +76,6 @@ class LoginViewController: UIViewController
     
     @IBAction func doClickLogin(sender: UIButton)
     {
-            let controller = self.storyboard?.instantiateViewController(withIdentifier: "SWRevealViewController") as! SWRevealViewController
-            self.present(controller, animated: true, completion: nil)
         var (boolValue , message) = CommonUtil.doValidateLogin(self)
         if boolValue == false
         {
@@ -90,13 +89,35 @@ class LoginViewController: UIViewController
     func doCallWebAPIForLogin()
     {
         
-        
         let dictData = ["mobile" : self.txtMobile.text!,"password":self.txtPassword!.text!,"deviceToken":"324343434343434343"] as [String : Any]
+        print(dictData)
+        
         WebAPIManager.sharedWebAPIMAnager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: METHOD_LOGIN, parameter: dictData , success: { (obj) in
             print("this is object \(obj)")
+            
+            let loginData = Mapper<LoginModel>().map(JSON: obj)
+            
+            if (loginData?.status == "1")
+            {
+                UserManager.sharedUserManager.doSetLoginData(userData: (loginData?.responseData?[0])!)
+                self.goTOHomeScreen()
+            }
+            else
+            {
+                CommonUtil.showTotstOnWindow(strMessgae: (loginData?.responseMessage)!)
+            }
+            
+            
         }) { (error) in
-            print(error)
+            CommonUtil.showTotstOnWindow(strMessgae: (error?.localizedDescription)!)
         }
+    }
+    
+    func goTOHomeScreen() {
+        
+        let controller = self.storyboard?.instantiateViewController(withIdentifier: "SWRevealViewController") as! SWRevealViewController
+        self.present(controller, animated: true, completion: nil)
+
     }
     
     @IBAction func doClickForgotPassword(sender: UIButton)

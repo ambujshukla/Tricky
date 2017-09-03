@@ -17,7 +17,6 @@ class WebAPIManager: NSObject {
     class var  sharedWebAPIMAnager: WebAPIManager {
         struct Static
         {
-            static var onceToken : Int = 0
             static var instance : WebAPIManager? = nil
         }
         
