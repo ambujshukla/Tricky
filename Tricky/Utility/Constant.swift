@@ -270,6 +270,10 @@ let SEND_ICON = "sendicon"
 let REFRESH_ICON = "refreshicon"
 let NEW_PASSWORD = "6background"
 let ALL_CONTACTS_BG = "allcontbackground"
+let POST_DETAIL_BG = "postdetailbackground"
+let MESSAGE_SEND_BG = "msgsendbackground"
+
+let SEND_MESSAGE_PURPLE = "sendmsgicon_purple"
 
 let OTP_BG = "OTP_BG"
 let OTP_FORGOT_BG = "OtpForgot_Verify"

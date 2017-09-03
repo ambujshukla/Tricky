@@ -1,19 +1,19 @@
 //
-//  PostTableViewCell.swift
+//  PostDetailTableViewCell.swift
 //  Tricky
 //
-//  Created by gopal sara on 25/08/17.
+//  Created by Shweta Shukla on 03/09/17.
 //  Copyright © 2017 Gopal Sara. All rights reserved.
 //
 
 import UIKit
 
-class PostTableViewCell: UITableViewCell {
+class PostDetailTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var btnDelete : UIButton!
-    @IBOutlet weak var lblMessage : UILabel!
-    @IBOutlet weak var lblTime : UILabel!
+    @IBOutlet weak var lblPost : UILabel!
+    @IBOutlet weak var lblDate : UILabel!
     @IBOutlet weak var view : UIView!
+    @IBOutlet weak var btnOptions : UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

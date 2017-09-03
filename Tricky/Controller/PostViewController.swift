@@ -9,25 +9,27 @@
 import UIKit
 
 class PostViewController: UIViewController , UITableViewDelegate , UITableViewDataSource {
-
+    
     @IBOutlet weak var tblPost : UITableView!
     @IBOutlet weak var btnPlus : UIButton!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-      self.decorateUI()
+        self.decorateUI()
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
-    func decorateUI() {
-        
+    
+    func decorateUI()
+    {
         self.tblPost.tableFooterView = UIView()
+        self.tblPost.rowHeight = UITableViewAutomaticDimension
+        self.tblPost.estimatedRowHeight = 40
     }
     
     //MARK: - Tableview delegate and datasource methods
@@ -54,8 +56,8 @@ class PostViewController: UIViewController , UITableViewDelegate , UITableViewDa
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let controller = self.storyboard?.instantiateViewController(withIdentifier: "UserPostViewController") as! UserPostViewController
-        self.navigationController?.pushViewController(controller, animated: true)
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "PostDetailViewController") as! PostDetailViewController
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func doClickPlus()

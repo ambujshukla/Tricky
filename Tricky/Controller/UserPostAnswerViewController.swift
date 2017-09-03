@@ -32,9 +32,10 @@ class UserPostAnswerViewController: UIViewController {
         
         self.txtViewComment.backgroundColor = color(red: 219, green: 192, blue: 177)
         self.lblHeader.text = "Non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam voluptatem. Ut enim ad minima tempora incidunt veniam"
-        self.imgBG.backgroundColor = UIColor.brown
         self.lblLeaveAnswer.text = "txt_leave_answer".localized()
         self.lblHeader.textColor = UIColor.white
+        
+        self.imgBG.image = UIImage(named : MESSAGE_SEND_BG)
     }
     
     override func viewWillAppear(_ animated: Bool) {

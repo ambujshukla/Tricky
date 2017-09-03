@@ -38,7 +38,7 @@ class PostDetailViewController: UIViewController , UITableViewDelegate , UITable
     {
         CommanUtility.decorateNavigationbarWithBackButton(target: self, strTitle: "txt_post_detail".localized(), strBackButtonImage: BACK_BUTTON, selector: #selector(self.goTOBack), color: color(red: 181, green: 121, blue: 240))
 
-        self.imgBG.backgroundColor = UIColor.black
+        self.imgBG.image = UIImage(named: POST_DETAIL_BG)
         self.tblPosts.rowHeight = UITableViewAutomaticDimension;
         self.tblPosts.estimatedRowHeight = 90.0;
         
@@ -47,6 +47,9 @@ class PostDetailViewController: UIViewController , UITableViewDelegate , UITable
         
         self.lblPost.text = "Sed ut presipiciates undndef iste natus error sit voluptatem accusantium doloremque ludantium, totam rem ipsa"
         self.lblPost.textColor = UIColor.white
+        
+        self.tblPosts.rowHeight = UITableViewAutomaticDimension
+        self.tblPosts.estimatedRowHeight = 56
     }
     
     func goTOBack(){
@@ -80,9 +83,13 @@ class PostDetailViewController: UIViewController , UITableViewDelegate , UITable
     // MARK: - Table View Delegates
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-                    let cell = tableView.dequeueReusableCell(withIdentifier: "cell1", for: indexPath) as! MessageTableViewCell
-            cell.lblMessage.text = "Quaue ab illo inventore veritatis et quasi architecto beatae"
-            cell.btnReply.addTarget(self, action: #selector(doactionOnReply), for: .touchUpInside)
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "cell1", for: indexPath) as! PostDetailTableViewCell
+            cell.lblPost.text = "Quaue ab illo inventore veritatis et quasi architecto beatae.Quaue ab illo inventore veritatis et quasi architecto beatae"
+          //  cell.btnReply.addTarget(self, action: #selector(doactionOnReply), for: .touchUpInside)
             return cell
         }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserPostAnswerViewController") as! UserPostAnswerViewController
+                self.navigationController?.pushViewController(vc, animated: true)
+    }
 }

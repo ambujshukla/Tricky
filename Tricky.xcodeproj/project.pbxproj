@@ -36,6 +36,7 @@
 		310139841F49F84800A69E5A /* blockUserBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 310139811F49F84800A69E5A /* blockUserBG@2x.png */; };
 		310139851F49F84800A69E5A /* blockUserBG@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 310139821F49F84800A69E5A /* blockUserBG@3x.png */; };
 		312E38491F52C19A00F65651 /* CommonUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312E38481F52C19A00F65651 /* CommonUtil.swift */; };
+		313B2EC91F5C636B0040F146 /* PostDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313B2EC81F5C636B0040F146 /* PostDetailTableViewCell.swift */; };
 		3151CE7B1F48A8C900C322C3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3151CE7A1F48A8C900C322C3 /* ProfileViewController.swift */; };
 		3151CE7E1F48AAE800C322C3 /* ForgotPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3151CE7C1F48AAE800C322C3 /* ForgotPasswordController.swift */; };
 		3151CE7F1F48AAE800C322C3 /* VerifyOTPController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3151CE7D1F48AAE800C322C3 /* VerifyOTPController.swift */; };
@@ -133,6 +134,7 @@
 		310139811F49F84800A69E5A /* blockUserBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blockUserBG@2x.png"; sourceTree = "<group>"; };
 		310139821F49F84800A69E5A /* blockUserBG@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blockUserBG@3x.png"; sourceTree = "<group>"; };
 		312E38481F52C19A00F65651 /* CommonUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonUtil.swift; sourceTree = "<group>"; };
+		313B2EC81F5C636B0040F146 /* PostDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDetailTableViewCell.swift; sourceTree = "<group>"; };
 		3151CE7A1F48A8C900C322C3 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		3151CE7C1F48AAE800C322C3 /* ForgotPasswordController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordController.swift; sourceTree = "<group>"; };
 		3151CE7D1F48AAE800C322C3 /* VerifyOTPController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyOTPController.swift; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 				181BD4D01F55DFF900E60277 /* PostTableViewCell.swift */,
 				3151CE951F48C5F000C322C3 /* BlockUserListTableViewCell.swift */,
 				1833F9DD1F4CA7FD004AB7EE /* MessageTableViewCell.swift */,
+				313B2EC81F5C636B0040F146 /* PostDetailTableViewCell.swift */,
 			);
 			path = UITableViewCell;
 			sourceTree = "<group>";
@@ -664,6 +667,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				313B2EC91F5C636B0040F146 /* PostDetailTableViewCell.swift in Sources */,
 				3151CE7E1F48AAE800C322C3 /* ForgotPasswordController.swift in Sources */,
 				183A10811F4B517A00579A7A /* ContactViewController.swift in Sources */,
 				18E266B81F5B3A9E009F8B01 /* RegistrationModel.swift in Sources */,

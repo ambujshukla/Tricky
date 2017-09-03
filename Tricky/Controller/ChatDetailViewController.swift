@@ -146,8 +146,6 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //        let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserPostAnswerViewController") as! UserPostAnswerViewController
-        //        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func keyboardWillHide(_ sender: Notification) {
