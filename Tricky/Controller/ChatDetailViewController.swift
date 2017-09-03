@@ -88,7 +88,6 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
     func configureInitialParameters()
     {
         IQKeyboardManager.shared().isEnabled = false
-        // self.heightConstrntTxtView.constant = 50;
         self.tblView.delegate = self
         self.tblView.dataSource = self
         
@@ -195,7 +194,7 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
     
     @IBAction func doClickSend(id : UIButton)
     {
-        self.heightConstrntTxtView.constant = 50;
+        self.heightConstrntTxtView.constant = 33;
         self.txtChat.text = ""
     }
     

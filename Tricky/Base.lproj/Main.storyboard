@@ -2221,21 +2221,21 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6pP-jZ-PaS">
-                                <rect key="frame" x="10" y="512" width="300" height="50"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6pP-jZ-PaS">
+                                <rect key="frame" x="10" y="525" width="300" height="33"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZCI-HA-nT3">
-                                        <rect key="frame" x="260" y="5" width="40" height="40"/>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZCI-HA-nT3">
+                                        <rect key="frame" x="260" y="0.0" width="40" height="33"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="ZCI-HA-nT3" secondAttribute="height" multiplier="1:1" id="mR3-Am-FXO"/>
+                                            <constraint firstAttribute="width" secondItem="ZCI-HA-nT3" secondAttribute="height" multiplier="1:1" constant="7" id="mR3-Am-FXO"/>
                                         </constraints>
                                         <state key="normal" image="sendicon"/>
                                         <connections>
                                             <action selector="doClickSendWithId:" destination="ODb-R1-0IN" eventType="touchUpInside" id="MZa-Mi-7ms"/>
                                         </connections>
                                     </button>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="iQ2-cr-kHM">
-                                        <rect key="frame" x="8" y="5" width="250" height="40"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="iQ2-cr-kHM">
+                                        <rect key="frame" x="8" y="0.0" width="250" height="33"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -2248,10 +2248,10 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="8Gf-Yw-eAg"/>
                                     <constraint firstItem="ZCI-HA-nT3" firstAttribute="width" secondItem="6pP-jZ-PaS" secondAttribute="width" multiplier="30:320" constant="11.875" id="8VB-OI-Ct0"/>
-                                    <constraint firstItem="iQ2-cr-kHM" firstAttribute="top" secondItem="6pP-jZ-PaS" secondAttribute="top" constant="5" id="LWy-mt-LJj"/>
-                                    <constraint firstAttribute="bottom" secondItem="ZCI-HA-nT3" secondAttribute="bottom" constant="5" id="Qee-sc-M0e"/>
+                                    <constraint firstItem="iQ2-cr-kHM" firstAttribute="top" secondItem="6pP-jZ-PaS" secondAttribute="top" id="LWy-mt-LJj"/>
+                                    <constraint firstAttribute="bottom" secondItem="ZCI-HA-nT3" secondAttribute="bottom" id="Qee-sc-M0e"/>
                                     <constraint firstAttribute="trailing" secondItem="ZCI-HA-nT3" secondAttribute="trailing" id="ZuZ-xk-k9U"/>
-                                    <constraint firstAttribute="bottom" secondItem="iQ2-cr-kHM" secondAttribute="bottom" constant="5" id="ogl-0F-Ffu"/>
+                                    <constraint firstAttribute="bottom" secondItem="iQ2-cr-kHM" secondAttribute="bottom" id="ogl-0F-Ffu"/>
                                     <constraint firstItem="ZCI-HA-nT3" firstAttribute="leading" secondItem="iQ2-cr-kHM" secondAttribute="trailing" constant="2" id="qoa-de-NTd"/>
                                     <constraint firstItem="iQ2-cr-kHM" firstAttribute="leading" secondItem="6pP-jZ-PaS" secondAttribute="leading" constant="8" id="tCe-Zi-kaK"/>
                                 </constraints>
