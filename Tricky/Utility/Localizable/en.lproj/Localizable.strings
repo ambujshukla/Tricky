@@ -40,3 +40,6 @@
 "txt_register" = "Register";
 "txt_no_file_choosen" = "No file choosen";
 "txt_choose_file" = "Choose File";
+
+"txt_you_got_me" = "You got me!";
+"txt_not_got_me" = "Nah! not yet..";

@@ -27,8 +27,8 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var heightConstrntTxtView: NSLayoutConstraint!
     
     var arrChat : NSArray = [
-        ["chatMessage": "Are you Julia", "dateTime": "13:24"]
-        ,["chatMessage": "No, I am not Julia", "dateTime": "13:26"]
+        ["chatMessage": "Are you Julia Are you Julia Are you Julia Are you Julia", "dateTime": "13:24"]
+        ,["chatMessage": "Are you Julia Are you Julia Are you Julia Are you Julia", "dateTime": "13:24"],["chatMessage": "No, I am not Julia", "dateTime": "13:26"],["chatMessage": "No, I am not Julia", "dateTime": "13:26"],["chatMessage": "Are you Julia Are you Julia Are you Julia Are you Julia", "dateTime": "13:24"],["chatMessage": "Are you Julia Are you Julia Are you Julia Are you Julia", "dateTime": "13:24"],["chatMessage": "Are you Julia Are you Julia Are you Julia Are you Julia Are you Julia Are you Julia Are you Julia Are you Julia", "dateTime": "13:24"],["chatMessage": "Are you Julia Are you Julia Are you Julia Are you Julia", "dateTime": "13:24"]
     ]
     override func viewDidLoad()
     {
@@ -40,13 +40,13 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
     func decorateUI()
     {
         self.navigationController?.navigationBar.barTintColor = color(red: 113, green: 136, blue: 154)
-
+        
         CommanUtility.decorateNavigationbarWithBackButtonAndTitle(target: self, leftselect: #selector(doClickBack), strTitle: "Michael Smith".localized(), strBackImag: BACK_BUTTON, strFontName: "Arial", size: 20, color: UIColor.white)
-
+        
         self.tblView.backgroundColor = UIColor.clear
         self.imgBG.image = UIImage(named : CHAT_BG)
         self.tblView.rowHeight = UITableViewAutomaticDimension
-        self.tblView.estimatedRowHeight = 65
+        self.tblView.estimatedRowHeight = 40
         self.tblView.separatorColor = UIColor.clear
         self.txtChat.backgroundColor = UIColor.lightGray
         
@@ -54,27 +54,31 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
         
         CommanUtility.createCustomRightButton(self, navBarItem: self.navigationItem, strRightImage: REFRESH_ICON as NSString, select: #selector(doClickRefresh))
         
-        self.btnYes.backgroundColor = color(red: 113, green: 136, blue: 154)
-        self.btnNo.backgroundColor = UIColor.white
+        self.btnYes.backgroundColor = UIColor.clear
+        self.btnNo.backgroundColor =  UIColor.clear
         
-        self.btnNo.setTitleColor(color(red: 113, green: 136, blue: 154), for: .normal)
-        self.btnNo.setTitleColor(UIColor.white, for: .selected)
+        self.btnYes.layer.borderWidth = 1.0
+        self.btnNo.layer.borderWidth = 1.0
         
-        self.btnYes.setTitleColor(color(red: 113, green: 136, blue: 154), for: .normal)
-        self.btnYes.setTitleColor(UIColor.white, for: .selected)
+        self.btnYes.layer.borderColor = UIColor.white.cgColor
+        self.btnNo.layer.borderColor = UIColor.white.cgColor
         
-        self.btnYes .isSelected = true
+        self.btnNo.layer.cornerRadius = 10;
+        self.btnYes.layer.cornerRadius = 10;
+//        self.btnNo.setTitleColor(color(red: 113, green: 136, blue: 154), for: .normal)
+//        self.btnNo.setTitleColor(UIColor.white, for: .selected)
+//        
+//        self.btnYes.setTitleColor(color(red: 113, green: 136, blue: 154), for: .normal)
+//        self.btnYes.setTitleColor(UIColor.white, for: .selected)
+//        
+//        self.btnYes .isSelected = true
         
-        self.btnYes.setTitle("txt_yes".localized().uppercased(), for: .normal)
-        self.btnNo.setTitle("txt_no".localized().uppercased(), for: .normal)
-        
-        self.btnNo.layer.borderColor = color(red: 113, green: 136, blue: 154).cgColor
-
-        self.btnYes.layer.borderColor = color(red: 113, green: 136, blue: 154).cgColor
+        self.btnYes.setTitle("txt_you_got_me".localized(), for: .normal)
+        self.btnNo.setTitle("txt_not_got_me".localized(), for: .normal)
         
         self.txtChat.backgroundColor = UIColor.clear
-        self.btnNo.layer.borderWidth = 1.0
-        self.btnYes.layer.borderWidth = 1.0
+        
+        self.viewBottom.layer.cornerRadius = 20
     }
     
     func doClickBack(){
@@ -84,7 +88,7 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
     func configureInitialParameters()
     {
         IQKeyboardManager.shared().isEnabled = false
-       // self.heightConstrntTxtView.constant = 50;
+        // self.heightConstrntTxtView.constant = 50;
         self.tblView.delegate = self
         self.tblView.dataSource = self
         
@@ -105,11 +109,11 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return self.arrChat.count
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 0
+        return 10
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -125,17 +129,17 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
         if (indexPath.row%2) == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cellChat1") as! ChatTableViewCell
             cell.lblMessage.text = dictChatData["chatMessage"]
-       //     cell.lblDate.text = dictChatData["dateTime"]
             cell.imgBG.layer.cornerRadius = 10
+            cell.imgBG.backgroundColor = UIColor.white
             cellToShow = cell
         }else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cellChat2") as! ChatTableViewCell
             cell.lblMessage.text = dictChatData["chatMessage"]
-        //     cell.lblDate.text = dictChatData["dateTime"]
             cell.imgBG.layer.cornerRadius = 10
+            cell.imgBG.backgroundColor = UIColor.white
             cellToShow = cell
         }
-       // cellToShow.layer.cornerRadius = 4.0
+        // cellToShow.layer.cornerRadius = 4.0
         cellToShow.backgroundColor = UIColor.clear
         cellToShow.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
         cellToShow.selectionStyle = .none
@@ -143,8 +147,8 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserPostAnswerViewController") as! UserPostAnswerViewController
-//        self.navigationController?.pushViewController(vc, animated: true)
+        //        let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserPostAnswerViewController") as! UserPostAnswerViewController
+        //        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func keyboardWillHide(_ sender: Notification) {
@@ -197,19 +201,19 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
     
     @IBAction func doClickYesOrNo (id : UIButton)
     {
-        self.btnNo.backgroundColor = UIColor.white
-        self.btnYes.backgroundColor = UIColor.white
-        self.btnYes .isSelected = false
-        self.btnNo .isSelected = false
-
-        if  id.tag == 101
-        {
-            self.btnYes.backgroundColor = color(red: 113, green: 136, blue: 154)
-            self.btnYes .isSelected = true
-        }else{
-            self.btnNo.backgroundColor = color(red: 113, green: 136, blue: 154)
-            self.btnNo .isSelected = true
-        }
+//        self.btnNo.backgroundColor = UIColor.white
+//        self.btnYes.backgroundColor = UIColor.white
+//        self.btnYes .isSelected = false
+//        self.btnNo .isSelected = false
+//        
+//        if  id.tag == 101
+//        {
+//            self.btnYes.backgroundColor = color(red: 113, green: 136, blue: 154)
+//            self.btnYes .isSelected = true
+//        }else{
+//            self.btnNo.backgroundColor = color(red: 113, green: 136, blue: 154)
+//            self.btnNo .isSelected = true
+//        }
     }
     
     override func didReceiveMemoryWarning() {
