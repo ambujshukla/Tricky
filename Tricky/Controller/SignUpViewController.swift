@@ -8,6 +8,8 @@
 
 import UIKit
 import ActionSheetPicker_3_0
+import ObjectMapper
+
 
 class SignUpViewController: UIViewController,UINavigationControllerDelegate, UIImagePickerControllerDelegate,UIActionSheetDelegate {
 
@@ -137,15 +139,33 @@ class SignUpViewController: UIViewController,UINavigationControllerDelegate, UII
     
     func doCallWebAPIForRegistration()
     {
-    let dictData = ["version" : "1.0" , "os" : "ios" , "language" : "english" , "mobile": self.txtMobile.text! , "password" : self.txtPassword.text! , "url":self.txtUrl , "deviceToken" : "324343434343434343"] as [String : Any]
+    let dictData = ["version" : "1.0" , "os" : "ios" , "language" : "english" , "mobile": self.txtMobile.text! , "password" : self.txtPassword.text! , "url":self.txtUrl.text! , "deviceToken" : "324343434343434343"] as [String : Any]
         
      WebAPIManager.sharedWebAPIMAnager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "register", parameter: dictData , success: { (obj) in
+    let regData = Mapper<RegistrationModel>().map(JSON: obj)
+        
+   if (regData?.status == "1")
+   {
+    UserManager.sharedUserManager.doSetLoginData(userData: (regData?.responseData?[0])!)
+    self.goTOVerifyScreen()
+    }
+        else
+   {
+    CommonUtil.showTotstOnWindow(strMessgae: (regData?.responseMessage)!)
+    }
+    
+    print("this is object \(obj)")
+       }) { (error) in
+        CommonUtil.showTotstOnWindow(strMessgae: (error?.localizedDescription)!)
+
+        }
+    }
+    
+    func goTOVerifyScreen() {
         
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "VerifyOTPController") as! VerifyOTPController
         self.navigationController?.pushViewController(vc, animated: true)
-    print("this is object \(obj)")
-       }) { (error) in
-        }
+
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

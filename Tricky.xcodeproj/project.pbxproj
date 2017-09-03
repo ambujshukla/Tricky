@@ -27,6 +27,11 @@
 		183A10B11F4B529A00579A7A /* ViewPagerTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183A10AD1F4B529A00579A7A /* ViewPagerTab.swift */; };
 		183A10B21F4B529A00579A7A /* ViewPagerTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183A10AE1F4B529A00579A7A /* ViewPagerTabView.swift */; };
 		183A10B71F4B52D000579A7A /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 183A10B61F4B52D000579A7A /* SWRevealViewController.m */; };
+		18E266B01F5B2BE9009F8B01 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E266AF1F5B2BE9009F8B01 /* LoginModel.swift */; };
+		18E266B41F5B2E75009F8B01 /* LoginResposeDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E266B31F5B2E75009F8B01 /* LoginResposeDataModel.swift */; };
+		18E266B61F5B373B009F8B01 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E266B51F5B373B009F8B01 /* UserManager.swift */; };
+		18E266B81F5B3A9E009F8B01 /* RegistrationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E266B71F5B3A9E009F8B01 /* RegistrationModel.swift */; };
+		18E266BA1F5B3AED009F8B01 /* RegResponseDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E266B91F5B3AED009F8B01 /* RegResponseDataModel.swift */; };
 		310139831F49F84800A69E5A /* blockUserBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 310139801F49F84800A69E5A /* blockUserBG.png */; };
 		310139841F49F84800A69E5A /* blockUserBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 310139811F49F84800A69E5A /* blockUserBG@2x.png */; };
 		310139851F49F84800A69E5A /* blockUserBG@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 310139821F49F84800A69E5A /* blockUserBG@3x.png */; };
@@ -119,6 +124,11 @@
 		183A10B41F4B52CE00579A7A /* Tricky-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tricky-Bridging-Header.h"; sourceTree = "<group>"; };
 		183A10B51F4B52D000579A7A /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		183A10B61F4B52D000579A7A /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		18E266AF1F5B2BE9009F8B01 /* LoginModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
+		18E266B31F5B2E75009F8B01 /* LoginResposeDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginResposeDataModel.swift; sourceTree = "<group>"; };
+		18E266B51F5B373B009F8B01 /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		18E266B71F5B3A9E009F8B01 /* RegistrationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationModel.swift; sourceTree = "<group>"; };
+		18E266B91F5B3AED009F8B01 /* RegResponseDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegResponseDataModel.swift; sourceTree = "<group>"; };
 		310139801F49F84800A69E5A /* blockUserBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blockUserBG.png; sourceTree = "<group>"; };
 		310139811F49F84800A69E5A /* blockUserBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blockUserBG@2x.png"; sourceTree = "<group>"; };
 		310139821F49F84800A69E5A /* blockUserBG@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blockUserBG@3x.png"; sourceTree = "<group>"; };
@@ -377,6 +387,10 @@
 			isa = PBXGroup;
 			children = (
 				3151CE8C1F48ADBB00C322C3 /* ContactModel.swift */,
+				18E266AF1F5B2BE9009F8B01 /* LoginModel.swift */,
+				18E266B31F5B2E75009F8B01 /* LoginResposeDataModel.swift */,
+				18E266B71F5B3A9E009F8B01 /* RegistrationModel.swift */,
+				18E266B91F5B3AED009F8B01 /* RegResponseDataModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -389,6 +403,7 @@
 				3151CE8E1F48ADD100C322C3 /* ContactPickerUtils.swift */,
 				3151CE801F48AC4F00C322C3 /* CommanUtility.swift */,
 				3151CE861F48ACEA00C322C3 /* WebAPIManager.swift */,
+				18E266B51F5B373B009F8B01 /* UserManager.swift */,
 				3151CE821F48AC5C00C322C3 /* Constant.swift */,
 				31B72F801F4769EA007D24E6 /* Localizable */,
 				312E38481F52C19A00F65651 /* CommonUtil.swift */,
@@ -617,6 +632,7 @@
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
 				"${BUILT_PRODUCTS_DIR}/Localize-Swift/Localize_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/MagicalRecord/MagicalRecord.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
@@ -630,6 +646,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Localize_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MagicalRecord.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
@@ -649,7 +666,9 @@
 			files = (
 				3151CE7E1F48AAE800C322C3 /* ForgotPasswordController.swift in Sources */,
 				183A10811F4B517A00579A7A /* ContactViewController.swift in Sources */,
+				18E266B81F5B3A9E009F8B01 /* RegistrationModel.swift in Sources */,
 				183A10AF1F4B529A00579A7A /* ViewPagerController.swift in Sources */,
+				18E266B01F5B2BE9009F8B01 /* LoginModel.swift in Sources */,
 				183A10871F4B51A200579A7A /* HomeViewController.swift in Sources */,
 				3151CE921F48B2F900C322C3 /* ProfileTableViewCell.swift in Sources */,
 				181BD4D11F55DFF900E60277 /* PostTableViewCell.swift in Sources */,
@@ -657,6 +676,7 @@
 				3151CE871F48ACEA00C322C3 /* WebAPIManager.swift in Sources */,
 				3151CE941F48C56100C322C3 /* BlockUserListViewController.swift in Sources */,
 				183A10B71F4B52D000579A7A /* SWRevealViewController.m in Sources */,
+				18E266B41F5B2E75009F8B01 /* LoginResposeDataModel.swift in Sources */,
 				3151CE8D1F48ADBB00C322C3 /* ContactModel.swift in Sources */,
 				31B72F881F4778C2007D24E6 /* SignUpViewController.swift in Sources */,
 				183A108F1F4B51C000579A7A /* LanguageViewController.swift in Sources */,
@@ -671,9 +691,11 @@
 				183A108B1F4B51B100579A7A /* ChatViewController.swift in Sources */,
 				181BD4D31F55E00300E60277 /* UserPostTableViewCell.swift in Sources */,
 				1833F9DC1F4C94E1004AB7EE /* FavouriteViewController.swift in Sources */,
+				18E266BA1F5B3AED009F8B01 /* RegResponseDataModel.swift in Sources */,
 				3151CE8F1F48ADD100C322C3 /* ContactPickerUtils.swift in Sources */,
 				31D9D1081F4F58E200ED9B78 /* PostDetailViewController.swift in Sources */,
 				183A10851F4B519900579A7A /* NewPasswordController.swift in Sources */,
+				18E266B61F5B373B009F8B01 /* UserManager.swift in Sources */,
 				3151CE961F48C5F000C322C3 /* BlockUserListTableViewCell.swift in Sources */,
 				3151CE831F48AC5C00C322C3 /* Constant.swift in Sources */,
 				183A10831F4B519300579A7A /* MenuViewController.swift in Sources */,
