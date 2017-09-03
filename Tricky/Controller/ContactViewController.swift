@@ -11,13 +11,25 @@ import UIKit
 class ContactViewController: UIViewController , UITableViewDelegate , UITableViewDataSource {
 
     var contactsArray = NSMutableArray()
-    @IBOutlet weak var tblContact : UITableView!
+    @IBOutlet weak var imgBg : UIImageView!
     
+    @IBOutlet weak var tblContact : UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.decorateUI()
        self.doGetContactFromConactBook()
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.navigationController?.navigationBar.barTintColor = color(red: 148, green: 108, blue: 139)
+    }
+    
+    func decorateUI()
+    {
+        self.imgBg.image = UIImage(named : ALL_CONTACTS_BG)
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,11 +58,6 @@ class ContactViewController: UIViewController , UITableViewDelegate , UITableVie
   
         
         //142 , 110 ,137 
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        self.navigationController?.navigationBar.barTintColor = color(red: 142, green: 110, blue: 137)
     }
     
     func goTOBack()
@@ -81,6 +88,11 @@ class ContactViewController: UIViewController , UITableViewDelegate , UITableVie
         
         let label = cell.contentView.viewWithTag(10) as! UILabel!
         label?.text = contact.fullName
+        
+        let labelPhNo = cell.contentView.viewWithTag(11) as! UILabel!
+        labelPhNo?.textColor = UIColor.white
+        labelPhNo?.text = "777-888-9999"
+        
         return cell
     }
     
@@ -88,7 +100,4 @@ class ContactViewController: UIViewController , UITableViewDelegate , UITableVie
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70.00
     }
-    
-
-
 }

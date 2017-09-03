@@ -119,12 +119,11 @@ class SignUpViewController: UIViewController,UINavigationControllerDelegate, UII
         self.txtMobile.textColor = UIColor.white
         self.txtCnfPassword.textColor = UIColor.white
         */
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        self.navigationController?.navigationBar.barTintColor = color(red: 75, green: 155, blue: 166)
+        self.navigationController?.navigationBar.barTintColor = color(red: 73, green: 153, blue: 163)
     }
 
     func doClickBack()
@@ -164,6 +163,7 @@ class SignUpViewController: UIViewController,UINavigationControllerDelegate, UII
     func goTOVerifyScreen() {
         
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "VerifyOTPController") as! VerifyOTPController
+        vc.isFromSignUp = true
         self.navigationController?.pushViewController(vc, animated: true)
 
     }

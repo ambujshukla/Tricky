@@ -36,6 +36,9 @@ class LoginViewController: UIViewController
     
     func decorateUI()
     {
+        self.txtPassword.text = "123456"
+        self.txtMobile.text = "9993880850"
+        
         self.title = "txt_login".localized()
 
         self.btnLogin.setTitle("txt_login".localized(), for: .normal)
@@ -71,7 +74,7 @@ class LoginViewController: UIViewController
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        self.navigationController?.navigationBar.barTintColor = color(red: 53, green: 100, blue: 120)
+        self.navigationController?.navigationBar.barTintColor = color(red: 105, green: 181, blue: 198)
     }
     
     @IBAction func doClickLogin(sender: UIButton)
@@ -88,7 +91,8 @@ class LoginViewController: UIViewController
     
     func doCallWebAPIForLogin()
     {
-        
+        self.goTOHomeScreen()
+
         let dictData = ["mobile" : self.txtMobile.text!,"password":self.txtPassword!.text!,"deviceToken":"324343434343434343"] as [String : Any]
         print(dictData)
         

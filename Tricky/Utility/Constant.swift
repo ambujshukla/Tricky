@@ -268,8 +268,11 @@ let BLOCK_ICON = "blockicon"
 let SEARCH_ICON = "searchicon"
 let SEND_ICON = "sendicon"
 let REFRESH_ICON = "refreshicon"
+let NEW_PASSWORD = "6background"
+let ALL_CONTACTS_BG = "allcontbackground"
 
 let OTP_BG = "OTP_BG"
+let OTP_FORGOT_BG = "OtpForgot_Verify"
 
 let BACK_BUTTON = "backbutton"
 let CHECKBOX_UNSELECTED = "checkbox_unselected"

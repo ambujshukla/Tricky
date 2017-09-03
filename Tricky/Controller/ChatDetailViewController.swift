@@ -153,7 +153,7 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
     func keyboardWillHide(_ sender: Notification) {
         if let userInfo = (sender as NSNotification).userInfo {
             if let _ = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size.height {
-                self.originConstraintTxtView.constant = 0
+                self.originConstraintTxtView.constant = 10
                 UIView.animate(withDuration: 0.25, animations: { () -> Void in self.view.layoutIfNeeded() })
             }
         }

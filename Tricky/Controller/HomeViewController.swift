@@ -33,14 +33,14 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        self.navigationController?.navigationBar.barTintColor = color(red: 107, green: 198, blue: 108)
+        self.navigationController?.navigationBar.barTintColor = color(red: 56, green: 192, blue: 110)
     }
     
     func doCustomSetUp(){
         
         let revealViewController: SWRevealViewController? = self.revealViewController()
         if revealViewController != nil {
-        CommanUtility.decorateNavigationbarWithRevealToggleButton(target : revealViewController!, strTitle: "Tricky Chat", strBackButtonImage: "menuicon", selector: #selector(SWRevealViewController.revealToggle(_:)) , controller : self , color:  color(red: 107, green: 198, blue: 108) )
+        CommanUtility.decorateNavigationbarWithRevealToggleButton(target : revealViewController!, strTitle: "Tricky Chat", strBackButtonImage: "menuicon", selector: #selector(SWRevealViewController.revealToggle(_:)) , controller : self , color:  color(red: 56, green: 152, blue: 108) )
             navigationController?.navigationBar.addGestureRecognizer(revealViewController!.panGestureRecognizer())
         }
         

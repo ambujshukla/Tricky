@@ -10,6 +10,11 @@ import UIKit
 
 class NewPasswordController: UIViewController {
 
+    @IBOutlet weak var txtPassword : UITextField!
+    @IBOutlet weak var txtCnfPassword : UITextField!
+    @IBOutlet weak var btnSubmit : UIButton!
+    @IBOutlet weak var imgBG : UIImageView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
     self.decorateUI()
@@ -23,18 +28,34 @@ class NewPasswordController: UIViewController {
     
     func decorateUI() {
         //57 74 143
-        CommanUtility.decorateNavigationbarWithBackButton(target: self, strTitle: "", strBackButtonImage: BACK_BUTTON, selector: #selector(self.goBack) , color: color(red: 57, green: 74, blue: 143)
-)
+        CommanUtility.decorateNavigationbarWithBackButton(target: self, strTitle: "txt_new_password".localized(), strBackButtonImage: BACK_BUTTON, selector: #selector(self.goBack) , color: color(red: 57, green: 74, blue: 143))
+        
+        self.imgBG.image = UIImage(named : NEW_PASSWORD)
+
+            self.txtPassword.attributedPlaceholder = NSAttributedString(string: "txt_password".localized(),
+                                                                        attributes: [NSForegroundColorAttributeName: UIColor.white])
+            
+            self.txtCnfPassword.attributedPlaceholder = NSAttributedString(string: "txt_cnf_mobile".localized(),
+            attributes: [NSForegroundColorAttributeName: UIColor.white])
+        
+        self.btnSubmit.setTitle("txt_submit".localized(), for: .normal)
+        self.btnSubmit.backgroundColor = UIColor.white
+        self.btnSubmit.setTitleColor(UIColor.darkGray, for: .normal)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        self.navigationController?.navigationBar.barTintColor = color(red: 57, green: 74, blue: 143)
+        self.navigationController?.navigationBar.barTintColor = color(red: 129, green: 153, blue: 219)
     }
 
     func goBack() {
         
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func doClickSubmit()
+    {
+      
     }
     
     /*

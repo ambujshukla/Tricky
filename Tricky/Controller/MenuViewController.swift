@@ -13,6 +13,10 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
     var menuData = [String]()
     @IBOutlet weak var tblMenu : UITableView!
     @IBOutlet weak var  imgProfile  : UIImageView!
+    @IBOutlet weak var lblUserName : UILabel!
+    @IBOutlet weak var lblEmail : UILabel!
+    @IBOutlet weak var lblSent : UILabel!
+    @IBOutlet weak var lblReceived : UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,9 +29,17 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
         self.imgProfile.layer.cornerRadius = self.imgProfile.frame.size.width / 2
         self.imgProfile.layer.masksToBounds = true
 
+        self.lblEmail.textColor = UIColor.white
+        self.lblUserName.textColor = UIColor.white
         
         self.menuData = ["Block users" , "contacts" , "Favorite" , "language" , "Filter to vulger message" , "Only Register user messgae" , "Logout"];
         self.tblMenu.tableFooterView = UIView()
+        
+        self.lblSent.textColor = UIColor.white
+        self.lblReceived.textColor = UIColor.white
+        
+        self.lblSent.text = "954 Sent"
+        self.lblReceived.text = "457 Recieved"
     }
     
     override func didReceiveMemoryWarning() {

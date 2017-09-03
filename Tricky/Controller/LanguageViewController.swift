@@ -9,15 +9,15 @@
 import UIKit
 
 class LanguageViewController: UIViewController, UITableViewDataSource , UITableViewDelegate {
-
+    
     @IBOutlet weak var tblLanguage : UITableView!
     var arrData = [String]()
     override func viewDidLoad() {
         super.viewDidLoad()
-  self.decorateUI()
+        self.decorateUI()
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -26,15 +26,15 @@ class LanguageViewController: UIViewController, UITableViewDataSource , UITableV
     func decorateUI() {
         
         self.tblLanguage.tableFooterView = UIView()
-                CommanUtility.decorateNavigationbarWithBackButton(target: self, strTitle: "Language", strBackButtonImage: BACK_BUTTON , selector: #selector(self.goTOBack), color: color(red: 107, green: 108, blue: 180))
+        CommanUtility.decorateNavigationbarWithBackButton(target: self, strTitle: "Language", strBackButtonImage: BACK_BUTTON , selector: #selector(self.goTOBack), color: color(red: 107, green: 108, blue: 180))
         
-        self.arrData = ["English"]
-        
+        self.arrData = ["English","Hindi","Arabic","Urdu"]
+        self.tblLanguage.separatorColor = color(red: 75, green: 70, blue: 130)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-     //   self.navigationController?.navigationBar.barTintColor = color(red: 60, green: 120, blue: 101)
+           self.navigationController?.navigationBar.barTintColor = color(red: 106, green: 110, blue: 180)
     }
     
     func goTOBack()
@@ -42,7 +42,7 @@ class LanguageViewController: UIViewController, UITableViewDataSource , UITableV
         self.navigationController?.popViewController(animated: true)
         
     }
-
+    
     
     // MARK: - Table View DataSource
     
@@ -62,13 +62,17 @@ class LanguageViewController: UIViewController, UITableViewDataSource , UITableV
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as UITableViewCell
         let label = cell.contentView.viewWithTag(10) as! UILabel!
         label?.text = self.arrData[indexPath.row]
+        cell.selectionStyle = .none
+        label?.textColor = UIColor.white
         return cell
     }
-    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.backgroundColor = UIColor.clear
+    }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 5 {
             self.dismiss(animated: true, completion: nil)
         }
     }
-
+    
 }

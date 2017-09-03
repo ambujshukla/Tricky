@@ -27,6 +27,11 @@ class BlockUserListViewController: UIViewController, UITableViewDelegate, UITabl
         self.configureInitialParameters()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.navigationController?.navigationBar.barTintColor = color(red: 97, green: 118, blue: 138)
+    }
+    
     func  decorateUI()
     {
 

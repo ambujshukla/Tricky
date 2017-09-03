@@ -49,7 +49,7 @@ class ForgotPasswordController: UIViewController
         self.btnSignup.backgroundColor = UIColor.black
         self.btnSignup.alpha = 0.2
         self.btnSignup.setTitleColor(UIColor.white, for: .normal)
-        self.tfMobile.attributedPlaceholder = NSAttributedString(string: "txt_password".localized(),
+        self.tfMobile.attributedPlaceholder = NSAttributedString(string: "txt_mobile".localized(),
                                                                     attributes: [NSForegroundColorAttributeName: UIColor.white])
         self.tfMobile.textColor = UIColor.white
         self.tfMobile.isSecureTextEntry = true
@@ -57,7 +57,7 @@ class ForgotPasswordController: UIViewController
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        self.navigationController?.navigationBar.barTintColor = color(red: 100, green: 80, blue: 167)
+        self.navigationController?.navigationBar.barTintColor = color(red: 182, green: 158, blue: 243)
     }
     
     func doClickBack()

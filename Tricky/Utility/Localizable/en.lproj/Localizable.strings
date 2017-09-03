@@ -43,3 +43,6 @@
 
 "txt_you_got_me" = "You got me!";
 "txt_not_got_me" = "Nah! not yet..";
+
+"txt_new_password" = "New Password";
+"txt_submit" = "Submit";

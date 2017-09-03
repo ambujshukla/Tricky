@@ -14,6 +14,7 @@ class VerifyOTPController: UIViewController
     @IBOutlet weak var btnOTP  : UIButton!
     @IBOutlet weak var btnResend  : UIButton!
     @IBOutlet weak var imgBG : UIImageView!
+    var isFromSignUp : Bool = false
     
     var isFromForgotPasswordScren : Bool = false
     
@@ -33,13 +34,19 @@ class VerifyOTPController: UIViewController
     {
         self.btnOTP.backgroundColor = UIColor.white
         self.btnOTP.setTitleColor(UIColor.darkGray, for: .normal)
-        self.imgBG.image = UIImage(named : OTP_BG)
         self.tfOtp.attributedPlaceholder = NSAttributedString(string: "txt_otp".localized(),
                                                               attributes: [NSForegroundColorAttributeName: UIColor.white])
-        self.btnResend.setTitle("txt_resend_otp".localized(), for: .normal)
+        if self.isFromSignUp {
+            self.btnOTP.setTitle("txt_verify".localized(), for: .normal)
+            self.imgBG.image = UIImage(named : OTP_BG)
+        }else
+        {
+            self.imgBG.image = UIImage(named : OTP_FORGOT_BG)
+            self.btnOTP.setTitle("txt_reset".localized(), for: .normal)
+        }
         self.btnResend.setTitleColor(UIColor.darkGray, for: .normal)
         
-        CommanUtility.decorateNavigationbarWithBackButtonAndTitle(target: self, leftselect: #selector(doClickBack), strTitle: "txt_verify".localized(), strBackImag: BACK_BUTTON, strFontName: "Arial", size: 20, color: color(red: 60, green: 120, blue: 101))
+        CommanUtility.decorateNavigationbarWithBackButtonAndTitle(target: self, leftselect: #selector(doClickBack), strTitle: "txt_otp_verify".localized(), strBackImag: BACK_BUTTON, strFontName: "Arial", size: 20, color: color(red: 60, green: 120, blue: 101))
         
         self.tfOtp.textColor = UIColor.white
         self.btnResend.setTitleColor(UIColor.white, for: .normal)
@@ -47,9 +54,12 @@ class VerifyOTPController: UIViewController
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        self.navigationController?.navigationBar.barTintColor = color(red: 60, green: 120, blue: 101)
+        if self.isFromSignUp {
+            self.navigationController?.navigationBar.barTintColor = color(red: 120, green: 211, blue: 151)
+        }else{
+            self.navigationController?.navigationBar.barTintColor = color(red: 102, green: 198, blue: 178)
+        }
     }
-    
     
     func doClickBack()
     {

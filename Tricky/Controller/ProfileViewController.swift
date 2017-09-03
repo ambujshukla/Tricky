@@ -31,8 +31,17 @@ class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDa
         self.configureInitialParameters()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.navigationController?.navigationBar.barTintColor = color(red: 236, green: 92, blue: 83)
+    }
+    
+    
     func decorateUI()
     {
+        self.imgProfilePic.layer.cornerRadius = self.imgProfilePic.frame.size.width / 2
+        self.imgProfilePic.layer.masksToBounds = true
+        
         CommanUtility.decorateNavigationbarWithBackButtonAndTitle(target: self, leftselect: #selector(doClickBack), strTitle: "txt_profile".localized(), strBackImag: BACK_BUTTON, strFontName: "Arial", size: 20, color: UIColor.white)
 
         self.btnSave.setTitle("txt_save".localized(), for: .normal)
