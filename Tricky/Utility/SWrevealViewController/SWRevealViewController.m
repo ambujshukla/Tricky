@@ -637,7 +637,6 @@ const int FrontViewPositionNone = 0xff;
     return self;
 }
 
-
 - (void)_initDefaultProperties
 {
     _frontViewPosition = FrontViewPositionLeft;

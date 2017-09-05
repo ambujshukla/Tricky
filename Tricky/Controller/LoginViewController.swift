@@ -13,7 +13,7 @@ import ObjectMapper
 class LoginViewController: UIViewController
 {
     @IBOutlet  var txtMobile : UITextField!
-    @IBOutlet  var txtPassword : UITextField!
+  //  @IBOutlet  var txtPassword : UITextField!
     
     @IBOutlet  var btnLogin : UIButton!
     @IBOutlet  var btnForgotPassword : UIButton!
@@ -21,10 +21,10 @@ class LoginViewController: UIViewController
     @IBOutlet  var btnDontAccount : UIButton!
     
     @IBOutlet  var imgMobile : UIImageView!
-    @IBOutlet  var imgPassword : UIImageView!
+  //@IBOutlet  var imgPassword : UIImageView!
     
     @IBOutlet  var imgSeparator1 : UIImageView!
-    @IBOutlet  var imgSeparator2 : UIImageView!
+  //@IBOutlet  var imgSeparator2 : UIImageView!
     
     @IBOutlet var imgBg : UIImageView!
     
@@ -36,7 +36,7 @@ class LoginViewController: UIViewController
     
     func decorateUI()
     {
-        self.txtPassword.text = "123456"
+        //self.txtPassword.text = "123456"
         self.txtMobile.text = "9993880850"
         
         self.title = "txt_login".localized()
@@ -48,7 +48,7 @@ class LoginViewController: UIViewController
         self.imgBg.image = UIImage(named : LOGIN_BG)
         
         self.imgMobile.image = UIImage(named : MOBILE_ICON)
-        self.imgPassword.image = UIImage(named : PASSWORD_ICON)
+       // self.imgPassword.image = UIImage(named : PASSWORD_ICON)
         
         self.btnForgotPassword.setTitle("txt_forgot_password".localized(), for: .normal)
         self.btnForgotPassword.titleLabel?.textColor = UIColor.white
@@ -61,14 +61,14 @@ class LoginViewController: UIViewController
         
         self.txtMobile.attributedPlaceholder = NSAttributedString(string: "txt_mobile".localized(),
                                                                   attributes: [NSForegroundColorAttributeName: UIColor.white])
-        self.txtPassword.attributedPlaceholder = NSAttributedString(string: "txt_password".localized(),
-                                                                    attributes: [NSForegroundColorAttributeName: UIColor.white])
+//        self.txtPassword.attributedPlaceholder = NSAttributedString(string: "txt_password".localized(),
+//                                                                    attributes: [NSForegroundColorAttributeName: UIColor.white])
         
         self.imgSeparator1.backgroundColor = UIColor.white
-        self.imgSeparator2.backgroundColor = UIColor.white
+       // self.imgSeparator2.backgroundColor = UIColor.white
         
         self.txtMobile.textColor = UIColor.white
-        self.txtPassword.textColor = UIColor.white
+       // self.txtPassword.textColor = UIColor.white
         
     }
     
@@ -84,14 +84,17 @@ class LoginViewController: UIViewController
         {
             CommonUtil.showTotstOnWindow(strMessgae: message)
         }else{
-            self.doCallWebAPIForLogin()
+          //  self.doCallWebAPIForLogin()
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "VerifyOTPController") as! VerifyOTPController
+            vc.isFromSignUp = true
+            self.navigationController?.pushViewController(vc, animated: true)
         }
         print(boolValue,message)
     }
     
     func doCallWebAPIForLogin()
     {
-        let dictData = ["mobile" : self.txtMobile.text!,"password":self.txtPassword!.text!,"deviceToken":"324343434343434343"] as [String : Any]
+        let dictData = ["mobile" : self.txtMobile.text!/*,"password":self.txtPassword!.text!*/,"deviceToken":"324343434343434343"] as [String : Any]
         print(dictData)
         
         WebAPIManager.sharedWebAPIMAnager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: METHOD_LOGIN, parameter: dictData , success: { (obj) in
@@ -115,11 +118,10 @@ class LoginViewController: UIViewController
         }
     }
     
-    func goTOHomeScreen() {
-        
+    func goTOHomeScreen()
+    {
         let controller = self.storyboard?.instantiateViewController(withIdentifier: "SWRevealViewController") as! SWRevealViewController
         self.present(controller, animated: true, completion: nil)
-
     }
     
     @IBAction func doClickForgotPassword(sender: UIButton)

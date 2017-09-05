@@ -84,186 +84,171 @@ class CommonUtil: NSObject {
     }
     
     
-    /*class func doValidateRegistration(_ controller:SignUpViewController)->(Bool,String)
+    class func doValidateRegistration(_ controller:SignUpViewController)->(Bool,String)
     {
         
-        controller.txtMobile.text = controller.tfEmail.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+        controller.txtMobile.text = controller.txtMobile.text?.trimmingCharacters(in: .whitespacesAndNewlines)
         
-        if(controller.tfEmail.text!.isEmpty)
-        {
-            return (false,NSString(format: "%@", "Please enter email") as String)
-        }
-        else if(!checkValidEmail(controller.tfEmail.text!))
-        {
-            return (false,"Please enter valid email")
-            
-        }
-        else  if(controller.tfPassowrd.text!.isEmpty)
-        {
-            return (false,NSString(format: "%@", "Please enter password") as String)
-        }
-        else  if(controller.tfReEnterPassword.text!.isEmpty)
-        {
-            return (false,NSString(format: "%@", "Please enter password") as String)
-        }
-            
-        else  if(!(controller.tfPassowrd.text == controller.tfReEnterPassword.text))
-        {
-            return (false,"Password mismatch, Please try again")
-        }
-            
-        else if(controller.tfPassowrd.text?.characters.count < 8 || controller.tfReEnterPassword.text?.characters.count < 8)
-        {
-            return (false,"Password must have at least 8 characters")
-        }
+        controller.txtLink.text = controller.txtLink.text?.trimmingCharacters(in: .whitespacesAndNewlines)
         
-        
-        return (true,"")
-    }
-    */
-   /*
-    class func doValidateProfileSetup(_ controller:ProfileSetupViewController)->(Bool,String)
-    {
-        if(controller.tfUserName.text!.isEmpty)
+        if(controller.txtLink.text!.isEmpty)
         {
-            return (false,"First and Last Name required")
-            
+            return (false,NSString(format: "%@", "Please enter link") as String)
+        }
+        else  if(controller.txtMobile.text!.isEmpty)
+        {
+            return (false,NSString(format: "%@", "Please enter mobile no") as String)
+        }else if(!controller.btnTnC.isSelected)
+        {
+            return (false,NSString(format: "%@", "Please select Terms and Conditions") as String)
         }
         return (true,"")
     }
- */
-    /*
     
-    class func doValidateProfile(_ controller:ProfileViewController)->(Bool,String)
-    {
-        if(controller.tfUserName.text!.isEmpty)
-        {
-            return (false,"First and Last Name required")
-        }
-        return (true,"")
-    }
-    */
+    /*
+     class func doValidateProfileSetup(_ controller:ProfileSetupViewController)->(Bool,String)
+     {
+     if(controller.tfUserName.text!.isEmpty)
+     {
+     return (false,"First and Last Name required")
+     
+     }
+     return (true,"")
+     }
+     */
+    /*
+     
+     class func doValidateProfile(_ controller:ProfileViewController)->(Bool,String)
+     {
+     if(controller.tfUserName.text!.isEmpty)
+     {
+     return (false,"First and Last Name required")
+     }
+     return (true,"")
+     }
+     */
     
     class func doValidateLogin(_ controller:LoginViewController)->(Bool,String)
     {
         if(controller.txtMobile.text!.isEmpty)
         {
             return (false,NSString(format: "%@", "Please enter mobile") as String)
-        }else if(controller.txtPassword.text!.isEmpty)
-        {
-            return (false,NSString(format: "%@", "Please enter password") as String)
         }
+        //        else if(controller.txtPassword.text!.isEmpty)
+        //        {
+        //            return (false,NSString(format: "%@", "Please enter password") as String)
+        //        }
         return (true,"")
     }
     
     /*
-    class func doValidateForgotPassword(_ controller:ForgotPasswordViewController)->(Bool,String)
-    {
-        controller.tfEmail.text = controller.tfEmail.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-        
-        if(controller.tfEmail.text!.isEmpty)
-        {
-            return (false,"Please enter email")
-        }
-        else if(!checkValidEmail(controller.tfEmail.text!))
-        {
-            return (false,"Please enter valid email")
-        }
-        
-        
-        return (true,"")
-    }
- */
+     class func doValidateForgotPassword(_ controller:ForgotPasswordViewController)->(Bool,String)
+     {
+     controller.tfEmail.text = controller.tfEmail.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+     
+     if(controller.tfEmail.text!.isEmpty)
+     {
+     return (false,"Please enter email")
+     }
+     else if(!checkValidEmail(controller.tfEmail.text!))
+     {
+     return (false,"Please enter valid email")
+     }
+     
+     
+     return (true,"")
+     }
+     */
     /*
-    
-    class func doValidateResetPassword(_ controller : ReEnterPasswordViewController)-> (Bool,String) {
-        
-        
-        if(controller.tfOldPassword.text!.isEmpty)
-        {
-            return (false,"Please enter password")
-            
-        }else if(controller.tfOldPassword.text != CommonUtil.getDataForKey("userPassword")){
-            return(false,"Wrong old password")
-        }
-        else if(controller.tfNewPassword.text!.isEmpty)
-        {
-            return (false,"Please enter password")
-        }
-        else if(controller.tfReEnterNewPass.text!.isEmpty)
-        {
-            return (false,"Please enter password")
-        }
-        else if(controller.tfOldPassword.text?.characters.count < 4 || controller.tfNewPassword.text?.characters.count < 8 || controller.tfReEnterNewPass.text?.characters.count < 8)
-        {
-            return (false,"Password must have at least 8 characters")
-        }
-            
-        else  if(!(controller.tfNewPassword.text == controller.tfReEnterNewPass.text))
-        {
-            return (false,"Password mismatch, Please try again")
-        }
-        return (true,"")
-    }
-    
-    */
+     
+     class func doValidateResetPassword(_ controller : ReEnterPasswordViewController)-> (Bool,String) {
+     
+     
+     if(controller.tfOldPassword.text!.isEmpty)
+     {
+     return (false,"Please enter password")
+     
+     }else if(controller.tfOldPassword.text != CommonUtil.getDataForKey("userPassword")){
+     return(false,"Wrong old password")
+     }
+     else if(controller.tfNewPassword.text!.isEmpty)
+     {
+     return (false,"Please enter password")
+     }
+     else if(controller.tfReEnterNewPass.text!.isEmpty)
+     {
+     return (false,"Please enter password")
+     }
+     else if(controller.tfOldPassword.text?.characters.count < 4 || controller.tfNewPassword.text?.characters.count < 8 || controller.tfReEnterNewPass.text?.characters.count < 8)
+     {
+     return (false,"Password must have at least 8 characters")
+     }
+     
+     else  if(!(controller.tfNewPassword.text == controller.tfReEnterNewPass.text))
+     {
+     return (false,"Password mismatch, Please try again")
+     }
+     return (true,"")
+     }
+     
+     */
     /*
-    class func doValidateFrameCode(_ controller:AddFrameCodeViewController)->(Bool,String)
-    {
-        if(controller.tfCode1.text!.isEmpty)
-        {
-            return (false,"Please enter 6 digit frame code")
-            
-        }
-        else  if(controller.tfCode2.text!.isEmpty)
-        {
-            return (false,NSString(format: "%@", "Please enter 6 digit frame code") as String)
-        }
-        else  if(controller.tfCode3.text!.isEmpty)
-        {
-            return (false,NSString(format: "%@", "Please enter 6 digit frame code") as String)
-        } else  if(controller.tfCode4.text!.isEmpty)
-        {
-            return (false,NSString(format: "%@", "Please enter 6 digit frame code") as String)
-        } else  if(controller.tfCode5.text!.isEmpty)
-        {
-            return (false,NSString(format: "%@", "Please enter 6 digit frame code") as String)
-        } else  if(controller.tfCode6.text!.isEmpty)
-        {
-            return (false,NSString(format: "%@", "Please enter 6 digit frame code") as String)
-        }
-        return (true,"")
-    }
- */
+     class func doValidateFrameCode(_ controller:AddFrameCodeViewController)->(Bool,String)
+     {
+     if(controller.tfCode1.text!.isEmpty)
+     {
+     return (false,"Please enter 6 digit frame code")
+     
+     }
+     else  if(controller.tfCode2.text!.isEmpty)
+     {
+     return (false,NSString(format: "%@", "Please enter 6 digit frame code") as String)
+     }
+     else  if(controller.tfCode3.text!.isEmpty)
+     {
+     return (false,NSString(format: "%@", "Please enter 6 digit frame code") as String)
+     } else  if(controller.tfCode4.text!.isEmpty)
+     {
+     return (false,NSString(format: "%@", "Please enter 6 digit frame code") as String)
+     } else  if(controller.tfCode5.text!.isEmpty)
+     {
+     return (false,NSString(format: "%@", "Please enter 6 digit frame code") as String)
+     } else  if(controller.tfCode6.text!.isEmpty)
+     {
+     return (false,NSString(format: "%@", "Please enter 6 digit frame code") as String)
+     }
+     return (true,"")
+     }
+     */
     /*
-    
-    class func doValidateFrameCode(_ controller:WizardSetupAddFrameViewController)->(Bool,String)
-    {
-        if(controller.tfCode1.text!.isEmpty)
-        {
-            return (false,"Please enter 6 digit frame code")
-            
-        }
-        else  if(controller.tfCode2.text!.isEmpty)
-        {
-            return (false,NSString(format: "%@", "Please enter 6 digit frame code") as String)
-        }
-        else  if(controller.tfCode3.text!.isEmpty)
-        {
-            return (false,NSString(format: "%@", "Please enter 6 digit frame code") as String)
-        } else  if(controller.tfCode4.text!.isEmpty)
-        {
-            return (false,NSString(format: "%@", "Please enter 6 digit frame code") as String)
-        } else  if(controller.tfCode5.text!.isEmpty)
-        {
-            return (false,NSString(format: "%@", "Please enter 6 digit frame code") as String)
-        } else  if(controller.tfCode6.text!.isEmpty)
-        {
-            return (false,NSString(format: "%@", "Please enter 6 digit frame code") as String)
-        }
-        return (true,"")
-    }
- */
+     
+     class func doValidateFrameCode(_ controller:WizardSetupAddFrameViewController)->(Bool,String)
+     {
+     if(controller.tfCode1.text!.isEmpty)
+     {
+     return (false,"Please enter 6 digit frame code")
+     
+     }
+     else  if(controller.tfCode2.text!.isEmpty)
+     {
+     return (false,NSString(format: "%@", "Please enter 6 digit frame code") as String)
+     }
+     else  if(controller.tfCode3.text!.isEmpty)
+     {
+     return (false,NSString(format: "%@", "Please enter 6 digit frame code") as String)
+     } else  if(controller.tfCode4.text!.isEmpty)
+     {
+     return (false,NSString(format: "%@", "Please enter 6 digit frame code") as String)
+     } else  if(controller.tfCode5.text!.isEmpty)
+     {
+     return (false,NSString(format: "%@", "Please enter 6 digit frame code") as String)
+     } else  if(controller.tfCode6.text!.isEmpty)
+     {
+     return (false,NSString(format: "%@", "Please enter 6 digit frame code") as String)
+     }
+     return (true,"")
+     }
+     */
     
     //MARK:Navigation Bar Decoration
     
@@ -500,62 +485,62 @@ class CommonUtil: NSObject {
     //        TSMessage.showNotificationWithTitle(App_Name, subtitle: message , type: notificationtype)
     //        TSMessage.dismissActiveNotification()
     //    }
-//    class func showLoader(_ message:String?)
-//    {
-//        /*let app = UIApplication.sharedApplication().delegate as AppDelegate
-//         
-//         if (message?.isEmpty != nil)
-//         {
-//         KVNProgress.showWithStatus("Loading..", onView: app.window)
-//         }
-//         else
-//         {
-//         KVNProgress.showWithStatus("", onView: app.window)
-//         
-//         }*/
-//        //        if(message != nil)
-//        //        {
-//        //            SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.Gradient)
-//        //            SVProgressHUD.showWithStatus(message)
-//        //        }
-//        //        else
-//        //        {
-//        //          SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.Gradient)
-//        //          SVProgressHUD.show();
-//        //        }
-////        let window :UIWindow = UIApplication.shared.keyWindow!
-////        let hud = GIFProgressHUD.show(withGIFName: "ProgressHUD", title: "", detailTitle: "", addedTo: window, animated: true)
-////        hud?.backgroundColor = UIColor.clear
-////        hud?.containerColor = UIColor.clear
-//        //  hud?.scaleFactor = 2.0
-//        //  hud.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.5];
-//        //      hud.containerColor = [UIColor colorWithRed:0.0 green:0.0 blue:1.0 alpha:0.5];
-//        //        hud.containerCornerRadius = 10;
-//        //        hud.scaleFactor = 2.0;
-//        //        hud.minimumPadding = 16;
-//        //        hud.titleColor = [UIColor redColor];
-//        //        hud.detailTitleColor = [UIColor greenColor];
-//        
-//        
-//        //        DispatchQueue.main.async(execute: {
-//        //            GiFHUD.showWithOverlay()
-//        //        })
-//        //GiFHUD.showWithOverlay()
-//        
-//        
-//    }
-//    class func hideLoader()
-//    {
-//        
-//        DispatchQueue.main.async(execute: {
-//            let window :UIWindow = UIApplication.shared.keyWindow!
-//            GIFProgressHUD.hide(for: window, animated: true)
-//            // GiFHUD.dismiss()
-//        })
-//        
-//        // KVNProgress.dismiss()
-//        // SVProgressHUD.dismiss()
-//    }
+    //    class func showLoader(_ message:String?)
+    //    {
+    //        /*let app = UIApplication.sharedApplication().delegate as AppDelegate
+    //
+    //         if (message?.isEmpty != nil)
+    //         {
+    //         KVNProgress.showWithStatus("Loading..", onView: app.window)
+    //         }
+    //         else
+    //         {
+    //         KVNProgress.showWithStatus("", onView: app.window)
+    //
+    //         }*/
+    //        //        if(message != nil)
+    //        //        {
+    //        //            SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.Gradient)
+    //        //            SVProgressHUD.showWithStatus(message)
+    //        //        }
+    //        //        else
+    //        //        {
+    //        //          SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.Gradient)
+    //        //          SVProgressHUD.show();
+    //        //        }
+    ////        let window :UIWindow = UIApplication.shared.keyWindow!
+    ////        let hud = GIFProgressHUD.show(withGIFName: "ProgressHUD", title: "", detailTitle: "", addedTo: window, animated: true)
+    ////        hud?.backgroundColor = UIColor.clear
+    ////        hud?.containerColor = UIColor.clear
+    //        //  hud?.scaleFactor = 2.0
+    //        //  hud.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+    //        //      hud.containerColor = [UIColor colorWithRed:0.0 green:0.0 blue:1.0 alpha:0.5];
+    //        //        hud.containerCornerRadius = 10;
+    //        //        hud.scaleFactor = 2.0;
+    //        //        hud.minimumPadding = 16;
+    //        //        hud.titleColor = [UIColor redColor];
+    //        //        hud.detailTitleColor = [UIColor greenColor];
+    //
+    //
+    //        //        DispatchQueue.main.async(execute: {
+    //        //            GiFHUD.showWithOverlay()
+    //        //        })
+    //        //GiFHUD.showWithOverlay()
+    //
+    //
+    //    }
+    //    class func hideLoader()
+    //    {
+    //
+    //        DispatchQueue.main.async(execute: {
+    //            let window :UIWindow = UIApplication.shared.keyWindow!
+    //            GIFProgressHUD.hide(for: window, animated: true)
+    //            // GiFHUD.dismiss()
+    //        })
+    //
+    //        // KVNProgress.dismiss()
+    //        // SVProgressHUD.dismiss()
+    //    }
     
     class func showTotstOnWindow(strMessgae: String) {
         
@@ -766,18 +751,18 @@ class CommonUtil: NSObject {
     
     //This method is calling from LoginViewController
     
-//    class func doGetAllImagesOfGalleryInBackground()
-//    {
-//        DBManager.sharedManager.getAllImageFromIphoneGallery()
-//        
-//    }
+    //    class func doGetAllImagesOfGalleryInBackground()
+    //    {
+    //        DBManager.sharedManager.getAllImageFromIphoneGallery()
+    //
+    //    }
     
     //This method is calling from HomeViewController
     
-//    class func doCallMethodForSavingImagesPathInDB(){
-//        
-//        DBManager.sharedManager.createTask("")
-//    }
+    //    class func doCallMethodForSavingImagesPathInDB(){
+    //
+    //        DBManager.sharedManager.createTask("")
+    //    }
     
     //MARK: WifiConnectivity
     class func isConnectionAvailble()->Bool{

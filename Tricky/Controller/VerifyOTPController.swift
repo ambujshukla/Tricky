@@ -75,8 +75,15 @@ class VerifyOTPController: UIViewController
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "NewPasswordController") as! NewPasswordController
             self.navigationController?.pushViewController(vc, animated: true)
         }else{
-            self.navigationController?.popToRootViewController(animated: true)
+            self.goTOHomeScreen()
+            //self.navigationController?.popToRootViewController(animated: true)
         }
+    }
+    
+    func goTOHomeScreen()
+    {
+        let controller = self.storyboard?.instantiateViewController(withIdentifier: "SWRevealViewController") as! SWRevealViewController
+        self.present(controller, animated: true, completion: nil)
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)

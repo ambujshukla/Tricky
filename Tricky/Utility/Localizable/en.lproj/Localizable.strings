@@ -14,7 +14,7 @@
 "txt_password" = "Password";
 "txt_cnf_mobile" = "Confirm Password";
 
-"txt_TnC" = "I have read and accept the Terms and Conditions";
+"txt_TnC" = "I Agree on Terms and Conditions";
 "txt_name" = "Name";
 "txt_save" = "Save";
 "txt_title_forgot_password" = "Forgot Password";
@@ -46,3 +46,4 @@
 
 "txt_new_password" = "New Password";
 "txt_submit" = "Submit";
+"txt_link" = "Link";
