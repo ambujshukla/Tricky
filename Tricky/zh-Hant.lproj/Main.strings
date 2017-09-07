@@ -1,0 +1,204 @@
+
+/* Class = "UITextField"; placeholder = "Confirm password"; ObjectID = "18w-kt-y62"; */
+"18w-kt-y62.placeholder" = "Confirm password";
+
+/* Class = "UILabel"; text = "Mobile"; ObjectID = "1Ti-bu-XtG"; */
+"1Ti-bu-XtG.text" = "Mobile";
+
+/* Class = "UILabel"; text = "jsonnow.tricky.com"; ObjectID = "1m1-8F-eIE"; */
+"1m1-8F-eIE.text" = "jsonnow.tricky.com";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "2Bv-YY-yXi"; */
+"2Bv-YY-yXi.normalTitle" = "Button";
+
+/* Class = "UITextField"; placeholder = "Mobile"; ObjectID = "2Tu-Hc-qbi"; */
+"2Tu-Hc-qbi.placeholder" = "Mobile";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "4bE-q4-IjI"; */
+"4bE-q4-IjI.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Are you"; ObjectID = "52X-IL-o8x"; */
+"52X-IL-o8x.text" = "Are you";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "6vA-UO-6rI"; */
+"6vA-UO-6rI.text" = "Label";
+
+/* Class = "UILabel"; text = "Naresh"; ObjectID = "7CT-gg-tbO"; */
+"7CT-gg-tbO.text" = "Naresh";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "7JO-Eu-Pb2"; */
+"7JO-Eu-Pb2.normalTitle" = "Button";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "9op-7P-wd1"; */
+"9op-7P-wd1.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Password"; ObjectID = "CoC-KU-XGk"; */
+"CoC-KU-XGk.text" = "Password";
+
+/* Class = "UILabel"; text = "Hello jack how are you hope you arew fine"; ObjectID = "CvS-I3-EuZ"; */
+"CvS-I3-EuZ.text" = "Hello jack how are you hope you arew fine";
+
+/* Class = "UILabel"; text = "Leave a message"; ObjectID = "FEp-Yd-Aux"; */
+"FEp-Yd-Aux.text" = "Leave a message";
+
+/* Class = "UIButton"; normalTitle = "Resend OTP"; ObjectID = "FKQ-PG-Y33"; */
+"FKQ-PG-Y33.normalTitle" = "Resend OTP";
+
+/* Class = "UIButton"; normalTitle = "Send"; ObjectID = "G0v-aZ-MpQ"; */
+"G0v-aZ-MpQ.normalTitle" = "Send";
+
+/* Class = "UILabel"; text = "15 :44"; ObjectID = "G7I-Sa-RR8"; */
+"G7I-Sa-RR8.text" = "15 :44";
+
+/* Class = "UILabel"; text = "Hello jack how are you hope you arew fine"; ObjectID = "Gvh-hU-RU4"; */
+"Gvh-hU-RU4.text" = "Hello jack how are you hope you arew fine";
+
+/* Class = "UIButton"; normalTitle = "Create"; ObjectID = "Hep-He-lfl"; */
+"Hep-He-lfl.normalTitle" = "Create";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Ind-gn-Ef4"; */
+"Ind-gn-Ef4.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Hello jack how are you hope you arew fine"; ObjectID = "Ka5-Gl-AJ1"; */
+"Ka5-Gl-AJ1.text" = "Hello jack how are you hope you arew fine";
+
+/* Class = "UILabel"; text = "Photo (Optional)"; ObjectID = "LR6-d6-nop"; */
+"LR6-d6-nop.text" = "Photo (Optional)";
+
+/* Class = "UILabel"; text = "15 : 45"; ObjectID = "Lkv-OE-xSN"; */
+"Lkv-OE-xSN.text" = "15 : 45";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "MlY-CE-93Z"; */
+"MlY-CE-93Z.text" = "Label";
+
+/* Class = "UILabel"; text = "15 : 45"; ObjectID = "N5L-bG-Yzs"; */
+"N5L-bG-Yzs.text" = "15 : 45";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Nv2-WY-98y"; */
+"Nv2-WY-98y.text" = "Label";
+
+/* Class = "UITextField"; placeholder = "Link"; ObjectID = "OaM-WN-cZD"; */
+"OaM-WN-cZD.placeholder" = "Link";
+
+/* Class = "UITextField"; placeholder = "URL"; ObjectID = "Oc9-jq-NtP"; */
+"Oc9-jq-NtP.placeholder" = "URL";
+
+/* Class = "UIButton"; normalTitle = "Delete"; ObjectID = "Ouj-JR-upq"; */
+"Ouj-JR-upq.normalTitle" = "Delete";
+
+/* Class = "UITextField"; placeholder = "Mobile Number"; ObjectID = "PG6-1m-DNn"; */
+"PG6-1m-DNn.placeholder" = "Mobile Number";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "QgR-dm-wSf"; */
+"QgR-dm-wSf.text" = "Label";
+
+/* Class = "UILabel"; text = "Last meaasage :- hi how are you"; ObjectID = "RND-HL-y7w"; */
+"RND-HL-y7w.text" = "Last meaasage :- hi how are you";
+
+/* Class = "UILabel"; text = "Hello jack how are you hope you arew fineHello jack how "; ObjectID = "Rm7-3v-Skx"; */
+"Rm7-3v-Skx.text" = "Hello jack how are you hope you arew fineHello jack how ";
+
+/* Class = "UILabel"; text = "15:45"; ObjectID = "RsM-mN-2ur"; */
+"RsM-mN-2ur.text" = "15:45";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "SBa-8j-vdk"; */
+"SBa-8j-vdk.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Login"; ObjectID = "SnD-Te-Vze"; */
+"SnD-Te-Vze.normalTitle" = "Login";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "TaF-lN-9Dd"; */
+"TaF-lN-9Dd.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Vnl-Nr-7Qh"; */
+"Vnl-Nr-7Qh.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "YTX-OU-mrl"; */
+"YTX-OU-mrl.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "bXR-pK-uSO"; */
+"bXR-pK-uSO.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "bZf-eA-Io0"; */
+"bZf-eA-Io0.normalTitle" = "Button";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "bij-xD-PlZ"; */
+"bij-xD-PlZ.normalTitle" = "Button";
+
+/* Class = "UITextField"; placeholder = "Select"; ObjectID = "bjN-3a-wdI"; */
+"bjN-3a-wdI.placeholder" = "Select";
+
+/* Class = "UILabel"; text = "John smith"; ObjectID = "cGI-LY-jSk"; */
+"cGI-LY-jSk.text" = "John smith";
+
+/* Class = "UILabel"; text = "Leave a message"; ObjectID = "dG1-t7-r8s"; */
+"dG1-t7-r8s.text" = "Leave a message";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "f6u-19-slR"; */
+"f6u-19-slR.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Select"; ObjectID = "fmk-oW-ITX"; */
+"fmk-oW-ITX.normalTitle" = "Select";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "g4X-Ev-3b8"; */
+"g4X-Ev-3b8.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "15 : 45"; ObjectID = "g7F-dW-0ye"; */
+"g7F-dW-0ye.text" = "15 : 45";
+
+/* Class = "UIButton"; normalTitle = "Signup"; ObjectID = "gBH-1Z-opH"; */
+"gBH-1Z-opH.normalTitle" = "Signup";
+
+/* Class = "UIButton"; normalTitle = "Submit"; ObjectID = "gMM-wo-0th"; */
+"gMM-wo-0th.normalTitle" = "Submit";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "giJ-zG-Kbe"; */
+"giJ-zG-Kbe.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "glt-hy-byy"; */
+"glt-hy-byy.text" = "Label";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "gza-CH-tOT"; */
+"gza-CH-tOT.placeholder" = "Password";
+
+/* Class = "UIButton"; normalTitle = "Reset"; ObjectID = "hrA-WD-IoT"; */
+"hrA-WD-IoT.normalTitle" = "Reset";
+
+/* Class = "UILabel"; text = "Hello jack how are you hope you arew fine Hello jack how are you hope you arew fine"; ObjectID = "hyx-xT-Qfq"; */
+"hyx-xT-Qfq.text" = "Hello jack how are you hope you arew fine Hello jack how are you hope you arew fine";
+
+/* Class = "UIButton"; normalTitle = "Answer"; ObjectID = "oft-UW-aav"; */
+"oft-UW-aav.normalTitle" = "Answer";
+
+/* Class = "UILabel"; text = "15 : 45"; ObjectID = "pRE-jq-wP9"; */
+"pRE-jq-wP9.text" = "15 : 45";
+
+/* Class = "UITextField"; text = ".tricky.com"; ObjectID = "q2P-hl-bVa"; */
+"q2P-hl-bVa.text" = ".tricky.com";
+
+/* Class = "UITextField"; text = "trickychat.com"; ObjectID = "qb9-Mk-vDH"; */
+"qb9-Mk-vDH.text" = "trickychat.com";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "tLJ-r3-aqI"; */
+"tLJ-r3-aqI.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "wTw-rm-eLI"; */
+"wTw-rm-eLI.text" = "Label";
+
+/* Class = "UILabel"; text = "Hello jack how are you hope you arew fine"; ObjectID = "wb7-Q3-MV4"; */
+"wb7-Q3-MV4.text" = "Hello jack how are you hope you arew fine";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "wnS-xH-bHt"; */
+"wnS-xH-bHt.text" = "Label";
+
+/* Class = "UILabel"; text = "URL"; ObjectID = "xft-Yj-sQg"; */
+"xft-Yj-sQg.text" = "URL";
+
+/* Class = "UIButton"; normalTitle = "Send"; ObjectID = "yC2-8U-CWP"; */
+"yC2-8U-CWP.normalTitle" = "Send";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "yaL-Et-KGg"; */
+"yaL-Et-KGg.placeholder" = "Password";
+
+/* Class = "UILabel"; text = "Hello jack how are you hope you arew fine"; ObjectID = "zRc-uK-Bpf"; */
+"zRc-uK-Bpf.text" = "Hello jack how are you hope you arew fine";

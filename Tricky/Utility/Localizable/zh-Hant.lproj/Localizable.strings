@@ -1,0 +1,23 @@
+/* 
+  Localizable.strings
+  Tricky
+
+  Created by gopalsara on 19/08/17.
+  Copyright © 2017 Gopal Sara. All rights reserved.
+*/
+
+////////////////////////0080917
+"txt_trickychat" = "Trickychat";
+"txt_file_not_found" = "未找到文件";
+"txt_no_app" = "没有可用的应用程序来执行此操作";
+"txt_under_construction" = "正在建设中";
+"txt_data_not_Available" = "数据不可用! 请重试";
+"txt_network_error" = "网络错误";
+"txt_network_not_available" = "网络不可用";
+"txt_something_went_wrong" = "出了错, 然后再试一次";
+"txt_please_enter_firstName" = "请输入名字";
+"txt_please_enter_lastName" = "请输入姓名";
+"txt_please_enter_email_id" = "请输入的电子邮件 ID";
+"txt_please_enter_valid_email" = "请输入有效的电子邮件 ID";
+"txt_please_enter_userName" = "请输入用户名";
+"txt_please_enter_name" = "请输入名称。";
