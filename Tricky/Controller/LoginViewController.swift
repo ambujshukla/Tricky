@@ -75,6 +75,7 @@ class LoginViewController: UIViewController
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.navigationController?.navigationBar.barTintColor = color(red: 105, green: 181, blue: 198)
+        self.navigationItem.setHidesBackButton(true, animated: false)
     }
     
     @IBAction func doClickLogin(sender: UIButton)

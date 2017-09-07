@@ -142,7 +142,22 @@ class CommanUtility: NSObject {
         userDefaults.synchronize()
     }
     
-    
+    class func doChangeTimeFormat(time : String, firstFormat : String, SecondFormat : String) -> String
+    {
+        let time = time
+        
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.dateFormat = firstFormat
+        
+        var fullDate = dateFormatter.date(from: time)
+        
+        dateFormatter.dateFormat = SecondFormat
+        
+        var time2 = dateFormatter.string(from: fullDate!)
+        
+        return time2
+    }
 }
 
 

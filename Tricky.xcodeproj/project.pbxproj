@@ -99,6 +99,7 @@
 		31D031CD1F49C6F700D41E4C /* ProfileBG@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 31D031CA1F49C6F700D41E4C /* ProfileBG@3x.png */; };
 		31D9D1061F4F4FF800ED9B78 /* UserPostAnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D9D1051F4F4FF700ED9B78 /* UserPostAnswerViewController.swift */; };
 		31D9D1081F4F58E200ED9B78 /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D9D1071F4F58E200ED9B78 /* PostDetailViewController.swift */; };
+		31F4D3DC1F5F20890036539C /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F4D3DB1F5F20880036539C /* ProfileModel.swift */; };
 		98D0C745BBA0DAB0082F2BFD /* Pods_Tricky.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFA49A12562E72DD1E969AA9 /* Pods_Tricky.framework */; };
 /* End PBXBuildFile section */
 
@@ -201,6 +202,7 @@
 		31D031CA1F49C6F700D41E4C /* ProfileBG@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProfileBG@3x.png"; sourceTree = "<group>"; };
 		31D9D1051F4F4FF700ED9B78 /* UserPostAnswerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPostAnswerViewController.swift; sourceTree = "<group>"; };
 		31D9D1071F4F58E200ED9B78 /* PostDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
+		31F4D3DB1F5F20880036539C /* ProfileModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		398C29F8BF70BE72AF396866 /* Pods-Tricky.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tricky.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tricky/Pods-Tricky.debug.xcconfig"; sourceTree = "<group>"; };
 		8B19D5D7AF9919607A2027D4 /* Pods-Tricky.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tricky.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tricky/Pods-Tricky.release.xcconfig"; sourceTree = "<group>"; };
 		AFA49A12562E72DD1E969AA9 /* Pods_Tricky.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tricky.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -394,6 +396,7 @@
 				18E266B31F5B2E75009F8B01 /* LoginResposeDataModel.swift */,
 				18E266B71F5B3A9E009F8B01 /* RegistrationModel.swift */,
 				18E266B91F5B3AED009F8B01 /* RegResponseDataModel.swift */,
+				31F4D3DB1F5F20880036539C /* ProfileModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -703,6 +706,7 @@
 				3151CE961F48C5F000C322C3 /* BlockUserListTableViewCell.swift in Sources */,
 				3151CE831F48AC5C00C322C3 /* Constant.swift in Sources */,
 				183A10831F4B519300579A7A /* MenuViewController.swift in Sources */,
+				31F4D3DC1F5F20890036539C /* ProfileModel.swift in Sources */,
 				3151CE811F48AC4F00C322C3 /* CommanUtility.swift in Sources */,
 				1833F9DE1F4CA7FD004AB7EE /* MessageTableViewCell.swift in Sources */,
 				3151CE7B1F48A8C900C322C3 /* ProfileViewController.swift in Sources */,

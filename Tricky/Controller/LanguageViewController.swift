@@ -11,8 +11,11 @@ import UIKit
 class LanguageViewController: UIViewController, UITableViewDataSource , UITableViewDelegate {
     
     @IBOutlet weak var tblLanguage : UITableView!
+    @IBOutlet weak var btnContinue : UIButton!
     var arrData = [String]()
-    override func viewDidLoad() {
+    
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         self.decorateUI()
         // Do any additional setup after loading the view.
@@ -28,13 +31,30 @@ class LanguageViewController: UIViewController, UITableViewDataSource , UITableV
         self.tblLanguage.tableFooterView = UIView()
         CommanUtility.decorateNavigationbarWithBackButton(target: self, strTitle: "Language", strBackButtonImage: BACK_BUTTON , selector: #selector(self.goTOBack), color: color(red: 107, green: 108, blue: 180))
         
+        self.btnContinue.isHidden = UserDefaults.standard.bool(forKey: "isLanguageSelected")
+        
+        if (UserDefaults.standard.bool(forKey: "isLanguageSelected") != true)
+        {
+            self.navigationItem.setLeftBarButton(nil, animated: true)
+        }
+        
         self.arrData = ["English","Hindi","Arabic","Urdu"]
         self.tblLanguage.separatorColor = color(red: 75, green: 70, blue: 130)
+        
+        self.btnContinue.setTitle("txt_continue".localized(), for: .normal)
+        self.btnContinue.backgroundColor = UIColor.clear
+        self.btnContinue.setTitleColor(UIColor.white, for: .normal)
+        self.btnContinue.layer.cornerRadius = 5.0
+        self.btnContinue.layer.borderWidth = 1.0
+        self.btnContinue.layer.borderColor = UIColor.white.cgColor
+        
+        self.tblLanguage.isScrollEnabled = false
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-           self.navigationController?.navigationBar.barTintColor = color(red: 106, green: 110, blue: 180)
+        self.navigationController?.navigationBar.barTintColor = color(red: 106, green: 110, blue: 180)
     }
     
     func goTOBack()
@@ -66,6 +86,7 @@ class LanguageViewController: UIViewController, UITableViewDataSource , UITableV
         label?.textColor = UIColor.white
         return cell
     }
+    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.backgroundColor = UIColor.clear
     }
@@ -73,6 +94,13 @@ class LanguageViewController: UIViewController, UITableViewDataSource , UITableV
         if indexPath.row == 5 {
             self.dismiss(animated: true, completion: nil)
         }
+    }
+    
+    @IBAction func doClickContinue()
+    {
+        UserDefaults.standard.set(true, forKey: "isLanguageSelected") //Bool
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewIdentifier") as! LoginViewController
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 }
