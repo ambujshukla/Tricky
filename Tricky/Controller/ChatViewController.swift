@@ -29,6 +29,9 @@ class ChatViewController: UIViewController  , UITableViewDataSource , UITableVie
         self.tblChat.tableFooterView = UIView()
     }
     
+    
+    
+    
     //MARK: - Tableview delegate and datasource methods
     
     
