@@ -27,10 +27,23 @@ class ChatViewController: UIViewController  , UITableViewDataSource , UITableVie
     func decorateUI() {
         
         self.tblChat.tableFooterView = UIView()
+        self.doCallWebServiceForGetChatList()
     }
     
+
+    func doCallWebServiceForGetChatList(){
+      
+        let dictData = ["userId" : "47"]
+        
+   WebAPIManager.sharedWebAPIMAnager.doCallWebAPIForPOST(strURL: BASE_URL , strServiceName: "chatList", parameter: dictData, success: { (obj) in
     
+    print(obj)
     
+   }) { (error) in
+    
+        }
+        
+    }
     
     //MARK: - Tableview delegate and datasource methods
     
