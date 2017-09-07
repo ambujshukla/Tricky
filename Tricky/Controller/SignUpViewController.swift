@@ -116,34 +116,26 @@ class SignUpViewController: UIViewController {
     
     func doCallWebAPIForRegistration()
     {
-        var (boolValue , message) = CommonUtil.doValidateRegistration(self)
-        if boolValue == false
-        {
-            CommonUtil.showTotstOnWindow(strMessgae: message)
-        }else{
-            //  self.doCallWebAPIForLogin()
-            self.goTOVerifyScreen()
-        }
-  //  let dictData = ["version" : "1.0" , "os" : "ios" , "language" : "english" , "mobile": self.txtMobile.text! , "password" : self.txtPassword.text! , "url":self.txtUrl.text! , "deviceToken" : "324343434343434343"] as [String : Any]
+        let dictData = ["version" : "1.0" , "os" : "ios" , "language" : "english" , "mobileNo": self.txtMobile.text!  , "url":self.txtLink.text! , "deviceToken" : "324343434343434343" , "countryCode" : "+91"] as [String : Any]
         
-//     WebAPIManager.sharedWebAPIMAnager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "register", parameter: dictData , success: { (obj) in
-//    let regData = Mapper<RegistrationModel>().map(JSON: obj)
-//        
-//   if (regData?.status == "1")
-//   {
-//    UserManager.sharedUserManager.doSetLoginData(userData: (regData?.responseData?[0])!)
-//    self.goTOVerifyScreen()
-//    }
-//        else
-//   {
-//    CommonUtil.showTotstOnWindow(strMessgae: (regData?.responseMessage)!)
-//    }
-//    
-//    print("this is object \(obj)")
-//       }) { (error) in
-//        CommonUtil.showTotstOnWindow(strMessgae: (error?.localizedDescription)!)
-//
-//        }
+     WebAPIManager.sharedWebAPIMAnager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "register", parameter: dictData , success: { (obj) in
+    let regData = Mapper<RegistrationModel>().map(JSON: obj)
+        
+   if (regData?.status == "1")
+   {
+    UserManager.sharedUserManager.doSetLoginData(userData: (regData?.responseData?[0])!)
+    self.goTOVerifyScreen()
+    }
+        else
+   {
+    CommonUtil.showTotstOnWindow(strMessgae: (regData?.responseMessage)!)
+    }
+    
+    print("this is object \(obj)")
+       }) { (error) in
+        CommonUtil.showTotstOnWindow(strMessgae: (error?.localizedDescription)!)
+
+        }
     }
     
     func goTOVerifyScreen() {
@@ -179,7 +171,14 @@ class SignUpViewController: UIViewController {
     
     @IBAction func doClickRegister()
     {
-        self.doCallWebAPIForRegistration()
+        var (boolValue , message) = CommonUtil.doValidateRegistration(self)
+        if boolValue == false
+        {
+            CommonUtil.showTotstOnWindow(strMessgae: message)
+        }else{
+            self.doCallWebAPIForRegistration()
+        }
+        
     }
     
 //    @IBAction func doClickChangeProfilePic()

@@ -85,7 +85,7 @@ class CommanUtility: NSObject {
         buttonEdit.addTarget(target, action: select, for: UIControlEvents.touchUpInside)
         let rightBarButtonItemEdit: UIBarButtonItem = UIBarButtonItem(customView: buttonEdit)
         // add multiple right bar button items
-        //  navBarItem.setRightBarButtonItems(NSArray(objects: rightBarButtonItemEdit) as NSArray as? [UIBarButtonItem], animated: true)
+        //  navBarItem.setRightBarButtonItems(NSArray(objects: rightBarButtonItemEdit) as NSArray as? [UIBarBu/Users/Apple/Documents/CurrentCode/Tricky/Tricky/TrickyttonItem], animated: true)
         // uncomment to add single right bar button item
         navBarItem.setRightBarButton(rightBarButtonItemEdit, animated: false)
     }

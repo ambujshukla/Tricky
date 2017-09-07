@@ -14,6 +14,7 @@
 		181BD4D51F55E7C900E60277 /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181BD4D41F55E7C900E60277 /* PopupViewController.swift */; };
 		1833F9DC1F4C94E1004AB7EE /* FavouriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1833F9DB1F4C94E1004AB7EE /* FavouriteViewController.swift */; };
 		1833F9DE1F4CA7FD004AB7EE /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1833F9DD1F4CA7FD004AB7EE /* MessageTableViewCell.swift */; };
+		183429351F5F32770002ECF5 /* SendMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183429341F5F32770002ECF5 /* SendMessageModel.swift */; };
 		183A10811F4B517A00579A7A /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183A10801F4B517A00579A7A /* ContactViewController.swift */; };
 		183A10831F4B519300579A7A /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183A10821F4B519300579A7A /* MenuViewController.swift */; };
 		183A10851F4B519900579A7A /* NewPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183A10841F4B519900579A7A /* NewPasswordController.swift */; };
@@ -110,6 +111,7 @@
 		181BD4D41F55E7C900E60277 /* PopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		1833F9DB1F4C94E1004AB7EE /* FavouriteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavouriteViewController.swift; sourceTree = "<group>"; };
 		1833F9DD1F4CA7FD004AB7EE /* MessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
+		183429341F5F32770002ECF5 /* SendMessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendMessageModel.swift; sourceTree = "<group>"; };
 		183A10801F4B517A00579A7A /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 		183A10821F4B519300579A7A /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		183A10841F4B519900579A7A /* NewPasswordController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPasswordController.swift; sourceTree = "<group>"; };
@@ -394,6 +396,7 @@
 				18E266B31F5B2E75009F8B01 /* LoginResposeDataModel.swift */,
 				18E266B71F5B3A9E009F8B01 /* RegistrationModel.swift */,
 				18E266B91F5B3AED009F8B01 /* RegResponseDataModel.swift */,
+				183429341F5F32770002ECF5 /* SendMessageModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -677,6 +680,7 @@
 				3151CE921F48B2F900C322C3 /* ProfileTableViewCell.swift in Sources */,
 				181BD4D11F55DFF900E60277 /* PostTableViewCell.swift in Sources */,
 				181BD4CE1F55DE9600E60277 /* CreateNewPostViewController.swift in Sources */,
+				183429351F5F32770002ECF5 /* SendMessageModel.swift in Sources */,
 				3151CE871F48ACEA00C322C3 /* WebAPIManager.swift in Sources */,
 				3151CE941F48C56100C322C3 /* BlockUserListViewController.swift in Sources */,
 				183A10B71F4B52D000579A7A /* SWRevealViewController.m in Sources */,

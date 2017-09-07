@@ -72,7 +72,7 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
     
     @IBAction func doClickPlus()
     {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ContactViewController") as! ContactViewController
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserPostAnswerViewController") as! UserPostAnswerViewController
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

@@ -11,7 +11,7 @@ import UIKit
 class LanguageViewController: UIViewController, UITableViewDataSource , UITableViewDelegate {
     
     @IBOutlet weak var tblLanguage : UITableView!
-    var arrData = [String]()
+    var arrData = [[String : String]]()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.decorateUI()
@@ -28,7 +28,9 @@ class LanguageViewController: UIViewController, UITableViewDataSource , UITableV
         self.tblLanguage.tableFooterView = UIView()
         CommanUtility.decorateNavigationbarWithBackButton(target: self, strTitle: "Language", strBackButtonImage: BACK_BUTTON , selector: #selector(self.goTOBack), color: color(red: 107, green: 108, blue: 180))
         
-        self.arrData = ["English","Hindi","Arabic","Urdu"]
+        self.arrData = [["language" : "English" , "isSelected" :"1"] , ["language" : "Chinese" , "isSelected" : "0" ], ["language" : "Spanish" , "isSelected" : "0" ] ,["language" : "Portuguese" , "isSelected" : "0" ]]
+        
+        
         self.tblLanguage.separatorColor = color(red: 75, green: 70, blue: 130)
     }
     
@@ -61,8 +63,14 @@ class LanguageViewController: UIViewController, UITableViewDataSource , UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as UITableViewCell
         let label = cell.contentView.viewWithTag(10) as! UILabel!
-        label?.text = self.arrData[indexPath.row]
-        cell.selectionStyle = .none
+        label?.text = self.arrData[indexPath.row]["language"]
+        if self.arrData[indexPath.row]["isSelected"] == "1"{
+            cell.accessoryType = .checkmark
+        }
+        else
+        {
+            cell.accessoryType = .none
+        }
         label?.textColor = UIColor.white
         return cell
     }
@@ -70,6 +78,16 @@ class LanguageViewController: UIViewController, UITableViewDataSource , UITableV
         cell.backgroundColor = UIColor.clear
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if self.arrData[indexPath.row]["isSelected"] == "0"{
+           self.arrData[indexPath.row]["isSelected"] = "1"
+        }
+        else{
+            self.arrData[indexPath.row]["isSelected"] = "0"
+   
+        }
+        
+    self.tblLanguage.reloadData()
         if indexPath.row == 5 {
             self.dismiss(animated: true, completion: nil)
         }
