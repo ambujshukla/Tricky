@@ -37,7 +37,7 @@ class LoginViewController: UIViewController
     func decorateUI()
     {
         //self.txtPassword.text = "123456"
-        self.txtMobile.text = "9039395421"
+        self.txtMobile.text = "9993880850"
         
         self.title = "txt_login".localized()
 
@@ -75,6 +75,7 @@ class LoginViewController: UIViewController
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.navigationController?.navigationBar.barTintColor = color(red: 105, green: 181, blue: 198)
+        self.navigationItem.setHidesBackButton(true, animated: false)
     }
     
     @IBAction func doClickLogin(sender: UIButton)
@@ -84,7 +85,7 @@ class LoginViewController: UIViewController
         {
             CommonUtil.showTotstOnWindow(strMessgae: message)
         }else{
-            self.doCallWebAPIForLogin()
+          //  self.doCallWebAPIForLogin()
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "VerifyOTPController") as! VerifyOTPController
             vc.isFromSignUp = true
             self.navigationController?.pushViewController(vc, animated: true)
@@ -94,7 +95,7 @@ class LoginViewController: UIViewController
     
     func doCallWebAPIForLogin()
     {
-        let dictData = ["mobileNo" :(self.txtMobile.text!) /*,"password":self.txtPassword!.text!*/,"deviceToken":"324343434343434343" , "otp" : "1234" , "countryCode" : "+91"] as [String : Any]
+        let dictData = ["mobile" : self.txtMobile.text!/*,"password":self.txtPassword!.text!*/,"deviceToken":"324343434343434343"] as [String : Any]
         print(dictData)
         
         WebAPIManager.sharedWebAPIMAnager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: METHOD_LOGIN, parameter: dictData , success: { (obj) in

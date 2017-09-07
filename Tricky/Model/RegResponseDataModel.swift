@@ -17,8 +17,6 @@ class RegResponseDataModel:  Mappable {
     var name  : String?
     var profilePic : String?
     var userId    : String?
-    var countryCode : String?
-    
     
     required init?(map: Map) {
         mapping(map: map)
@@ -32,6 +30,6 @@ class RegResponseDataModel:  Mappable {
         name       <- map["name"]
         profilePic    <- map["profilePic"]
         userId         <- map["userId"]
-        countryCode         <- map["countryCode"]
+        
     }
 }

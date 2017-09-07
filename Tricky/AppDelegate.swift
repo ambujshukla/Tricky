@@ -20,16 +20,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     {
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         
-//        let center = NotificationCenter.current()
-//        center.requestAuthorization(options:[.badge, .alert, .sound]) { (granted, error) in
-//            // Enable or disable features based on authorization.
-//        }
-//        application.registerForRemoteNotifications()
-//        
-        
-   ///     UINavigationBar.appearance().barTintColor = UIColor(red: 105.0/255.0, green: 181.0/255.0, blue: 191.0/255.0, alpha: 1.0)
- 
-     //   IQKeyboardManager.sharedManager().enable = true
+        if (UserDefaults.standard.bool(forKey: "isLanguageSelected") == true)
+        {
+            let rootViewController = self.window!.rootViewController as! UINavigationController
+            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = mainStoryboard.instantiateViewController(withIdentifier: "LoginViewIdentifier") as! LoginViewController
+            rootViewController.pushViewController(vc, animated: false)
+        }
         
         return true
     }

@@ -16,7 +16,6 @@ class LoginResposeDataModel: Mappable {
     var name  : String?
     var profilePic : String?
     var userId    : String?
-    var countryCode : String?
     
     required init?(map: Map) {
         mapping(map: map)
@@ -30,8 +29,6 @@ class LoginResposeDataModel: Mappable {
         name       <- map["name"]
         profilePic    <- map["profilePic"]
         userId         <- map["userId"]
-        countryCode         <- map["countryCode"]
-
 
     }
 

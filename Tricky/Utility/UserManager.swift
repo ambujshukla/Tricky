@@ -19,7 +19,6 @@ class UserManager: NSObject {
     var mobileNo : String?
     var name : String?
     var profilePic : String?
-    var countryCode : String?
 
     
     class var  sharedUserManager: UserManager {
@@ -44,7 +43,6 @@ class UserManager: NSObject {
         self.mobileNo = userData.mobileNo
         self.name = userData.name
         self.profilePic = userData.profilePic
-        self.countryCode = userData.countryCode
     }
     
     

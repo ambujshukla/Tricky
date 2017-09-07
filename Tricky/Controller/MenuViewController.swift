@@ -9,7 +9,7 @@
 import UIKit
 
 class MenuViewController: UIViewController , UITableViewDataSource , UITableViewDelegate {
-
+    
     var menuData = [String]()
     @IBOutlet weak var tblMenu : UITableView!
     @IBOutlet weak var  imgProfile  : UIImageView!
@@ -23,12 +23,12 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
         self.decorateUI()
         // Do any additional setup after loading the view.
     }
-
+    
     func decorateUI () {
         
         self.imgProfile.layer.cornerRadius = self.imgProfile.frame.size.width / 2
         self.imgProfile.layer.masksToBounds = true
-
+        
         self.lblEmail.textColor = UIColor.white
         self.lblUserName.textColor = UIColor.white
         
@@ -73,23 +73,24 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
         {
             swOnOff?.isHidden = true
         }
-
+        
         label?.text = self.menuData[indexPath.row]
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if indexPath.row == 6 {
-        self.dismiss(animated: true, completion: nil)
+        if indexPath.row == 6
+        {
+            self.dismiss(animated: true, completion: nil)
         }
         else if (indexPath.row == 3){
             
-        let controller = self.storyboard?.instantiateViewController(withIdentifier: "LanguageViewController") as! LanguageViewController
-        let contrlHome = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-        let navController = UINavigationController.init()
-        navController.setViewControllers([contrlHome , controller], animated: true)
-        self.revealViewController().pushFrontViewController(navController, animated: true)
+            let controller = self.storyboard?.instantiateViewController(withIdentifier: "LanguageViewController") as! LanguageViewController
+            let contrlHome = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+            let navController = UINavigationController.init()
+            navController.setViewControllers([contrlHome , controller], animated: true)
+            self.revealViewController().pushFrontViewController(navController, animated: true)
         }
         else if (indexPath.row == 1) {
             
@@ -99,7 +100,7 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
             navController.setViewControllers([contrlHome , vc], animated: true)
             self.revealViewController().pushFrontViewController(navController, animated: true)
         }
-       
+            
         else if (indexPath.row == 2) {
             
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "FavouriteViewController") as! FavouriteViewController
@@ -108,33 +109,33 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
             navController.setViewControllers([contrlHome , vc], animated: true)
             self.revealViewController().pushFrontViewController(navController, animated: true)
         }
-
-//        else if (indexPath.row == 6) {
-//            
-//            let vc = self.storyboard?.instantiateViewController(withIdentifier: "PostViewController") as! PostViewController
-//            let contrlHome = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-//            let navController = UINavigationController.init()
-//            navController.setViewControllers([contrlHome , vc], animated: true)
-//            self.revealViewController().pushFrontViewController(navController, animated: true)
-//        }
-      
+            
+            //        else if (indexPath.row == 6) {
+            //
+            //            let vc = self.storyboard?.instantiateViewController(withIdentifier: "PostViewController") as! PostViewController
+            //            let contrlHome = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+            //            let navController = UINavigationController.init()
+            //            navController.setViewControllers([contrlHome , vc], animated: true)
+            //            self.revealViewController().pushFrontViewController(navController, animated: true)
+            //        }
+            
         else if (indexPath.row == 0) {
-          
+            
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "BlockUserListViewIdentifier") as! BlockUserListViewController
             let contrlHome = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
             let navController = UINavigationController.init()
             navController.setViewControllers([contrlHome , vc], animated: true)
             self.revealViewController().pushFrontViewController(navController, animated: true)
         }
-
+        
     }
     @IBAction func doClickProfile()
     {
-       let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfileViewIdentifier") as! ProfileViewController
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfileViewIdentifier") as! ProfileViewController
         let contrlHome = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
         let navController = UINavigationController.init()
         navController.setViewControllers([contrlHome , vc], animated: true)
         self.revealViewController().pushFrontViewController(navController, animated: true)
     }
-
+    
 }

@@ -25,10 +25,12 @@ class MessageTableViewCell: UITableViewCell {
         // Initialization code
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
+    func decorateTableViewCell(dictData : [String : AnyObject]) {
+        print("")
+        self.lblMessage.text = dictData["message"] as? String
+        self.lblTime.text =  CommanUtility.doChangeTimeFormat(time: (dictData["time"] as? String)!, firstFormat: "yyyy-MM-dd HH:mm:ss", SecondFormat: "HH:mm")
+        //2017-09-05 19:35:30,
+        //dictData["time"] as? String
     }
     
 }

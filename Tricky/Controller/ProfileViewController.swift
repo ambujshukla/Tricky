@@ -8,14 +8,19 @@
 
 import UIKit
 import Localize_Swift
+import SDWebImage
 
 class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDataSource, UITextFieldDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate,UIActionSheetDelegate  {
     
     @IBOutlet weak var tblView : UITableView!
     @IBOutlet weak var imgProfilePic : UIImageView!
     @IBOutlet weak var btnChangeic : UIButton!
-    @IBOutlet weak var btnSave : UIButton!
+   // @IBOutlet weak var btnSave : UIButton!
     @IBOutlet weak var imgBG : UIImageView!
+    
+    @IBOutlet weak var lblEmail : UILabel!
+    @IBOutlet weak var btnCopy : UIButton!
+    @IBOutlet weak var btnShare : UIButton!
     
     var imagePicker = UIImagePickerController()
     
@@ -29,6 +34,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDa
         super.viewDidLoad()
         self.decorateUI()
         self.configureInitialParameters()
+        self.doCallGetProfile()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,25 +49,65 @@ class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDa
         self.imgProfilePic.layer.masksToBounds = true
         
         CommanUtility.decorateNavigationbarWithBackButtonAndTitle(target: self, leftselect: #selector(doClickBack), strTitle: "txt_profile".localized(), strBackImag: BACK_BUTTON, strFontName: "Arial", size: 20, color: UIColor.white)
-
-        self.btnSave.setTitle("txt_save".localized(), for: .normal)
-        self.btnSave.backgroundColor = UIColor.clear
-        self.btnSave.layer.borderWidth = 1.0
-        self.tblView.backgroundColor = UIColor.clear
-        self.btnSave.layer.borderColor = UIColor.white.cgColor
-
+        
+//        self.btnSave.setTitle("txt_save".localized(), for: .normal)
+//        self.btnSave.backgroundColor = UIColor.clear
+//        self.btnSave.layer.borderWidth = 1.0
+//        self.tblView.backgroundColor = UIColor.clear
+//        self.btnSave.layer.borderColor = UIColor.white.cgColor
+        
         self.imgBG.image = UIImage(named : PROFILE_BG)
         self.btnChangeic.setImage(UIImage(named : EDIT_ICON), for: .normal)
         
         //179 39 40
         self.imgProfilePic.layer.borderColor = UIColor.red.cgColor
-        self.imgProfilePic.layer.borderWidth = 3.0
+        self.imgProfilePic.layer.borderWidth = 5.0
+    }
+    func doCallGetProfile()
+    {
+        let dictData = ["version" : "1.0" , "os" : "ios" , "language" : "english","userId":"61"]
         
+        WebAPIManager.sharedWebAPIMAnager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "getProfile", parameter: dictData , success: { (obj) in
+            
+            if (obj["status"] as! String == "1")
+            {
+                if let dictResponseData = obj["responseData"] as? [[String : AnyObject]]
+                {
+                    print(dictResponseData)
+                    self.lblEmail.text = dictResponseData[0]["url"] as? String
+                    
+                    self.dictData["0"] = dictResponseData[0]["name"] as? String
+                    self.dictData["1"] = dictResponseData[0]["mobileNo"] as? String
+                    self.dictData["2"] = dictResponseData[0][""] as? String
+                    self.imgProfilePic.sd_setImage(with: URL(string : (dictResponseData[0]["profilePic"] as? String)!) )
+                }
+                print(obj["responseData"])
+                self.tblView.reloadData()
+                
+            }
+            print("")
+            //            let regData = Mapper<RegistrationModel>().map(JSON: obj)
+            //
+            //            if (regData?.status == "1")
+            //            {
+            //                UserManager.sharedUserManager.doSetLoginData(userData: (regData?.responseData?[0])!)
+            //                self.goTOVerifyScreen()
+            //            }
+            //            else
+            //            {
+            //                CommonUtil.showTotstOnWindow(strMessgae: (regData?.responseMessage)!)
+            //            }
+            
+            print("this is object \(obj)")
+        }) { (error) in
+            CommonUtil.showTotstOnWindow(strMessgae: (error?.localizedDescription)!)
+            
+        }
     }
     
     func doClickBack()
     {
-      self.navigationController?.popViewController(animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
     func configureInitialParameters() {
         self.tblView.delegate = self
@@ -90,26 +136,77 @@ class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! ProfileTableViewCell
-        cell.lblTitle.text = self.arrTitle[indexPath.section]
-        cell.lblTitle.font = UIFont(name: cell.lblTitle.font.fontName, size: 12)
-        
-        cell.txtField.attributedPlaceholder = NSAttributedString(string: self.arrPlaceholder[indexPath.section].localized(),
-                                                                 attributes: [NSForegroundColorAttributeName: UIColor.white])
-        cell.txtField.delegate = self
-        cell.txtField.tag = indexPath.section
-        cell.backgroundColor = UIColor.clear
-        cell.lblTitle.textColor = UIColor.white
-        cell.txtField.textColor = UIColor.white
-        if indexPath.section == 1 {
-            cell.txtField.isUserInteractionEnabled = false
-        }else if indexPath.section == 2
+        let tblViewCell : UITableViewCell!
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! ProfileTableViewCell
+            cell.lblTitle.text = self.arrTitle[indexPath.section]
+            cell.lblTitle.font = UIFont(name: cell.lblTitle.font.fontName, size: 12)
+            
+            cell.txtField.attributedPlaceholder = NSAttributedString(string: self.arrPlaceholder[indexPath.section].localized(),
+                                                                     attributes: [NSForegroundColorAttributeName: UIColor.white])
+            cell.txtField.delegate = self
+            cell.txtField.tag = indexPath.section
+            cell.backgroundColor = UIColor.clear
+            cell.lblTitle.textColor = UIColor.white
+            cell.txtField.textColor = UIColor.white
+            
+            let key = String(format: "%d", indexPath.section)
+            cell.txtField.text = self.dictData[key]
+            
+            if indexPath.section == 1 {
+                cell.txtField.isUserInteractionEnabled = false
+            }else if indexPath.section == 2
+            {
+                cell.txtField.isSecureTextEntry = true
+            }
+            tblViewCell = cell
+        }else if(indexPath.section == 1)
         {
-            cell.txtField.isSecureTextEntry = true
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! ProfileTableViewCell
+            cell.lblTitle.text = self.arrTitle[indexPath.section]
+            cell.lblTitle.font = UIFont(name: cell.lblTitle.font.fontName, size: 12)
+            
+            cell.txtField.attributedPlaceholder = NSAttributedString(string: self.arrPlaceholder[indexPath.section].localized(),
+                                                                     attributes: [NSForegroundColorAttributeName: UIColor.white])
+            cell.txtField.delegate = self
+            cell.txtField.tag = indexPath.section
+            cell.backgroundColor = UIColor.clear
+            cell.lblTitle.textColor = UIColor.white
+            cell.txtField.textColor = UIColor.white
+            
+            let key = String(format: "%d", indexPath.section)
+            cell.txtField.text = self.dictData[key]
+            
+            if indexPath.section == 1 {
+                cell.txtField.isUserInteractionEnabled = false
+            }else if indexPath.section == 2
+            {
+                cell.txtField.isSecureTextEntry = true
+            }
+            tblViewCell = cell
+        }else
+        {
+            let footerView: ProfileTableViewCell? = tableView.dequeueReusableCell(withIdentifier: "cellFooter") as? ProfileTableViewCell
+            footerView?.btnSave .addTarget(self, action: #selector(doClickSave), for: .touchUpInside)
+            tblViewCell = footerView
         }
-        cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
-        return cell
+      
+        tblViewCell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
+        return tblViewCell
     }
+//    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+//        if section == 1 {
+//            return 40.0
+//        }
+//        return 0.0
+//    }
+    
+//    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView?
+//    {
+//        let footerView: ProfileTableViewCell? = tableView.dequeueReusableCell(withIdentifier: "cellFooter") as? ProfileTableViewCell
+//        footerView?.btnSave .addTarget(self, action: #selector(doClickSave), for: .touchUpOutside)
+//        return footerView;
+//    }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.backgroundColor = UIColor.clear
@@ -166,8 +263,30 @@ class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDa
     @IBAction func doClickSave()
     {
         self.view.endEditing(true)
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "BlockUserListViewIdentifier") as! BlockUserListViewController
-        self.navigationController?.pushViewController(vc, animated: true)
+        //UpdateProfile
+        let dictData = ["version" : "1.0" , "os" : "ios" , "language" : "english","userId":"61", "mobileNo" : self.dictData["1"]!,"fullName" : self.dictData["0"]!] as [String : Any]
+        
+            WebAPIManager.sharedWebAPIMAnager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "UpdateProfile", parameter: dictData , success: { (obj) in
+                
+                if (obj["status"] as! String == "1")
+                {
+                    if let dictResponseData = obj["responseData"] as? [[String : AnyObject]]
+                    {
+                        print(dictResponseData)
+                        self.dictData["0"] = dictResponseData[0]["name"] as? String
+                        self.dictData["1"] = dictResponseData[0]["mobileNo"] as? String
+                        self.dictData["2"] = dictResponseData[0][""] as? String
+                        self.imgProfilePic.sd_setImage(with: URL(string : (dictResponseData[0]["profilePic"] as? String)!) )
+                    }
+                    print(obj["responseData"])
+                    self.tblView.reloadData()
+                    
+                }
+                print("this is object \(obj)")
+            }) { (error) in
+                CommonUtil.showTotstOnWindow(strMessgae: (error?.localizedDescription)!)
+                
+            }
     }
     
     override func didReceiveMemoryWarning() {

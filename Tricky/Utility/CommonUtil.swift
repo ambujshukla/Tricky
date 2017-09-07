@@ -25,8 +25,6 @@ fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
     }
 }
 
-
-
 var instance: CommonUtil?
 
 class CommonUtil: NSObject {
@@ -39,6 +37,15 @@ class CommonUtil: NSObject {
         return instance!
     }
     
+    class func showLoader()
+    {
+        SVProgressHUD.show()
+    }
+    
+    class  func hideLoader()
+    {
+        SVProgressHUD.dismiss()
+    }
     // MARK:Error Messaging
     class func alertShow(_ message:String)
     {
