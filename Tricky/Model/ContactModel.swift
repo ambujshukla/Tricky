@@ -24,19 +24,19 @@ struct EPGlobalConstants {
 }
 class ContactModel: NSObject {
     
-     var firstName: String
-     var lastName: String
-     var company: String
-     var thumbnailProfileImage: UIImage?
-     var profileImage: UIImage?
-     var birthday: Date?
-     var birthdayString: String?
-     var contactId: String?
-     var phoneNumbers = [(phoneNumber: String, phoneLabel: String)]()
-     var emails = [(email: String, emailLabel: String )]()
+    var firstName: String
+    var lastName: String
+    var company: String
+    var thumbnailProfileImage: UIImage?
+    var profileImage: UIImage?
+    var birthday: Date?
+    var birthdayString: String?
+    var contactId: String?
+    var phoneNumbers = [(phoneNumber: String, phoneLabel: String)]()
+    var emails = [(email: String, emailLabel: String )]()
     var email: String?
     var fullName : String?
-
+    
     
     public init (contact: CNContact) {
         firstName = contact.givenName
@@ -69,12 +69,12 @@ class ContactModel: NSObject {
             phoneNumbers.append((phone,phoneLabel))
         }
         
-//        for emailAddress in contact.emailAddresses {
-//            guard let emailLabel = emailAddress.label else { continue }
-//            let email = emailAddress.value as String
-//            
-//            emails.append((email,emailLabel))
-//        }
+        //        for emailAddress in contact.emailAddresses {
+        //            guard let emailLabel = emailAddress.label else { continue }
+        //            let email = emailAddress.value as String
+        //
+        //            emails.append((email,emailLabel))
+        //        }
     }
     
     open func displayName() -> String {

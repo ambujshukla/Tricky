@@ -1,0 +1,22 @@
+/* 
+  Localizable.strings
+  Tricky
+
+  Created by gopalsara on 19/08/17.
+  Copyright © 2017 Gopal Sara. All rights reserved.
+*/
+
+"txt_trickychat" = "Tricky Chat";
+"txt_file_not_found" = "Arquivo não encontrado";
+"txt_no_app" = "Não existe um aplicativo disponível para executar esta ação";
+"txt_under_construction" = "Em construção";
+"txt_data_not_Available" = "Dados não disponíveis! Favor tentar novamente";
+"txt_network_error" = "Erro de rede";
+"txt_network_not_available" = "Rede não disponível";
+"txt_something_went_wrong" = "Algo saiu errado, tente novamente";
+"txt_please_enter_firstName" = "Por favor, insira o primeiro nome";
+"txt_please_enter_lastName" = "Por favor, insira o sobrenome";
+"txt_please_enter_email_id" = "Por favor, insira ID de e-mail";
+"txt_please_enter_valid_email" = "Por favor, insira ID válido de e-mail";
+"txt_please_enter_userName" = "Por favor,  insira nome de usuário";
+"txt_please_enter_name" = "Por favor, insira o nome";

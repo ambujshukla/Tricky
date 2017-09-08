@@ -48,3 +48,23 @@
 "txt_submit" = "Submit";
 "txt_link" = "Link";
 "txt_continue" = "Continue";
+
+
+////////////////////////0080917
+"txt_trickychat" = "Tricky Chat";
+"txt_file_not_found" = "File not found";
+"txt_no_app" = "No Application available to perform this action";
+"txt_under_construction" = "UNDER CONSTRUCTION";
+"txt_data_not_Available" = "Data not available! Please retry";
+"txt_network_error" = "Network Error";
+"txt_network_not_available" = "Network not available";
+"txt_something_went_wrong" = "Something went wrong, try again";
+"txt_please_enter_firstName" = "Please enter first name";
+"txt_please_enter_lastName" = "Please enter last name";
+"txt_please_enter_email_id" = "Please enter email id";
+"txt_please_enter_valid_email" = "Please enter valid email id";
+"txt_please_enter_userName" = "Please enter username";
+"txt_please_enter_name" = "Please enter name";
+
+
+
