@@ -30,7 +30,25 @@ class PostViewController: UIViewController , UITableViewDelegate , UITableViewDa
         self.tblPost.tableFooterView = UIView()
         self.tblPost.rowHeight = UITableViewAutomaticDimension
         self.tblPost.estimatedRowHeight = 40
+        
+        self.doCallWebServiceForGetAllPost()
     }
+    
+    
+    func doCallWebServiceForGetAllPost(){
+        
+        let dictData = ["userId" : "47" ,"showPostOnlyMyContact" : "1","filterVulgarMessage" : "1","limit" : "20","offset" : "1"]
+        
+        WebAPIManager.sharedWebAPIMAnager.doCallWebAPIForPOST(strURL: kBaseUrl , strServiceName: "GetAllPost", parameter: dictData, success: { (obj) in
+            
+            print(obj)
+            
+        }) { (error) in
+            
+        }
+        
+    }
+
     
     //MARK: - Tableview delegate and datasource methods
     

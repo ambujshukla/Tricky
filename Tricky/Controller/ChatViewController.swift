@@ -35,7 +35,7 @@ class ChatViewController: UIViewController  , UITableViewDataSource , UITableVie
       
         let dictData = ["userId" : "47"]
         
-   WebAPIManager.sharedWebAPIMAnager.doCallWebAPIForPOST(strURL: BASE_URL , strServiceName: "chatList", parameter: dictData, success: { (obj) in
+       WebAPIManager.sharedWebAPIMAnager.doCallWebAPIForPOST(strURL: kBaseUrl , strServiceName: "chatList", parameter: dictData, success: { (obj) in
     
     print(obj)
     
