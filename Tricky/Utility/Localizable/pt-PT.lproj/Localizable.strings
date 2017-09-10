@@ -20,3 +20,14 @@
 "txt_please_enter_valid_email" = "Por favor, insira ID válido de e-mail";
 "txt_please_enter_userName" = "Por favor,  insira nome de usuário";
 "txt_please_enter_name" = "Por favor, insira o nome";
+
+"txt_language" = "Língua";
+"txt.english" = "Inglês";
+"txt.chinese" = "chinês";
+"txt.spanish" = "espanhol";
+"txt.porugues" = "Português";
+
+"txt_block_users" = "bloquear usuários";
+
+"txt_yes" = "sim";
+"txt_no" = "não";

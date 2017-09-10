@@ -719,7 +719,7 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1pX-xt-yKN" id="5Mf-Wm-tjb">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="39.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="10" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TaF-lN-9Dd">
@@ -731,13 +731,24 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" tag="11" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="righticon" translatesAutoresizingMaskIntoConstraints="NO" id="YRX-yX-9DD">
+                                                    <rect key="frame" x="274" y="9" width="30" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="YRX-yX-9DD" secondAttribute="height" multiplier="3:2" id="UBT-fK-DEB"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
+                                                <constraint firstItem="YRX-yX-9DD" firstAttribute="centerY" secondItem="TaF-lN-9Dd" secondAttribute="centerY" id="7uF-aM-Wzn"/>
                                                 <constraint firstItem="TaF-lN-9Dd" firstAttribute="centerY" secondItem="5Mf-Wm-tjb" secondAttribute="centerY" id="I2Y-Ge-b2o"/>
                                                 <constraint firstItem="TaF-lN-9Dd" firstAttribute="leading" secondItem="5Mf-Wm-tjb" secondAttribute="leading" constant="26" id="bzb-KK-vsl"/>
+                                                <constraint firstItem="YRX-yX-9DD" firstAttribute="height" secondItem="5Mf-Wm-tjb" secondAttribute="height" multiplier="20:40" id="lAJ-2a-BlL"/>
+                                                <constraint firstAttribute="trailing" secondItem="YRX-yX-9DD" secondAttribute="trailing" constant="13" id="oqk-AV-9Pk"/>
                                                 <constraint firstItem="TaF-lN-9Dd" firstAttribute="width" secondItem="5Mf-Wm-tjb" secondAttribute="width" multiplier="224:320" id="rH0-Tx-UVq"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -2969,6 +2980,7 @@
         <image name="plusicon" width="39" height="39"/>
         <image name="receivemsgicon" width="6" height="6"/>
         <image name="replyicon" width="12" height="12"/>
+        <image name="righticon" width="13" height="10"/>
         <image name="send_green" width="29" height="29"/>
         <image name="sendicon" width="17" height="16"/>
         <image name="sendmsgicon" width="6" height="6"/>

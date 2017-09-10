@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Localize_Swift
 
 class HomeViewController: UIViewController {
 
@@ -18,13 +19,26 @@ class HomeViewController: UIViewController {
         ViewPagerTab(title: "Post", image: UIImage(named: "pint")),
     ]
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.doCustomSetUp()
+        NotificationCenter.default.addObserver(self, selector: #selector(doShowAlert), name: Notification.Name("logoutAlert"), object: nil)
+
         // Do any additional setup after loading the view.
     }
 
+    func doShowAlert()
+    {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewIdentifier") as! LoginViewController
+        self.navigationController?.pushViewController(vc, animated: true)
+//      self.dismiss(animated: true) {
+//        let controllers = self.navigationController?.viewControllers
+//        for vc in controllers! {
+//            if vc is LoginViewController {
+//                _ = self.navigationController?.popToViewController(vc as! LoginViewController, animated: true)
+//            }
+//        }        }
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -40,7 +54,7 @@ class HomeViewController: UIViewController {
         
         let revealViewController: SWRevealViewController? = self.revealViewController()
         if revealViewController != nil {
-        CommanUtility.decorateNavigationbarWithRevealToggleButton(target : revealViewController!, strTitle: "Tricky Chat", strBackButtonImage: "menuicon", selector: #selector(SWRevealViewController.revealToggle(_:)) , controller : self , color:  color(red: 56, green: 152, blue: 108) )
+        CommanUtility.decorateNavigationbarWithRevealToggleButton(target : revealViewController!, strTitle: "txt_trickychat".localized(), strBackButtonImage: "menuicon", selector: #selector(SWRevealViewController.revealToggle(_:)) , controller : self , color:  color(red: 56, green: 152, blue: 108) )
             navigationController?.navigationBar.addGestureRecognizer(revealViewController!.panGestureRecognizer())
         }
         

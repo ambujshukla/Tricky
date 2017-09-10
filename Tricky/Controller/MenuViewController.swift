@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Localize_Swift
 
 class MenuViewController: UIViewController , UITableViewDataSource , UITableViewDelegate {
     
@@ -20,8 +21,13 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.decorateUI()
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool)
+    {
+        super.viewWillAppear(true)
+        self.decorateUI()
     }
     
     func decorateUI () {
@@ -32,7 +38,7 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
         self.lblEmail.textColor = UIColor.white
         self.lblUserName.textColor = UIColor.white
         
-        self.menuData = ["Block users" , "contacts" , "Favorite" , "language" , "Filter to vulger message" , "Only Register user messgae" , "Logout"];
+        self.menuData = ["txt_block_users".localized() , "contacts" , "Favorite" , "language" , "Filter to vulger message" , "Only Register user messgae" , "Logout"];
         self.tblMenu.tableFooterView = UIView()
         
         self.lblSent.textColor = UIColor.white
@@ -40,6 +46,7 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
         
         self.lblSent.text = "954 Sent"
         self.lblReceived.text = "457 Recieved"
+        self.tblMenu.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -82,10 +89,12 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
         
         if indexPath.row == 6
         {
-            self.dismiss(animated: true, completion: nil)
+          //  self.dismiss(animated: true, completion: nil)
+            self.revealViewController().revealToggle(animated: true)
+            NotificationCenter.default.post(name: Notification.Name("logoutAlert"), object: nil)
         }
-        else if (indexPath.row == 3){
-            
+        else if (indexPath.row == 3)
+        {
             let controller = self.storyboard?.instantiateViewController(withIdentifier: "LanguageViewController") as! LanguageViewController
             let contrlHome = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
             let navController = UINavigationController.init()
