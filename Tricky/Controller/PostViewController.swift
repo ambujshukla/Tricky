@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PostViewController: UIViewController , UITableViewDelegate , UITableViewDataSource {
+class PostViewController: UIViewController , UITableViewDelegate , UITableViewDataSource, PostMessageDelegate {
     
     @IBOutlet weak var tblPost : UITableView!
     @IBOutlet weak var btnPlus : UIButton!
@@ -42,6 +42,7 @@ class PostViewController: UIViewController , UITableViewDelegate , UITableViewDa
             {
                 if let resultData : Array<Dictionary<String, Any>> = responseObject["responseData"] as? Array<Dictionary<String, Any>>
               {
+                self.arrPostListData.removeAll()
                 for(_, element) in resultData.enumerated()
                 {
                     self.arrPostListData .append(element as [String : AnyObject])
@@ -84,6 +85,12 @@ class PostViewController: UIViewController , UITableViewDelegate , UITableViewDa
     @IBAction func doClickPlus()
     {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "CreateNewPostViewController") as! CreateNewPostViewController
+        vc.delegate = self
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func createNewPost()
+    {
+      self.doCallWS()
     }
 }

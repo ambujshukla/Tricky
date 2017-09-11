@@ -9,12 +9,17 @@
 import UIKit
 import Localize_Swift
 
+@objc protocol PostMessageDelegate{
+    @objc optional func createNewPost()
+}
+
 class CreateNewPostViewController: UIViewController {
 
     @IBOutlet weak var btnCreate : UIButton!
     @IBOutlet weak var txtViewComment : UITextView!
     @IBOutlet weak var imgBg : UIImageView!
-    
+    var delegate:PostMessageDelegate?
+
     override func viewDidLoad() {
         super.viewDidLoad()
          self.decorateUI()
@@ -59,12 +64,13 @@ class CreateNewPostViewController: UIViewController {
                 {
                   self.txtViewComment.text = ""
                     CommonUtil.showTotstOnWindow(strMessgae: "txt_success_post".localized())
+                    self.delegate?.createNewPost!()
                 }else
                 {
                 
                 }
             }) { (error) in
-                print(error)
+                print(error as! NSError)
             }
     }
 
