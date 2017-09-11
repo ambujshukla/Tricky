@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import Localize_Swift
 
 class CreateNewPostViewController: UIViewController {
 
     @IBOutlet weak var btnCreate : UIButton!
     @IBOutlet weak var txtViewComment : UITextView!
+    @IBOutlet weak var imgBg : UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
          self.decorateUI()
@@ -25,6 +28,7 @@ class CreateNewPostViewController: UIViewController {
     
 
     func decorateUI () {
+        self.imgBg.image = UIImage(named : MESSAGE_SEND_BG)
         self.btnCreate.layer.borderColor = UIColor.white.cgColor
         self.btnCreate.layer.borderWidth = 1.0
         self.btnCreate.layer.masksToBounds = true
@@ -43,8 +47,25 @@ class CreateNewPostViewController: UIViewController {
     }
     @IBAction func doClickSend()
     {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ContactViewController") as! ContactViewController
-        self.navigationController?.pushViewController(vc, animated: true)
+        guard let text = self.txtViewComment.text, !text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty else {
+            CommonUtil.showTotstOnWindow(strMessgae: "txt_please_enter_post".localized())
+            return
+        }
+        
+            let params = ["userId" : "19","postMessage" : self.txtViewComment.text, "postAsAnonomous" : "0", "version" : "1.0", "os" : "iOS", "language" : "English"] as [String : Any]
+            WebAPIManager.sharedWebAPIMAnager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "CreatePost", parameter: params, success: { (responseObject) in
+                print(responseObject)
+                if responseObject["status"] as! String == "1"
+                {
+                  self.txtViewComment.text = ""
+                    CommonUtil.showTotstOnWindow(strMessgae: "txt_success_post".localized())
+                }else
+                {
+                
+                }
+            }) { (error) in
+                print(error)
+            }
     }
 
 }

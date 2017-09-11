@@ -10,34 +10,31 @@ import UIKit
 import Localize_Swift
 
 class HomeViewController: UIViewController {
-
+    
     var viewPager:ViewPagerController!
     @IBOutlet weak var lblType : UILabel!
     var tabs = [
         ViewPagerTab(title: "Message", image: UIImage(named: "fries")),
         ViewPagerTab(title: "Chat", image: UIImage(named: "hamburger")),
         ViewPagerTab(title: "Post", image: UIImage(named: "pint")),
-    ]
+        ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.doCustomSetUp()
         NotificationCenter.default.addObserver(self, selector: #selector(doShowAlert), name: Notification.Name("logoutAlert"), object: nil)
-
+        
         // Do any additional setup after loading the view.
     }
-
+    
     func doShowAlert()
     {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewIdentifier") as! LoginViewController
-        self.navigationController?.pushViewController(vc, animated: true)
-//      self.dismiss(animated: true) {
-//        let controllers = self.navigationController?.viewControllers
-//        for vc in controllers! {
-//            if vc is LoginViewController {
-//                _ = self.navigationController?.popToViewController(vc as! LoginViewController, animated: true)
-//            }
-//        }        }
+        CommonUtil.showAlertInSwift_3Format("txt_logout".localized(), title: "txt_trickychat".localized(), btnCancel: "txt_no".localized(), btnOk: "txt_yes".localized(), crl: self, successBlock: { (obj) in
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewIdentifier") as! LoginViewController
+            self.navigationController?.pushViewController(vc, animated: true)
+        }) { (obj) in
+            print("ok")
+        }
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -54,7 +51,7 @@ class HomeViewController: UIViewController {
         
         let revealViewController: SWRevealViewController? = self.revealViewController()
         if revealViewController != nil {
-        CommanUtility.decorateNavigationbarWithRevealToggleButton(target : revealViewController!, strTitle: "txt_trickychat".localized(), strBackButtonImage: "menuicon", selector: #selector(SWRevealViewController.revealToggle(_:)) , controller : self , color:  color(red: 56, green: 152, blue: 108) )
+            CommanUtility.decorateNavigationbarWithRevealToggleButton(target : revealViewController!, strTitle: "txt_trickychat".localized(), strBackButtonImage: "menuicon", selector: #selector(SWRevealViewController.revealToggle(_:)) , controller : self , color:  color(red: 56, green: 152, blue: 108) )
             navigationController?.navigationBar.addGestureRecognizer(revealViewController!.panGestureRecognizer())
         }
         
@@ -89,12 +86,12 @@ extension HomeViewController: ViewPagerControllerDataSource {
     }
     
     func viewControllerAtPosition(position:Int) -> UIViewController {
-//        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MessageViewController") as! MessageViewController
-//        return vc
+        //        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MessageViewController") as! MessageViewController
+        //        return vc
         
-     let vcs  = [self.storyboard?.instantiateViewController(withIdentifier:"HomeMessageController") as!  HomeMessageController
-               , self.storyboard?.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController ,
-                self.storyboard?.instantiateViewController(withIdentifier: "PostViewController") as! PostViewController ]
+        let vcs  = [self.storyboard?.instantiateViewController(withIdentifier:"HomeMessageController") as!  HomeMessageController
+            , self.storyboard?.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController ,
+              self.storyboard?.instantiateViewController(withIdentifier: "PostViewController") as! PostViewController ]
         
         return vcs[position]
         

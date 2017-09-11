@@ -8,8 +8,9 @@
 
 import UIKit
 import Localize_Swift
+import PWSwitch
 
-class MenuViewController: UIViewController , UITableViewDataSource , UITableViewDelegate {
+class MenuViewController: UIViewController , UITableViewDataSource , UITableViewDelegate, UIGestureRecognizerDelegate {
     
     var menuData = [String]()
     @IBOutlet weak var tblMenu : UITableView!
@@ -18,10 +19,10 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
     @IBOutlet weak var lblEmail : UILabel!
     @IBOutlet weak var lblSent : UILabel!
     @IBOutlet weak var lblReceived : UILabel!
-    
+    private var tap: UITapGestureRecognizer!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool)
@@ -30,15 +31,19 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
         self.decorateUI()
     }
     
-    func decorateUI () {
-        
+    func decorateUI ()
+    {
+        self.tap = UITapGestureRecognizer.init(target: self, action: #selector(doClickProfile(tapG:)))
+        self.tap.delegate = self
+        self.view.addGestureRecognizer(self.tap)
+            
         self.imgProfile.layer.cornerRadius = self.imgProfile.frame.size.width / 2
         self.imgProfile.layer.masksToBounds = true
         
         self.lblEmail.textColor = UIColor.white
         self.lblUserName.textColor = UIColor.white
         
-        self.menuData = ["txt_block_users".localized() , "contacts" , "Favorite" , "language" , "Filter to vulger message" , "Only Register user messgae" , "Logout"];
+        self.menuData = ["Home".localized() ,"txt_block_users".localized() , "contacts" , "Favorite" , "language", "My Post" , "Filter to vulger message" , "Block Unauthorised user","Display all anonymous post" , "Logout"];
         self.tblMenu.tableFooterView = UIView()
         
         self.lblSent.textColor = UIColor.white
@@ -56,8 +61,8 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
     
     // MARK: - Table View DataSource
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        
+    func numberOfSections(in tableView: UITableView) -> Int
+    {
         return 1
     }
     
@@ -69,56 +74,23 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
     // MARK: - Table View Delegates
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as UITableViewCell
-        let label = cell.contentView.viewWithTag(10) as! UILabel!
-        let swOnOff = cell.contentView.viewWithTag(20) as! UISwitch!
-        
-        if indexPath.row == 4 || indexPath.row == 5 {
-            swOnOff?.isHidden = false
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MenuTableViewCell
+       // let label = cell.contentView.viewWithTag(10) as! UILabel!
+       // let swOnOff = cell.contentView.viewWithTag(11) as! PWSwitch!
+       
+        if indexPath.row == 6 || indexPath.row == 7 || indexPath.row == 8 {
+            cell.switchPW?.isHidden = false
         }
         else
         {
-            swOnOff?.isHidden = true
+            cell.switchPW?.isHidden = true
         }
-        
-        label?.text = self.menuData[indexPath.row]
+        cell.lblTitle?.text = self.menuData[indexPath.row]
+        cell.selectionStyle = .none
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        if indexPath.row == 6
-        {
-          //  self.dismiss(animated: true, completion: nil)
-            self.revealViewController().revealToggle(animated: true)
-            NotificationCenter.default.post(name: Notification.Name("logoutAlert"), object: nil)
-        }
-        else if (indexPath.row == 3)
-        {
-            let controller = self.storyboard?.instantiateViewController(withIdentifier: "LanguageViewController") as! LanguageViewController
-            let contrlHome = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-            let navController = UINavigationController.init()
-            navController.setViewControllers([contrlHome , controller], animated: true)
-            self.revealViewController().pushFrontViewController(navController, animated: true)
-        }
-        else if (indexPath.row == 1) {
-            
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "ContactViewController") as! ContactViewController
-            let contrlHome = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-            let navController = UINavigationController.init()
-            navController.setViewControllers([contrlHome , vc], animated: true)
-            self.revealViewController().pushFrontViewController(navController, animated: true)
-        }
-            
-        else if (indexPath.row == 2) {
-            
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "FavouriteViewController") as! FavouriteViewController
-            let contrlHome = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-            let navController = UINavigationController.init()
-            navController.setViewControllers([contrlHome , vc], animated: true)
-            self.revealViewController().pushFrontViewController(navController, animated: true)
-        }
-            
             //        else if (indexPath.row == 6) {
             //
             //            let vc = self.storyboard?.instantiateViewController(withIdentifier: "PostViewController") as! PostViewController
@@ -128,17 +100,55 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
             //            self.revealViewController().pushFrontViewController(navController, animated: true)
             //        }
             
-        else if (indexPath.row == 0) {
+         if (indexPath.row == 0) {
             
+            self.revealViewController().revealToggle(animated: true)
+
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "BlockUserListViewIdentifier") as! BlockUserListViewController
+            let contrlHome = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+            let navController = UINavigationController.init()
+            navController.setViewControllers([contrlHome , vc], animated: true)
+            self.revealViewController().pushFrontViewController(navController, animated: true)
+        }else if (indexPath.row == 1)
+        {
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "BlockUserListViewIdentifier") as! BlockUserListViewController
             let contrlHome = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
             let navController = UINavigationController.init()
             navController.setViewControllers([contrlHome , vc], animated: true)
             self.revealViewController().pushFrontViewController(navController, animated: true)
         }
-        
+        else if (indexPath.row == 2) {
+            
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "ContactViewController") as! ContactViewController
+            let contrlHome = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+            let navController = UINavigationController.init()
+            navController.setViewControllers([contrlHome , vc], animated: true)
+            self.revealViewController().pushFrontViewController(navController, animated: true)
+        }else if (indexPath.row == 3) {
+            
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "FavouriteViewController") as! FavouriteViewController
+            let contrlHome = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+            let navController = UINavigationController.init()
+            navController.setViewControllers([contrlHome , vc], animated: true)
+            self.revealViewController().pushFrontViewController(navController, animated: true)
+        }else if(indexPath.row == 4)
+        {
+        }else if(indexPath.row == 5)
+        {
+            let controller = self.storyboard?.instantiateViewController(withIdentifier: "LanguageViewController") as! LanguageViewController
+            let contrlHome = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+            let navController = UINavigationController.init()
+            navController.setViewControllers([contrlHome , controller], animated: true)
+            self.revealViewController().pushFrontViewController(navController, animated: true)
+         }else  if (indexPath.row == 9)
+         {
+            //  self.dismiss(animated: true, completion: nil)
+            self.revealViewController().revealToggle(animated: true)
+            NotificationCenter.default.post(name: Notification.Name("logoutAlert"), object: nil)
+        }
     }
-    @IBAction func doClickProfile()
+    
+    @IBAction func doClickProfile(tapG : UITapGestureRecognizer)
     {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfileViewIdentifier") as! ProfileViewController
         let contrlHome = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
@@ -147,4 +157,25 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
         self.revealViewController().pushFrontViewController(navController, animated: true)
     }
     
+    @IBAction func doClickCopyLink()
+    {
+        UIPasteboard.general.string = self.lblEmail.text
+        CommonUtil.showTotstOnWindow(strMessgae: "txt_copied".localized())
+    }
+    
+    @IBAction func doClickShareLink()
+    {
+        let shareText = self.lblEmail.text
+        let vc = UIActivityViewController(activityItems: [shareText ?? ""], applicationActivities: [])
+        present(vc, animated: true, completion: nil)
+    }
+    
+    //Mark TapGestureDelegate
+    // UIGestureRecognizerDelegate method
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        if touch.view?.isDescendant(of: self.tblMenu) == true {
+            return false
+        }
+        return true
+    }
 }

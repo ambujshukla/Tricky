@@ -78,3 +78,9 @@
 
 "txt_yes" = "Yes";
 "txt_no" = "No";
+
+"txt_logout" = "Do you want to Logout from the app";
+"txt_copied" = "Text copied to clipboard";
+
+"txt_please_enter_post" = "Please enter post message.";
+"txt_success_post" = "Successfully Posted.";
