@@ -35,7 +35,7 @@ class PostViewController: UIViewController , UITableViewDelegate , UITableViewDa
     
     func doCallWS()
     {
-        let params = ["version" : "1.0" , "os" : "ios" , "language" : "english","userId":"19", "showPostOnlyMyContact" :"0", "filterVulgarMessage" : "1","limit" : "20","offset" : "0"] as [String : Any]
+        let params = ["version" : "1.0" , "os" : "ios" , "language" : "english","userId":"19", "showPostOnlyMyContact" :"0", "filterVulgarMessage" : "0","limit" : "10","offset" : "0"] as [String : Any]
         WebAPIManager.sharedWebAPIMAnager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "GetAllPost", parameter: params, success: { (responseObject) in
             print(responseObject)
             if (responseObject["status"] as! String  == "1")

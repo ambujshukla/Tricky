@@ -42,7 +42,8 @@ class HomeViewController: UIViewController {
     }
     
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool)
+    {
         super.viewWillAppear(true)
         self.navigationController?.navigationBar.barTintColor = color(red: 56, green: 192, blue: 110)
     }
@@ -66,7 +67,8 @@ class HomeViewController: UIViewController {
         options.tabViewPaddingLeft = 20
         options.tabViewPaddingRight = 20
         options.isTabHighlightAvailable = true
-        
+        options.tabViewBackgroundDefaultColor = color(red: 50, green: 181, blue: 119)
+        options.tabViewBackgroundHighlightColor = color(red: 50, green: 181, blue: 119)
         viewPager = ViewPagerController()
         viewPager.options = options
         viewPager.dataSource = self
