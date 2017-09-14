@@ -12,6 +12,7 @@
 		181BD4D11F55DFF900E60277 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181BD4D01F55DFF900E60277 /* PostTableViewCell.swift */; };
 		181BD4D31F55E00300E60277 /* UserPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181BD4D21F55E00300E60277 /* UserPostTableViewCell.swift */; };
 		181BD4D51F55E7C900E60277 /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181BD4D41F55E7C900E60277 /* PopupViewController.swift */; };
+		18320AEE1F6310B500705EFE /* ChatListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18320AED1F6310B500705EFE /* ChatListCell.swift */; };
 		1833F9DC1F4C94E1004AB7EE /* FavouriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1833F9DB1F4C94E1004AB7EE /* FavouriteViewController.swift */; };
 		1833F9DE1F4CA7FD004AB7EE /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1833F9DD1F4CA7FD004AB7EE /* MessageTableViewCell.swift */; };
 		183A10811F4B517A00579A7A /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183A10801F4B517A00579A7A /* ContactViewController.swift */; };
@@ -109,6 +110,7 @@
 		181BD4D01F55DFF900E60277 /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		181BD4D21F55E00300E60277 /* UserPostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPostTableViewCell.swift; sourceTree = "<group>"; };
 		181BD4D41F55E7C900E60277 /* PopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
+		18320AED1F6310B500705EFE /* ChatListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListCell.swift; sourceTree = "<group>"; };
 		1833F9DB1F4C94E1004AB7EE /* FavouriteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavouriteViewController.swift; sourceTree = "<group>"; };
 		1833F9DD1F4CA7FD004AB7EE /* MessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		183A10801F4B517A00579A7A /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
@@ -270,6 +272,7 @@
 				3151CE951F48C5F000C322C3 /* BlockUserListTableViewCell.swift */,
 				1833F9DD1F4CA7FD004AB7EE /* MessageTableViewCell.swift */,
 				313B2EC81F5C636B0040F146 /* PostDetailTableViewCell.swift */,
+				18320AED1F6310B500705EFE /* ChatListCell.swift */,
 			);
 			path = UITableViewCell;
 			sourceTree = "<group>";
@@ -691,6 +694,7 @@
 				183A10871F4B51A200579A7A /* HomeViewController.swift in Sources */,
 				3151CE921F48B2F900C322C3 /* ProfileTableViewCell.swift in Sources */,
 				181BD4D11F55DFF900E60277 /* PostTableViewCell.swift in Sources */,
+				18320AEE1F6310B500705EFE /* ChatListCell.swift in Sources */,
 				181BD4CE1F55DE9600E60277 /* CreateNewPostViewController.swift in Sources */,
 				3151CE871F48ACEA00C322C3 /* WebAPIManager.swift in Sources */,
 				3151CE941F48C56100C322C3 /* BlockUserListViewController.swift in Sources */,
