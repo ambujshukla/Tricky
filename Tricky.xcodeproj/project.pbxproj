@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1800355E1F6AF62C005C1072 /* ChatListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1800355D1F6AF62C005C1072 /* ChatListCell.swift */; };
+		180035601F6AFFD4005C1072 /* SendMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1800355F1F6AFFD4005C1072 /* SendMessageModel.swift */; };
 		181BD4CE1F55DE9600E60277 /* CreateNewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181BD4CC1F55DE9600E60277 /* CreateNewPostViewController.swift */; };
 		181BD4CF1F55DE9600E60277 /* UserPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181BD4CD1F55DE9600E60277 /* UserPostViewController.swift */; };
 		181BD4D11F55DFF900E60277 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181BD4D01F55DFF900E60277 /* PostTableViewCell.swift */; };
 		181BD4D31F55E00300E60277 /* UserPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181BD4D21F55E00300E60277 /* UserPostTableViewCell.swift */; };
 		181BD4D51F55E7C900E60277 /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181BD4D41F55E7C900E60277 /* PopupViewController.swift */; };
-		18320AEE1F6310B500705EFE /* ChatListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18320AED1F6310B500705EFE /* ChatListCell.swift */; };
 		1833F9DC1F4C94E1004AB7EE /* FavouriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1833F9DB1F4C94E1004AB7EE /* FavouriteViewController.swift */; };
 		1833F9DE1F4CA7FD004AB7EE /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1833F9DD1F4CA7FD004AB7EE /* MessageTableViewCell.swift */; };
 		183A10811F4B517A00579A7A /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183A10801F4B517A00579A7A /* ContactViewController.swift */; };
@@ -106,12 +107,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1800355D1F6AF62C005C1072 /* ChatListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListCell.swift; sourceTree = "<group>"; };
+		1800355F1F6AFFD4005C1072 /* SendMessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendMessageModel.swift; sourceTree = "<group>"; };
 		181BD4CC1F55DE9600E60277 /* CreateNewPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNewPostViewController.swift; sourceTree = "<group>"; };
 		181BD4CD1F55DE9600E60277 /* UserPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPostViewController.swift; sourceTree = "<group>"; };
 		181BD4D01F55DFF900E60277 /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		181BD4D21F55E00300E60277 /* UserPostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPostTableViewCell.swift; sourceTree = "<group>"; };
 		181BD4D41F55E7C900E60277 /* PopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
-		18320AED1F6310B500705EFE /* ChatListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListCell.swift; sourceTree = "<group>"; };
 		1833F9DB1F4C94E1004AB7EE /* FavouriteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavouriteViewController.swift; sourceTree = "<group>"; };
 		1833F9DD1F4CA7FD004AB7EE /* MessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		183A10801F4B517A00579A7A /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 		3151CE901F48B2E300C322C3 /* UITableViewCell */ = {
 			isa = PBXGroup;
 			children = (
+				1800355D1F6AF62C005C1072 /* ChatListCell.swift */,
 				3163FC251F4DF902004AA3CF /* ChatTableViewCell.swift */,
 				3151CE911F48B2F900C322C3 /* ProfileTableViewCell.swift */,
 				181BD4D21F55E00300E60277 /* UserPostTableViewCell.swift */,
@@ -274,7 +277,7 @@
 				3151CE951F48C5F000C322C3 /* BlockUserListTableViewCell.swift */,
 				1833F9DD1F4CA7FD004AB7EE /* MessageTableViewCell.swift */,
 				313B2EC81F5C636B0040F146 /* PostDetailTableViewCell.swift */,
-				18320AED1F6310B500705EFE /* ChatListCell.swift */,
+				3168010F1F6592D2000B912B /* MenuTableViewCell.swift */,
 			);
 			path = UITableViewCell;
 			sourceTree = "<group>";
@@ -411,6 +414,7 @@
 				18E266B71F5B3A9E009F8B01 /* RegistrationModel.swift */,
 				18E266B91F5B3AED009F8B01 /* RegResponseDataModel.swift */,
 				31F4D3DB1F5F20880036539C /* ProfileModel.swift */,
+				1800355F1F6AFFD4005C1072 /* SendMessageModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -696,9 +700,9 @@
 				183A10AF1F4B529A00579A7A /* ViewPagerController.swift in Sources */,
 				18E266B01F5B2BE9009F8B01 /* LoginModel.swift in Sources */,
 				183A10871F4B51A200579A7A /* HomeViewController.swift in Sources */,
+				180035601F6AFFD4005C1072 /* SendMessageModel.swift in Sources */,
 				3151CE921F48B2F900C322C3 /* ProfileTableViewCell.swift in Sources */,
 				181BD4D11F55DFF900E60277 /* PostTableViewCell.swift in Sources */,
-				18320AEE1F6310B500705EFE /* ChatListCell.swift in Sources */,
 				181BD4CE1F55DE9600E60277 /* CreateNewPostViewController.swift in Sources */,
 				3151CE871F48ACEA00C322C3 /* WebAPIManager.swift in Sources */,
 				3151CE941F48C56100C322C3 /* BlockUserListViewController.swift in Sources */,
@@ -714,6 +718,7 @@
 				31B72F7E1F4760FD007D24E6 /* LoginViewController.swift in Sources */,
 				183A108D1F4B51B900579A7A /* PostViewController.swift in Sources */,
 				181BD4CF1F55DE9600E60277 /* UserPostViewController.swift in Sources */,
+				1800355E1F6AF62C005C1072 /* ChatListCell.swift in Sources */,
 				183A10B01F4B529A00579A7A /* ViewPagerOptions.swift in Sources */,
 				183A108B1F4B51B100579A7A /* ChatViewController.swift in Sources */,
 				316801101F6592D2000B912B /* MenuTableViewCell.swift in Sources */,

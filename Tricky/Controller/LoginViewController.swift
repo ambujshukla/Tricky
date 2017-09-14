@@ -85,17 +85,14 @@ class LoginViewController: UIViewController
         {
             CommonUtil.showTotstOnWindow(strMessgae: message)
         }else{
-          //  self.doCallWebAPIForLogin()
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "VerifyOTPController") as! VerifyOTPController
-            vc.isFromSignUp = true
-            self.navigationController?.pushViewController(vc, animated: true)
+            self.doCallWebAPIForLogin()
         }
         print(boolValue,message)
     }
     
     func doCallWebAPIForLogin()
     {
-        let dictData = ["mobile" : self.txtMobile.text!/*,"password":self.txtPassword!.text!*/,"deviceToken":"324343434343434343"] as [String : Any]
+        let dictData = ["mobileNo" :(self.txtMobile.text!) /*,"password":self.txtPassword!.text!*/,"deviceToken":"324343434343434343" , "otp" : "1234" , "countryCode" : "+91"] as [String : Any]
         print(dictData)
         
         WebAPIManager.sharedWebAPIMAnager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: METHOD_LOGIN, parameter: dictData , success: { (obj) in
@@ -118,11 +115,16 @@ class LoginViewController: UIViewController
             CommonUtil.showTotstOnWindow(strMessgae: (error?.localizedDescription)!)
         }
     }
+
     
     func goTOHomeScreen()
     {
-        let controller = self.storyboard?.instantiateViewController(withIdentifier: "SWRevealViewController") as! SWRevealViewController
-        self.present(controller, animated: true, completion: nil)
+        
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "VerifyOTPController") as! VerifyOTPController
+        vc.isFromSignUp = true
+        self.navigationController?.pushViewController(vc, animated: true)
+//        let controller = self.storyboard?.instantiateViewController(withIdentifier: "SWRevealViewController") as! SWRevealViewController
+//        self.present(controller, animated: true, completion: nil)
     }
     
     @IBAction func doClickForgotPassword(sender: UIButton)
