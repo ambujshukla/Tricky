@@ -44,7 +44,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDa
         self.navigationController?.navigationBar.barTintColor = color(red: 236, green: 92, blue: 83)
     }
     
-    
     func decorateUI()
     {
         self.imgProfilePic.layer.cornerRadius = self.imgProfilePic.frame.size.width / 2
@@ -62,7 +61,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDa
         self.btnChangeic.setImage(UIImage(named : EDIT_ICON), for: .normal)
         
         //179 39 40
-        self.imgProfilePic.layer.borderColor = UIColor.red.cgColor
+        self.imgProfilePic.layer.borderColor = color(red: 175, green: 35, blue: 30).cgColor
         self.imgProfilePic.layer.borderWidth = 5.0
     }
     func doCallGetProfile()

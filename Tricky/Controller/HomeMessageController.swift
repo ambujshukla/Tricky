@@ -41,15 +41,6 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
                     }
                     self.tblMessage.reloadData()
                 }
-                
-//                if let dictResponseData = obj["responseData"] as? [[String : AnyObject]]
-//                {
-//                    print(dictResponseData)
-//                    for(_, element) in dictResponseData.enumerated()
-//                    {
-//                        self.arrMessageList .append(element as [String : AnyObject])
-//                    }
-//                }
             }
             print("this is object \(obj)")
         }) { (error) in
@@ -69,17 +60,16 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
         self.tblMessage.estimatedRowHeight = 90.0;
     }
     
-    
     //MARK: - Tableview delegate and datasource methods
     
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        
+    func numberOfSections(in tableView: UITableView) -> Int
+    {
         return 1
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
         return self.arrMessageList.count
     }
     

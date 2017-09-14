@@ -8,15 +8,16 @@
 
 import UIKit
 
-class PostViewController: UIViewController , UITableViewDelegate , UITableViewDataSource {
+class PostViewController: UIViewController , UITableViewDelegate , UITableViewDataSource, PostMessageDelegate {
     
     @IBOutlet weak var tblPost : UITableView!
     @IBOutlet weak var btnPlus : UIButton!
+    var arrPostListData = [Dictionary<String, AnyObject>]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.decorateUI()
-        // Do any additional setup after loading the view.
+        self.doCallWS()
     }
     
     override func didReceiveMemoryWarning() {
@@ -50,9 +51,29 @@ class PostViewController: UIViewController , UITableViewDelegate , UITableViewDa
     }
 
     
+    func doCallWS()
+    {
+        let params = ["version" : "1.0" , "os" : "ios" , "language" : "english","userId":"19", "showPostOnlyMyContact" :"0", "filterVulgarMessage" : "0","limit" : "10","offset" : "0"] as [String : Any]
+        WebAPIManager.sharedWebAPIMAnager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "GetAllPost", parameter: params, success: { (responseObject) in
+            print(responseObject)
+            if (responseObject["status"] as! String  == "1")
+            {
+                if let resultData : Array<Dictionary<String, Any>> = responseObject["responseData"] as? Array<Dictionary<String, Any>>
+              {
+                self.arrPostListData.removeAll()
+                for(_, element) in resultData.enumerated()
+                {
+                    self.arrPostListData .append(element as [String : AnyObject])
+                }
+                self.tblPost.reloadData()
+              }
+            }
+        }) { (error) in
+            print("")
+        }
+    }
+    
     //MARK: - Tableview delegate and datasource methods
-    
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         
         return 1
@@ -60,18 +81,19 @@ class PostViewController: UIViewController , UITableViewDelegate , UITableViewDa
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return 4
+        return self.arrPostListData.count
     }
     
     // MARK: - Table View Delegates
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell1", for: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell1", for: indexPath) as! PostTableViewCell
+        cell.decorateTableView(dictData: self.arrPostListData[indexPath.row])
         cell.selectionStyle = .none
         return cell
-        
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "PostDetailViewController") as! PostDetailViewController
@@ -81,6 +103,12 @@ class PostViewController: UIViewController , UITableViewDelegate , UITableViewDa
     @IBAction func doClickPlus()
     {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "CreateNewPostViewController") as! CreateNewPostViewController
+        vc.delegate = self
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func createNewPost()
+    {
+      self.doCallWS()
     }
 }

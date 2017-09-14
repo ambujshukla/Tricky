@@ -76,6 +76,7 @@
 		3151CECC1F497AF400C322C3 /* forgotPassword_BG@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3151CEC91F497AF400C322C3 /* forgotPassword_BG@3x.png */; };
 		3163FC261F4DF902004AA3CF /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3163FC251F4DF902004AA3CF /* ChatTableViewCell.swift */; };
 		3163FC281F4DFB62004AA3CF /* ChatDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3163FC271F4DFB62004AA3CF /* ChatDetailViewController.swift */; };
+		316801101F6592D2000B912B /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3168010F1F6592D2000B912B /* MenuTableViewCell.swift */; };
 		31B72F691F475A15007D24E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B72F681F475A15007D24E6 /* AppDelegate.swift */; };
 		31B72F6E1F475A15007D24E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31B72F6C1F475A15007D24E6 /* Main.storyboard */; };
 		31B72F701F475A15007D24E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31B72F6F1F475A15007D24E6 /* Assets.xcassets */; };
@@ -177,6 +178,7 @@
 		3163FC251F4DF902004AA3CF /* ChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
 		3163FC271F4DFB62004AA3CF /* ChatDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatDetailViewController.swift; sourceTree = "<group>"; };
 		3164B02E1F587A71006B8E52 /* Tricky.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tricky.entitlements; sourceTree = "<group>"; };
+		3168010F1F6592D2000B912B /* MenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		31B72F651F475A14007D24E6 /* Tricky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tricky.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31B72F681F475A15007D24E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		31B72F6D1F475A15007D24E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -654,6 +656,7 @@
 				"${BUILT_PRODUCTS_DIR}/Localize-Swift/Localize_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/MagicalRecord/MagicalRecord.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/PWSwitch/PWSwitch.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
@@ -668,6 +671,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Localize_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MagicalRecord.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PWSwitch.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
@@ -712,6 +716,7 @@
 				181BD4CF1F55DE9600E60277 /* UserPostViewController.swift in Sources */,
 				183A10B01F4B529A00579A7A /* ViewPagerOptions.swift in Sources */,
 				183A108B1F4B51B100579A7A /* ChatViewController.swift in Sources */,
+				316801101F6592D2000B912B /* MenuTableViewCell.swift in Sources */,
 				181BD4D31F55E00300E60277 /* UserPostTableViewCell.swift in Sources */,
 				1833F9DC1F4C94E1004AB7EE /* FavouriteViewController.swift in Sources */,
 				18E266BA1F5B3AED009F8B01 /* RegResponseDataModel.swift in Sources */,

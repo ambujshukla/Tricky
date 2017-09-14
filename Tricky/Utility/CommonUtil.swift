@@ -40,6 +40,7 @@ class CommonUtil: NSObject {
     class func showLoader()
     {
         SVProgressHUD.show()
+        SVProgressHUD.setDefaultMaskType(.gradient)
     }
     
     class  func hideLoader()
@@ -400,7 +401,7 @@ class CommonUtil: NSObject {
     }
     
     
-    class func showAlertInSwift_3Format(_ message:String , title :String ,btnCancel:String,btnOk:String , successBlock : @escaping (_ obj : Int) -> Void , failure : @escaping (_ error : Int) -> Void)
+    class func showAlertInSwift_3Format(_ message:String , title :String ,btnCancel:String,btnOk:String, crl : UIViewController , successBlock : @escaping (_ obj : Int) -> Void , failure : @escaping (_ error : Int) -> Void)
     {
         DispatchQueue.main.async(execute: {
             let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
@@ -419,8 +420,8 @@ class CommonUtil: NSObject {
                 }))
             }
             
-            
-            UIApplication.shared.delegate?.window!?.rootViewController?.present(alert, animated: true, completion: nil)
+            crl.present(alert, animated: true, completion: nil)
+          //  UIApplication.shared.delegate?.window!?.rootViewController?.present(alert, animated: true, completion: nil)
         })
         
     }

@@ -15,6 +15,7 @@ target 'Tricky' do
   pod 'Toast-Swift', '~> 2.0.0'
   pod 'ActionSheetPicker-3.0'
   pod 'ObjectMapper', '~> 2.2'
+  pod 'PWSwitch'
   # pod 'ReachabilitySwift', '~> 2.4'
   # Pods for Tricky
 

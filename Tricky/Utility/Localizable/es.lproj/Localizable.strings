@@ -22,3 +22,19 @@
 "txt_please_enter_userName" = "Introduzca el nombre de usuario";
 "txt_please_enter_name" = "Introduzca un nombre.";
 
+"txt_language" = "Idioma";
+"txt.english" = "Inglés";
+"txt.chinese" = "chino";
+"txt.spanish" = "Español";
+"txt.porugues" = "portugués";
+
+"txt_block_users" = "Usuarios Bloque";
+
+"txt_yes" = "sí";
+"txt_no" = "no";
+
+"txt_logout" = "Do you want to Logout from the app";
+"txt_copied" = "Text copied to clipboard";
+
+"txt_please_enter_post" = "Please enter post message.";
+"txt_success_post" = "Successfully Posted.";

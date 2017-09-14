@@ -21,3 +21,20 @@
 "txt_please_enter_valid_email" = "请输入有效的电子邮件 ID";
 "txt_please_enter_userName" = "请输入用户名";
 "txt_please_enter_name" = "请输入名称。";
+
+"txt_language" = "語言";
+"txt.english" = "英語";
+"txt.chinese" = "中文";
+"txt.spanish" = "西班牙語";
+"txt.porugues" = "葡萄牙语";
+
+"txt_block_users" = "阻止用戶";
+
+"txt_yes" = "是";
+"txt_no" = "没有";
+
+"txt_logout" = "Do you want to Logout from the app";
+"txt_copied" = "Text copied to clipboard";
+
+"txt_please_enter_post" = "Please enter post message.";
+"txt_success_post" = "Successfully Posted.";
