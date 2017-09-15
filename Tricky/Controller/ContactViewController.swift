@@ -13,6 +13,7 @@ class ContactViewController: UIViewController , UITableViewDelegate , UITableVie
     var contactsArray = NSMutableArray()
     var arrSyncContacts = [[String : AnyObject]]()
     @IBOutlet weak var imgBg : UIImageView!
+    var isFromMenu : Bool = false
     
     @IBOutlet weak var tblContact : UITableView!
     
@@ -20,7 +21,6 @@ class ContactViewController: UIViewController , UITableViewDelegate , UITableVie
         super.viewDidLoad()
         self.decorateUI()
         self.doGetContactFromConactBook()
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,7 +35,6 @@ class ContactViewController: UIViewController , UITableViewDelegate , UITableVie
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func doGetContactFromConactBook(){
@@ -45,43 +44,15 @@ class ContactViewController: UIViewController , UITableViewDelegate , UITableVie
         DispatchQueue.global(qos: .background).async {
             
             ContactPickerUtils.sharedContactPicker.getContctFromContactBook(target: self) { (contacts, error) in
-                //  self.filteredContacts = contacts
                 DispatchQueue.main.async {
-                    //   CommonUtil.hideLoader()
-                    //   self.tblContact.isHidden = true
                     self.contactsArray = contacts
-                    self.doCallSyncContactsWS()
-                    //                    self.tblContact.reloadData()
-                    
+                    print(self.contactsArray)
+                        self.doCallSyncContactsWS()
                 }
             }
         }
-        /*key : value
-         
-         userId : 47
-         
-         requestData : {
-         "data": [
-         {
-         "userName": "vishal",
-         "userNumber": "9589077130"
-         },
-         {
-         "userName": "vishal1",
-         "userNumber": "9589077131"
-         },
-         {
-         "userName": "abc",
-         "userNumber": "12365489"
-         }
-         ],
-         }
-         */   // func doGetContactFromConactBook(){
-        
         
         CommanUtility.decorateNavigationbarWithBackButton(target: self, strTitle: "All Contacts", strBackButtonImage: BACK_BUTTON, selector: #selector(self.goTOBack), color: color(red: 142, green: 110, blue: 137))
-        
-        //142 , 110 ,137
     }
     
     func doCallSyncContactsWS()
@@ -100,24 +71,24 @@ class ContactViewController: UIViewController , UITableViewDelegate , UITableVie
                 print(phoneNo)
             }
             arrayTempContacts .append(dictContactsData)
-                print(contact)
+            print(contact)
         }
         var dictDataTemp = [String : AnyObject]()
         dictDataTemp["data"] = arrayTempContacts as AnyObject
-
+        
         print(arrayTempContacts)
         let dictData = ["version" : "1.0" , "os" : "ios" , "language" : "english","userId":"47", "requestData" : dictDataTemp] as [String : Any]
         WebAPIManager.sharedWebAPIMAnager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "SyncContact", parameter: dictData, success: { (obj) in
-                if let dictContactsData = obj["responseData"] as? [[String : AnyObject]]
+            if let dictContactsData = obj["responseData"] as? [[String : AnyObject]]
+            {
+                print(dictContactsData)
+                for dataTemp in dictContactsData
                 {
-                    print(dictContactsData)
-                   for dataTemp in dictContactsData
-                   {
                     self.arrSyncContacts.append(dataTemp)
                     print(dataTemp)
-                   }
-                    self.tblContact.reloadData()
                 }
+                self.tblContact.reloadData()
+            }
             print(obj)
         }) { (error) in
             
@@ -128,19 +99,26 @@ class ContactViewController: UIViewController , UITableViewDelegate , UITableVie
     func goTOBack()
     {
         self.navigationController?.popViewController(animated: true)
-        
     }
-    
     
     // MARK: - Table View DataSource
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        
+    func numberOfSections(in tableView: UITableView) -> Int
+    {
+        if (self.isFromMenu)
+        {
+            return self.contactsArray.count
+        }
         return 1
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        if self.isFromMenu
+        {
+            let  contact =  self.contactsArray[section] as! ContactModel
+            return contact.phoneNumbers.count
+        }
         return self.arrSyncContacts.count
     }
     
@@ -148,19 +126,89 @@ class ContactViewController: UIViewController , UITableViewDelegate , UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as UITableViewCell
-//        let contact: ContactModel
-//        contact =  self.contactsArray[indexPath.row] as! ContactModel
-        let dataContacts = self.arrSyncContacts[indexPath.row] 
-        let label = cell.contentView.viewWithTag(10) as! UILabel!
-        label?.text = dataContacts["userName"] as? String
-        
-        let labelPhNo = cell.contentView.viewWithTag(11) as! UILabel!
-        labelPhNo?.textColor = UIColor.white
-        labelPhNo?.text = dataContacts["userNumber"] as? String
+        if (self.isFromMenu)
+        {
+            let  contact =  self.contactsArray[indexPath.section] as! ContactModel
+            let label = cell.contentView.viewWithTag(10) as! UILabel!
+            label?.text = contact.fullName
+            let labelPhNo = cell.contentView.viewWithTag(11) as! UILabel!
+            let phoneNoData = contact.phoneNumbers[indexPath.row]
+            labelPhNo?.text = phoneNoData.phoneNumber
+            labelPhNo?.textColor = UIColor.white
+            let imgStatus = cell.contentView.viewWithTag(20) as! UIImageView!
+            self.doCheckIfBlockOrUnblock(strPhoneNo: phoneNoData.phoneNumber,imgView: imgStatus!)
+            print("")
+        }else
+        {
+            let dataContacts = self.arrSyncContacts[indexPath.row]
+            let label = cell.contentView.viewWithTag(10) as! UILabel!
+            label?.text = dataContacts["userName"] as? String
+            
+            let labelPhNo = cell.contentView.viewWithTag(11) as! UILabel!
+            labelPhNo?.textColor = UIColor.white
+            labelPhNo?.text = dataContacts["userNumber"] as? String
+            let imgStatus = cell.contentView.viewWithTag(20) as! UIImageView!
+            
+            let isOnApp = dataContacts["isOnApp"] as! Bool
+            if (isOnApp)
+            {
+                let isBlock = dataContacts["isBlock"] as! Bool
+                if (isBlock)
+                {
+                    imgStatus?.image = UIImage(named: "blockselecticon")
+                }else
+                {
+                    imgStatus?.image = UIImage(named: "unblockicon")
+                }
+            }else
+            {
+                imgStatus?.backgroundColor = UIColor.green
+            }
+        }
         cell.selectionStyle = .none
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if !(self.isFromMenu)
+        {
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserPostAnswerViewController")
+                as! UserPostAnswerViewController
+            let dictData = self.arrSyncContacts[indexPath.row] as [String : AnyObject]
+            let userId = dictData["userId"] as! String
+            vc.strUserId = userId
+            self.navigationController?.pushViewController(vc, animated: false)
+        }
+    }
+    
+    func doCheckIfBlockOrUnblock(strPhoneNo : String, imgView : UIImageView)
+    {
+        let predicate = NSPredicate(format: "userNumber contains %@", strPhoneNo)
+        let searchDataSource = self.arrSyncContacts.filter { predicate.evaluate(with: $0) }
+        if searchDataSource.count > 0
+        {
+            let dataContacts = searchDataSource[0]
+            let isOnApp = dataContacts["isOnApp"] as! Bool
+            if (isOnApp)
+            {
+                let isBlock = dataContacts["isBlock"] as! Bool
+                if (isBlock)
+                {
+                    imgView.image = UIImage(named: "blockselecticon")
+                }else
+                {
+                    imgView.image = UIImage(named: "unblockicon")
+                }
+            }else
+            {
+                imgView.image = UIImage(named : "refreshicon")
+            }
+           print("")
+        }else
+        {
+            imgView.image = UIImage(named : "refreshicon")
+        }
+    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70.00
