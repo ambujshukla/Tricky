@@ -52,6 +52,9 @@ class CreateNewPostViewController: UIViewController {
     }
     @IBAction func doClickSend()
     {
+        
+
+        
         guard let text = self.txtViewComment.text, !text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty else {
             CommonUtil.showTotstOnWindow(strMessgae: "txt_please_enter_post".localized())
             return

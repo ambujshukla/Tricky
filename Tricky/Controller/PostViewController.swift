@@ -13,6 +13,12 @@ class PostViewController: UIViewController , UITableViewDelegate , UITableViewDa
     @IBOutlet weak var tblPost : UITableView!
     @IBOutlet weak var btnPlus : UIButton!
     var arrPostListData = [Dictionary<String, AnyObject>]()
+    @IBOutlet weak var activityView : UIActivityIndicatorView!
+    @IBOutlet weak var vwFotter : UIView!
+    var totalCount : Int = 0
+    var limit : Int = 10
+    var offSet : Int = 0
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,34 +34,49 @@ class PostViewController: UIViewController , UITableViewDelegate , UITableViewDa
     
     func decorateUI()
     {
-        self.tblPost.tableFooterView = UIView()
+      //  self.tblPost.tableFooterView = UIView()
+        self.hideAndShowFotterView(isHideFotter: true, isAnimateActivityInd: false)
         self.tblPost.rowHeight = UITableViewAutomaticDimension
         self.tblPost.estimatedRowHeight = 40
-        
+        self.activityView.startAnimating()
         self.doCallWS()
     }
     
     func doCallWS()
     {
-        let params = ["version" : "1.0" , "os" : "ios" , "language" : "english","userId":"19", "showPostOnlyMyContact" :"0", "filterVulgarMessage" : "0","limit" : "10","offset" : "0"] as [String : Any]
+        let params = ["version" : "1.0" , "os" : "ios" , "language" : "english","userId":"19", "showPostOnlyMyContact" :"0", "filterVulgarMessage" : "\(self.offSet)","limit" : "\(self.limit)","offset" : "0"] as [String : Any]
         WebAPIManager.sharedWebAPIMAnager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "GetAllPost", parameter: params, success: { (responseObject) in
             print(responseObject)
             if (responseObject["status"] as! String  == "1")
             {
                 if let resultData : Array<Dictionary<String, Any>> = responseObject["responseData"] as? Array<Dictionary<String, Any>>
               {
-                self.arrPostListData.removeAll()
+                self.totalCount = responseObject["totalRecordCount"] as! Int
                 for(_, element) in resultData.enumerated()
                 {
                     self.arrPostListData .append(element as [String : AnyObject])
                 }
                 self.tblPost.reloadData()
               }
+                else {
+                  self.hideAndShowFotterView(isHideFotter: true, isAnimateActivityInd: false)
+                }
             }
         }) { (error) in
             print("")
         }
         
+    }
+
+    func hideAndShowFotterView(isHideFotter : Bool , isAnimateActivityInd : Bool){
+        
+        self.vwFotter.isHidden = isHideFotter
+        (isAnimateActivityInd) ? self.activityView.startAnimating() : self.activityView.stopAnimating()
+    }
+    
+    func createNewPost()
+    {
+        self.doCallWS()
     }
 
     
@@ -93,8 +114,19 @@ class PostViewController: UIViewController , UITableViewDelegate , UITableViewDa
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    func createNewPost()
-    {
-      self.doCallWS()
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        let lastElement = arrPostListData.count - 1
+        if indexPath.row == lastElement{
+        
+        if self.totalCount != self.arrPostListData.count {
+          self.offSet += 10
+          self.createNewPost()
+        self.hideAndShowFotterView(isHideFotter: false, isAnimateActivityInd: true)
+        }
+        else{
+        self.hideAndShowFotterView(isHideFotter: true, isAnimateActivityInd: false)
+        }
+        }
     }
 }

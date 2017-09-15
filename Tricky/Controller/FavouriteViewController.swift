@@ -29,6 +29,8 @@ class FavouriteViewController: UIViewController , UITableViewDelegate , UITableV
         
         self.tblFav.rowHeight = UITableViewAutomaticDimension;
         self.tblFav.estimatedRowHeight = 90.0;
+        
+        self.doCallServiceForFavouriteMessage()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,6 +52,17 @@ class FavouriteViewController: UIViewController , UITableViewDelegate , UITableV
         }
         
         
+    }
+    
+    
+    func doCallServiceForFavouriteMessage(){
+        
+        let dictParam = ["userId" : UserManager.sharedUserManager.userId!] as [String : Any]
+         WebAPIManager.sharedWebAPIMAnager.doCallWebAPIForPOST(strURL: kBaseUrl , strServiceName: "favoriteMsg", parameter: dictParam , success: { (obj) in
+        print("this is object \(obj)")
+    }) { (error) in
+        
+        }
     }
     
     //MARK: - Tableview delegate and datasource methods

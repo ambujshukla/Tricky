@@ -49,12 +49,31 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
         }
     }
     
+    
+    func doCallServiceForFavouriteMessage(){
+        
+        let dictParam = ["userId" : UserManager.sharedUserManager.userId!] as [String : Any]
+        WebAPIManager.sharedWebAPIMAnager.doCallWebAPIForPOST(strURL: kBaseUrl , strServiceName: "favoriteMsg", parameter: dictParam , success: { (obj) in
+            print("this is object \(obj)")
+        }) { (error) in
+            
+        }
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     func decorateUI () {
+        
+        
+        let options = AAPopUp.globalOptions
+        options.storyboardName = "Main"
+        options.dismissTag = 9
+
+        
         self.tblMessage.tableFooterView = UIView()
         self.tblMessage.rowHeight = UITableViewAutomaticDimension;
         self.tblMessage.estimatedRowHeight = 90.0;
@@ -91,11 +110,9 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        //        let popup: AAPopUp = AAPopUp(popup: .demo2)
-        //        popup.present { popup in
-        //            // MARK:- View Did Appear Here
-        //            popup.dismissWithTag(9)
-        //        }
+        let popupVC = storyboard?.instantiateViewController(withIdentifier: "PopupViewController") as! PopupViewController
+        view.addSubview(popupVC.view)
+        addChildViewController(popupVC)
     }
     
     @IBAction func doClickPlus()

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import AAPopUp
 import Localize_Swift
 
 class PostDetailViewController: UIViewController , UITableViewDelegate , UITableViewDataSource
@@ -58,12 +57,6 @@ class PostDetailViewController: UIViewController , UITableViewDelegate , UITable
     
     func doactionOnReply()
     {
-        let popup: AAPopUp = AAPopUp(popup: .demo2)
-        popup.present { popup in
-            // MARK:- View Did Appear Here
-            popup.dismissWithTag(9)
-        }
-        
         
     }
     
