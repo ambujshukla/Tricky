@@ -120,6 +120,7 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
         else if (indexPath.row == 2) {
             
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "ContactViewController") as! ContactViewController
+            vc.isFromMenu = true
             let contrlHome = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
             let navController = UINavigationController.init()
             navController.setViewControllers([contrlHome , vc], animated: true)

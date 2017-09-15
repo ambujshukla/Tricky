@@ -16,6 +16,7 @@ class UserPostAnswerViewController: UIViewController {
     @IBOutlet weak var lblHeader : UILabel!
     @IBOutlet weak var lblLeaveAnswer : UILabel!
     @IBOutlet weak var imgBG : UIImageView!
+    var strUserId : String = ""
     
     override func viewDidLoad()
     {
@@ -50,14 +51,15 @@ class UserPostAnswerViewController: UIViewController {
     }
     func doCallServiceForSendMessgae() {
         
-        let dictData = ["version" : "1.0" , "type" : "1"  , "message": self.txtViewComment.text!  , "userId" : "19","receiverId" : "20"] as [String : Any]
+        let dictData = ["version" : "1.0" , "type" : "1"  , "message": self.txtViewComment.text!  , "userId" : "19","receiverId" : self.strUserId] as [String : Any]
         
         WebAPIManager.sharedWebAPIMAnager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "sendMessage", parameter: dictData , success: { (obj) in
             
             print(obj)
             let sendMessageData  = Mapper<SendMessageModel>().map(JSON: obj)
             
-            if sendMessageData?.status == "1"{
+            if sendMessageData?.status == "1"
+            {
                 CommonUtil.showTotstOnWindow(strMessgae: (sendMessageData?.responseMessage)!)
                 self.navigationController?.popViewController(animated: true)
             }
