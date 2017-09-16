@@ -38,24 +38,24 @@ class ChatViewController: UIViewController  , UITableViewDataSource , UITableVie
         self.doCallWebServiceForGetChatList()
     }
     
-
+    
     func doCallWebServiceForGetChatList(){
-      
+        
         let dictData = ["userId" : "47"]
         
-       WebAPIManager.sharedWebAPIMAnager.doCallWebAPIForPOST(strURL: kBaseUrl , strServiceName: "chatList", parameter: dictData, success: { (obj) in
-    
-        if (obj["status"] as! String == "1"){
-            let chatData = obj["responseData"]
-            self.chatData = chatData as! Array<Dictionary<String, AnyObject>>
-        } 
-        else{
-          CommonUtil.showTotstOnWindow(strMessgae: obj["responseMessage"] as! String)
-        }
-        
-    
-   }) { (error) in
-    
+        WebAPIManager.sharedWebAPIMAnager.doCallWebAPIForPOST(strURL: kBaseUrl , strServiceName: "chatList", parameter: dictData, success: { (obj) in
+            print(obj)
+            if (obj["status"] as! String == "1"){
+                let chatData = obj["responseData"]
+                self.chatData = chatData as! Array<Dictionary<String, AnyObject>>
+            }
+            else{
+                CommonUtil.showTotstOnWindow(strMessgae: obj["responseMessage"] as! String)
+            }
+            
+            
+        }) { (error) in
+            
         }
         
     }
@@ -78,7 +78,7 @@ class ChatViewController: UIViewController  , UITableViewDataSource , UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell1", for: indexPath) as! ChatListCell
-       cell.doSetDataOnCell(dictData: self.chatData[indexPath.row])
+        cell.doSetDataOnCell(dictData: self.chatData[indexPath.row])
         cell.selectionStyle = .none
         return cell
         
