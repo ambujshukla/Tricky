@@ -10,7 +10,6 @@ import UIKit
 import ActionSheetPicker_3_0
 import ObjectMapper
 
-
 class SignUpViewController: UIViewController {
     
     //  @IBOutlet weak var lblTitle : UILabel!
@@ -35,7 +34,9 @@ class SignUpViewController: UIViewController {
     
     @IBOutlet weak var imgBG : UIImageView!
     @IBOutlet weak var viewTop : UIView!
-    
+    @IBOutlet var btnCountryCode : UIButton!
+
+    let arrCountryCode = ["Afghanistan(+93)","Aland Islands(+358)","Albania(+355)"]
     
     //  let arrCountryCode = ["+91","+01","+02"]
     //  var imagePicker = UIImagePickerController()
@@ -65,6 +66,7 @@ class SignUpViewController: UIViewController {
     }
     func decorateUI()
     {
+        self.btnCountryCode.setTitle("+91", for: .normal)
         self.viewTop.layer.borderColor = UIColor.white.cgColor
         self.viewTop.layer.cornerRadius = 5.0
         self.viewTop.layer.borderWidth = 1.0
@@ -157,16 +159,22 @@ class SignUpViewController: UIViewController {
     
     @IBAction func doClickSelectCode(sender : UIButton)
     {
-        //        ActionSheetMultipleStringPicker.show(withTitle: "Select Code", rows: [
-        //            self.arrCountryCode
-        //            ], initialSelection: [0], doneBlock: {
-        //                picker, indexes, values in
-        //
-        //                if let arrValue = values as? [String] {
-        //                    self.txtSelectCode.text = arrValue[0]
-        //                }
-        //                return
-        //        }, cancel: { ActionMultipleStringCancelBlock in return }, origin: sender)
+        ActionSheetMultipleStringPicker.show(withTitle: "Select Code", rows: [
+            self.arrCountryCode
+            ], initialSelection: [0], doneBlock: {
+                picker, indexes, values in
+                
+                if let arrValue = values as? [String] {
+                    let string = arrValue[0]
+                    if let range = string.range(of: "(") {
+                        let index = string.index(string.endIndex, offsetBy: -1)
+                        let firstPart = string[range.upperBound..<index]
+                        self.btnCountryCode.setTitle(firstPart, for: .normal)
+                        print(firstPart) // print Hello
+                    }
+                }
+                return
+        }, cancel: { ActionMultipleStringCancelBlock in return }, origin: sender)
     }
     
     @IBAction func doClickRegister()

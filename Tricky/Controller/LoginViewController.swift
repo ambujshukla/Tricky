@@ -9,25 +9,21 @@
 import UIKit
 import Localize_Swift
 import ObjectMapper
+import ActionSheetPicker_3_0
 
 class LoginViewController: UIViewController
 {
     @IBOutlet  var txtMobile : UITextField!
-  //  @IBOutlet  var txtPassword : UITextField!
     
     @IBOutlet  var btnLogin : UIButton!
     @IBOutlet  var btnForgotPassword : UIButton!
     @IBOutlet  var btnSignup : UIButton!
     @IBOutlet  var btnDontAccount : UIButton!
-    
-    @IBOutlet  var imgMobile : UIImageView!
-  //@IBOutlet  var imgPassword : UIImageView!
-    
     @IBOutlet  var imgSeparator1 : UIImageView!
-  //@IBOutlet  var imgSeparator2 : UIImageView!
-    
     @IBOutlet var imgBg : UIImageView!
-    
+    @IBOutlet var btnCountryCode : UIButton!
+    let arrCountryCode = ["Afghanistan(+93)","Aland Islands(+358)","Albania(+355)"]
+
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -38,6 +34,7 @@ class LoginViewController: UIViewController
     {
         //self.txtPassword.text = "123456"
         self.txtMobile.text = "9993880850"
+        self.btnCountryCode.setTitle("+91", for: .normal)
         
         self.title = "txt_login".localized()
 
@@ -46,9 +43,6 @@ class LoginViewController: UIViewController
         self.btnLogin.setTitleColor(UIColor.darkGray, for: .normal)
         
         self.imgBg.image = UIImage(named : LOGIN_BG)
-        
-        self.imgMobile.image = UIImage(named : MOBILE_ICON)
-       // self.imgPassword.image = UIImage(named : PASSWORD_ICON)
         
         self.btnForgotPassword.setTitle("txt_forgot_password".localized(), for: .normal)
         self.btnForgotPassword.titleLabel?.textColor = UIColor.white
@@ -92,7 +86,7 @@ class LoginViewController: UIViewController
     
     func doCallWebAPIForLogin()
     {
-        let dictData = ["mobileNo" :(self.txtMobile.text!) /*,"password":self.txtPassword!.text!*/,"deviceToken":"324343434343434343" , "otp" : "1234" , "countryCode" : "+91"] as [String : Any]
+        let dictData = ["mobileNo" :(self.txtMobile.text!) /*,"password":self.txtPassword!.text!*/,"deviceToken":"324343434343434343" , "countryCode" : "+91"] as [String : Any]
         print(dictData)
         
         WebAPIManager.sharedWebAPIMAnager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: METHOD_LOGIN, parameter: dictData , success: { (obj) in
@@ -142,6 +136,27 @@ class LoginViewController: UIViewController
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
+    
+    @IBAction func doClickCountryCode(sender : UIButton)
+    {
+                ActionSheetMultipleStringPicker.show(withTitle: "Select Code", rows: [
+                    self.arrCountryCode
+                    ], initialSelection: [0], doneBlock: {
+                        picker, indexes, values in
+        
+                        if let arrValue = values as? [String] {
+                            let string = arrValue[0]
+                            if let range = string.range(of: "(") {
+                                let index = string.index(string.endIndex, offsetBy: -1)
+                                let firstPart = string[range.upperBound..<index]
+                                self.btnCountryCode.setTitle(firstPart, for: .normal)
+                                print(firstPart) // print Hello
+                            }
+                        }
+                        return
+                }, cancel: { ActionMultipleStringCancelBlock in return }, origin: sender)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
