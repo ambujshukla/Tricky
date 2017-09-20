@@ -21,8 +21,9 @@ class LoginViewController: UIViewController
     @IBOutlet  var btnDontAccount : UIButton!
     @IBOutlet  var imgSeparator1 : UIImageView!
     @IBOutlet var imgBg : UIImageView!
-    
-    
+    @IBOutlet var btnCountryCode : UIButton!
+    let arrCountryCode = ["Afghanistan(+93)","Aland Islands(+358)","Albania(+355)"]
+
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -33,6 +34,7 @@ class LoginViewController: UIViewController
     {
         //self.txtPassword.text = "123456"
         self.txtMobile.text = "9039395421"
+        self.btnCountryCode.setTitle("+91", for: .normal)
         
         self.title = "txt_login".localized()
 
