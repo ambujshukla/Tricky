@@ -14,6 +14,7 @@ class ContactViewController: UIViewController , UITableViewDelegate , UITableVie
     var arrSyncContacts = [[String : AnyObject]]()
     @IBOutlet weak var imgBg : UIImageView!
     var isFromMenu : Bool = false
+    var contactShowFrom : Int = 0
     
     @IBOutlet weak var tblContact : UITableView!
     
@@ -40,14 +41,13 @@ class ContactViewController: UIViewController , UITableViewDelegate , UITableVie
     func doGetContactFromConactBook(){
         
         self.tblContact.tableFooterView = UIView()
-        //  CommonUtil.showLoader()
         DispatchQueue.global(qos: .background).async {
             
             ContactPickerUtils.sharedContactPicker.getContctFromContactBook(target: self) { (contacts, error) in
                 DispatchQueue.main.async {
                     self.contactsArray = contacts
                     print(self.contactsArray)
-                        self.doCallSyncContactsWS()
+                    self.doCallSyncContactsWS()
                 }
             }
         }
@@ -76,24 +76,50 @@ class ContactViewController: UIViewController , UITableViewDelegate , UITableVie
         var dictDataTemp = [String : AnyObject]()
         dictDataTemp["data"] = arrayTempContacts as AnyObject
         
-        print(arrayTempContacts)
-        let dictData = ["version" : "1.0" , "os" : "ios" , "language" : "english","userId":"47", "requestData" : dictDataTemp] as [String : Any]
-        WebAPIManager.sharedWebAPIMAnager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "SyncContact", parameter: dictData, success: { (obj) in
-            if let dictContactsData = obj["responseData"] as? [[String : AnyObject]]
-            {
-                print(dictContactsData)
-                for dataTemp in dictContactsData
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: dictDataTemp, options: .prettyPrinted)
+            let theJSONText = String(data: jsonData,
+                                     encoding: .ascii)
+            let dictData = ["version" : "1.0" , "os" : "1" , "language" : "english","userId":"76", "requestData" : theJSONText!] as [String : Any]
+            print(dictData)
+            WebAPIManager.sharedWebAPIMAnager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "SyncContact", parameter: dictData, success: { (obj) in
+                if let dictContactsData = obj["responseData"] as? [[String : AnyObject]]
                 {
-                    self.arrSyncContacts.append(dataTemp)
-                    print(dataTemp)
+                    print(dictContactsData)
+                    for dataTemp in dictContactsData
+                    {
+                        if (self.contactShowFrom == 1)
+                        {
+                            if (dataTemp["isBlock"] as! Int == 1)
+                            {
+                                self.arrSyncContacts.append(dataTemp)
+                            }
+                        }else if (self.contactShowFrom == 2)
+                        {
+                            self.arrSyncContacts.append(dataTemp)
+                        }else
+                        {
+                            self.arrSyncContacts.append(dataTemp)
+                        }
+                        print(dataTemp)
+                    }
+                    self.tblContact.reloadData()
                 }
-                self.tblContact.reloadData()
+                print(obj)
+            }) { (error) in
+                print(error!)
             }
-            print(obj)
-        }) { (error) in
-            
+            //            let decoded = try JSONSerialization.jsonObject(with: jsonData, options: [])
+            //            // here "decoded" is of type `Any`, decoded from JSON data
+            //
+            //            // you can now cast it with the right type
+            //            if let dictFromJSON = decoded as? [String:String] {
+            //                // use dictFromJSON
+            //            }
+        } catch {
+            print(error.localizedDescription)
         }
-        
+        //        print(arrayTempContacts)
     }
     
     func goTOBack()
@@ -105,42 +131,29 @@ class ContactViewController: UIViewController , UITableViewDelegate , UITableVie
     
     func numberOfSections(in tableView: UITableView) -> Int
     {
-        if (self.isFromMenu)
-        {
-            return self.contactsArray.count
-        }
-        return 1
+//        if (self.isFromMenu)
+//        {
+  //          return 1
+//        }
+        return self.arrSyncContacts.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        if self.isFromMenu
-        {
-            let  contact =  self.contactsArray[section] as! ContactModel
-            return contact.phoneNumbers.count
-        }
         return self.arrSyncContacts.count
+//        if self.isFromMenu
+//        {
+//        }
+//        let  contact =  self.contactsArray[section] as! ContactModel
+//        return contact.phoneNumbers.count
     }
     
     // MARK: - Table View Delegates
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as UITableViewCell
-        if (self.isFromMenu)
-        {
-            let  contact =  self.contactsArray[indexPath.section] as! ContactModel
-            let label = cell.contentView.viewWithTag(10) as! UILabel!
-            label?.text = contact.fullName
-            let labelPhNo = cell.contentView.viewWithTag(11) as! UILabel!
-            let phoneNoData = contact.phoneNumbers[indexPath.row]
-            labelPhNo?.text = phoneNoData.phoneNumber
-            labelPhNo?.textColor = UIColor.white
-            let imgStatus = cell.contentView.viewWithTag(20) as! UIImageView!
-            self.doCheckIfBlockOrUnblock(strPhoneNo: phoneNoData.phoneNumber,imgView: imgStatus!)
-            print("")
-        }else
-        {
-            let dataContacts = self.arrSyncContacts[indexPath.row]
+
+        let dataContacts = self.arrSyncContacts[indexPath.row]
             let label = cell.contentView.viewWithTag(10) as! UILabel!
             label?.text = dataContacts["userName"] as? String
             
@@ -148,23 +161,35 @@ class ContactViewController: UIViewController , UITableViewDelegate , UITableVie
             labelPhNo?.textColor = UIColor.white
             labelPhNo?.text = dataContacts["userNumber"] as? String
             let imgStatus = cell.contentView.viewWithTag(20) as! UIImageView!
+        if self.isFromMenu {
+            let isBlock = dataContacts["isBlock"] as! Bool
             
-            let isOnApp = dataContacts["isOnApp"] as! Bool
-            if (isOnApp)
+            if (isBlock)
             {
-                let isBlock = dataContacts["isBlock"] as! Bool
-                if (isBlock)
-                {
-                    imgStatus?.image = UIImage(named: "blockselecticon")
-                }else
-                {
-                    imgStatus?.image = UIImage(named: "unblockicon")
-                }
+                imgStatus?.image = UIImage(named: "blockselecticon")
             }else
             {
-                imgStatus?.backgroundColor = UIColor.green
+                imgStatus?.image = UIImage(named: "unblockicon")
             }
         }
+            //        }
+//    else
+//        {
+//            let  contact =  self.contactsArray[indexPath.section] as! ContactModel
+//            let label = cell.contentView.viewWithTag(10) as! UILabel!
+//            label?.text = contact.fullName
+//            let labelPhNo = cell.contentView.viewWithTag(11) as! UILabel!
+//            let phoneNoData = contact.phoneNumbers[indexPath.row]
+//            labelPhNo?.text = phoneNoData.phoneNumber
+//            labelPhNo?.textColor = UIColor.white
+//            let imgStatus = cell.contentView.viewWithTag(20) as! UIImageView!
+//            if (self.contactShowFrom == 1)
+//            {
+//                imgStatus?.image = UIImage(named : "blockselecticon")
+//            }
+//            // self.doCheckIfBlockOrUnblock(strPhoneNo: phoneNoData.phoneNumber,imgView: imgStatus!)
+//            print("")
+//        }
         cell.selectionStyle = .none
         return cell
     }
@@ -203,7 +228,7 @@ class ContactViewController: UIViewController , UITableViewDelegate , UITableVie
             {
                 imgView.image = UIImage(named : "refreshicon")
             }
-           print("")
+            print("")
         }else
         {
             imgView.image = UIImage(named : "refreshicon")

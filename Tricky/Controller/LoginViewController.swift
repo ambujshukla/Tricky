@@ -111,7 +111,6 @@ class LoginViewController: UIViewController
     
     func goTOHomeScreen(OTPData : OTPModel)
     {
-        
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "VerifyOTPController") as! VerifyOTPController
         vc.isFromSignUp = false
         vc.strMobileNo = self.txtMobile.text

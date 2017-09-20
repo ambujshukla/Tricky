@@ -271,6 +271,7 @@ let NEW_PASSWORD = "6background"
 let ALL_CONTACTS_BG = "allcontbackground"
 let POST_DETAIL_BG = "postdetailbackground"
 let MESSAGE_SEND_BG = "msgsendbackground"
+let CREATE_POST_BG = "1background"
 
 let SEND_MESSAGE_PURPLE = "sendmsgicon_purple"
 
