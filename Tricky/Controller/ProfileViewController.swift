@@ -87,17 +87,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDa
                 
             }
             print("")
-            //            let regData = Mapper<RegistrationModel>().map(JSON: obj)
-            //
-            //            if (regData?.status == "1")
-            //            {
-            //                UserManager.sharedUserManager.doSetLoginData(userData: (regData?.responseData?[0])!)
-            //                self.goTOVerifyScreen()
-            //            }
-            //            else
-            //            {
-            //                CommonUtil.showTotstOnWindow(strMessgae: (regData?.responseMessage)!)
-            //            }
             
             print("this is object \(obj)")
         }) { (error) in

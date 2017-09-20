@@ -27,9 +27,9 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
     {
         self.view.endEditing(true)
         //UpdateProfile
-        let dictData = ["version" : "1.0" , "os" : "ios" , "language" : "english","userId":"19", "receiverId" : "20", "lastMessageDateTime" :""] as [String : Any]
+        let dictData = ["version" : "1.0" , "os" : "ios" , "language" : "english","userId":"19","filterVulgar" : "0","messageForOnlyRegisterUser":"0","offset":"0","limit" : "10","showOnlyFavorite":"0"] as [String : Any]
         
-        WebAPIManager.sharedWebAPIMAnager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "getChatMessageList", parameter: dictData , success: { (obj) in
+        WebAPIManager.sharedWebAPIMAnager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "getRecSentList", parameter: dictData , success: { (obj) in
             
             if (obj["status"] as! String == "1")
             {
@@ -48,7 +48,6 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
             
         }
     }
-    
     
     func doCallServiceForFavouriteMessage(){
         
