@@ -34,6 +34,7 @@
 		18E266B61F5B373B009F8B01 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E266B51F5B373B009F8B01 /* UserManager.swift */; };
 		18E266B81F5B3A9E009F8B01 /* RegistrationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E266B71F5B3A9E009F8B01 /* RegistrationModel.swift */; };
 		18E266BA1F5B3AED009F8B01 /* RegResponseDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E266B91F5B3AED009F8B01 /* RegResponseDataModel.swift */; };
+		18E675011F7189840064DD64 /* OTPModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E675001F7189840064DD64 /* OTPModel.swift */; };
 		310139831F49F84800A69E5A /* blockUserBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 310139801F49F84800A69E5A /* blockUserBG.png */; };
 		310139841F49F84800A69E5A /* blockUserBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 310139811F49F84800A69E5A /* blockUserBG@2x.png */; };
 		310139851F49F84800A69E5A /* blockUserBG@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 310139821F49F84800A69E5A /* blockUserBG@3x.png */; };
@@ -136,6 +137,7 @@
 		18E266B51F5B373B009F8B01 /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		18E266B71F5B3A9E009F8B01 /* RegistrationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationModel.swift; sourceTree = "<group>"; };
 		18E266B91F5B3AED009F8B01 /* RegResponseDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegResponseDataModel.swift; sourceTree = "<group>"; };
+		18E675001F7189840064DD64 /* OTPModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OTPModel.swift; sourceTree = "<group>"; };
 		310139801F49F84800A69E5A /* blockUserBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blockUserBG.png; sourceTree = "<group>"; };
 		310139811F49F84800A69E5A /* blockUserBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blockUserBG@2x.png"; sourceTree = "<group>"; };
 		310139821F49F84800A69E5A /* blockUserBG@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blockUserBG@3x.png"; sourceTree = "<group>"; };
@@ -415,6 +417,7 @@
 				18E266B91F5B3AED009F8B01 /* RegResponseDataModel.swift */,
 				31F4D3DB1F5F20880036539C /* ProfileModel.swift */,
 				1800355F1F6AFFD4005C1072 /* SendMessageModel.swift */,
+				18E675001F7189840064DD64 /* OTPModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -735,6 +738,7 @@
 				31F4D3DC1F5F20890036539C /* ProfileModel.swift in Sources */,
 				3151CE811F48AC4F00C322C3 /* CommanUtility.swift in Sources */,
 				1833F9DE1F4CA7FD004AB7EE /* MessageTableViewCell.swift in Sources */,
+				18E675011F7189840064DD64 /* OTPModel.swift in Sources */,
 				3151CE7B1F48A8C900C322C3 /* ProfileViewController.swift in Sources */,
 				3151CE8B1F48AD6000C322C3 /* MessageViewController.swift in Sources */,
 				3163FC261F4DF902004AA3CF /* ChatTableViewCell.swift in Sources */,

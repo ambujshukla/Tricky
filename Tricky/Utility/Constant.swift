@@ -288,4 +288,5 @@ let SIGNUP_LOGIN = "Signup"
 
 
 let METHOD_LOGIN = "login"
+let METHOD_OTP = "otp_generate"
 
