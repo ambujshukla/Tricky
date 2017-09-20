@@ -15,7 +15,6 @@ extension AAPopUp {
     
     static let demo1 = AAPopUps<String? ,String>(identifier: "PopupViewController")
     static let demo2 = AAPopUps<String? ,String>("Main" ,identifier: "PopupViewController")
-    
 }
 
 

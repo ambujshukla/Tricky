@@ -78,7 +78,7 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
         
         self.txtChat.backgroundColor = UIColor.clear
         
-        self.viewBottom.layer.cornerRadius = 20
+        self.viewBottom.layer.cornerRadius = 25
     }
     
     func doClickBack(){

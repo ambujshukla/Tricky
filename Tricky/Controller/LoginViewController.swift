@@ -9,23 +9,17 @@
 import UIKit
 import Localize_Swift
 import ObjectMapper
+import ActionSheetPicker_3_0
 
 class LoginViewController: UIViewController
 {
     @IBOutlet  var txtMobile : UITextField!
-  //  @IBOutlet  var txtPassword : UITextField!
     
     @IBOutlet  var btnLogin : UIButton!
     @IBOutlet  var btnForgotPassword : UIButton!
     @IBOutlet  var btnSignup : UIButton!
     @IBOutlet  var btnDontAccount : UIButton!
-    
-    @IBOutlet  var imgMobile : UIImageView!
-  //@IBOutlet  var imgPassword : UIImageView!
-    
     @IBOutlet  var imgSeparator1 : UIImageView!
-  //@IBOutlet  var imgSeparator2 : UIImageView!
-    
     @IBOutlet var imgBg : UIImageView!
     
     
@@ -47,9 +41,6 @@ class LoginViewController: UIViewController
         self.btnLogin.setTitleColor(UIColor.darkGray, for: .normal)
         
         self.imgBg.image = UIImage(named : LOGIN_BG)
-        
-        self.imgMobile.image = UIImage(named : MOBILE_ICON)
-       // self.imgPassword.image = UIImage(named : PASSWORD_ICON)
         
         self.btnForgotPassword.setTitle("txt_forgot_password".localized(), for: .normal)
         self.btnForgotPassword.titleLabel?.textColor = UIColor.white
@@ -141,6 +132,27 @@ class LoginViewController: UIViewController
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
+    
+    @IBAction func doClickCountryCode(sender : UIButton)
+    {
+                ActionSheetMultipleStringPicker.show(withTitle: "Select Code", rows: [
+                    self.arrCountryCode
+                    ], initialSelection: [0], doneBlock: {
+                        picker, indexes, values in
+        
+                        if let arrValue = values as? [String] {
+                            let string = arrValue[0]
+                            if let range = string.range(of: "(") {
+                                let index = string.index(string.endIndex, offsetBy: -1)
+                                let firstPart = string[range.upperBound..<index]
+                                self.btnCountryCode.setTitle(firstPart, for: .normal)
+                                print(firstPart) // print Hello
+                            }
+                        }
+                        return
+                }, cancel: { ActionMultipleStringCancelBlock in return }, origin: sender)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
