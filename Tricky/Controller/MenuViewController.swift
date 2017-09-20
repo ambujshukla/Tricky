@@ -20,7 +20,7 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
     @IBOutlet weak var lblSent : UILabel!
     @IBOutlet weak var lblReceived : UILabel!
     private var tap: UITapGestureRecognizer!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -36,7 +36,7 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
         self.tap = UITapGestureRecognizer.init(target: self, action: #selector(doClickProfile(tapG:)))
         self.tap.delegate = self
         self.view.addGestureRecognizer(self.tap)
-            
+        
         self.imgProfile.layer.cornerRadius = self.imgProfile.frame.size.width / 2
         self.imgProfile.layer.masksToBounds = true
         
@@ -75,9 +75,9 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MenuTableViewCell
-       // let label = cell.contentView.viewWithTag(10) as! UILabel!
-       // let swOnOff = cell.contentView.viewWithTag(11) as! PWSwitch!
-       
+        // let label = cell.contentView.viewWithTag(10) as! UILabel!
+        // let swOnOff = cell.contentView.viewWithTag(11) as! PWSwitch!
+        
         if indexPath.row == 6 || indexPath.row == 7 || indexPath.row == 8 {
             cell.switchPW?.isHidden = false
         }
@@ -91,19 +91,19 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            //        else if (indexPath.row == 6) {
-            //
-            //            let vc = self.storyboard?.instantiateViewController(withIdentifier: "PostViewController") as! PostViewController
-            //            let contrlHome = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-            //            let navController = UINavigationController.init()
-            //            navController.setViewControllers([contrlHome , vc], animated: true)
-            //            self.revealViewController().pushFrontViewController(navController, animated: true)
-            //        }
-            
-         if (indexPath.row == 0) {
+        //        else if (indexPath.row == 6) {
+        //
+        //            let vc = self.storyboard?.instantiateViewController(withIdentifier: "PostViewController") as! PostViewController
+        //            let contrlHome = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+        //            let navController = UINavigationController.init()
+        //            navController.setViewControllers([contrlHome , vc], animated: true)
+        //            self.revealViewController().pushFrontViewController(navController, animated: true)
+        //        }
+        
+        if (indexPath.row == 0) {
             
             self.revealViewController().revealToggle(animated: true)
-
+            
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "BlockUserListViewIdentifier") as! BlockUserListViewController
             let contrlHome = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
             let navController = UINavigationController.init()
@@ -111,27 +111,23 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
             self.revealViewController().pushFrontViewController(navController, animated: true)
         }else if (indexPath.row == 1)
         {
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "BlockUserListViewIdentifier") as! BlockUserListViewController
-            let contrlHome = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-            let navController = UINavigationController.init()
-            navController.setViewControllers([contrlHome , vc], animated: true)
-            self.revealViewController().pushFrontViewController(navController, animated: true)
+//            let vc = self.storyboard?.instantiateViewController(withIdentifier: "BlockUserListViewIdentifier") as! BlockUserListViewController
+//            let contrlHome = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+//            let navController = UINavigationController.init()
+//            navController.setViewControllers([contrlHome , vc], animated: true)
+//            self.revealViewController().pushFrontViewController(navController, animated: true)
+            self.doNavigateToContactsView(showContactsFrom: 1)
         }
-        else if (indexPath.row == 2) {
-            
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "ContactViewController") as! ContactViewController
-            vc.isFromMenu = true
-            let contrlHome = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-            let navController = UINavigationController.init()
-            navController.setViewControllers([contrlHome , vc], animated: true)
-            self.revealViewController().pushFrontViewController(navController, animated: true)
+        else if (indexPath.row == 2)
+        {
+          self.doNavigateToContactsView(showContactsFrom: 2)
         }else if (indexPath.row == 3) {
-            
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "FavouriteViewController") as! FavouriteViewController
-            let contrlHome = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-            let navController = UINavigationController.init()
-            navController.setViewControllers([contrlHome , vc], animated: true)
-            self.revealViewController().pushFrontViewController(navController, animated: true)
+            self.doNavigateToContactsView(showContactsFrom: 3)
+//            let vc = self.storyboard?.instantiateViewController(withIdentifier: "FavouriteViewController") as! FavouriteViewController
+//            let contrlHome = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+//            let navController = UINavigationController.init()
+//            navController.setViewControllers([contrlHome , vc], animated: true)
+//            self.revealViewController().pushFrontViewController(navController, animated: true)
         }else if(indexPath.row == 4)
         {
         }else if(indexPath.row == 5)
@@ -141,12 +137,23 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
             let navController = UINavigationController.init()
             navController.setViewControllers([contrlHome , controller], animated: true)
             self.revealViewController().pushFrontViewController(navController, animated: true)
-         }else  if (indexPath.row == 9)
-         {
+        }else  if (indexPath.row == 9)
+        {
             //  self.dismiss(animated: true, completion: nil)
             self.revealViewController().revealToggle(animated: true)
             NotificationCenter.default.post(name: Notification.Name("logoutAlert"), object: nil)
         }
+    }
+    
+    func doNavigateToContactsView(showContactsFrom : Int)
+    {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ContactViewController") as! ContactViewController
+        vc.isFromMenu = true
+        vc.contactShowFrom = showContactsFrom
+        let contrlHome = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+        let navController = UINavigationController.init()
+        navController.setViewControllers([contrlHome , vc], animated: true)
+        self.revealViewController().pushFrontViewController(navController, animated: true)
     }
     
     @IBAction func doClickProfile(tapG : UITapGestureRecognizer)

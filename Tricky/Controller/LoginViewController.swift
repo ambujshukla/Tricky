@@ -86,6 +86,10 @@ class LoginViewController: UIViewController
     
     func doCallWebAPIForLogin()
     {
+        let controller = self.storyboard?.instantiateViewController(withIdentifier: "SWRevealViewController") as! SWRevealViewController
+        self.present(controller, animated: true, completion: nil)
+        return
+        
         let dictData = ["mobileNo" :(self.txtMobile.text!) /*,"password":self.txtPassword!.text!*/,"deviceToken":"324343434343434343" , "countryCode" : "+91"] as [String : Any]
         print(dictData)
         
