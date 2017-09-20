@@ -33,16 +33,16 @@ class CreateNewPostViewController: UIViewController {
     
 
     func decorateUI () {
-        self.imgBg.image = UIImage(named : MESSAGE_SEND_BG)
-        self.btnCreate.layer.borderColor = UIColor.white.cgColor
-        self.btnCreate.layer.borderWidth = 1.0
-        self.btnCreate.layer.masksToBounds = true
+        self.imgBg.image = UIImage(named : CREATE_POST_BG)
+      //  self.btnCreate.layer.borderColor = UIColor.white.cgColor
+      //  self.btnCreate.layer.borderWidth = 1.0
+      //  self.btnCreate.layer.masksToBounds = true
         CommanUtility.decorateNavigationbarWithBackButton(target: self, strTitle: "John smith", strBackButtonImage: BACK_BUTTON, selector: #selector(self.goTOBack), color: color(red: 147, green: 108, blue: 234))
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        self.navigationController?.navigationBar.barTintColor = color(red: 147, green: 108, blue: 234)
+        self.navigationController?.navigationBar.barTintColor = color(red: 36, green: 149, blue: 178)
     }
     
     func goTOBack()
@@ -52,15 +52,12 @@ class CreateNewPostViewController: UIViewController {
     }
     @IBAction func doClickSend()
     {
-        
-
-        
         guard let text = self.txtViewComment.text, !text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty else {
             CommonUtil.showTotstOnWindow(strMessgae: "txt_please_enter_post".localized())
             return
         }
         
-            let params = ["userId" : "19","postMessage" : self.txtViewComment.text, "postAsAnonomous" : "0", "version" : "1.0", "os" : "iOS", "language" : "English"] as [String : Any]
+            let params = ["userId" : UserManager.sharedUserManager.userId!,"postMessage" : self.txtViewComment.text, "postAsAnonomous" : "0", "version" : "1.0", "os" : "iOS", "language" : "English"] as [String : Any]
             WebAPIManager.sharedWebAPIMAnager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "CreatePost", parameter: params, success: { (responseObject) in
                 print(responseObject)
                 if responseObject["status"] as! String == "1"

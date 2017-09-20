@@ -2700,8 +2700,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dqU-nH-dHb">
-                                <rect key="frame" x="128" y="422" width="65" height="64"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dqU-nH-dHb">
+                                <rect key="frame" x="128" y="422" width="65" height="65"/>
                                 <state key="normal" image="sendmsgicon_purple"/>
                                 <connections>
                                     <action selector="doClickSend" destination="Ok2-wG-2bA" eventType="touchUpInside" id="gKB-mm-0N9"/>
@@ -2888,28 +2888,18 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" red="0.22352941179999999" green="0.37254901959999998" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Leave a message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FEp-Yd-Aux">
-                                <rect key="frame" x="40" y="81" width="213" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="dj2-fT-fib"/>
-                                    <constraint firstAttribute="width" constant="213" id="w0S-Ya-A73"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="yjI-iX-g9K">
-                                <rect key="frame" x="40" y="115" width="240" height="167"/>
+                                <rect key="frame" x="40" y="124" width="240" height="331"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Please write post"/>
+                                </userDefinedRuntimeAttributes>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hep-He-lfl">
-                                <rect key="frame" x="45" y="321" width="229" height="38"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="38" id="n3s-T4-Zdf"/>
-                                </constraints>
-                                <state key="normal" title="Create"/>
+                                <rect key="frame" x="128" y="422" width="65" height="64"/>
+                                <state key="normal" image="sendmsgicon_purple"/>
                                 <connections>
                                     <action selector="doClickSend" destination="lnL-Ih-dLu" eventType="touchUpInside" id="L3X-8l-cah"/>
                                 </connections>
@@ -2917,19 +2907,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="yjI-iX-g9K" firstAttribute="height" secondItem="jUw-FZ-0ru" secondAttribute="height" multiplier="331:568" id="0Vi-ek-RkP"/>
                             <constraint firstItem="kEb-yX-uTQ" firstAttribute="top" secondItem="jUw-FZ-0ru" secondAttribute="top" id="1bj-XH-EvE"/>
+                            <constraint firstItem="yjI-iX-g9K" firstAttribute="width" secondItem="jUw-FZ-0ru" secondAttribute="width" multiplier="240:320" id="7up-2B-UTl"/>
+                            <constraint firstItem="Hep-He-lfl" firstAttribute="top" secondItem="jUw-FZ-0ru" secondAttribute="bottom" multiplier="422:568" id="9Cm-V3-jhV"/>
                             <constraint firstAttribute="trailing" secondItem="kEb-yX-uTQ" secondAttribute="trailing" id="GUB-9T-NNy"/>
-                            <constraint firstItem="Hep-He-lfl" firstAttribute="top" secondItem="jUw-FZ-0ru" secondAttribute="bottom" multiplier="321:568" id="HSA-Gx-uMk"/>
-                            <constraint firstItem="Hep-He-lfl" firstAttribute="centerX" secondItem="jUw-FZ-0ru" secondAttribute="centerX" id="HTW-WM-DbU"/>
+                            <constraint firstItem="yjI-iX-g9K" firstAttribute="centerX" secondItem="jUw-FZ-0ru" secondAttribute="centerX" id="Lrz-HU-Utc"/>
                             <constraint firstItem="ZS9-d9-jcy" firstAttribute="top" secondItem="kEb-yX-uTQ" secondAttribute="bottom" id="Nkv-1R-nDg"/>
                             <constraint firstItem="kEb-yX-uTQ" firstAttribute="leading" secondItem="jUw-FZ-0ru" secondAttribute="leading" id="S4b-hI-U98"/>
-                            <constraint firstItem="yjI-iX-g9K" firstAttribute="height" secondItem="jUw-FZ-0ru" secondAttribute="height" multiplier="167:568" id="SXm-ya-mS9"/>
-                            <constraint firstItem="yjI-iX-g9K" firstAttribute="top" secondItem="jUw-FZ-0ru" secondAttribute="bottom" multiplier="115:568" id="am2-xz-CgX"/>
-                            <constraint firstItem="FEp-Yd-Aux" firstAttribute="top" secondItem="jUw-FZ-0ru" secondAttribute="bottom" multiplier="81:568" id="iKC-eN-7XA"/>
-                            <constraint firstItem="yjI-iX-g9K" firstAttribute="width" secondItem="jUw-FZ-0ru" secondAttribute="width" multiplier="240:320" id="jPC-tf-9Cg"/>
-                            <constraint firstItem="yjI-iX-g9K" firstAttribute="centerX" secondItem="jUw-FZ-0ru" secondAttribute="centerX" id="k2D-XC-wgJ"/>
-                            <constraint firstItem="Hep-He-lfl" firstAttribute="width" secondItem="jUw-FZ-0ru" secondAttribute="width" multiplier="229:320" id="rDa-9q-EyB"/>
-                            <constraint firstItem="FEp-Yd-Aux" firstAttribute="leading" secondItem="yjI-iX-g9K" secondAttribute="leading" id="sDS-aP-wB4"/>
+                            <constraint firstItem="Hep-He-lfl" firstAttribute="centerX" secondItem="jUw-FZ-0ru" secondAttribute="centerX" id="W8y-w2-age"/>
+                            <constraint firstItem="yjI-iX-g9K" firstAttribute="top" secondItem="jUw-FZ-0ru" secondAttribute="bottom" multiplier="124:568" id="vo1-hQ-HnK"/>
                         </constraints>
                     </view>
                     <connections>
