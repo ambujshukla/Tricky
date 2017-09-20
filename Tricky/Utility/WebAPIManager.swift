@@ -29,12 +29,47 @@ class WebAPIManager: NSObject {
     }
 
     
+    func doCallServiceForTesting(strURL : String , strServiceName : String , parameter : [String : Any] , success: @escaping (_ obj : [String: Any]) -> Void , failure: @escaping (_ error: NSError?) -> Void){
+        
+        var request = URLRequest(url: URL(string: "\(strURL)\(strServiceName)")!)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        let values = parameter
+        request.httpBody = try! JSONSerialization.data(withJSONObject: values)
+        
+        Alamofire.request(request)
+            .responseJSON { response in
+                // do whatever you want here
+                switch response.result {
+                case .failure(let error):
+                    print(error)
+                    
+                    if let data = response.data, let responseString = String(data: data, encoding: .utf8) {
+                        print(responseString)
+                    }
+                    failure(response.result.error! as NSError?)
+
+                    
+                case .success(let responseObject):
+                    print(responseObject)
+                    if let json = response.result.value {
+                        success(json as! [String : Any])
+                    }
+                    else{
+                        failure(response.result.error! as NSError?)
+                    }
+
+                }
+        }
+    }
+    
+    
     func doCallWebAPIForPOST (strURL : String , strServiceName : String , parameter : [String : Any] , success: @escaping (_ obj : [String: Any]) -> Void , failure: @escaping (_ error: NSError?) -> Void)
     {
        let completeURL = "\(strURL)\(strServiceName)"
       CommonUtil.showLoader()
         
-        Alamofire.request(completeURL, method: .post, parameters: parameter, encoding: URLEncoding.default , headers: nil).responseJSON { response in
+        Alamofire.request(completeURL, method: .post, parameters : parameter, encoding: URLEncoding.default , headers: nil).responseJSON { response in
         
             print("Request: \(String(describing: response.request))")   // original url request
             print("Response: \(String(describing: response.response))") // http url response

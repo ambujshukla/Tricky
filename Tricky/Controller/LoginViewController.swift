@@ -28,6 +28,7 @@ class LoginViewController: UIViewController
     
     @IBOutlet var imgBg : UIImageView!
     
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -37,7 +38,7 @@ class LoginViewController: UIViewController
     func decorateUI()
     {
         //self.txtPassword.text = "123456"
-        self.txtMobile.text = "9993880850"
+        self.txtMobile.text = "9039395421"
         
         self.title = "txt_login".localized()
 
@@ -85,46 +86,44 @@ class LoginViewController: UIViewController
         {
             CommonUtil.showTotstOnWindow(strMessgae: message)
         }else{
-            self.doCallWebAPIForLogin()
+            self.doCallServiceForGenrateOTP()
         }
         print(boolValue,message)
     }
     
-    func doCallWebAPIForLogin()
-    {
-        let dictData = ["mobileNo" :(self.txtMobile.text!) /*,"password":self.txtPassword!.text!*/,"deviceToken":"324343434343434343" , "otp" : "1234" , "countryCode" : "+91"] as [String : Any]
+    func doCallServiceForGenrateOTP() {
+        
+        let dictData = ["mobileNo" :(self.txtMobile.text!) , "countryCode" : "+91"] as [String : Any]
         print(dictData)
         
-        WebAPIManager.sharedWebAPIMAnager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: METHOD_LOGIN, parameter: dictData , success: { (obj) in
+        WebAPIManager.sharedWebAPIMAnager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: METHOD_OTP, parameter: dictData , success: { (obj) in
             print("this is object \(obj)")
             
-            let loginData = Mapper<LoginModel>().map(JSON: obj)
+            let OTPData = Mapper<OTPModel>().map(JSON: obj)
             
-            if (loginData?.status == "1")
+            if (OTPData?.status == "1")
             {
-                UserManager.sharedUserManager.doSetLoginData(userData: (loginData?.responseData?[0])!)
-                self.goTOHomeScreen()
+                self.goTOHomeScreen(OTPData : OTPData!)
             }
             else
             {
-                CommonUtil.showTotstOnWindow(strMessgae: (loginData?.responseMessage)!)
+                CommonUtil.showTotstOnWindow(strMessgae: (OTPData?.responseMessage)!)
             }
             
             
         }) { (error) in
             CommonUtil.showTotstOnWindow(strMessgae: (error?.localizedDescription)!)
-        }
-    }
-
+        }    }
     
-    func goTOHomeScreen()
+    
+    func goTOHomeScreen(OTPData : OTPModel)
     {
         
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "VerifyOTPController") as! VerifyOTPController
-        vc.isFromSignUp = true
+        vc.isFromSignUp = false
+        vc.strMobileNo = self.txtMobile.text
+        vc.strOTP = "\(String(describing: OTPData.otp!))"
         self.navigationController?.pushViewController(vc, animated: true)
-//        let controller = self.storyboard?.instantiateViewController(withIdentifier: "SWRevealViewController") as! SWRevealViewController
-//        self.present(controller, animated: true, completion: nil)
     }
     
     @IBAction func doClickForgotPassword(sender: UIButton)

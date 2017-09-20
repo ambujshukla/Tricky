@@ -114,36 +114,63 @@ class SignUpViewController: UIViewController {
         self.btnTnC.isSelected = !self.btnTnC.isSelected
     }
     
-    func doCallWebAPIForRegistration()
-    {
-        let dictData = ["version" : "1.0" , "os" : "ios" , "language" : "english" , "mobileNo": self.txtMobile.text!  , "url":self.txtLink.text! , "deviceToken" : "324343434343434343" , "countryCode" : "+91"] as [String : Any]
+    
+    func doCallServiceForGenrateOTP() {
         
-        WebAPIManager.sharedWebAPIMAnager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "register", parameter: dictData , success: { (obj) in
-            let regData = Mapper<RegistrationModel>().map(JSON: obj)
+        let dictData = ["mobileNo" :(self.txtMobile.text!) , "countryCode" : "+91"] as [String : Any]
+        print(dictData)
+        
+        WebAPIManager.sharedWebAPIMAnager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: METHOD_OTP, parameter: dictData , success: { (obj) in
+            print("this is object \(obj)")
             
-            if (regData?.status == "1")
+            let OTPData = Mapper<OTPModel>().map(JSON: obj)
+            
+            if (OTPData?.status == "1")
             {
-                UserManager.sharedUserManager.doSetLoginData(userData: (regData?.responseData?[0])!)
-                self.goTOVerifyScreen()
+                self.goTOVerifyScreen(OTPData : OTPData!)
             }
             else
             {
-                CommonUtil.showTotstOnWindow(strMessgae: (regData?.responseMessage)!)
+                CommonUtil.showTotstOnWindow(strMessgae: (OTPData?.responseMessage)!)
             }
             
-            print("this is object \(obj)")
+            
         }) { (error) in
             CommonUtil.showTotstOnWindow(strMessgae: (error?.localizedDescription)!)
-            
-        }
-    }
+        }    }
     
-    func goTOVerifyScreen() {
-        
+
+    
+//    func doCallWebAPIForRegistration()
+//    {
+//        let dictData = ["version" : "1.0" , "os" : "ios" , "language" : "english" , "mobileNo": self.txtMobile.text!  , "url":self.txtLink.text! , "deviceToken" : "324343434343434343" , "countryCode" : "+91"] as [String : Any]
+//        
+//        WebAPIManager.sharedWebAPIMAnager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "register", parameter: dictData , success: { (obj) in
+//            let regData = Mapper<RegistrationModel>().map(JSON: obj)
+//            
+//            if (regData?.status == "1")
+//            {
+//                UserManager.sharedUserManager.doSetLoginData(userData: (regData?.responseData?[0])!)
+//                self.goTOVerifyScreen(OTPData: <#OTPModel#>)
+//            }
+//            else
+//            {
+//                CommonUtil.showTotstOnWindow(strMessgae: (regData?.responseMessage)!)
+//            }
+//            
+//            print("this is object \(obj)")
+//        }) { (error) in
+//            CommonUtil.showTotstOnWindow(strMessgae: (error?.localizedDescription)!)
+//        }
+//    }
+    
+    func goTOVerifyScreen(OTPData : OTPModel) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "VerifyOTPController") as! VerifyOTPController
         vc.isFromSignUp = true
+        vc.strMobileNo = self.txtMobile.text
+        vc.strLink = self.txtLink.text
+        vc.strOTP = "\(String(describing: OTPData.otp!))"
         self.navigationController?.pushViewController(vc, animated: true)
-        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -171,7 +198,7 @@ class SignUpViewController: UIViewController {
     
     @IBAction func doClickRegister()
     {
-        self.doCallWebAPIForRegistration()
+        self.doCallServiceForGenrateOTP()
     }
     
     //    @IBAction func doClickChangeProfilePic()
