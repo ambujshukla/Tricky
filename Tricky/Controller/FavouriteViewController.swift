@@ -58,7 +58,7 @@ class FavouriteViewController: UIViewController , UITableViewDelegate , UITableV
     func doCallServiceForFavouriteMessage(){
         
         let dictParam = ["userId" : UserManager.sharedUserManager.userId!] as [String : Any]
-         WebAPIManager.sharedWebAPIMAnager.doCallWebAPIForPOST(strURL: kBaseUrl , strServiceName: "favoriteMsg", parameter: dictParam , success: { (obj) in
+         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl , strServiceName: "favoriteMsg", parameter: dictParam , success: { (obj) in
         print("this is object \(obj)")
     }) { (error) in
         

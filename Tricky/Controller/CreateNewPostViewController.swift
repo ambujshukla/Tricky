@@ -58,7 +58,7 @@ class CreateNewPostViewController: UIViewController {
         }
         
             let params = ["userId" : UserManager.sharedUserManager.userId!,"postMessage" : self.txtViewComment.text, "postAsAnonomous" : "0", "version" : "1.0", "os" : "iOS", "language" : "English"] as [String : Any]
-            WebAPIManager.sharedWebAPIMAnager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "CreatePost", parameter: params, success: { (responseObject) in
+            WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "CreatePost", parameter: params, success: { (responseObject) in
                 print(responseObject)
                 if responseObject["status"] as! String == "1"
                 {

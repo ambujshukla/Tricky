@@ -33,7 +33,7 @@ class LoginViewController: UIViewController
     func decorateUI()
     {
         //self.txtPassword.text = "123456"
-        self.txtMobile.text = "9039395421"
+        self.txtMobile.text = "8770236795"
         self.btnCountryCode.setTitle("+91", for: .normal)
         
         self.title = "txt_login".localized()
@@ -89,7 +89,7 @@ class LoginViewController: UIViewController
         let dictData = ["mobileNo" :(self.txtMobile.text!) , "countryCode" : "+91"] as [String : Any]
         print(dictData)
         
-        WebAPIManager.sharedWebAPIMAnager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: METHOD_OTP, parameter: dictData , success: { (obj) in
+        WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: METHOD_OTP, parameter: dictData , success: { (obj) in
             print("this is object \(obj)")
             
             let OTPData = Mapper<OTPModel>().map(JSON: obj)

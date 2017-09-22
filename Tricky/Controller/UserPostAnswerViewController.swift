@@ -53,7 +53,7 @@ class UserPostAnswerViewController: UIViewController {
         
         let dictData = ["version" : "1.0" , "type" : "1"  , "message": self.txtViewComment.text!  , "userId" : "19","receiverId" : self.strUserId] as [String : Any]
         
-        WebAPIManager.sharedWebAPIMAnager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "sendMessage", parameter: dictData , success: { (obj) in
+        WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "sendMessage", parameter: dictData , success: { (obj) in
             
             print(obj)
             let sendMessageData  = Mapper<SendMessageModel>().map(JSON: obj)
