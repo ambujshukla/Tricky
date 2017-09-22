@@ -80,7 +80,7 @@ class CreateNewPostViewController: UIViewController {
     func doCallServiceForPostReply() {
         
         let params = ["userId" : UserManager.sharedUserManager.userId!,"postReply" : self.txtViewComment.text, "postId" : self.strPostID, "version" : "1.0", "os" : "2", "language" : "english"] as [String : Any]
-        WebAPIManager.sharedWebAPIMAnager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "createPostReply", parameter: params, success: { (responseObject) in
+        WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "createPostReply", parameter: params, success: { (responseObject) in
             print(responseObject)
             if responseObject["status"] as! String == "1"
             {
@@ -100,7 +100,7 @@ class CreateNewPostViewController: UIViewController {
     func doCallServiceForCreatePost() {
         
         let params = ["userId" : UserManager.sharedUserManager.userId!,"postMessage" : self.txtViewComment.text, "postAsAnonomous" : "0", "version" : "1.0", "os" : "2", "language" : "English"] as [String : Any]
-        WebAPIManager.sharedWebAPIMAnager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "CreatePost", parameter: params, success: { (responseObject) in
+        WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "CreatePost", parameter: params, success: { (responseObject) in
             print(responseObject)
             if responseObject["status"] as! String == "1"
             {
