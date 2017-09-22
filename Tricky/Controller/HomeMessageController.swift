@@ -49,7 +49,6 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
         }
     }
     
-    
     func doCallServiceForFavouriteMessage(){
         
         let dictParam = ["userId" : UserManager.sharedUserManager.userId!] as [String : Any]

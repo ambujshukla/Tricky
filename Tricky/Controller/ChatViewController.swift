@@ -41,7 +41,9 @@ class ChatViewController: UIViewController  , UITableViewDataSource , UITableVie
     
     func doCallWebServiceForGetChatList(){
         
-        let dictData = ["userId" : "47"]
+
+        
+        let dictData = ["userId" : UserManager.sharedUserManager.userId! , "os" : "2" , "version" : "1.0" , "language" : "english" , "limit" : "10" , "offset" : "0"] as [String : Any]
         
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl , strServiceName: "chatList", parameter: dictData, success: { (obj) in
             print(obj)
