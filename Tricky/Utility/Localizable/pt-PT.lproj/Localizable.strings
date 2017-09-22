@@ -37,3 +37,5 @@
 
 "txt_please_enter_post" = "Please enter post message.";
 "txt_success_post" = "Successfully Posted.";
+"txt_contacts" = "Contacts";
+"txt_favorite" = "Favorite";

@@ -68,7 +68,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDa
     {
         let dictData = ["version" : "1.0" , "os" : "ios" , "language" : "english","userId":"61"]
         
-        WebAPIManager.sharedWebAPIMAnager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "getProfile", parameter: dictData , success: { (obj) in
+        WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "getProfile", parameter: dictData , success: { (obj) in
             
             if (obj["status"] as! String == "1")
             {
@@ -250,7 +250,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDa
         //UpdateProfile
         let dictData = ["version" : "1.0" , "os" : "ios" , "language" : "english","userId":"61", "mobileNo" : self.dictData["1"]!,"fullName" : self.dictData["0"]!] as [String : Any]
         
-        WebAPIManager.sharedWebAPIMAnager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "UpdateProfile", parameter: dictData , success: { (obj) in
+        WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "UpdateProfile", parameter: dictData , success: { (obj) in
             
             if (obj["status"] as! String == "1")
             {

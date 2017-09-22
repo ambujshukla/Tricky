@@ -45,7 +45,7 @@ class ChatViewController: UIViewController  , UITableViewDataSource , UITableVie
         
         let dictData = ["userId" : UserManager.sharedUserManager.userId! , "os" : "2" , "version" : "1.0" , "language" : "english" , "limit" : "10" , "offset" : "0"] as [String : Any]
         
-        WebAPIManager.sharedWebAPIMAnager.doCallWebAPIForPOST(strURL: kBaseUrl , strServiceName: "chatList", parameter: dictData, success: { (obj) in
+        WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl , strServiceName: "chatList", parameter: dictData, success: { (obj) in
             print(obj)
             if (obj["status"] as! String == "1"){
                 let chatData = obj["responseData"]

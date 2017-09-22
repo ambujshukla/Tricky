@@ -14,7 +14,7 @@ class WebAPIManager: NSObject {
 
     //MARK :- Shared Instance
     
-    class var  sharedWebAPIMAnager: WebAPIManager {
+    class var  sharedWebAPIManager: WebAPIManager {
         struct Static
         {
             static var instance : WebAPIManager? = nil
