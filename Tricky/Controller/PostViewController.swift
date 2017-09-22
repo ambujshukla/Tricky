@@ -23,7 +23,6 @@ class PostViewController: UIViewController , UITableViewDelegate , UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         self.decorateUI()
-        self.doCallWS()
     }
     
     override func didReceiveMemoryWarning() {
@@ -80,6 +79,19 @@ class PostViewController: UIViewController , UITableViewDelegate , UITableViewDa
     }
 
     
+    func doActionOnReply(sender : UIButton) {
+    let controller = self.storyboard?.instantiateViewController(withIdentifier: "CreateNewPostViewController") as! CreateNewPostViewController
+        controller.isPostReply = true
+        let postID : String = self.arrPostListData[sender.tag]["postId"] as! String
+        controller.strPostID = postID
+        self.navigationController?.pushViewController(controller, animated: true)
+        
+    }
+    
+    func doActionOnShare(sender : UIButton){
+        
+    }
+    
     //MARK: - Tableview delegate and datasource methods
     func numberOfSections(in tableView: UITableView) -> Int {
         
@@ -97,6 +109,10 @@ class PostViewController: UIViewController , UITableViewDelegate , UITableViewDa
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell1", for: indexPath) as! PostTableViewCell
         cell.decorateTableView(dictData: self.arrPostListData[indexPath.row])
+        cell.btnReply.tag = indexPath.row
+        cell.btnShare.tag = indexPath.row
+        cell.btnReply.addTarget(self, action: #selector(self.doActionOnReply(sender:)), for: .touchUpInside)
+        cell.btnShare.addTarget(self, action: #selector(self.doActionOnShare(sender:)), for: .touchUpInside)
         cell.selectionStyle = .none
         return cell
     }
@@ -117,16 +133,16 @@ class PostViewController: UIViewController , UITableViewDelegate , UITableViewDa
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
         let lastElement = arrPostListData.count - 1
-        if indexPath.row == lastElement{
-        
-        if self.totalCount != self.arrPostListData.count {
-          self.offSet += 10
-          self.createNewPost()
-        self.hideAndShowFotterView(isHideFotter: false, isAnimateActivityInd: true)
-        }
-        else{
-        self.hideAndShowFotterView(isHideFotter: true, isAnimateActivityInd: false)
-        }
-        }
+//        if indexPath.row == lastElement{
+//        
+//        if self.totalCount != self.arrPostListData.count {
+//          self.offSet += 10
+//          self.createNewPost()
+//        self.hideAndShowFotterView(isHideFotter: false, isAnimateActivityInd: true)
+//        }
+//        else{
+//        self.hideAndShowFotterView(isHideFotter: true, isAnimateActivityInd: false)
+//        }
+//        }
     }
 }

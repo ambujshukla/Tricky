@@ -14,6 +14,8 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var lblMessage : UILabel!
     @IBOutlet weak var lblTime : UILabel!
     @IBOutlet weak var view : UIView!
+    @IBOutlet weak var btnShare : UIButton!
+    @IBOutlet weak var btnReply : UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

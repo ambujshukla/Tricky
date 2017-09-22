@@ -33,7 +33,7 @@ class LoginViewController: UIViewController
     func decorateUI()
     {
         //self.txtPassword.text = "123456"
-        self.txtMobile.text = "7000589320"
+        self.txtMobile.text = "9039395421"
         self.btnCountryCode.setTitle("+91", for: .normal)
         
         self.title = "txt_login".localized()
