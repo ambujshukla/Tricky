@@ -2316,7 +2316,7 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="49" id="JmM-bh-aa9">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="49" id="JmM-bh-aa9" customClass="ContactTableViewCell" customModule="Tricky" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="49"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JmM-bh-aa9" id="t2E-1Z-7Tg">
@@ -2336,28 +2336,40 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="11" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MlY-CE-93Z">
                                                     <rect key="frame" x="34" y="26" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" tag="20" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="z79-ak-yoK">
+                                                <imageView hidden="YES" userInteractionEnabled="NO" tag="20" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="z79-ak-yoK">
                                                     <rect key="frame" x="283" y="11" width="26" height="26"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="26" id="SSU-hY-L9a"/>
                                                         <constraint firstAttribute="width" constant="26" id="oNf-3o-XxC"/>
                                                     </constraints>
                                                 </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DNX-DE-A3w">
+                                                    <rect key="frame" x="283" y="11" width="26" height="26"/>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="glt-hy-byy" firstAttribute="leading" secondItem="t2E-1Z-7Tg" secondAttribute="leading" constant="34" id="0HE-B2-ZY0"/>
                                                 <constraint firstAttribute="bottom" secondItem="MlY-CE-93Z" secondAttribute="bottom" constant="1.5" id="Azv-y9-I6U"/>
                                                 <constraint firstItem="z79-ak-yoK" firstAttribute="centerY" secondItem="t2E-1Z-7Tg" secondAttribute="centerY" id="JSb-mM-GhG"/>
+                                                <constraint firstItem="DNX-DE-A3w" firstAttribute="height" secondItem="z79-ak-yoK" secondAttribute="height" id="L3H-81-I2h"/>
                                                 <constraint firstItem="glt-hy-byy" firstAttribute="top" secondItem="t2E-1Z-7Tg" secondAttribute="top" constant="6" id="LKH-pO-HdW"/>
+                                                <constraint firstItem="DNX-DE-A3w" firstAttribute="centerX" secondItem="z79-ak-yoK" secondAttribute="centerX" id="Wxz-Y6-Bxm"/>
                                                 <constraint firstAttribute="trailing" secondItem="z79-ak-yoK" secondAttribute="trailing" constant="11" id="bbn-Ga-Hpa"/>
+                                                <constraint firstItem="DNX-DE-A3w" firstAttribute="width" secondItem="z79-ak-yoK" secondAttribute="width" id="gvz-eY-9aa"/>
                                                 <constraint firstItem="MlY-CE-93Z" firstAttribute="leading" secondItem="glt-hy-byy" secondAttribute="leading" id="muL-fL-b7s"/>
                                                 <constraint firstItem="MlY-CE-93Z" firstAttribute="top" secondItem="glt-hy-byy" secondAttribute="bottom" constant="-1" id="naI-JZ-PUd"/>
+                                                <constraint firstItem="DNX-DE-A3w" firstAttribute="centerY" secondItem="z79-ak-yoK" secondAttribute="centerY" id="weG-U4-9Ec"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="btnBlockOrInvite" destination="DNX-DE-A3w" id="rR8-Ta-UpM"/>
+                                            <outlet property="lblName" destination="glt-hy-byy" id="kwr-fd-rKI"/>
+                                            <outlet property="lblNumber" destination="MlY-CE-93Z" id="4Qg-hd-DFU"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>

@@ -65,7 +65,6 @@ class ContactModel: NSObject {
         for phoneNumber in contact.phoneNumbers {
             guard let phoneLabel = phoneNumber.label else { continue }
             let phone = phoneNumber.value.stringValue
-            
             phoneNumbers.append((phone,phoneLabel))
         }
         

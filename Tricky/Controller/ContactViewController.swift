@@ -1,17 +1,22 @@
-//
-//  ContactViewController.swift
-//  OTPSection
-//
-//  Created by gopalsara on 19/08/17.
-//  Copyright © 2017 gopalsara. All rights reserved.
-//
-
-import UIKit
-
-class ContactViewController: UIViewController , UITableViewDelegate , UITableViewDataSource {
+ //
+ //  ContactViewController.swift
+ //  OTPSection
+ //
+ //  Created by gopalsara on 19/08/17.
+ //  Copyright © 2017 gopalsara. All rights reserved.
+ //
+ 
+ import UIKit
+ 
+ class ContactViewController: UIViewController , UITableViewDelegate , UITableViewDataSource {
     
     var contactsArray = NSMutableArray()
     var arrSyncContacts = [[String : AnyObject]]()
+    {
+        didSet{
+            self.tblContact.reloadData()
+        }
+    }
     @IBOutlet weak var imgBg : UIImageView!
     var isFromMenu : Bool = false
     var contactShowFrom : Int = 0
@@ -57,30 +62,25 @@ class ContactViewController: UIViewController , UITableViewDelegate , UITableVie
                     }
                 }
         }
-        
         var strTitle = ""
         if (self.contactShowFrom == 1)
         {
             strTitle = "txt_block_users".localized()
             self.imgBg.image = UIImage(named : BLOCK_LIST_BG)
-        }else if(self.contactShowFrom == 2)
+        }else
         {
             strTitle = "txt_contacts".localized()
             self.imgBg.image = UIImage(named : ALL_CONTACTS_BG)
-        }else if(self.contactShowFrom == 3)
-        {
-            strTitle = "txt_favorite".localized()
         }
-        
         CommanUtility.decorateNavigationbarWithBackButton(target: self, strTitle: strTitle, strBackButtonImage: BACK_BUTTON, selector: #selector(self.goTOBack), color: color(red: 142, green: 110, blue: 137))
     }
     
     func doCallSyncContactsWS()
     {
-        var arrayTempContacts = [[String : AnyObject]]()
+        var arrayTempContacts = [[String : String]]()
         for model in self.contactsArray
         {
-            var dictContactsData = [String : AnyObject]()
+            var dictContactsData = [String : String]()
             let contact: ContactModel
             contact =  model as! ContactModel
             
@@ -89,47 +89,39 @@ class ContactViewController: UIViewController , UITableViewDelegate , UITableVie
                 let string = phoneNo.phoneNumber as AnyObject // string starts as "hello[]
                 let badchar = CharacterSet(charactersIn: "\"-() ")
                 let cleanedstring = string.components(separatedBy: badchar).joined()
-                dictContactsData["userNumber"] =  cleanedstring.stringByRemovingWhitespaces as AnyObject
-
-              //  dictContactsData["userNumber"] = cleanedstring as AnyObject
-                dictContactsData["userName"] = contact.fullName! as AnyObject
+                dictContactsData["userNumber"] =  cleanedstring.stringByRemovingWhitespaces as String
+                dictContactsData["userName"] = contact.fullName! as String
                 print(phoneNo)
                 print(dictContactsData)
             }
-            arrayTempContacts .append(dictContactsData)
+            arrayTempContacts.append(dictContactsData)
             print(contact)
         }
-        var dictDataTemp = [String : AnyObject]()
-        dictDataTemp["data"] = arrayTempContacts as AnyObject
-        
+        let data = ["data" : arrayTempContacts]
         do {
-          //  let jsonData = try JSONSerialization.data(withJSONObject: arrayTempContacts, options: .prettyPrinted)
-         //   let theJSONText = String(data: jsonData,
-                                    // encoding: .utf8)
-            let dictData = ["version" : "1.0" , "os" : "1" , "language" : "english","userId":UserManager.sharedUserManager.userId!, "requestData" : dictDataTemp] as [String : Any]
+            let jsonData = try JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
+            let theJSONText = String(data: jsonData,
+                                     encoding: .utf8)
+            
+            let dictData = ["version" : "1.0" , "os" : "2" , "language" : "english","userId":UserManager.sharedUserManager.userId!, "requestData" : theJSONText!] as [String : Any]
             print(dictData)
             WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "SyncContact", parameter: dictData, success: { (obj) in
                 if let dictContactsData = obj["responseData"] as? [[String : AnyObject]]
                 {
-                    print(dictContactsData)
-                    for dataTemp in dictContactsData
-                    {
-                        if (self.contactShowFrom == 1)
-                        {
-                            if (dataTemp["isBlock"] as! Int == 1)
-                            {
-                                self.arrSyncContacts.append(dataTemp)
-                            }
-                        }else if (self.contactShowFrom == 2)
-                        {
-                            self.arrSyncContacts.append(dataTemp)
-                        }else
-                        {
-                            self.arrSyncContacts.append(dataTemp)
-                        }
-                        print(dataTemp)
+                    self.arrSyncContacts.append(contentsOf: dictContactsData)
+                    
+                    if (self.contactShowFrom == 1){
+                        self.doFilterBlockContactLis()
                     }
-                    self.tblContact.reloadData()
+                    else if (self.contactShowFrom == 2)
+                    {
+                        self.doFilterAllContactWhichIsNotBlock()
+                    }
+                    else if (self.contactShowFrom == 3)
+                    {
+                        self.doFilterIsOnAppData()
+                    }
+                    
                 }
                 print(obj)
             }) { (error) in
@@ -140,75 +132,49 @@ class ContactViewController: UIViewController , UITableViewDelegate , UITableVie
         }
     }
     
+    func doFilterIsOnAppData(){
+        self.arrSyncContacts = self.arrSyncContacts.filter{ (($0["isOnApp"] as AnyObject)) as! NSNumber == 1 }
+    }
+    
+    func doFilterBlockContactLis() {
+        self.arrSyncContacts = self.arrSyncContacts.filter{ (($0["isBlock"] as AnyObject)) as! NSNumber == 1 }
+    }
+    
+    func doFilterAllContactWhichIsNotBlock() {
+        self.arrSyncContacts = self.arrSyncContacts.filter{ (($0["isBlock"] as AnyObject)) as! NSNumber != 1 }
+    }
+    
     func goTOBack()
     {
         self.navigationController?.popViewController(animated: true)
     }
-    
     // MARK: - Table View DataSource
     
-    func numberOfSections(in tableView: UITableView) -> Int
-    {
+    func numberOfSections(in tableView: UITableView) -> Int{
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return self.arrSyncContacts.count
-        //        if self.isFromMenu
-        //        {
-        //        }
-        //        let  contact =  self.contactsArray[section] as! ContactModel
-        //        return contact.phoneNumbers.count
     }
     
     // MARK: - Table View Delegates
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as UITableViewCell
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ContactTableViewCell
         let dataContacts = self.arrSyncContacts[indexPath.row]
-        let label = cell.contentView.viewWithTag(10) as! UILabel!
-        label?.text = dataContacts["userName"] as? String
         
-        let labelPhNo = cell.contentView.viewWithTag(11) as! UILabel!
-        labelPhNo?.textColor = UIColor.white
-        labelPhNo?.text = dataContacts["userNumber"] as? String
-        let imgStatus = cell.contentView.viewWithTag(20) as! UIImageView!
-        if self.isFromMenu {
-            let isBlock = dataContacts["isBlock"] as! Bool
+        if self.contactShowFrom == 1 {
+          cell.setBlockContactListData(dictData: dataContacts)
             
-            if (isBlock)
-            {
-                imgStatus?.image = UIImage(named: "unblockicon")
-            }else
-            {
-                imgStatus?.image = UIImage(named: "blockselecticon")
-            }
-            imgStatus?.isUserInteractionEnabled = true
-            imgStatus?.tag = indexPath.row
-            let tap = UITapGestureRecognizer(target: self, action: #selector(doBlockOrUnblockUser(tapG:)))
-            imgStatus?.addGestureRecognizer(tap)
-
+        } else if (self.contactShowFrom == 2){
+           cell.setCompleteContactListDataOn(dictData: dataContacts)
+        } else{
+           cell.setAppUserContactListData(dictData: dataContacts)
         }
-        //        }
-        //    else
-        //        {
-        //            let  contact =  self.contactsArray[indexPath.section] as! ContactModel
-        //            let label = cell.contentView.viewWithTag(10) as! UILabel!
-        //            label?.text = contact.fullName
-        //            let labelPhNo = cell.contentView.viewWithTag(11) as! UILabel!
-        //            let phoneNoData = contact.phoneNumbers[indexPath.row]
-        //            labelPhNo?.text = phoneNoData.phoneNumber
-        //            labelPhNo?.textColor = UIColor.white
-        //            let imgStatus = cell.contentView.viewWithTag(20) as! UIImageView!
-        //            if (self.contactShowFrom == 1)
-        //            {
-        //                imgStatus?.image = UIImage(named : "blockselecticon")
-        //            }
-        //            // self.doCheckIfBlockOrUnblock(strPhoneNo: phoneNoData.phoneNumber,imgView: imgStatus!)
-        //            print("")
-        //        }
+        cell.btnBlockOrInvite.tag = indexPath.row
+        cell.btnBlockOrInvite.addTarget(self, action: #selector(self.doBlockOrUnblockUser(sender:)), for: .touchUpInside)
         cell.selectionStyle = .none
         return cell
     }
@@ -225,60 +191,43 @@ class ContactViewController: UIViewController , UITableViewDelegate , UITableVie
         }
     }
     
-    func doCheckIfBlockOrUnblock(strPhoneNo : String, imgView : UIImageView)
+    
+    
+    func doBlockOrUnblockUser(sender : UIButton)
     {
-        let predicate = NSPredicate(format: "userNumber contains %@", strPhoneNo)
-        let searchDataSource = self.arrSyncContacts.filter { predicate.evaluate(with: $0) }
-        if searchDataSource.count > 0
-        {
-            let dataContacts = searchDataSource[0]
-            let isOnApp = dataContacts["isOnApp"] as! Bool
-            if (isOnApp)
-            {
-                let isBlock = dataContacts["isBlock"] as! Bool
-                if (isBlock)
-                {
-                    imgView.image = UIImage(named: "unblockicon")
-                }else
-                {
-                    imgView.image = UIImage(named: "blockselecticon")
-
-                }
-            }else
-            {
-                imgView.image = UIImage(named : "refreshicon")
-            }
-            print("")
-        }else
-        {
-            imgView.image = UIImage(named : "refreshicon")
+        let dataContacts = self.arrSyncContacts[sender.tag]
+        let isOnApp = dataContacts["isOnApp"] as! Bool
+        if isOnApp {
+       self.doCallServiceForBlockAndUnblock(sender: sender, dataContacts: dataContacts)
         }
     }
     
-    func doBlockOrUnblockUser(tapG : UITapGestureRecognizer? = nil)
-    {
-        let tappedImage = tapG?.view as! UIImageView
-        let dataContacts = self.arrSyncContacts[tappedImage.tag]
-
-        let dictData = ["version" : "1.0" , "os" : "1" , "language" : "english","userId":UserManager.sharedUserManager.userId!,"blockUserId":""] as [String : Any]
-        WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "blockUnblockUser", parameter: dictData, success: { (responseObject) in
+    func doCallServiceForBlockAndUnblock(sender : UIButton , dataContacts : [String : AnyObject]) {
+        
+        let blockUserId = dataContacts["userId"]!
+        let dictData = ["version" : "1.0" , "os" : "1" , "language" : "english","userId":UserManager.sharedUserManager.userId!,"blockUserId":blockUserId] as [String : Any]
+        WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "blockUser", parameter: dictData, success: { (responseObject) in
+            
+            print("this is response object \(responseObject)")
+            self.arrSyncContacts.remove(at: sender.tag)
+            CommonUtil.showTotstOnWindow(strMessgae: responseObject["responseMessage"]! as! String)
             
         }) { (error) in
-            
         }
+
+        
     }
-    
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70.00
     }
-}
-
-extension String {
+ }
+ 
+ extension String {
     
     var stringByRemovingWhitespaces: String {
         
         let components = self.components(separatedBy: .whitespaces)
         return components.joined(separator: "")
     }
-}
+ }

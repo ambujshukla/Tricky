@@ -113,19 +113,12 @@ class ContactPickerUtils: NSObject {
             do {
                 try contactsStore?.enumerateContacts(with: contactFetchRequest, usingBlock: { (contact, stop) -> Void in
                    
-                    if (contact.emailAddresses.count > 0) {
-                    for emailAddress in contact.emailAddresses {
-                        let email = emailAddress.value as String
+                   // if (contact.emailAddresses.count > 0) {
+                    for emailAddress in contact.phoneNumbers {
                         let contactModel  = ContactModel(contact : contact)
-                        contactModel.email = email
+                        contactModel.email = ""
                         contactsArray.add(contactModel)
-                        } }
-//                    else
-//                    {
-//                        let contactModel  = ContactModel(contact : contact)
-//                        contactModel.email = ""
-//                        contactsArray.add(contactModel)
-//                    }
+                        }// }
                 })
                 completion(contactsArray, nil)
             }
