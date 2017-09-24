@@ -108,18 +108,13 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
             
             self.revealViewController().revealToggle(animated: true)
             
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "BlockUserListViewIdentifier") as! BlockUserListViewController
+          
             let contrlHome = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
             let navController = UINavigationController.init()
-            navController.setViewControllers([contrlHome , vc], animated: true)
+            navController.setViewControllers([contrlHome], animated: true)
             self.revealViewController().pushFrontViewController(navController, animated: true)
         }else if (indexPath.row == 1)
         {
-//            let vc = self.storyboard?.instantiateViewController(withIdentifier: "BlockUserListViewIdentifier") as! BlockUserListViewController
-//            let contrlHome = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-//            let navController = UINavigationController.init()
-//            navController.setViewControllers([contrlHome , vc], animated: true)
-//            self.revealViewController().pushFrontViewController(navController, animated: true)
             self.doNavigateToContactsView(showContactsFrom: 1)
         }
         else if (indexPath.row == 2)

@@ -64,6 +64,28 @@ class WebAPIManager: NSObject {
     }
     
     
+    func doCallWebAPIForPOSTAndPullToRefresh(isShowLoder : Bool , strURL : String , strServiceName : String , parameter : [String : Any] , success: @escaping (_ obj : [String: Any]) -> Void , failure: @escaping (_ error: NSError?) -> Void){
+        
+        let completeURL = "\(strURL)\(strServiceName)"
+        if isShowLoder {
+            CommonUtil.showLoader()
+        }
+        
+        Alamofire.request(completeURL, method: .post, parameters : parameter, encoding: URLEncoding.default , headers: nil).responseJSON { response in
+            
+            print("Request: \(String(describing: response.request))")   // original url request
+            print("Response: \(String(describing: response.response))") // http url response
+            print("Result: \(response.result)")                         // response serialization result
+            CommonUtil.hideLoader()
+            if let json = response.result.value {
+                success(json as! [String : Any])
+            }
+            else{
+                failure(response.result.error! as NSError?)
+            }
+        }
+    }
+    
     func doCallWebAPIForPOST (strURL : String , strServiceName : String , parameter : [String : Any] , success: @escaping (_ obj : [String: Any]) -> Void , failure: @escaping (_ error: NSError?) -> Void)
     {
        let completeURL = "\(strURL)\(strServiceName)"

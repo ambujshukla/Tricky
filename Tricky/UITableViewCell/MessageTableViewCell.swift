@@ -29,8 +29,24 @@ class MessageTableViewCell: UITableViewCell {
         print("")
         self.lblMessage.text = dictData["message"] as? String
         self.lblTime.text =  CommanUtility.doChangeTimeFormat(time: (dictData["time"] as? String)!, firstFormat: "yyyy-MM-dd HH:mm:ss", SecondFormat: "HH:mm")
-        //2017-09-05 19:35:30,
-        //dictData["time"] as? String
+        
+        let isFavourite = dictData["isFavorite"] as! Bool
+        if isFavourite {
+          self.btnfavourite.isSelected = true
+        }
+        else
+        {
+        self.btnfavourite.isSelected = false
+        }
+        let isBlock = dictData["isUserBlock"] as! Bool
+        if isBlock {
+            self.btnBlock.isSelected = true
+        }
+        else
+        {
+            self.btnBlock.isSelected = false
+        }
+        
     }
     
 }

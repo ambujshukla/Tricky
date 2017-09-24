@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="xEq-rw-oed">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="xEq-rw-oed">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -54,15 +54,14 @@
                                         <color key="backgroundColor" red="0.67450980392156867" green="0.21176470588235294" blue="0.54117647058823526" alpha="1" colorSpace="calibratedRGB"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zPO-h5-CkN">
-                                        <rect key="frame" x="78" y="32" width="94" height="94"/>
-                                        <color key="backgroundColor" red="0.21379415490000001" green="1" blue="0.31756154580000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <rect key="frame" x="101" y="50" width="60" height="60"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="94" id="gio-nH-r9O"/>
-                                            <constraint firstAttribute="width" constant="94" id="izv-v6-bpg"/>
+                                            <constraint firstAttribute="height" constant="60" id="gio-nH-r9O"/>
+                                            <constraint firstAttribute="width" constant="60" id="izv-v6-bpg"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John smith" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cGI-LY-jSk">
-                                        <rect key="frame" x="28" y="129" width="195" height="21"/>
+                                        <rect key="frame" x="33.5" y="129" width="195" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="195" id="8cE-9F-7Uu"/>
                                             <constraint firstAttribute="height" constant="21" id="8g3-tI-wZw"/>
@@ -72,7 +71,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="jsonnow.tricky.com" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1m1-8F-eIE">
-                                        <rect key="frame" x="27.5" y="153" width="195" height="21"/>
+                                        <rect key="frame" x="33.5" y="153" width="195" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="195" id="A15-Eu-H1L"/>
                                             <constraint firstAttribute="height" constant="21" id="sTb-FO-fkk"/>
@@ -82,7 +81,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="27" translatesAutoresizingMaskIntoConstraints="NO" id="aql-d3-tND">
-                                        <rect key="frame" x="100" y="179" width="49" height="22"/>
+                                        <rect key="frame" x="106.5" y="179" width="49" height="22"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MCN-zg-AMV">
                                                 <rect key="frame" x="0.0" y="0.0" width="10" height="22"/>
@@ -136,8 +135,8 @@
                                     <constraint firstItem="SBa-8j-vdk" firstAttribute="leading" secondItem="LZb-r0-gsz" secondAttribute="trailing" multiplier="160:320" constant="-9" id="d1k-yh-zGN"/>
                                     <constraint firstItem="f6u-19-slR" firstAttribute="width" secondItem="LZb-r0-gsz" secondAttribute="width" multiplier="140:320" id="j1y-k0-rP8"/>
                                     <constraint firstItem="1m1-8F-eIE" firstAttribute="centerX" secondItem="zPO-h5-CkN" secondAttribute="centerX" id="k5h-tp-iXc"/>
-                                    <constraint firstItem="zPO-h5-CkN" firstAttribute="top" secondItem="LZb-r0-gsz" secondAttribute="bottom" multiplier="40:238" constant="-8" id="rmI-u8-aug"/>
-                                    <constraint firstItem="zPO-h5-CkN" firstAttribute="leading" secondItem="LZb-r0-gsz" secondAttribute="trailing" multiplier="78:320" id="tN8-gP-bLU"/>
+                                    <constraint firstItem="zPO-h5-CkN" firstAttribute="top" secondItem="LZb-r0-gsz" secondAttribute="bottom" multiplier="50:238" id="rmI-u8-aug"/>
+                                    <constraint firstItem="zPO-h5-CkN" firstAttribute="leading" secondItem="LZb-r0-gsz" secondAttribute="trailing" multiplier="101:320" id="tN8-gP-bLU"/>
                                     <constraint firstItem="SBa-8j-vdk" firstAttribute="height" secondItem="f6u-19-slR" secondAttribute="height" id="v5C-7a-F70"/>
                                     <constraint firstItem="mah-nC-R0t" firstAttribute="top" secondItem="LZb-r0-gsz" secondAttribute="top" id="x8P-yS-Syf"/>
                                 </constraints>
@@ -388,10 +387,14 @@
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z4E-Wq-paF">
                                                                     <rect key="frame" x="69" y="0.0" width="12" height="22"/>
                                                                     <state key="normal" image="unblockicon"/>
+                                                                    <state key="selected" image="blockselecticon"/>
+                                                                    <state key="highlighted" image="blockselecticon"/>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e80-Mg-eK4">
                                                                     <rect key="frame" x="138" y="0.0" width="12" height="22"/>
                                                                     <state key="normal" image="favoriteicon"/>
+                                                                    <state key="selected" image="favoriteselecticon"/>
+                                                                    <state key="highlighted" image="favoriteselecticon"/>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LUV-Gh-5bo">
                                                                     <rect key="frame" x="207" y="0.0" width="12" height="22"/>
@@ -448,6 +451,11 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
+                                            <outlet property="btnBlock" destination="Z4E-Wq-paF" id="U9l-lc-mPU"/>
+                                            <outlet property="btnDelete" destination="XfW-eX-6B2" id="pA9-mh-9Va"/>
+                                            <outlet property="btnReply" destination="hWo-eS-NHs" id="yvV-lf-2A0"/>
+                                            <outlet property="btnShare" destination="LUV-Gh-5bo" id="j1b-xf-8g6"/>
+                                            <outlet property="btnfavourite" destination="e80-Mg-eK4" id="wZK-Ys-2ap"/>
                                             <outlet property="lblMessage" destination="zRc-uK-Bpf" id="Nep-jS-cg6"/>
                                             <outlet property="lblTime" destination="g7F-dW-0ye" id="8gU-iY-I3U"/>
                                         </connections>
@@ -3243,9 +3251,11 @@
     </scenes>
     <resources>
         <image name="blockicon" width="12" height="12"/>
+        <image name="blockselecticon" width="12" height="12"/>
         <image name="deleteicon" width="12" height="12"/>
         <image name="favoritebackground" width="320" height="480"/>
         <image name="favoriteicon" width="12" height="12"/>
+        <image name="favoriteselecticon" width="12" height="12"/>
         <image name="languagebackground" width="320" height="480"/>
         <image name="menubackground" width="245" height="207"/>
         <image name="msgbackground" width="320" height="480"/>

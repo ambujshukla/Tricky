@@ -14,15 +14,19 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
     
     @IBOutlet weak var tblMessage : UITableView!
     @IBOutlet weak var btnPlus : UIButton!
-    var arrMessageList = [Dictionary<String, AnyObject>]()
+    var arrMessageList = [[String : AnyObject]]()
+    {
+        didSet{
+            self.tblMessage.reloadData()
+        }
+    }
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(self.handleRefresh(_:)), for: UIControlEvents.valueChanged)
         refreshControl.tintColor = UIColor.white
         return refreshControl
     }()
-
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.decorateUI()
@@ -39,9 +43,9 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
     {
         self.view.endEditing(true)
         //UpdateProfile
-        let dictData = ["version" : "1.0" , "os" : "ios" , "language" : "english","userId":"19","filterVulgar" : "0","messageForOnlyRegisterUser":"0","offset":"0","limit" : "10","showOnlyFavorite":"0"] as [String : Any]
+        let dictData = ["version" : "1.0" , "os" : "2" , "language" : "english","userId": UserManager.sharedUserManager.userId! ,"filterVulgar" : "0","messageForOnlyRegisterUser":"0","offset":"0","limit" : "10","showOnlyFavorite":"0"] as [String : Any]
         
-        WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "getRecSentList", parameter: dictData , success: { (obj) in
+        WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOSTAndPullToRefresh(isShowLoder :!isComeFromPullToRefresh ,strURL: kBaseUrl, strServiceName: "getRecSentList", parameter: dictData , success: { (obj) in
             
             if (obj["status"] as! String == "1")
             {
@@ -54,7 +58,6 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
                     {
                         self.arrMessageList .append(element as [String : AnyObject])
                     }
-                    self.tblMessage.reloadData()
                 }
             }
             print("this is object \(obj)")
@@ -64,15 +67,86 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
         }
     }
     
-    func doCallServiceForFavouriteMessage(){
+    
+    func doActionOnBlockButton(sender : UIButton){
         
-        let dictParam = ["userId" : UserManager.sharedUserManager.userId!] as [String : Any]
-        WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl , strServiceName: "favoriteMsg", parameter: dictParam , success: { (obj) in
-            print("this is object \(obj)")
+        CommonUtil.showAlertInSwift_3Format("Are you sure you want to block?", title: "txt_trickychat".localized(), btnCancel: "txt_no".localized(), btnOk: "txt_yes".localized(), crl: self, successBlock: { (obj) in
+            
+            self.doCallServiceForBlockMessage(sender: sender)
+            
+        }) { (obj) in
+            print("ok")
+        }
+    }
+    
+    
+    func doCallServiceForBlockMessage(sender : UIButton){
+        
+        var dictData = self.arrMessageList[sender.tag]
+        let messageID = dictData["messageId"]! as! String
+        
+        let dictParam = ["userId" : UserManager.sharedUserManager.userId! , "messageId" : messageID] as [String : Any]
+        print(dictParam)
+        
+        WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl , strServiceName: "blockMessageUser", parameter: dictParam , success: { (responseObject) in
+            print("this is object \(responseObject)")
+            if(responseObject["status"] as! String == "1"){
+                
+                if let resultData : Array<Dictionary<String, Any>> = responseObject["responseData"] as? Array<Dictionary<String, Any>> {
+                    
+                    dictData["isUserBlock"] = resultData[0]["isUserBlock"]  as AnyObject
+                    self.arrMessageList[sender.tag] = dictData
+                    self.tblMessage.reloadData()
+                }
+                self.arrMessageList[sender.tag] = dictData
+            }
+            else
+            {
+                CommonUtil.showTotstOnWindow(strMessgae: responseObject["responseMessage"] as! String)
+            }
+            
         }) { (error) in
             
         }
     }
+    
+    
+    func doCallServiceForRemoveMessage(sender : UIButton){
+     
+        var dictData = self.arrMessageList[sender.tag]
+        let messageID = dictData["messageId"]! as! String
+        let type = dictData["type"]! as! NSNumber
+        
+        let dictParam = ["userId" : UserManager.sharedUserManager.userId! , "messageId" : messageID , "type" : "\(type)"] as [String : Any]
+        print(dictParam)
+        
+        WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl , strServiceName: "removeMessage", parameter: dictParam , success: { (responseObject) in
+            print("this is object \(responseObject)")
+            if(responseObject["status"] as! String == "1"){
+                
+                self.arrMessageList.remove(at: sender.tag)
+            }
+            else
+            {
+                CommonUtil.showTotstOnWindow(strMessgae: responseObject["responseMessage"] as! String)
+            }
+            
+        }) { (error) in
+        }
+    }
+    
+    func doActionOnDeleteMessage(sender : UIButton){
+        
+        CommonUtil.showAlertInSwift_3Format("Are you sure you want to delete this message?", title: "txt_trickychat".localized(), btnCancel: "txt_no".localized(), btnOk: "txt_yes".localized(), crl: self, successBlock: { (obj) in
+            
+            self.doCallServiceForRemoveMessage(sender: sender)
+            
+        }) { (obj) in
+            print("ok")
+        }
+    
+    }
+    
     
     
     override func didReceiveMemoryWarning() {
@@ -82,11 +156,40 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
     
     func decorateUI () {
         
-        
         self.tblMessage.addSubview(self.refreshControl)
         self.tblMessage.tableFooterView = UIView()
         self.tblMessage.rowHeight = UITableViewAutomaticDimension;
         self.tblMessage.estimatedRowHeight = 90.0;
+    }
+    
+    func doActionOnFavouriteButton(sender : UIButton) {
+        
+        var dictData = self.arrMessageList[sender.tag]
+        let messageID = dictData["messageId"]! as! String
+        let type = dictData["type"]! as! NSNumber
+        
+        let dictParam = ["userId" : UserManager.sharedUserManager.userId! , "messageId" : messageID , "type" : "\(type)"] as [String : Any]
+        print(dictParam)
+        
+        WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl , strServiceName: "favoriteMsg", parameter: dictParam , success: { (responseObject) in
+            print("this is object \(responseObject)")
+            if(responseObject["status"] as! String == "1"){
+                
+                if let resultData : Array<Dictionary<String, Any>> = responseObject["responseData"] as? Array<Dictionary<String, Any>> {
+                    
+                    dictData["isFavorite"] = resultData[0]["isFavorite"]  as AnyObject
+                    self.arrMessageList[sender.tag] = dictData
+                    self.tblMessage.reloadData()
+                }
+                self.arrMessageList[sender.tag] = dictData
+            }
+            else
+            {
+                CommonUtil.showTotstOnWindow(strMessgae: responseObject["responseMessage"] as! String)
+            }
+            
+        }) { (error) in
+        }
     }
     
     //MARK: - Tableview delegate and datasource methods
@@ -105,24 +208,26 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
     // MARK: - Table View Delegates
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-       // if indexPath.row % 2 == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell1", for: indexPath) as! MessageTableViewCell
-            cell.decorateTableViewCell(dictData: self.arrMessageList[indexPath.row])
-            cell.selectionStyle = .none
-            return cell
-//        }
-//        else
-//        {
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "cell2", for: indexPath) as! MessageTableViewCell
-//            cell.selectionStyle = .none
-//            return cell
-//        }
+        // if indexPath.row % 2 == 0 {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell1", for: indexPath) as! MessageTableViewCell
+        cell.decorateTableViewCell(dictData: self.arrMessageList[indexPath.row])
+        cell.btnfavourite.tag = indexPath.row
+        cell.btnBlock.tag = indexPath.row
+        cell.btnfavourite.addTarget(self, action: #selector(self.doActionOnFavouriteButton(sender:)), for: .touchUpInside)
+        cell.btnBlock.addTarget(self, action: #selector(self.doActionOnBlockButton(sender:)), for: .touchUpInside)
+        cell.btnDelete.addTarget(self, action: #selector(self.doActionOnDeleteMessage(sender:)), for: .touchUpInside)
+        cell.selectionStyle = .none
+        return cell
+        //        }
+        //        else
+        //        {
+        //            let cell = tableView.dequeueReusableCell(withIdentifier: "cell2", for: indexPath) as! MessageTableViewCell
+        //            cell.selectionStyle = .none
+        //            return cell
+        //        }
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let popupVC = storyboard?.instantiateViewController(withIdentifier: "PopupViewController") as! PopupViewController
-        view.addSubview(popupVC.view)
-        addChildViewController(popupVC)
     }
     
     @IBAction func doClickPlus()
