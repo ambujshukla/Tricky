@@ -144,10 +144,7 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
         }) { (obj) in
             print("ok")
         }
-    
     }
-    
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -210,7 +207,6 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
     // MARK: - Table View Delegates
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        // if indexPath.row % 2 == 0 {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell1", for: indexPath) as! MessageTableViewCell
         cell.decorateTableViewCell(dictData: self.arrMessageList[indexPath.row])
         cell.btnfavourite.tag = indexPath.row

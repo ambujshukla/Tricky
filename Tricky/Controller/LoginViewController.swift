@@ -33,7 +33,7 @@ class LoginViewController: UIViewController
     func decorateUI()
     {
         //self.txtPassword.text = "123456"
-        self.txtMobile.text = "8770236795"
+        self.txtMobile.text = "9039395421"
         self.btnCountryCode.setTitle("+91", for: .normal)
         
         self.title = "txt_login".localized()
@@ -55,15 +55,10 @@ class LoginViewController: UIViewController
         
         self.txtMobile.attributedPlaceholder = NSAttributedString(string: "txt_mobile".localized(),
                                                                   attributes: [NSForegroundColorAttributeName: UIColor.white])
-//        self.txtPassword.attributedPlaceholder = NSAttributedString(string: "txt_password".localized(),
-//                                                                    attributes: [NSForegroundColorAttributeName: UIColor.white])
         
         self.imgSeparator1.backgroundColor = UIColor.white
-       // self.imgSeparator2.backgroundColor = UIColor.white
         
         self.txtMobile.textColor = UIColor.white
-       // self.txtPassword.textColor = UIColor.white
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {

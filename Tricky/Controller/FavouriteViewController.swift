@@ -36,7 +36,7 @@ class FavouriteViewController: UIViewController , UITableViewDelegate , UITableV
     func doGetMessageList(isComeFromPullToRefresh : Bool)
     {
         self.view.endEditing(true)
-        let dictData = ["version" : "1.0" , "os" : "ios" , "language" : "english","userId":UserManager.sharedUserManager.userId!,"filterVulgar" : "0","messageForOnlyRegisterUser":"0","offset":"0","limit" : "10","showOnlyFavorite":"0"] as [String : Any]
+        let dictData = ["version" : "1.0" , "os" : "ios" , "language" : "english","userId":UserManager.sharedUserManager.userId!,"filterVulgar" : "0","messageForOnlyRegisterUser":"0","offset":"0","limit" : "10","showOnlyFavorite":"1"] as [String : Any]
         
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "getRecSentList", parameter: dictData , success: { (obj) in
             
@@ -74,8 +74,6 @@ class FavouriteViewController: UIViewController , UITableViewDelegate , UITableV
         
         self.tblFav.emptyDataSetSource = self
         self.tblFav.emptyDataSetDelegate = self
-        
-        self.doCallServiceForFavouriteMessage()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -92,21 +90,7 @@ class FavouriteViewController: UIViewController , UITableViewDelegate , UITableV
     {
         let popup: AAPopUp = AAPopUp(popup: .demo2)
         popup.present { popup in
-            // MARK:- View Did Appear Here
             popup.dismissWithTag(9)
-        }
-        
-        
-    }
-    
-    
-    func doCallServiceForFavouriteMessage(){
-        
-        let dictParam = ["userId" : UserManager.sharedUserManager.userId!] as [String : Any]
-         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl , strServiceName: "favoriteMsg", parameter: dictParam , success: { (obj) in
-        print("this is object \(obj)")
-    }) { (error) in
-        
         }
     }
     
@@ -122,33 +106,47 @@ class FavouriteViewController: UIViewController , UITableViewDelegate , UITableV
     }
     
     // MARK: - Table View Delegates
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        if indexPath.row % 2 == 0 {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell1", for: indexPath) as! MessageTableViewCell
             cell.decorateTableViewCell(dictData: self.arrMessageList[indexPath.row])
             cell.btnfavourite.addTarget(self, action: #selector(self.doCallServiceForFavouriteMessage(sender:)), for: .touchUpInside)
             cell.selectionStyle = .none
             cell.btnReply.addTarget(self, action: #selector(doactionOnReply), for: .touchUpInside)
             return cell
-        }
-        else
-        {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell2", for: indexPath) as! MessageTableViewCell
-            cell.lblMessage.text = "hi jhon i am fine how about you. hope you are doing well and how about your work"
-            
-            return cell
-        }
+       // }
+//        else
+//        {
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "cell2", for: indexPath) as! MessageTableViewCell
+//            cell.lblMessage.text = "hi jhon i am fine how about you. hope you are doing well and how about your work"
+//            
+//            return cell
+//        }
     }
     
     func doCallServiceForFavouriteMessage(sender : UIButton)
     {
-        let dictParam = ["userId" : UserManager.sharedUserManager.userId!] as [String : Any]
-        WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl , strServiceName: "favoriteMsg", parameter: dictParam , success: { (obj) in
-            print("this is object \(obj)")
-        }) { (error) in
+        
+        var dictData = self.arrMessageList[sender.tag]
+        let messageID = dictData["messageId"]! as! String
+        let type = dictData["type"]! as! NSNumber
+        
+        let dictParam = ["userId" : UserManager.sharedUserManager.userId! , "messageId" : messageID , "type" : "\(type)"] as [String : Any]
+        print(dictParam)
+        
+        WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl , strServiceName: "favoriteMsg", parameter: dictParam , success: { (responseObject) in
+            print("this is object \(responseObject)")
+            if(responseObject["status"] as! String == "1")
+            {
+                self.arrMessageList.remove(at: sender.tag)
+                self.tblFav.reloadData()
+            }
+            else
+            {
+                CommonUtil.showTotstOnWindow(strMessgae: responseObject["responseMessage"] as! String)
+            }
             
+        }) { (error) in
         }
     }
     func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString?
