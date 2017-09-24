@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="xEq-rw-oed">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="xEq-rw-oed">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -104,14 +104,14 @@
                                         </constraints>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f6u-19-slR">
-                                        <rect key="frame" x="0.0" y="214" width="140" height="18"/>
+                                        <rect key="frame" x="0.0" y="200" width="140" height="32"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SBa-8j-vdk">
-                                        <rect key="frame" x="151" y="213.5" width="124" height="18.5"/>
+                                        <rect key="frame" x="151" y="214" width="124" height="18"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="textColor"/>
@@ -124,7 +124,7 @@
                                     <constraint firstItem="cGI-LY-jSk" firstAttribute="centerX" secondItem="zPO-h5-CkN" secondAttribute="centerX" id="8lI-pL-aAS"/>
                                     <constraint firstAttribute="bottom" secondItem="mah-nC-R0t" secondAttribute="bottom" id="9Tu-8W-Edu"/>
                                     <constraint firstItem="1m1-8F-eIE" firstAttribute="top" secondItem="LZb-r0-gsz" secondAttribute="bottom" multiplier="153:238" id="BU5-Bc-N9I"/>
-                                    <constraint firstItem="SBa-8j-vdk" firstAttribute="top" secondItem="f6u-19-slR" secondAttribute="top" id="G2f-zD-iVG"/>
+                                    <constraint firstItem="SBa-8j-vdk" firstAttribute="top" secondItem="f6u-19-slR" secondAttribute="top" constant="14" id="G2f-zD-iVG"/>
                                     <constraint firstItem="f6u-19-slR" firstAttribute="leading" secondItem="LZb-r0-gsz" secondAttribute="leading" id="KCL-lN-Rwo"/>
                                     <constraint firstAttribute="bottom" secondItem="f6u-19-slR" secondAttribute="bottom" constant="6" id="Kea-8F-bW9"/>
                                     <constraint firstItem="SBa-8j-vdk" firstAttribute="width" secondItem="f6u-19-slR" secondAttribute="width" constant="-16" id="T5V-rk-V30"/>
@@ -137,7 +137,7 @@
                                     <constraint firstItem="1m1-8F-eIE" firstAttribute="centerX" secondItem="zPO-h5-CkN" secondAttribute="centerX" id="k5h-tp-iXc"/>
                                     <constraint firstItem="zPO-h5-CkN" firstAttribute="top" secondItem="LZb-r0-gsz" secondAttribute="bottom" multiplier="50:238" id="rmI-u8-aug"/>
                                     <constraint firstItem="zPO-h5-CkN" firstAttribute="leading" secondItem="LZb-r0-gsz" secondAttribute="trailing" multiplier="101:320" id="tN8-gP-bLU"/>
-                                    <constraint firstItem="SBa-8j-vdk" firstAttribute="height" secondItem="f6u-19-slR" secondAttribute="height" id="v5C-7a-F70"/>
+                                    <constraint firstItem="SBa-8j-vdk" firstAttribute="height" secondItem="f6u-19-slR" secondAttribute="height" constant="-14" id="v5C-7a-F70"/>
                                     <constraint firstItem="mah-nC-R0t" firstAttribute="top" secondItem="LZb-r0-gsz" secondAttribute="top" id="x8P-yS-Syf"/>
                                 </constraints>
                             </view>
@@ -162,21 +162,21 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view tag="11" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="znT-6A-NG8" customClass="PWSwitch" customModule="PWSwitch">
-                                                    <rect key="frame" x="201" y="6" width="50" height="26"/>
+                                                    <rect key="frame" x="201" y="6" width="40" height="25"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="26" id="Bkn-X1-7yn"/>
-                                                        <constraint firstAttribute="width" constant="50" id="bJP-Ue-Gfy"/>
+                                                        <constraint firstAttribute="height" constant="25" id="Bkn-X1-7yn"/>
+                                                        <constraint firstAttribute="width" constant="40" id="bJP-Ue-Gfy"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="thumbDiameter">
-                                                            <real key="value" value="30"/>
+                                                            <real key="value" value="20"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="znT-6A-NG8" firstAttribute="centerY" secondItem="QgR-dm-wSf" secondAttribute="centerY" id="Nol-r6-Mqc"/>
+                                                <constraint firstItem="znT-6A-NG8" firstAttribute="centerY" secondItem="QgR-dm-wSf" secondAttribute="centerY" constant="-1" id="Nol-r6-Mqc"/>
                                                 <constraint firstItem="QgR-dm-wSf" firstAttribute="leading" secondItem="aqs-ah-2rI" secondAttribute="trailing" multiplier="10:320" id="NzA-fK-dCB"/>
                                                 <constraint firstItem="QgR-dm-wSf" firstAttribute="centerY" secondItem="aqs-ah-2rI" secondAttribute="centerY" id="PqO-DM-Hht"/>
                                                 <constraint firstItem="QgR-dm-wSf" firstAttribute="width" secondItem="aqs-ah-2rI" secondAttribute="width" multiplier="185:320" id="VbQ-kb-dcp"/>
@@ -923,27 +923,27 @@
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="33" translatesAutoresizingMaskIntoConstraints="NO" id="k9A-LB-RBg">
-                                                            <rect key="frame" x="8" y="47" width="192" height="22"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="57" translatesAutoresizingMaskIntoConstraints="NO" id="k9A-LB-RBg">
+                                                            <rect key="frame" x="8" y="47" width="288" height="22"/>
                                                             <subviews>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="geC-CK-UnQ">
                                                                     <rect key="frame" x="0.0" y="0.0" width="12" height="22"/>
                                                                     <state key="normal" image="replyicon"/>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aBk-IQ-tTN">
-                                                                    <rect key="frame" x="45" y="0.0" width="12" height="22"/>
-                                                                    <state key="normal" image="blockicon"/>
+                                                                    <rect key="frame" x="69" y="0.0" width="12" height="22"/>
+                                                                    <state key="normal" image="blockselecticon"/>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NiK-W8-PaC">
-                                                                    <rect key="frame" x="90" y="0.0" width="12" height="22"/>
+                                                                    <rect key="frame" x="138" y="0.0" width="12" height="22"/>
                                                                     <state key="normal" image="favoriteselecticon"/>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d9Y-yU-2Lb">
-                                                                    <rect key="frame" x="135" y="0.0" width="12" height="22"/>
+                                                                    <rect key="frame" x="207" y="0.0" width="12" height="22"/>
                                                                     <state key="normal" image="shareicon"/>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a2h-BT-vrX">
-                                                                    <rect key="frame" x="180" y="0.0" width="12" height="22"/>
+                                                                    <rect key="frame" x="276" y="0.0" width="12" height="22"/>
                                                                     <state key="normal" image="deleteicon"/>
                                                                 </button>
                                                             </subviews>
@@ -3250,7 +3250,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="blockicon" width="12" height="12"/>
         <image name="blockselecticon" width="12" height="12"/>
         <image name="deleteicon" width="12" height="12"/>
         <image name="favoritebackground" width="320" height="480"/>

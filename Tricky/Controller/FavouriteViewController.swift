@@ -14,7 +14,7 @@ class FavouriteViewController: UIViewController , UITableViewDelegate , UITableV
     
     @IBOutlet weak var tblFav : UITableView!
     var arrMessageList = [Dictionary<String, AnyObject>]()
-
+    
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(self.handleRefresh(_:)), for: UIControlEvents.valueChanged)
@@ -26,12 +26,12 @@ class FavouriteViewController: UIViewController , UITableViewDelegate , UITableV
         self.doGetMessageList(isComeFromPullToRefresh: true)
         refreshControl.endRefreshing()
     }
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         self.decorateUI()
         self.doGetMessageList(isComeFromPullToRefresh:  false)
     }
-    
     
     func doGetMessageList(isComeFromPullToRefresh : Bool)
     {
@@ -81,17 +81,9 @@ class FavouriteViewController: UIViewController , UITableViewDelegate , UITableV
         self.navigationController?.navigationBar.barTintColor = color(red: 181, green: 121, blue: 240)
     }
     
-    
-    func goTOBack(){
-        self.navigationController?.popViewController(animated: true)
-    }
-    
-    func doactionOnReply()
+    func goTOBack()
     {
-        let popup: AAPopUp = AAPopUp(popup: .demo2)
-        popup.present { popup in
-            popup.dismissWithTag(9)
-        }
+        self.navigationController?.popViewController(animated: true)
     }
     
     //MARK: - Tableview delegate and datasource methods
@@ -108,25 +100,27 @@ class FavouriteViewController: UIViewController , UITableViewDelegate , UITableV
     // MARK: - Table View Delegates
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell1", for: indexPath) as! MessageTableViewCell
-            cell.decorateTableViewCell(dictData: self.arrMessageList[indexPath.row])
-            cell.btnfavourite.addTarget(self, action: #selector(self.doCallServiceForFavouriteMessage(sender:)), for: .touchUpInside)
-            cell.selectionStyle = .none
-            cell.btnReply.addTarget(self, action: #selector(doactionOnReply), for: .touchUpInside)
-            return cell
-       // }
-//        else
-//        {
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "cell2", for: indexPath) as! MessageTableViewCell
-//            cell.lblMessage.text = "hi jhon i am fine how about you. hope you are doing well and how about your work"
-//            
-//            return cell
-//        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell1", for: indexPath) as! MessageTableViewCell
+        cell.decorateTableViewCell(dictData: self.arrMessageList[indexPath.row])
+        cell.btnfavourite.addTarget(self, action: #selector(self.doCallServiceForFavouriteMessage(sender:)), for: .touchUpInside)
+        cell.selectionStyle = .none
+        cell.btnReply.addTarget(self, action: #selector(self.doActionOnReply(sender:)), for: .touchUpInside)
+        
+        cell.btnShare.addTarget(self, action: #selector(self.doActionOnShare(sender:)), for: .touchUpInside)
+        
+        return cell
+        // }
+        //        else
+        //        {
+        //            let cell = tableView.dequeueReusableCell(withIdentifier: "cell2", for: indexPath) as! MessageTableViewCell
+        //            cell.lblMessage.text = "hi jhon i am fine how about you. hope you are doing well and how about your work"
+        //
+        //            return cell
+        //        }
     }
     
     func doCallServiceForFavouriteMessage(sender : UIButton)
     {
-        
         var dictData = self.arrMessageList[sender.tag]
         let messageID = dictData["messageId"]! as! String
         let type = dictData["type"]! as! NSNumber
@@ -145,10 +139,26 @@ class FavouriteViewController: UIViewController , UITableViewDelegate , UITableV
             {
                 CommonUtil.showTotstOnWindow(strMessgae: responseObject["responseMessage"] as! String)
             }
-            
         }) { (error) in
         }
     }
+    
+    func doActionOnReply(sender : UIButton) {
+        let controller = self.storyboard?.instantiateViewController(withIdentifier: "CreateNewPostViewController") as! CreateNewPostViewController
+        controller.isPostReply = true
+        let messageId : String = self.arrMessageList[sender.tag]["messageId"] as! String
+        controller.strPostID = messageId
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    func doActionOnShare(sender : UIButton)
+    {
+        let dictData = self.arrMessageList[sender.tag]
+        let shareText = dictData["message"]
+        let vc = UIActivityViewController(activityItems: [shareText ?? ""], applicationActivities: [])
+        present(vc, animated: true, completion: nil)
+    }
+    
     func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString?
     {
         return  NSAttributedString(string:"txt_no_record".localized(), attributes:
