@@ -55,15 +55,10 @@ class LoginViewController: UIViewController
         
         self.txtMobile.attributedPlaceholder = NSAttributedString(string: "txt_mobile".localized(),
                                                                   attributes: [NSForegroundColorAttributeName: UIColor.white])
-//        self.txtPassword.attributedPlaceholder = NSAttributedString(string: "txt_password".localized(),
-//                                                                    attributes: [NSForegroundColorAttributeName: UIColor.white])
         
         self.imgSeparator1.backgroundColor = UIColor.white
-       // self.imgSeparator2.backgroundColor = UIColor.white
         
         self.txtMobile.textColor = UIColor.white
-       // self.txtPassword.textColor = UIColor.white
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {

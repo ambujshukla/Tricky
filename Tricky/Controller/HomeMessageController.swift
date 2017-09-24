@@ -150,10 +150,7 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
         }) { (obj) in
             print("ok")
         }
-    
     }
-    
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -216,14 +213,20 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
     // MARK: - Table View Delegates
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        // if indexPath.row % 2 == 0 {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell1", for: indexPath) as! MessageTableViewCell
         cell.decorateTableViewCell(dictData: self.arrMessageList[indexPath.row])
+        
         cell.btnfavourite.tag = indexPath.row
+        cell.btnShare.tag = indexPath.row
+        cell.btnReply.tag = indexPath.row
         cell.btnBlock.tag = indexPath.row
+        cell.btnDelete.tag = indexPath.row
+
         cell.btnfavourite.addTarget(self, action: #selector(self.doActionOnFavouriteButton(sender:)), for: .touchUpInside)
         cell.btnBlock.addTarget(self, action: #selector(self.doActionOnBlockButton(sender:)), for: .touchUpInside)
         cell.btnDelete.addTarget(self, action: #selector(self.doActionOnDeleteMessage(sender:)), for: .touchUpInside)
+        cell.btnReply.addTarget(self, action: #selector(self.doActionOnReply(sender:)), for: .touchUpInside)
+        cell.btnShare.addTarget(self, action: #selector(self.doActionOnShare(sender:)), for: .touchUpInside)
         cell.selectionStyle = .none
         return cell
         //        }
@@ -242,6 +245,22 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
     {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ContactViewController") as! ContactViewController
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func doActionOnReply(sender : UIButton) {
+        let controller = self.storyboard?.instantiateViewController(withIdentifier: "CreateNewPostViewController") as! CreateNewPostViewController
+        controller.isPostReply = true
+        let postID : String = self.arrMessageList[sender.tag]["messageId"] as! String
+        controller.strPostID = postID
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    func doActionOnShare(sender : UIButton)
+    {
+        let dictData = self.arrMessageList[sender.tag]
+        let shareText = dictData["message"]
+        let vc = UIActivityViewController(activityItems: [shareText ?? ""], applicationActivities: [])
+        present(vc, animated: true, completion: nil)
     }
     func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString?
     {

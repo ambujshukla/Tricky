@@ -152,7 +152,7 @@ class PostDetailViewController: UIViewController , UITableViewDelegate , UITable
     
     func doActionDelete(sender : UIButton)
     {
-        CommonUtil.showAlertInSwift_3Format("Are you sure you want to delete", title: "Alert", btnCancel: "txt_no".localized(), btnOk: "txt_yes".localized(), crl: self, successBlock: { (no) in
+        CommonUtil.showAlertInSwift_3Format("Are you sure you want to delete?", title: "Alert", btnCancel: "txt_no".localized(), btnOk: "txt_yes".localized(), crl: self, successBlock: { (no) in
             let dictData = self.arrPostDetailListData[sender.tag]
             
             let params = ["version" : "1.0" , "os" : "ios" , "language" : "english","userId":UserManager.sharedUserManager.userId!,"postId" :dictData["postMessageId"]!] as [String : Any]

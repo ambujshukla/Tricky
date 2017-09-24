@@ -63,7 +63,6 @@ class WebAPIManager: NSObject {
         }
     }
     
-    
     func doCallWebAPIForPOSTAndPullToRefresh(isShowLoder : Bool , strURL : String , strServiceName : String , parameter : [String : Any] , success: @escaping (_ obj : [String: Any]) -> Void , failure: @escaping (_ error: NSError?) -> Void){
         
         let completeURL = "\(strURL)\(strServiceName)"

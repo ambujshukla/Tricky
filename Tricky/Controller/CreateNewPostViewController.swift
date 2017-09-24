@@ -22,13 +22,13 @@ class CreateNewPostViewController: UIViewController {
     var isPostReply : Bool = false
     var strPostID : String!
     @IBOutlet weak var lblReply : UILabel!
-
+    @IBOutlet weak var btnAnonymous : UIButton!
+    @IBOutlet weak var lblAnonymoust : UILabel!
     
-
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
          self.decorateUI()
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,6 +38,12 @@ class CreateNewPostViewController: UIViewController {
     
 
     func decorateUI () {
+        
+        self.lblAnonymoust.text = "Post as anonymous".localized()
+        self.btnAnonymous.setImage(UIImage(named : CHECKBOX_UNSELECTED) , for: .normal)
+        self.btnAnonymous.setImage(UIImage(named : CHECKBOX_SELECTED) , for: .selected)
+        self.btnAnonymous.isSelected = false
+        
         self.imgBg.image = UIImage(named : CREATE_POST_BG)
         
         var strTitle = "Create Post"
@@ -92,14 +98,16 @@ class CreateNewPostViewController: UIViewController {
             }
         }) { (error) in
             print(error as! NSError)
-        }
-     
-        
+        }        
     }
     
     func doCallServiceForCreatePost() {
         
-        let params = ["userId" : UserManager.sharedUserManager.userId!,"postMessage" : self.txtViewComment.text, "postAsAnonomous" : "0", "version" : "1.0", "os" : "2", "language" : "English"] as [String : Any]
+        var strPostAnonymous = "0"
+        if self.btnAnonymous.isSelected {
+            strPostAnonymous = "1"
+        }
+        let params = ["userId" : UserManager.sharedUserManager.userId!,"postMessage" : self.txtViewComment.text, "postAsAnonomous" : strPostAnonymous, "version" : "1.0", "os" : "2", "language" : "English"] as [String : Any]
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "CreatePost", parameter: params, success: { (responseObject) in
             print(responseObject)
             if responseObject["status"] as! String == "1"
@@ -114,7 +122,11 @@ class CreateNewPostViewController: UIViewController {
         }) { (error) in
             print(error as! NSError)
         }
-    
     }
 
+    @IBAction func doClickAnonymous(sender : UIButton)
+    {
+        self.btnAnonymous.isSelected = !self.btnAnonymous.isSelected
+    }
+    
 }

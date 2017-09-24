@@ -77,7 +77,7 @@
 "txt_yes" = "sim";
 "txt_no" = "não";
 
-"txt_logout" = "Do you want to Logout from the app";
+"txt_logout" = "Do you want to Logout from the app?";
 "txt_copied" = "Text copied to clipboard";
 
 "txt_please_enter_post" = "Please enter post message.";

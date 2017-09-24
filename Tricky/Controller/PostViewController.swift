@@ -62,8 +62,6 @@ class PostViewController: UIViewController , UITableViewDelegate , UITableViewDa
         refreshControl.endRefreshing()
     }
 
-    
-    
     func doCallWS(isComeFromPullToRefresh : Bool)
     {
         let params = ["version" : "1.0" , "os" : "ios" , "language" : "english","userId":UserManager.sharedUserManager.userId!, "showPostOnlyMyContact" :"0", "filterVulgarMessage" : "\(self.offSet)","limit" : "\(self.limit)","offset" : "0"] as [String : Any]
