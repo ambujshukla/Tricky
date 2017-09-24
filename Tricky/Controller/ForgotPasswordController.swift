@@ -16,11 +16,10 @@ class ForgotPasswordController: UIViewController
     @IBOutlet  var imgMobile : UIImageView!
     @IBOutlet weak var btnLogin  : UIButton!
     @IBOutlet weak var btnSignup  : UIButton!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.decorateUI()
-        // Do any additional setup after loading the view.
     }
     
     override func didReceiveMemoryWarning() {
@@ -50,7 +49,7 @@ class ForgotPasswordController: UIViewController
         self.btnSignup.alpha = 0.2
         self.btnSignup.setTitleColor(UIColor.white, for: .normal)
         self.tfMobile.attributedPlaceholder = NSAttributedString(string: "txt_mobile".localized(),
-                                                                    attributes: [NSForegroundColorAttributeName: UIColor.white])
+                                                                 attributes: [NSForegroundColorAttributeName: UIColor.white])
         self.tfMobile.textColor = UIColor.white
         self.tfMobile.isSecureTextEntry = true
     }
@@ -62,7 +61,7 @@ class ForgotPasswordController: UIViewController
     
     func doClickBack()
     {
-       self.navigationController?.popViewController(animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func doActionOnResetButton()

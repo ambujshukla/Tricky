@@ -102,12 +102,24 @@ class FavouriteViewController: UIViewController , UITableViewDelegate , UITableV
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell1", for: indexPath) as! MessageTableViewCell
         cell.decorateTableViewCell(dictData: self.arrMessageList[indexPath.row])
+        cell.btnBlock.addTarget(self, action: #selector(self.doActionOnBlockButton(sender:)), for: .touchUpInside)
         cell.btnfavourite.addTarget(self, action: #selector(self.doCallServiceForFavouriteMessage(sender:)), for: .touchUpInside)
         cell.selectionStyle = .none
         cell.btnReply.addTarget(self, action: #selector(self.doActionOnReply(sender:)), for: .touchUpInside)
-        
+        cell.btnDelete.addTarget(self, action: #selector(self.doActionOnDeleteMessage(sender:)), for: .touchUpInside)
         cell.btnShare.addTarget(self, action: #selector(self.doActionOnShare(sender:)), for: .touchUpInside)
-        
+        cell.btnShare.tag = indexPath.row
+        cell.btnReply.tag = indexPath.row
+        cell.btnDelete.tag = indexPath.row
+        cell.btnfavourite.tag = indexPath.row
+        cell.btnBlock.tag = indexPath.row
+        let dictData = self.arrMessageList[indexPath.row];
+        if ((dictData["isUserBlock"] as! Int) == 1)
+        {
+            cell.btnBlock.setImage(UIImage(named : "blockselecticon"), for: .normal)
+        }else{
+            cell.btnBlock.setImage(UIImage(named : "unblockicon"), for: .normal)
+        }
         return cell
         // }
         //        else
@@ -118,6 +130,83 @@ class FavouriteViewController: UIViewController , UITableViewDelegate , UITableV
         //            return cell
         //        }
     }
+    
+    func doActionOnDeleteMessage(sender : UIButton){
+        
+        CommonUtil.showAlertInSwift_3Format("Are you sure you want to delete this message?", title: "txt_trickychat".localized(), btnCancel: "txt_no".localized(), btnOk: "txt_yes".localized(), crl: self, successBlock: { (obj) in
+            
+            self.doCallServiceForRemoveMessage(sender: sender)
+            
+        }) { (obj) in
+            print("ok")
+        }
+    }
+    
+    func doCallServiceForRemoveMessage(sender : UIButton){
+        
+        var dictData = self.arrMessageList[sender.tag]
+        let messageID = dictData["messageId"]! as! String
+        let type = dictData["type"]! as! NSNumber
+        
+        let dictParam = ["userId" : UserManager.sharedUserManager.userId! , "messageId" : messageID , "type" : "\(type)"] as [String : Any]
+        print(dictParam)
+        
+        WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl , strServiceName: "removeMessage", parameter: dictParam , success: { (responseObject) in
+            print("this is object \(responseObject)")
+            if(responseObject["status"] as! String == "1"){
+                
+                self.arrMessageList.remove(at: sender.tag)
+            }
+            else
+            {
+                CommonUtil.showTotstOnWindow(strMessgae: responseObject["responseMessage"] as! String)
+            }
+            
+        }) { (error) in
+        }
+    }
+
+    func doActionOnBlockButton(sender : UIButton){
+        
+        CommonUtil.showAlertInSwift_3Format("Are you sure you want to block?", title: "txt_trickychat".localized(), btnCancel: "txt_no".localized(), btnOk: "txt_yes".localized(), crl: self, successBlock: { (obj) in
+            
+            self.doCallServiceForBlockMessage(sender: sender)
+            
+        }) { (obj) in
+            print("ok")
+        }
+    }
+    
+    func doCallServiceForBlockMessage(sender : UIButton){
+        
+        var dictData = self.arrMessageList[sender.tag]
+        let messageID = dictData["messageId"]! as! String
+        
+        let dictParam = ["userId" : UserManager.sharedUserManager.userId! , "messageId" : messageID] as [String : Any]
+        print(dictParam)
+        
+        WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl , strServiceName: "blockMessageUser", parameter: dictParam , success: { (responseObject) in
+            print("this is object \(responseObject)")
+            if(responseObject["status"] as! String == "1"){
+                
+                if let resultData : Array<Dictionary<String, Any>> = responseObject["responseData"] as? Array<Dictionary<String, Any>> {
+                    
+                    dictData["isUserBlock"] = resultData[0]["isUserBlock"]  as AnyObject
+                    self.arrMessageList[sender.tag] = dictData
+                    self.tblFav.reloadData()
+                }
+                self.arrMessageList[sender.tag] = dictData
+            }
+            else
+            {
+                CommonUtil.showTotstOnWindow(strMessgae: responseObject["responseMessage"] as! String)
+            }
+            
+        }) { (error) in
+            
+        }
+    }
+
     
     func doCallServiceForFavouriteMessage(sender : UIButton)
     {

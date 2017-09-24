@@ -19,7 +19,9 @@ class VerifyOTPController: UIViewController
     var strMobileNo : String!
     var strOTP : String!
     var strLink : String!
-
+    @IBOutlet weak var lblTimer : UILabel!
+    var timer = Timer()
+    var time = 60
     
     var isFromForgotPasswordScren : Bool = false
     
@@ -27,6 +29,21 @@ class VerifyOTPController: UIViewController
     {
         super.viewDidLoad()
         self.decorateUI()
+        self.btnResend.isEnabled = false
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(doCallTimer)), userInfo: nil, repeats: true)
+    }
+    
+    func doCallTimer()
+    {
+        if time > 0 {
+            time -= 1
+            let minutes = Int(time) / 60 % 60
+            let seconds = Int(time) % 60
+            self.lblTimer.text = String(format:"%02i:%02i", minutes, seconds)
+        }else{
+            self.btnResend.isEnabled = true
+            timer.invalidate()
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -73,69 +90,69 @@ class VerifyOTPController: UIViewController
         print(dictData)
         
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: METHOD_LOGIN, parameter: dictData , success: { (obj) in
-                        print("this is object \(obj)")
+            print("this is object \(obj)")
             
-                        let loginData = Mapper<LoginModel>().map(JSON: obj)
+            let loginData = Mapper<LoginModel>().map(JSON: obj)
             
-                        if (loginData?.status == "1")
-                        {
-                            UserManager.sharedUserManager.doSetLoginData(userData: (loginData?.responseData?[0])!)
-                            self.goTOHomeScreen()
-                        }
-                        else
-                        {
-                            CommonUtil.showTotstOnWindow(strMessgae: (loginData?.responseMessage)!)
-                        }
-                        
-                        
-                    }) { (error) in
-                        CommonUtil.showTotstOnWindow(strMessgae: (error?.localizedDescription)!)
-                    }
-
-        
-//        WebAPIManager.sharedWebAPIMAnager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: METHOD_LOGIN, parameter: dictData , success: { (obj) in
-//            print("this is object \(obj)")
-//            
-//            let loginData = Mapper<LoginModel>().map(JSON: obj)
-//            
-//            if (loginData?.status == "1")
-//            {
-//                UserManager.sharedUserManager.doSetLoginData(userData: (loginData?.responseData?[0])!)
-//                self.goTOHomeScreen()
-//            }
-//            else
-//            {
-//                CommonUtil.showTotstOnWindow(strMessgae: (loginData?.responseMessage)!)
-//            }
-//            
-//            
-//        }) { (error) in
-//            CommonUtil.showTotstOnWindow(strMessgae: (error?.localizedDescription)!)
-//        }
-    }
-
-        func doCallWebAPIForRegistration()
-        {
-            let dictData = ["version" : "1.0" , "os" : "2" , "language" : "english" , "mobileNo": self.strMobileNo  , "url":self.strLink , "deviceToken" : "asfs" , "countryCode" : "+91" , "otp" : self.strOTP] as [String : Any]
-    
-            WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "register", parameter: dictData , success: { (obj) in
-                let regData = Mapper<RegistrationModel>().map(JSON: obj)
-    
-                if (regData?.status == "1")
-                {
-                    UserManager.sharedUserManager.doSetLoginData(userData: (regData?.responseData?[0])!)
-                    self.goTOHomeScreen()
-                }
-                else
-                {
-                    CommonUtil.showTotstOnWindow(strMessgae: (regData?.responseMessage)!)
-                }
-    
-                print("this is object \(obj)")
-            }) { (error) in
-                CommonUtil.showTotstOnWindow(strMessgae: (error?.localizedDescription)!)
+            if (loginData?.status == "1")
+            {
+                UserManager.sharedUserManager.doSetLoginData(userData: (loginData?.responseData?[0])!)
+                self.goTOHomeScreen()
             }
+            else
+            {
+                CommonUtil.showTotstOnWindow(strMessgae: (loginData?.responseMessage)!)
+            }
+            
+            
+        }) { (error) in
+            CommonUtil.showTotstOnWindow(strMessgae: (error?.localizedDescription)!)
         }
+        
+        
+        //        WebAPIManager.sharedWebAPIMAnager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: METHOD_LOGIN, parameter: dictData , success: { (obj) in
+        //            print("this is object \(obj)")
+        //
+        //            let loginData = Mapper<LoginModel>().map(JSON: obj)
+        //
+        //            if (loginData?.status == "1")
+        //            {
+        //                UserManager.sharedUserManager.doSetLoginData(userData: (loginData?.responseData?[0])!)
+        //                self.goTOHomeScreen()
+        //            }
+        //            else
+        //            {
+        //                CommonUtil.showTotstOnWindow(strMessgae: (loginData?.responseMessage)!)
+        //            }
+        //
+        //
+        //        }) { (error) in
+        //            CommonUtil.showTotstOnWindow(strMessgae: (error?.localizedDescription)!)
+        //        }
+    }
+    
+    func doCallWebAPIForRegistration()
+    {
+        let dictData = ["version" : "1.0" , "os" : "2" , "language" : "english" , "mobileNo": self.strMobileNo  , "url":self.strLink , "deviceToken" : "asfs" , "countryCode" : "+91" , "otp" : self.strOTP] as [String : Any]
+        
+        WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "register", parameter: dictData , success: { (obj) in
+            let regData = Mapper<RegistrationModel>().map(JSON: obj)
+            
+            if (regData?.status == "1")
+            {
+                UserManager.sharedUserManager.doSetLoginData(userData: (regData?.responseData?[0])!)
+                self.goTOHomeScreen()
+            }
+            else
+            {
+                CommonUtil.showTotstOnWindow(strMessgae: (regData?.responseMessage)!)
+            }
+            
+            print("this is object \(obj)")
+        }) { (error) in
+            CommonUtil.showTotstOnWindow(strMessgae: (error?.localizedDescription)!)
+        }
+    }
     
     func doClickBack()
     {
@@ -151,9 +168,9 @@ class VerifyOTPController: UIViewController
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "NewPasswordController") as! NewPasswordController
             self.navigationController?.pushViewController(vc, animated: true)
         }else{
-
+            self.btnResend.isEnabled = false
             if isFromSignUp {
-             self.doCallWebAPIForRegistration()
+                self.doCallWebAPIForRegistration()
             }
             else{
                 self.doCallWebAPIForLogin()
@@ -161,6 +178,18 @@ class VerifyOTPController: UIViewController
             
             //self.navigationController?.popToRootViewController(animated: true)
         }
+    }
+    
+    @IBAction func doClickResend(sender : UIButton)
+    {
+        self.btnResend.isEnabled = false
+        if isFromSignUp {
+            self.doCallWebAPIForRegistration()
+        }
+        else{
+            self.doCallWebAPIForLogin()
+        }
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(doCallTimer)), userInfo: nil, repeats: true)
     }
     
     func goTOHomeScreen()
