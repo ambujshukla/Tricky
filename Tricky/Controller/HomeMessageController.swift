@@ -27,6 +27,7 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
         return refreshControl
     }()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.decorateUI()
@@ -230,12 +231,6 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
     }
-    //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    //
-    //        let popupVC = storyboard?.instantiateViewController(withIdentifier: "PopupViewController") as! PopupViewController
-    //        view.addSubview(popupVC.view)
-    //        addChildViewController(popupVC)
-    //    }
     
     @IBAction func doClickPlus()
     {
