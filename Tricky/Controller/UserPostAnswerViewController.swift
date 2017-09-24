@@ -17,6 +17,7 @@ class UserPostAnswerViewController: UIViewController {
     @IBOutlet weak var lblLeaveAnswer : UILabel!
     @IBOutlet weak var imgBG : UIImageView!
     var strUserId : String = ""
+    var strTitle : String = ""
     
     override func viewDidLoad()
     {
@@ -29,7 +30,7 @@ class UserPostAnswerViewController: UIViewController {
         //  self.btnSend.layer.borderColor = UIColor.white.cgColor
         //  self.btnSend.layer.borderWidth = 1.0
         //  self.btnSend.layer.masksToBounds = true
-        CommanUtility.decorateNavigationbarWithBackButton(target: self, strTitle: "John smith", strBackButtonImage: BACK_BUTTON, selector: #selector(self.goTOBack), color: color(red: 146, green: 102, blue: 236))
+        CommanUtility.decorateNavigationbarWithBackButton(target: self, strTitle: strTitle , strBackButtonImage: BACK_BUTTON, selector: #selector(self.goTOBack), color: color(red: 146, green: 102, blue: 236))
         
         //      self.txtViewComment.backgroundColor = color(red: 219, green: 192, blue: 177)
         //    self.lblHeader.text = "Non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam voluptatem. Ut enim ad minima tempora incidunt veniam"

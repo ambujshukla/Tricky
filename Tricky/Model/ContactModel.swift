@@ -64,16 +64,16 @@ class ContactModel: NSObject {
         
         for phoneNumber in contact.phoneNumbers {
             guard let phoneLabel = phoneNumber.label else { continue }
-            let phone = phoneNumber.value.stringValue
+            var phone = phoneNumber.value.stringValue
+            
+            if(!(phone.hasPrefix("+"))){
+                if (!(phone.hasPrefix("0"))){
+                    phone = "+\(91)\(phone)"
+  
+                }
+            }
             phoneNumbers.append((phone,phoneLabel))
         }
-        
-        //        for emailAddress in contact.emailAddresses {
-        //            guard let emailLabel = emailAddress.label else { continue }
-        //            let email = emailAddress.value as String
-        //
-        //            emails.append((email,emailLabel))
-        //        }
     }
     
     open func displayName() -> String {

@@ -40,6 +40,9 @@
         {
             self.navigationController?.navigationBar.barTintColor = color(red: 148, green: 108, blue: 139)
         }
+        else{
+            self.navigationController?.navigationBar.barTintColor = color(red: 148, green: 108, blue: 139)
+        }
     }
     
     func decorateUI()
@@ -189,8 +192,10 @@
                 as! UserPostAnswerViewController
             let dictData = self.arrSyncContacts[indexPath.row] as [String : AnyObject]
             let userId = dictData["userId"] as! String
+            let userName = dictData["userName"] as! String
+             vc.strTitle = userName
             vc.strUserId = userId
-            self.navigationController?.pushViewController(vc, animated: false)
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     

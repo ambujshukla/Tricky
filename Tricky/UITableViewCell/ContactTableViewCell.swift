@@ -40,8 +40,8 @@ class ContactTableViewCell: UITableViewCell {
             self.btnBlockOrInvite.setImage(#imageLiteral(resourceName: "blockselecticon"), for: .normal)
         }
         else
-        {
-            self.btnBlockOrInvite.setImage(#imageLiteral(resourceName: "invite"), for: .normal)
+        { //shareicon
+            self.btnBlockOrInvite.setImage(#imageLiteral(resourceName: "shareicon"), for: .normal)
   
         }
     }
