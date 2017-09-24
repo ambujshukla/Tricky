@@ -168,7 +168,13 @@ class FavouriteViewController: UIViewController , UITableViewDelegate , UITableV
 
     func doActionOnBlockButton(sender : UIButton){
         
-        CommonUtil.showAlertInSwift_3Format("Are you sure you want to block?", title: "txt_trickychat".localized(), btnCancel: "txt_no".localized(), btnOk: "txt_yes".localized(), crl: self, successBlock: { (obj) in
+        var strMessage = "Are you sure you want to block?"
+        
+        if sender.isSelected {
+            strMessage = "Are you sure you want to un block?"
+        }
+
+        CommonUtil.showAlertInSwift_3Format(strMessage, title: "txt_trickychat".localized(), btnCancel: "txt_no".localized(), btnOk: "txt_yes".localized(), crl: self, successBlock: { (obj) in
             
             self.doCallServiceForBlockMessage(sender: sender)
             
@@ -189,9 +195,9 @@ class FavouriteViewController: UIViewController , UITableViewDelegate , UITableV
             print("this is object \(responseObject)")
             if(responseObject["status"] as! String == "1"){
                 
-                if let resultData : Array<Dictionary<String, Any>> = responseObject["responseData"] as? Array<Dictionary<String, Any>> {
+                if let resultData : [String : AnyObject] = responseObject["responseData"] as?  [String : AnyObject] {
                     
-                    dictData["isUserBlock"] = resultData[0]["isUserBlock"]  as AnyObject
+                    dictData["isUserBlock"] = resultData["isBlocked"]  as AnyObject
                     self.arrMessageList[sender.tag] = dictData
                     self.tblFav.reloadData()
                 }

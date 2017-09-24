@@ -248,11 +248,16 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
     }
     
     func doActionOnReply(sender : UIButton) {
-        let controller = self.storyboard?.instantiateViewController(withIdentifier: "CreateNewPostViewController") as! CreateNewPostViewController
-        controller.isPostReply = true
-        let postID : String = self.arrMessageList[sender.tag]["messageId"] as! String
-        controller.strPostID = postID
-        self.navigationController?.pushViewController(controller, animated: true)
+        
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChatDetailViewIdentifier") as! ChatDetailViewController
+        self.navigationController?.pushViewController(vc, animated: true)
+    
+        
+//        let controller = self.storyboard?.instantiateViewController(withIdentifier: "CreateNewPostViewController") as! CreateNewPostViewController
+//        controller.isPostReply = true
+//        let postID : String = self.arrMessageList[sender.tag]["messageId"] as! String
+//        controller.strPostID = postID
+//        self.navigationController?.pushViewController(controller, animated: true)
     }
     
     func doActionOnShare(sender : UIButton)
