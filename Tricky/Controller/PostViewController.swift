@@ -84,7 +84,6 @@ class PostViewController: UIViewController , UITableViewDelegate , UITableViewDa
         }) { (error) in
             print("")
         }
-        
     }
 
     func hideAndShowFotterView(isHideFotter : Bool , isAnimateActivityInd : Bool){
@@ -97,7 +96,6 @@ class PostViewController: UIViewController , UITableViewDelegate , UITableViewDa
     {
         self.doCallWS(isComeFromPullToRefresh: false)
     }
-
     
     func doActionOnReply(sender : UIButton) {
     let controller = self.storyboard?.instantiateViewController(withIdentifier: "CreateNewPostViewController") as! CreateNewPostViewController
@@ -105,11 +103,14 @@ class PostViewController: UIViewController , UITableViewDelegate , UITableViewDa
         let postID : String = self.arrPostListData[sender.tag]["postId"] as! String
         controller.strPostID = postID
         self.navigationController?.pushViewController(controller, animated: true)
-        
     }
     
-    func doActionOnShare(sender : UIButton){
-        
+    func doActionOnShare(sender : UIButton)
+    {
+        let dictData = self.arrPostListData[sender.tag]
+        let shareText = dictData["message"]
+        let vc = UIActivityViewController(activityItems: [shareText ?? ""], applicationActivities: [])
+        present(vc, animated: true, completion: nil)
     }
     
     //MARK: - Tableview delegate and datasource methods
@@ -137,9 +138,12 @@ class PostViewController: UIViewController , UITableViewDelegate , UITableViewDa
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        let dictData = self.arrPostListData[indexPath.row]
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "PostDetailViewController") as! PostDetailViewController
+        vc.strPostId = dictData["postId"] as! String
+        vc.strPost = dictData["message"] as! String
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

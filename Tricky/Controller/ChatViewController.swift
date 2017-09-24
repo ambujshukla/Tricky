@@ -18,8 +18,6 @@ class ChatViewController: UIViewController  , UITableViewDataSource , UITableVie
         }
     }
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.decorateUI()
@@ -38,11 +36,8 @@ class ChatViewController: UIViewController  , UITableViewDataSource , UITableVie
         self.doCallWebServiceForGetChatList()
     }
     
-    
-    func doCallWebServiceForGetChatList(){
-        
-
-        
+    func doCallWebServiceForGetChatList()
+    {
         let dictData = ["userId" : UserManager.sharedUserManager.userId! , "os" : "2" , "version" : "1.0" , "language" : "english" , "limit" : "10" , "offset" : "0"] as [String : Any]
         
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl , strServiceName: "chatList", parameter: dictData, success: { (obj) in
@@ -54,12 +49,9 @@ class ChatViewController: UIViewController  , UITableViewDataSource , UITableVie
             else{
                 CommonUtil.showTotstOnWindow(strMessgae: obj["responseMessage"] as! String)
             }
-            
-            
         }) { (error) in
             
         }
-        
     }
     
     //MARK: - Tableview delegate and datasource methods
@@ -82,6 +74,8 @@ class ChatViewController: UIViewController  , UITableViewDataSource , UITableVie
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell1", for: indexPath) as! ChatListCell
         cell.doSetDataOnCell(dictData: self.chatData[indexPath.row])
         cell.selectionStyle = .none
+        cell.btnDelete.tag = indexPath.row
+        cell.btnDelete.addTarget(self, action: #selector(self.doActionDelete(sender:)), for: .touchUpInside)
         return cell
         
     }
@@ -91,4 +85,26 @@ class ChatViewController: UIViewController  , UITableViewDataSource , UITableVie
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
+    func doActionDelete(sender : UIButton)
+    {
+        CommonUtil.showAlertInSwift_3Format("Are you sure you want to delete", title: "Alert", btnCancel: "txt_no".localized(), btnOk: "txt_yes".localized(), crl: self, successBlock: { (no) in
+            let dictData = self.chatData[sender.tag]
+            
+            let params = ["version" : "1.0" , "os" : "ios" , "language" : "english","userId":dictData["userId"]!,"chatId" :dictData["chatId"]!] as [String : Any]
+            WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "deleteChat", parameter: params, success: { (responseObject) in
+                print(responseObject)
+                if (responseObject["status"] as! String  == "1")
+                {
+                    self.chatData .remove(at: sender.tag)
+                }
+                else {
+                }
+            }) { (error) in
+                print("")
+            }
+        }) { (no) in
+            
+        }
+
+    }
 }
