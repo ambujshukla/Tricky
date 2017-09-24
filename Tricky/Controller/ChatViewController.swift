@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import DZNEmptyDataSet
 
-class ChatViewController: UIViewController  , UITableViewDataSource , UITableViewDelegate{
+class ChatViewController: UIViewController  , UITableViewDataSource , UITableViewDelegate,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate{
     
     @IBOutlet weak var tblChat : UITableView!
     
@@ -34,6 +35,9 @@ class ChatViewController: UIViewController  , UITableViewDataSource , UITableVie
         
         self.tblChat.tableFooterView = UIView()
         self.doCallWebServiceForGetChatList()
+        
+        self.tblChat.emptyDataSetSource = self
+        self.tblChat.emptyDataSetDelegate = self
     }
     
     func doCallWebServiceForGetChatList()
@@ -105,6 +109,12 @@ class ChatViewController: UIViewController  , UITableViewDataSource , UITableVie
         }) { (no) in
             
         }
-
+    }
+    
+    func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString?
+    {
+           return  NSAttributedString(string:"txt_no_record".localized(), attributes:
+            [NSForegroundColorAttributeName: UIColor.white,
+             NSFontAttributeName: UIFont(name: Font_Helvetica_Neue, size: 14.0)!])
     }
 }

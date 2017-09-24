@@ -8,9 +8,9 @@
 
 import UIKit
 import AAPopUp
+import DZNEmptyDataSet
 
-
-class HomeMessageController: UIViewController , UITableViewDelegate , UITableViewDataSource{
+class HomeMessageController: UIViewController , UITableViewDelegate , UITableViewDataSource,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate{
     
     @IBOutlet weak var tblMessage : UITableView!
     @IBOutlet weak var btnPlus : UIButton!
@@ -63,7 +63,6 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
             print("this is object \(obj)")
         }) { (error) in
             CommonUtil.showTotstOnWindow(strMessgae: (error?.localizedDescription)!)
-            
         }
     }
     
@@ -160,6 +159,8 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
         self.tblMessage.tableFooterView = UIView()
         self.tblMessage.rowHeight = UITableViewAutomaticDimension;
         self.tblMessage.estimatedRowHeight = 90.0;
+        self.tblMessage.emptyDataSetSource = self
+        self.tblMessage.emptyDataSetDelegate = self
     }
     
     func doActionOnFavouriteButton(sender : UIButton) {
@@ -229,12 +230,22 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
     }
+    //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    //
+    //        let popupVC = storyboard?.instantiateViewController(withIdentifier: "PopupViewController") as! PopupViewController
+    //        view.addSubview(popupVC.view)
+    //        addChildViewController(popupVC)
+    //    }
     
     @IBAction func doClickPlus()
     {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ContactViewController") as! ContactViewController
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
-    
+    func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString?
+    {
+        return  NSAttributedString(string:"txt_no_record".localized(), attributes:
+            [NSForegroundColorAttributeName: UIColor.white,
+             NSFontAttributeName: UIFont(name: Font_Helvetica_Neue, size: 14.0)!])
+    }
 }

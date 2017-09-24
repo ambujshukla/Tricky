@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import DZNEmptyDataSet
 
-class PostViewController: UIViewController , UITableViewDelegate , UITableViewDataSource, PostMessageDelegate {
+class PostViewController: UIViewController , UITableViewDelegate , UITableViewDataSource, PostMessageDelegate,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
     @IBOutlet weak var tblPost : UITableView!
     @IBOutlet weak var btnPlus : UIButton!
@@ -48,6 +49,10 @@ class PostViewController: UIViewController , UITableViewDelegate , UITableViewDa
         self.hideAndShowFotterView(isHideFotter: true, isAnimateActivityInd: false)
         self.tblPost.rowHeight = UITableViewAutomaticDimension
         self.tblPost.estimatedRowHeight = 40
+        
+        self.tblPost.emptyDataSetSource = self
+        self.tblPost.emptyDataSetDelegate = self
+        
         self.activityView.startAnimating()
         self.doCallWS(isComeFromPullToRefresh : false)
     }
@@ -168,5 +173,11 @@ class PostViewController: UIViewController , UITableViewDelegate , UITableViewDa
         self.hideAndShowFotterView(isHideFotter: true, isAnimateActivityInd: false)
         }
         }
+    }
+    func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString?
+    {
+        return  NSAttributedString(string:"txt_no_record".localized(), attributes:
+            [NSForegroundColorAttributeName: UIColor.white,
+             NSFontAttributeName: UIFont(name: Font_Helvetica_Neue, size: 14.0)!])
     }
 }

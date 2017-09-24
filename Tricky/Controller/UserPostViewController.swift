@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import DZNEmptyDataSet
 
-class UserPostViewController: UIViewController, UITableViewDelegate , UITableViewDataSource{
+class UserPostViewController: UIViewController, UITableViewDelegate , UITableViewDataSource,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate{
 
     @IBOutlet weak var tblMessage : UITableView!
 
@@ -32,6 +33,8 @@ class UserPostViewController: UIViewController, UITableViewDelegate , UITableVie
         //57 74 143
         CommanUtility.decorateNavigationbarWithBackButton(target: self, strTitle: "John Smith", strBackButtonImage: BACK_BUTTON, selector: #selector(self.goTOBack) , color: color(red: 134, green: 146, blue: 216)
         )
+        self.tblMessage.emptyDataSetSource = self
+        self.tblMessage.emptyDataSetDelegate = self
     }
     
     func goTOBack()
@@ -70,4 +73,12 @@ class UserPostViewController: UIViewController, UITableViewDelegate , UITableVie
         
         let controller = self.storyboard?.instantiateViewController(withIdentifier: "CreateNewPostViewController") as! CreateNewPostViewController
         self.navigationController?.pushViewController(controller, animated: true)
-    }}
+    }
+    
+    func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString?
+    {
+        return  NSAttributedString(string:"txt_no_record".localized(), attributes:
+            [NSForegroundColorAttributeName: UIColor.white,
+             NSFontAttributeName: UIFont(name: Font_Helvetica_Neue, size: 14.0)!])
+    }
+}

@@ -277,6 +277,7 @@
 		3151CE901F48B2E300C322C3 /* UITableViewCell */ = {
 			isa = PBXGroup;
 			children = (
+				31F059381F77789A008CD0D8 /* MyPostTableViewCell.swift */,
 				1800355D1F6AF62C005C1072 /* ChatListCell.swift */,
 				1820E1B61F777562000DAC9A /* MyPostTableViewCell.swift */,
 				3163FC251F4DF902004AA3CF /* ChatTableViewCell.swift */,
@@ -668,6 +669,7 @@
 				"${BUILT_PRODUCTS_DIR}/AAPopUp/AAPopUp.framework",
 				"${BUILT_PRODUCTS_DIR}/ActionSheetPicker-3.0/ActionSheetPicker_3_0.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
 				"${BUILT_PRODUCTS_DIR}/Localize-Swift/Localize_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/MagicalRecord/MagicalRecord.framework",
@@ -683,6 +685,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AAPopUp.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ActionSheetPicker_3_0.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Localize_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MagicalRecord.framework",
@@ -724,6 +727,7 @@
 				3151CE8D1F48ADBB00C322C3 /* ContactModel.swift in Sources */,
 				31B72F881F4778C2007D24E6 /* SignUpViewController.swift in Sources */,
 				183A108F1F4B51C000579A7A /* LanguageViewController.swift in Sources */,
+				31F059391F77789A008CD0D8 /* MyPostTableViewCell.swift in Sources */,
 				3163FC281F4DFB62004AA3CF /* ChatDetailViewController.swift in Sources */,
 				183A10891F4B51AA00579A7A /* HomeMessageController.swift in Sources */,
 				1820E1B71F777562000DAC9A /* MyPostTableViewCell.swift in Sources */,

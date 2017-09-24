@@ -47,7 +47,7 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
         self.imgProfile.sd_setImage(with: URL(string : (UserManager.sharedUserManager.profilePic)!) )
 
         
-        self.menuData = ["Home".localized() ,"txt_block_users".localized() , "contacts" , "Favorite" , "language", "My Post" , "Filter to vulger message" , "Block Unauthorised user","Display all anonymous post" , "Logout"];
+        self.menuData = ["Home".localized() ,"txt_block_users".localized() , "contacts" , "Favorite" , "language", "My Post" , "Filter vulgar messages" , "Block Unauthorised user","Display all anonymous post" , "Logout"];
         
         self.tblMenu.tableFooterView = UIView()
         self.lblSent.textColor = UIColor.white
@@ -79,8 +79,6 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MenuTableViewCell
-        // let label = cell.contentView.viewWithTag(10) as! UILabel!
-        // let swOnOff = cell.contentView.viewWithTag(11) as! PWSwitch!
         
         if indexPath.row == 6 || indexPath.row == 7 || indexPath.row == 8 {
             cell.switchPW?.isHidden = false

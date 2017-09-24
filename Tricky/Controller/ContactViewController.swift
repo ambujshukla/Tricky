@@ -7,8 +7,9 @@
  //
  
  import UIKit
- 
- class ContactViewController: UIViewController , UITableViewDelegate , UITableViewDataSource {
+ import DZNEmptyDataSet
+
+ class ContactViewController: UIViewController , UITableViewDelegate , UITableViewDataSource,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
     var contactsArray = NSMutableArray()
     var arrSyncContacts = [[String : AnyObject]]()
@@ -43,6 +44,8 @@
     
     func decorateUI()
     {
+        self.tblContact.emptyDataSetSource = self
+        self.tblContact.emptyDataSetDelegate = self
     }
     
     override func didReceiveMemoryWarning() {
@@ -220,6 +223,12 @@
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70.00
+    }
+    func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString?
+    {
+        return  NSAttributedString(string:"txt_no_record".localized(), attributes:
+            [NSForegroundColorAttributeName: UIColor.white,
+             NSFontAttributeName: UIFont(name: Font_Helvetica_Neue, size: 14.0)!])
     }
  }
  

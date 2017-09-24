@@ -13,8 +13,8 @@ class MessageViewController: UIViewController {
     @IBOutlet weak var txtViewComment : UITextView!
     @IBOutlet weak var btnSend : UIButton!
     
-    
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         self.decorateUI()
         // Do any additional setup after loading the view.

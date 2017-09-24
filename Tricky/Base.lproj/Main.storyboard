@@ -923,7 +923,7 @@
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="33" translatesAutoresizingMaskIntoConstraints="NO" id="k9A-LB-RBg">
+                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="33" translatesAutoresizingMaskIntoConstraints="NO" id="k9A-LB-RBg">
                                                             <rect key="frame" x="8" y="47" width="192" height="22"/>
                                                             <subviews>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="geC-CK-UnQ">
@@ -936,7 +936,7 @@
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NiK-W8-PaC">
                                                                     <rect key="frame" x="90" y="0.0" width="12" height="22"/>
-                                                                    <state key="normal" image="favoriteicon"/>
+                                                                    <state key="normal" image="favoriteselecticon"/>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d9Y-yU-2Lb">
                                                                     <rect key="frame" x="135" y="0.0" width="12" height="22"/>
@@ -948,7 +948,6 @@
                                                                 </button>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="192" id="6cc-Kj-cAg"/>
                                                                 <constraint firstAttribute="height" constant="22" id="f0z-60-G0b"/>
                                                             </constraints>
                                                         </stackView>
@@ -998,6 +997,7 @@
                                             <outlet property="btnShare" destination="d9Y-yU-2Lb" id="wva-ga-Bbh"/>
                                             <outlet property="btnfavourite" destination="NiK-W8-PaC" id="lr3-CV-LtT"/>
                                             <outlet property="lblMessage" destination="Ka5-Gl-AJ1" id="Ugv-zJ-Yvv"/>
+                                            <outlet property="lblTime" destination="Lkv-OE-xSN" id="AFm-44-Bnl"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

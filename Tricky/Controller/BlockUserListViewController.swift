@@ -8,8 +8,9 @@
 
 import UIKit
 import Localize_Swift
+import DZNEmptyDataSet
 
-class BlockUserListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+class BlockUserListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
     @IBOutlet weak var tblView : UITableView!
     @IBOutlet weak var imgBG : UIImageView!
@@ -57,6 +58,9 @@ class BlockUserListViewController: UIViewController, UITableViewDelegate, UITabl
         self.tblView.dataSource = self
         self.tblView.tableFooterView = UIView()
         self.arrFilteredData = self.arrBlockList
+        
+        self.tblView.emptyDataSetSource = self
+        self.tblView.emptyDataSetDelegate = self
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -93,6 +97,12 @@ class BlockUserListViewController: UIViewController, UITableViewDelegate, UITabl
         self.tblView.reloadData()
     }
     
+    func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString?
+    {
+        return  NSAttributedString(string:"txt_no_record".localized(), attributes:
+            [NSForegroundColorAttributeName: UIColor.white,
+             NSFontAttributeName: UIFont(name: Font_Helvetica_Neue, size: 14.0)!])
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
