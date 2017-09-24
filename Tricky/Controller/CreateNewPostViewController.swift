@@ -19,7 +19,7 @@ class CreateNewPostViewController: UIViewController {
     @IBOutlet weak var txtViewComment : UITextView!
     @IBOutlet weak var imgBg : UIImageView!
     var delegate:PostMessageDelegate?
-    var isPostReply : Bool!
+    var isPostReply : Bool = false
     var strPostID : String!
     @IBOutlet weak var lblReply : UILabel!
 

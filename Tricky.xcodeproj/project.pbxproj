@@ -103,6 +103,8 @@
 		31D031CD1F49C6F700D41E4C /* ProfileBG@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 31D031CA1F49C6F700D41E4C /* ProfileBG@3x.png */; };
 		31D9D1061F4F4FF800ED9B78 /* UserPostAnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D9D1051F4F4FF700ED9B78 /* UserPostAnswerViewController.swift */; };
 		31D9D1081F4F58E200ED9B78 /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D9D1071F4F58E200ED9B78 /* PostDetailViewController.swift */; };
+		31DF5DAC1F76CBC80087B302 /* MyPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DF5DAB1F76CBC80087B302 /* MyPostViewController.swift */; };
+		31DF5DAE1F76CCEC0087B302 /* MyPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DF5DAD1F76CCEC0087B302 /* MyPostTableViewCell.swift */; };
 		31F4D3DC1F5F20890036539C /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F4D3DB1F5F20880036539C /* ProfileModel.swift */; };
 		98D0C745BBA0DAB0082F2BFD /* Pods_Tricky.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFA49A12562E72DD1E969AA9 /* Pods_Tricky.framework */; };
 /* End PBXBuildFile section */
@@ -210,6 +212,8 @@
 		31D031CA1F49C6F700D41E4C /* ProfileBG@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProfileBG@3x.png"; sourceTree = "<group>"; };
 		31D9D1051F4F4FF700ED9B78 /* UserPostAnswerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPostAnswerViewController.swift; sourceTree = "<group>"; };
 		31D9D1071F4F58E200ED9B78 /* PostDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
+		31DF5DAB1F76CBC80087B302 /* MyPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPostViewController.swift; sourceTree = "<group>"; };
+		31DF5DAD1F76CCEC0087B302 /* MyPostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPostTableViewCell.swift; sourceTree = "<group>"; };
 		31F4D3DB1F5F20880036539C /* ProfileModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		31F7A58C1F61CA7B00F2A42C /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
 		31F7A58D1F61CA8200F2A42C /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
@@ -280,6 +284,7 @@
 				1833F9DD1F4CA7FD004AB7EE /* MessageTableViewCell.swift */,
 				313B2EC81F5C636B0040F146 /* PostDetailTableViewCell.swift */,
 				3168010F1F6592D2000B912B /* MenuTableViewCell.swift */,
+				31DF5DAD1F76CCEC0087B302 /* MyPostTableViewCell.swift */,
 			);
 			path = UITableViewCell;
 			sourceTree = "<group>";
@@ -396,6 +401,7 @@
 				31D9D1051F4F4FF700ED9B78 /* UserPostAnswerViewController.swift */,
 				31D9D1071F4F58E200ED9B78 /* PostDetailViewController.swift */,
 				181BD4D41F55E7C900E60277 /* PopupViewController.swift */,
+				31DF5DAB1F76CBC80087B302 /* MyPostViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -743,7 +749,9 @@
 				3151CE8B1F48AD6000C322C3 /* MessageViewController.swift in Sources */,
 				3163FC261F4DF902004AA3CF /* ChatTableViewCell.swift in Sources */,
 				3151CE7F1F48AAE800C322C3 /* VerifyOTPController.swift in Sources */,
+				31DF5DAE1F76CCEC0087B302 /* MyPostTableViewCell.swift in Sources */,
 				183A10B21F4B529A00579A7A /* ViewPagerTabView.swift in Sources */,
+				31DF5DAC1F76CBC80087B302 /* MyPostViewController.swift in Sources */,
 				183A10B11F4B529A00579A7A /* ViewPagerTab.swift in Sources */,
 				31B72F691F475A15007D24E6 /* AppDelegate.swift in Sources */,
 				31D9D1061F4F4FF800ED9B78 /* UserPostAnswerViewController.swift in Sources */,

@@ -29,7 +29,17 @@ class LanguageViewController: UIViewController, UITableViewDataSource , UITableV
     
     func decorateUI() {
         
-        //  NotificationCenter.default.addObserver(self, selector: #selector(setText), name: NSNotification.Name(LCLLanguageChangeNotification), object: nil)
+        if Localize.currentLanguage() == "zh-Hant" {
+            index = 1
+        }else if Localize.currentLanguage() == "es"
+        {
+        index = 2
+        }else if Localize.currentLanguage() == "pt-PT"
+        {
+            index = 3
+        }else{
+            index = 0
+        }
         self.tblLanguage.tableFooterView = UIView()
         CommanUtility.decorateNavigationbarWithBackButton(target: self, strTitle: "txt_language".localized(), strBackButtonImage: BACK_BUTTON , selector: #selector(self.goTOBack), color: color(red: 107, green: 108, blue: 180))
         
@@ -51,6 +61,8 @@ class LanguageViewController: UIViewController, UITableViewDataSource , UITableV
         self.btnContinue.layer.borderColor = UIColor.white.cgColor
         
         self.tblLanguage.isScrollEnabled = false
+        
+        
         
     }
     
@@ -101,9 +113,12 @@ class LanguageViewController: UIViewController, UITableViewDataSource , UITableV
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
+        if indexPath.row == index {
+            return
+        }
         index = indexPath.row
         
-        let alert = UIAlertController(title: "txt_trickychat".localized(), message: "txt_change_language \(self.arrData[indexPath.row].localized())", preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: "txt_trickychat".localized(), message: "\("txt_change_language".localized()) \(self.arrData[indexPath.row].localized())", preferredStyle: UIAlertControllerStyle.alert)
         
         alert.addAction(UIAlertAction(title: "txt_yes".localized(), style: UIAlertActionStyle.default, handler:
             { action in

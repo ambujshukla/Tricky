@@ -134,13 +134,19 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
 //            self.revealViewController().pushFrontViewController(navController, animated: true)
         }else if(indexPath.row == 4)
         {
-        }else if(indexPath.row == 5)
-        {
             let controller = self.storyboard?.instantiateViewController(withIdentifier: "LanguageViewController") as! LanguageViewController
             let contrlHome = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
             let navController = UINavigationController.init()
             navController.setViewControllers([contrlHome , controller], animated: true)
             self.revealViewController().pushFrontViewController(navController, animated: true)
+        }else if(indexPath.row == 5)
+        {
+            let controller = self.storyboard?.instantiateViewController(withIdentifier: "MyPostViewController") as! MyPostViewController
+            let contrlHome = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+            let navController = UINavigationController.init()
+            navController.setViewControllers([contrlHome , controller], animated: true)
+            self.revealViewController().pushFrontViewController(navController, animated: true)
+            
         }else  if (indexPath.row == 9)
         {
             //  self.dismiss(animated: true, completion: nil)

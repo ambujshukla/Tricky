@@ -82,8 +82,6 @@ public extension String {
     }
 }
 
-
-
 // MARK: Language Setting Functions
 
 open class Localize: NSObject {
