@@ -12,13 +12,24 @@ class PostViewController: UIViewController , UITableViewDelegate , UITableViewDa
     
     @IBOutlet weak var tblPost : UITableView!
     @IBOutlet weak var btnPlus : UIButton!
-    var arrPostListData = [Dictionary<String, AnyObject>]()
+    var arrPostListData = [[String : AnyObject]]()
+    {
+        didSet{
+            self.tblPost.reloadData()
+        }
+    }
     @IBOutlet weak var activityView : UIActivityIndicatorView!
     @IBOutlet weak var vwFotter : UIView!
     var totalCount : Int = 0
     var limit : Int = 10
     var offSet : Int = 0
-    
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(self.handleRefresh(_:)), for: UIControlEvents.valueChanged)
+        refreshControl.tintColor = UIColor.white
+        return refreshControl
+    }()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,15 +44,22 @@ class PostViewController: UIViewController , UITableViewDelegate , UITableViewDa
     
     func decorateUI()
     {
-      //  self.tblPost.tableFooterView = UIView()
+        self.tblPost.addSubview(self.refreshControl)
         self.hideAndShowFotterView(isHideFotter: true, isAnimateActivityInd: false)
         self.tblPost.rowHeight = UITableViewAutomaticDimension
         self.tblPost.estimatedRowHeight = 40
         self.activityView.startAnimating()
-        self.doCallWS()
+        self.doCallWS(isComeFromPullToRefresh : false)
     }
     
-    func doCallWS()
+    func handleRefresh(_ refreshControl: UIRefreshControl) {
+        self.doCallWS(isComeFromPullToRefresh : true)
+        refreshControl.endRefreshing()
+    }
+
+    
+    
+    func doCallWS(isComeFromPullToRefresh : Bool)
     {
         let params = ["version" : "1.0" , "os" : "ios" , "language" : "english","userId":UserManager.sharedUserManager.userId!, "showPostOnlyMyContact" :"0", "filterVulgarMessage" : "\(self.offSet)","limit" : "\(self.limit)","offset" : "0"] as [String : Any]
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "GetAllPost", parameter: params, success: { (responseObject) in
@@ -51,11 +69,13 @@ class PostViewController: UIViewController , UITableViewDelegate , UITableViewDa
                 if let resultData : Array<Dictionary<String, Any>> = responseObject["responseData"] as? Array<Dictionary<String, Any>>
               {
                 self.totalCount = responseObject["totalRecordCount"] as! Int
+                if (isComeFromPullToRefresh){
+                    self.arrPostListData.removeAll()
+                }
                 for(_, element) in resultData.enumerated()
                 {
                     self.arrPostListData .append(element as [String : AnyObject])
                 }
-                self.tblPost.reloadData()
               }
                 else {
                   self.hideAndShowFotterView(isHideFotter: true, isAnimateActivityInd: false)
@@ -75,7 +95,7 @@ class PostViewController: UIViewController , UITableViewDelegate , UITableViewDa
     
     func createNewPost()
     {
-        self.doCallWS()
+        self.doCallWS(isComeFromPullToRefresh: false)
     }
 
     
@@ -133,16 +153,16 @@ class PostViewController: UIViewController , UITableViewDelegate , UITableViewDa
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
         let lastElement = arrPostListData.count - 1
-//        if indexPath.row == lastElement{
-//        
-//        if self.totalCount != self.arrPostListData.count {
-//          self.offSet += 10
-//          self.createNewPost()
-//        self.hideAndShowFotterView(isHideFotter: false, isAnimateActivityInd: true)
-//        }
-//        else{
-//        self.hideAndShowFotterView(isHideFotter: true, isAnimateActivityInd: false)
-//        }
-//        }
+        if indexPath.row == lastElement{
+        
+        if self.totalCount != self.arrPostListData.count {
+          self.offSet += 10
+          self.createNewPost()
+        self.hideAndShowFotterView(isHideFotter: false, isAnimateActivityInd: true)
+        }
+        else{
+        self.hideAndShowFotterView(isHideFotter: true, isAnimateActivityInd: false)
+        }
+        }
     }
 }

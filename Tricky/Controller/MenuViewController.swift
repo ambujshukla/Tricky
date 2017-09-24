@@ -126,12 +126,11 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
         {
           self.doNavigateToContactsView(showContactsFrom: 2)
         }else if (indexPath.row == 3) {
-            self.doNavigateToContactsView(showContactsFrom: 3)
-//            let vc = self.storyboard?.instantiateViewController(withIdentifier: "FavouriteViewController") as! FavouriteViewController
-//            let contrlHome = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-//            let navController = UINavigationController.init()
-//            navController.setViewControllers([contrlHome , vc], animated: true)
-//            self.revealViewController().pushFrontViewController(navController, animated: true)
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "FavouriteViewController") as! FavouriteViewController
+            let contrlHome = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+            let navController = UINavigationController.init()
+            navController.setViewControllers([contrlHome , vc], animated: true)
+            self.revealViewController().pushFrontViewController(navController, animated: true)
         }else if(indexPath.row == 4)
         {
         }else if(indexPath.row == 5)

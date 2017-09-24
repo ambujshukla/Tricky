@@ -15,15 +15,27 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
     @IBOutlet weak var tblMessage : UITableView!
     @IBOutlet weak var btnPlus : UIButton!
     var arrMessageList = [Dictionary<String, AnyObject>]()
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(self.handleRefresh(_:)), for: UIControlEvents.valueChanged)
+        refreshControl.tintColor = UIColor.white
+        return refreshControl
+    }()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.decorateUI()
-        self.doGetMessageList()
+        self.doGetMessageList(isComeFromPullToRefresh:  false)
         // Do any additional setup after loading the view.
     }
     
-    func doGetMessageList()
+    func handleRefresh(_ refreshControl: UIRefreshControl) {
+        self.doGetMessageList(isComeFromPullToRefresh: true)
+        refreshControl.endRefreshing()
+    }
+    
+    func doGetMessageList(isComeFromPullToRefresh : Bool)
     {
         self.view.endEditing(true)
         //UpdateProfile
@@ -35,6 +47,9 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
             {
                 if let result : Array<Dictionary<String, Any>> = obj["responseData"] as? Array<Dictionary<String, Any>>
                 {
+                    if isComeFromPullToRefresh {
+                        self.arrMessageList.removeAll()
+                    }
                     for(_, element) in result.enumerated()
                     {
                         self.arrMessageList .append(element as [String : AnyObject])
@@ -68,11 +83,7 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
     func decorateUI () {
         
         
-        let options = AAPopUp.globalOptions
-        options.storyboardName = "Main"
-        options.dismissTag = 9
-
-        
+        self.tblMessage.addSubview(self.refreshControl)
         self.tblMessage.tableFooterView = UIView()
         self.tblMessage.rowHeight = UITableViewAutomaticDimension;
         self.tblMessage.estimatedRowHeight = 90.0;
