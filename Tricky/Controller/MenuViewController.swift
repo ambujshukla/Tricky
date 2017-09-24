@@ -79,8 +79,6 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MenuTableViewCell
-        // let label = cell.contentView.viewWithTag(10) as! UILabel!
-        // let swOnOff = cell.contentView.viewWithTag(11) as! PWSwitch!
         
         if indexPath.row == 6 || indexPath.row == 7 || indexPath.row == 8 {
             cell.switchPW?.isHidden = false

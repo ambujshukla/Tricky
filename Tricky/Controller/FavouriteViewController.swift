@@ -8,27 +8,72 @@
 
 import UIKit
 import AAPopUp
-class FavouriteViewController: UIViewController , UITableViewDelegate , UITableViewDataSource {
+import DZNEmptyDataSet
+
+class FavouriteViewController: UIViewController , UITableViewDelegate , UITableViewDataSource,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
     @IBOutlet weak var tblFav : UITableView!
+    var arrMessageList = [Dictionary<String, AnyObject>]()
+
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(self.handleRefresh(_:)), for: UIControlEvents.valueChanged)
+        refreshControl.tintColor = UIColor.white
+        return refreshControl
+    }()
     
+    func handleRefresh(_ refreshControl: UIRefreshControl) {
+        self.doGetMessageList(isComeFromPullToRefresh: true)
+        refreshControl.endRefreshing()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.decorateUI()
-        // Do any additional setup after loading the view.
+        self.doGetMessageList(isComeFromPullToRefresh:  false)
     }
     
+    
+    func doGetMessageList(isComeFromPullToRefresh : Bool)
+    {
+        self.view.endEditing(true)
+        let dictData = ["version" : "1.0" , "os" : "ios" , "language" : "english","userId":UserManager.sharedUserManager.userId!,"filterVulgar" : "0","messageForOnlyRegisterUser":"0","offset":"0","limit" : "10","showOnlyFavorite":"0"] as [String : Any]
+        
+        WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "getRecSentList", parameter: dictData , success: { (obj) in
+            
+            if (obj["status"] as! String == "1")
+            {
+                if let result : Array<Dictionary<String, Any>> = obj["responseData"] as? Array<Dictionary<String, Any>>
+                {
+                    if isComeFromPullToRefresh {
+                        self.arrMessageList.removeAll()
+                    }
+                    for(_, element) in result.enumerated()
+                    {
+                        self.arrMessageList .append(element as [String : AnyObject])
+                    }
+                    self.tblFav.reloadData()
+                }
+            }
+            print("this is object \(obj)")
+        }) { (error) in
+            CommonUtil.showTotstOnWindow(strMessgae: (error?.localizedDescription)!)
+            
+        }
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    func decorateUI () {
-        
+    func decorateUI ()
+    {
         CommanUtility.decorateNavigationbarWithBackButton(target: self, strTitle: "Favourite", strBackButtonImage: BACK_BUTTON, selector: #selector(self.goTOBack), color: color(red: 181, green: 121, blue: 240))
         
         self.tblFav.rowHeight = UITableViewAutomaticDimension;
         self.tblFav.estimatedRowHeight = 90.0;
+        
+        self.tblFav.emptyDataSetSource = self
+        self.tblFav.emptyDataSetDelegate = self
         
         self.doCallServiceForFavouriteMessage()
     }
@@ -66,16 +111,14 @@ class FavouriteViewController: UIViewController , UITableViewDelegate , UITableV
     }
     
     //MARK: - Tableview delegate and datasource methods
-    
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        
+    func numberOfSections(in tableView: UITableView) -> Int
+    {
         return 1
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return 4
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        return self.arrMessageList.count
     }
     
     // MARK: - Table View Delegates
@@ -84,9 +127,10 @@ class FavouriteViewController: UIViewController , UITableViewDelegate , UITableV
         
         if indexPath.row % 2 == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell1", for: indexPath) as! MessageTableViewCell
-            cell.lblMessage.text = "Hi jack how are you whats going on dude"
+            cell.decorateTableViewCell(dictData: self.arrMessageList[indexPath.row])
+            cell.btnfavourite.addTarget(self, action: #selector(self.doCallServiceForFavouriteMessage(sender:)), for: .touchUpInside)
+            cell.selectionStyle = .none
             cell.btnReply.addTarget(self, action: #selector(doactionOnReply), for: .touchUpInside)
-            
             return cell
         }
         else
@@ -98,5 +142,20 @@ class FavouriteViewController: UIViewController , UITableViewDelegate , UITableV
         }
     }
     
+    func doCallServiceForFavouriteMessage(sender : UIButton)
+    {
+        let dictParam = ["userId" : UserManager.sharedUserManager.userId!] as [String : Any]
+        WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl , strServiceName: "favoriteMsg", parameter: dictParam , success: { (obj) in
+            print("this is object \(obj)")
+        }) { (error) in
+            
+        }
+    }
+    func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString?
+    {
+        return  NSAttributedString(string:"txt_no_record".localized(), attributes:
+            [NSForegroundColorAttributeName: UIColor.white,
+             NSFontAttributeName: UIFont(name: Font_Helvetica_Neue, size: 14.0)!])
+    }
     
 }

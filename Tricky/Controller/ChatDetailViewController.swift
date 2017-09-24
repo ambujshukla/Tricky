@@ -9,8 +9,9 @@
 import UIKit
 import IQKeyboardManager
 import UITextView_Placeholder;
+import DZNEmptyDataSet
 
-class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate
+class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
 {
     @IBOutlet weak var tblView : UITableView!
     @IBOutlet weak var imgBG : UIImageView!
@@ -90,6 +91,9 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
         IQKeyboardManager.shared().isEnabled = false
         self.tblView.delegate = self
         self.tblView.dataSource = self
+        
+        self.tblView.emptyDataSetSource = self
+        self.tblView.emptyDataSetDelegate = self
         
         NotificationCenter.default.addObserver(self, selector: #selector(ChatDetailViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         
@@ -198,21 +202,15 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
     
     @IBAction func doClickYesOrNo (id : UIButton)
     {
-//        self.btnNo.backgroundColor = UIColor.white
-//        self.btnYes.backgroundColor = UIColor.white
-//        self.btnYes .isSelected = false
-//        self.btnNo .isSelected = false
-//        
-//        if  id.tag == 101
-//        {
-//            self.btnYes.backgroundColor = color(red: 113, green: 136, blue: 154)
-//            self.btnYes .isSelected = true
-//        }else{
-//            self.btnNo.backgroundColor = color(red: 113, green: 136, blue: 154)
-//            self.btnNo .isSelected = true
-//        }
+
     }
     
+    func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString?
+    {
+        return  NSAttributedString(string:"txt_no_record".localized(), attributes:
+            [NSForegroundColorAttributeName: UIColor.white,
+             NSFontAttributeName: UIFont(name: Font_Helvetica_Neue, size: 14.0)!])
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

@@ -8,8 +8,9 @@
 
 import UIKit
 import Localize_Swift
+import DZNEmptyDataSet
 
-class MyPostViewController: UIViewController , UITableViewDelegate , UITableViewDataSource
+class MyPostViewController: UIViewController , UITableViewDelegate , UITableViewDataSource,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
 {
     @IBOutlet weak var tblPost : UITableView!
     var arrPostListData = [Dictionary<String, AnyObject>]()
@@ -27,13 +28,16 @@ class MyPostViewController: UIViewController , UITableViewDelegate , UITableView
     
     func decorateUI()
     {
-        //  self.tblPost.tableFooterView = UIView()
         self.hideAndShowFotterView(isHideFotter: true, isAnimateActivityInd: false)
         self.tblPost.rowHeight = UITableViewAutomaticDimension
         self.tblPost.estimatedRowHeight = 40
         self.activityView.startAnimating()
         CommanUtility.decorateNavigationbarWithBackButton(target: self, strTitle: "My Post", strBackButtonImage: BACK_BUTTON, selector: #selector(self.goTOBack), color: color(red: 142, green: 110, blue: 137))
         
+        
+        self.tblPost.emptyDataSetSource = self
+        self.tblPost.emptyDataSetDelegate = self
+
         self.doCallWS()
     }
     func goTOBack()
@@ -142,6 +146,12 @@ class MyPostViewController: UIViewController , UITableViewDelegate , UITableView
         return cell
     }
     
+    func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString?
+    {
+        return  NSAttributedString(string:"txt_no_record".localized(), attributes:
+            [NSForegroundColorAttributeName: UIColor.white,
+             NSFontAttributeName: UIFont(name: Font_Helvetica_Neue, size: 14.0)!])
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

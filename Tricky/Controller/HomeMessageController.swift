@@ -8,21 +8,22 @@
 
 import UIKit
 import AAPopUp
+import DZNEmptyDataSet
 
-
-class HomeMessageController: UIViewController , UITableViewDelegate , UITableViewDataSource{
+class HomeMessageController: UIViewController , UITableViewDelegate , UITableViewDataSource,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate{
     
     @IBOutlet weak var tblMessage : UITableView!
     @IBOutlet weak var btnPlus : UIButton!
     var arrMessageList = [Dictionary<String, AnyObject>]()
+    
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(self.handleRefresh(_:)), for: UIControlEvents.valueChanged)
         refreshControl.tintColor = UIColor.white
         return refreshControl
     }()
-
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.decorateUI()
@@ -38,8 +39,7 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
     func doGetMessageList(isComeFromPullToRefresh : Bool)
     {
         self.view.endEditing(true)
-        //UpdateProfile
-        let dictData = ["version" : "1.0" , "os" : "ios" , "language" : "english","userId":"19","filterVulgar" : "0","messageForOnlyRegisterUser":"0","offset":"0","limit" : "10","showOnlyFavorite":"0"] as [String : Any]
+        let dictData = ["version" : "1.0" , "os" : "ios" , "language" : "english","userId":UserManager.sharedUserManager.userId!,"filterVulgar" : "0","messageForOnlyRegisterUser":"0","offset":"0","limit" : "10","showOnlyFavorite":"0"] as [String : Any]
         
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "getRecSentList", parameter: dictData , success: { (obj) in
             
@@ -60,12 +60,11 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
             print("this is object \(obj)")
         }) { (error) in
             CommonUtil.showTotstOnWindow(strMessgae: (error?.localizedDescription)!)
-            
         }
     }
     
-    func doCallServiceForFavouriteMessage(){
-        
+    func doCallServiceForFavouriteMessage(sender : UIButton)
+    {
         let dictParam = ["userId" : UserManager.sharedUserManager.userId!] as [String : Any]
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl , strServiceName: "favoriteMsg", parameter: dictParam , success: { (obj) in
             print("this is object \(obj)")
@@ -80,13 +79,14 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
         // Dispose of any resources that can be recreated.
     }
     
-    func decorateUI () {
-        
-        
+    func decorateUI ()
+    {
         self.tblMessage.addSubview(self.refreshControl)
         self.tblMessage.tableFooterView = UIView()
         self.tblMessage.rowHeight = UITableViewAutomaticDimension;
         self.tblMessage.estimatedRowHeight = 90.0;
+        self.tblMessage.emptyDataSetSource = self
+        self.tblMessage.emptyDataSetDelegate = self
     }
     
     //MARK: - Tableview delegate and datasource methods
@@ -105,31 +105,36 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
     // MARK: - Table View Delegates
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-       // if indexPath.row % 2 == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell1", for: indexPath) as! MessageTableViewCell
-            cell.decorateTableViewCell(dictData: self.arrMessageList[indexPath.row])
-            cell.selectionStyle = .none
-            return cell
-//        }
-//        else
-//        {
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "cell2", for: indexPath) as! MessageTableViewCell
-//            cell.selectionStyle = .none
-//            return cell
-//        }
+        // if indexPath.row % 2 == 0 {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell1", for: indexPath) as! MessageTableViewCell
+        cell.decorateTableViewCell(dictData: self.arrMessageList[indexPath.row])
+        cell.btnfavourite.addTarget(self, action: #selector(self.doCallServiceForFavouriteMessage(sender:)), for: .touchUpInside)
+        cell.selectionStyle = .none
+        return cell
+        //        }
+        //        else
+        //        {
+        //            let cell = tableView.dequeueReusableCell(withIdentifier: "cell2", for: indexPath) as! MessageTableViewCell
+        //            cell.selectionStyle = .none
+        //            return cell
+        //        }
     }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let popupVC = storyboard?.instantiateViewController(withIdentifier: "PopupViewController") as! PopupViewController
-        view.addSubview(popupVC.view)
-        addChildViewController(popupVC)
-    }
+    //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    //
+    //        let popupVC = storyboard?.instantiateViewController(withIdentifier: "PopupViewController") as! PopupViewController
+    //        view.addSubview(popupVC.view)
+    //        addChildViewController(popupVC)
+    //    }
     
     @IBAction func doClickPlus()
     {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ContactViewController") as! ContactViewController
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
-    
+    func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString?
+    {
+        return  NSAttributedString(string:"txt_no_record".localized(), attributes:
+            [NSForegroundColorAttributeName: UIColor.white,
+             NSFontAttributeName: UIFont(name: Font_Helvetica_Neue, size: 14.0)!])
+    }
 }

@@ -8,8 +8,9 @@
 
 import UIKit
 import Localize_Swift
+import DZNEmptyDataSet
 
-class PostDetailViewController: UIViewController , UITableViewDelegate , UITableViewDataSource
+class PostDetailViewController: UIViewController , UITableViewDelegate , UITableViewDataSource,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
 {
     @IBOutlet weak var tblPosts : UITableView!
     @IBOutlet weak var lblPostCreated : UILabel!
@@ -88,6 +89,9 @@ class PostDetailViewController: UIViewController , UITableViewDelegate , UITable
         
         self.tblPosts.rowHeight = UITableViewAutomaticDimension
         self.tblPosts.estimatedRowHeight = 56
+        
+        self.tblPosts.emptyDataSetSource = self
+        self.tblPosts.emptyDataSetDelegate = self
     }
     
     func goTOBack(){
@@ -168,5 +172,11 @@ class PostDetailViewController: UIViewController , UITableViewDelegate , UITable
         }) { (no) in
             
         }
+    }
+    func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString?
+    {
+        return  NSAttributedString(string:"txt_no_record".localized(), attributes:
+            [NSForegroundColorAttributeName: UIColor.white,
+             NSFontAttributeName: UIFont(name: Font_Helvetica_Neue, size: 14.0)!])
     }
 }

@@ -16,6 +16,7 @@ target 'Tricky' do
   pod 'ActionSheetPicker-3.0'
   pod 'ObjectMapper', '~> 2.2'
   pod 'PWSwitch'
+  pod 'DZNEmptyDataSet'
   # pod 'ReachabilitySwift', '~> 2.4'
   # Pods for Tricky
 

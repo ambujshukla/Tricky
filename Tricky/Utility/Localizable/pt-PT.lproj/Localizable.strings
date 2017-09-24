@@ -84,3 +84,6 @@
 "txt_success_post" = "Successfully Posted.";
 "txt_contacts" = "Contacts";
 "txt_favorite" = "Favorite";
+
+"txt_no_record" = "No record found.";
+
