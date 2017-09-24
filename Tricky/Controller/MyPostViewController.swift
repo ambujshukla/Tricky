@@ -89,7 +89,7 @@ class MyPostViewController: UIViewController , UITableViewDelegate , UITableView
     
     func doActionDelete(sender : UIButton)
     {
-        CommonUtil.showAlertInSwift_3Format("Are you sure you want to delete", title: "Alert", btnCancel: "txt_no".localized(), btnOk: "txt_yes".localized(), crl: self, successBlock: { (no) in
+        CommonUtil.showAlertInSwift_3Format("Are you sure you want to delete?", title: "Alert", btnCancel: "txt_no".localized(), btnOk: "txt_yes".localized(), crl: self, successBlock: { (no) in
             let dictData = self.arrPostListData[sender.tag]
             
             let params = ["version" : "1.0" , "os" : "ios" , "language" : "english","userId":UserManager.sharedUserManager.userId!,"postId" :dictData["postId"]!] as [String : Any]

@@ -91,7 +91,7 @@ class ChatViewController: UIViewController  , UITableViewDataSource , UITableVie
     
     func doActionDelete(sender : UIButton)
     {
-        CommonUtil.showAlertInSwift_3Format("Are you sure you want to delete", title: "Alert", btnCancel: "txt_no".localized(), btnOk: "txt_yes".localized(), crl: self, successBlock: { (no) in
+        CommonUtil.showAlertInSwift_3Format("Are you sure you want to delete?", title: "Alert", btnCancel: "txt_no".localized(), btnOk: "txt_yes".localized(), crl: self, successBlock: { (no) in
             let dictData = self.chatData[sender.tag]
             
             let params = ["version" : "1.0" , "os" : "ios" , "language" : "english","userId":dictData["userId"]!,"chatId" :dictData["chatId"]!] as [String : Any]
