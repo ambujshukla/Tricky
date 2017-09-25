@@ -85,8 +85,11 @@ class ChatViewController: UIViewController  , UITableViewDataSource , UITableVie
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChatDetailViewIdentifier") as! ChatDetailViewController
+       let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChatDetailViewIdentifier") as! ChatDetailViewController
         self.navigationController?.pushViewController(vc, animated: true)
+        
+        
+
     }
     
     func doActionDelete(sender : UIButton)

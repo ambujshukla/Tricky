@@ -208,7 +208,23 @@
         if isOnApp {
        self.doCallServiceForBlockAndUnblock(sender: sender, dataContacts: dataContacts)
         }
+        else{
+       self.doActionOnShare(sender: sender)
+        }
     }
+    
+    func doActionOnShare(sender : UIButton)
+    {
+        let shareText = ""
+        let vc = UIActivityViewController(activityItems: [shareText ], applicationActivities: [])
+        present(vc, animated: true, completion: nil)
+    }
+
+    
+
+        
+ 
+    
     
     func doCallServiceForBlockAndUnblock(sender : UIButton , dataContacts : [String : AnyObject]) {
         
@@ -222,8 +238,6 @@
             
         }) { (error) in
         }
-
-        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

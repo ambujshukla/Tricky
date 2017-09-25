@@ -98,9 +98,9 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
             print("this is object \(responseObject)")
             if(responseObject["status"] as! String == "1"){
                 
-                if let resultData : [String : AnyObject] = responseObject["responseData"] as?  [String : AnyObject] {
+                if let resultData : Array<Dictionary<String, Any>> = responseObject["responseData"] as? Array<Dictionary<String, Any>> {
                     
-                    dictData["isUserBlock"] = resultData["isBlocked"]  as AnyObject
+                    dictData["isUserBlock"] = resultData[0]["isBlocked"]  as AnyObject
                     self.arrMessageList[sender.tag] = dictData
                     self.tblMessage.reloadData()
                 }

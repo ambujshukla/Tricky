@@ -277,7 +277,6 @@
 		3151CE901F48B2E300C322C3 /* UITableViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				31F059381F77789A008CD0D8 /* MyPostTableViewCell.swift */,
 				1800355D1F6AF62C005C1072 /* ChatListCell.swift */,
 				1820E1B61F777562000DAC9A /* MyPostTableViewCell.swift */,
 				3163FC251F4DF902004AA3CF /* ChatTableViewCell.swift */,
@@ -675,6 +674,8 @@
 				"${BUILT_PRODUCTS_DIR}/MagicalRecord/MagicalRecord.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PWSwitch/PWSwitch.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
@@ -691,6 +692,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MagicalRecord.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PWSwitch.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
@@ -727,7 +730,6 @@
 				3151CE8D1F48ADBB00C322C3 /* ContactModel.swift in Sources */,
 				31B72F881F4778C2007D24E6 /* SignUpViewController.swift in Sources */,
 				183A108F1F4B51C000579A7A /* LanguageViewController.swift in Sources */,
-				31F059391F77789A008CD0D8 /* MyPostTableViewCell.swift in Sources */,
 				3163FC281F4DFB62004AA3CF /* ChatDetailViewController.swift in Sources */,
 				183A10891F4B51AA00579A7A /* HomeMessageController.swift in Sources */,
 				1820E1B71F777562000DAC9A /* MyPostTableViewCell.swift in Sources */,
