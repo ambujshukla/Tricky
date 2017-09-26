@@ -158,6 +158,33 @@ class CommanUtility: NSObject {
         
         return time2
     }
+    
+    class func saveImageDocumentDirectory(userId : String, img : UIImage){
+        let fileManager = FileManager.default
+        let paths = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent("image_\(userId).png")
+       // let image = UIImage(named: ("image \(userId).png"))
+        print(paths)
+        let imageData = UIImageJPEGRepresentation(img, 0.5)
+        fileManager.createFile(atPath: paths as String, contents: imageData, attributes: nil)
+    }
+    
+   class func getImage(userId : String) -> UIImage{
+        var img = UIImage()
+        let fileManager = FileManager.default
+        let imagePAth = (self.getDirectoryPath() as NSString).appendingPathComponent("image_\(userId).png")
+        if fileManager.fileExists(atPath: imagePAth){
+            img = UIImage(contentsOfFile: imagePAth)!
+        }else{
+            img = UIImage(named : "avatar.png")!
+    }
+        return img
+    }
+    
+   class func getDirectoryPath() -> String {
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
+    }
 }
 
 

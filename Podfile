@@ -17,6 +17,7 @@ target 'Tricky' do
   pod 'ObjectMapper', '~> 2.2'
   pod 'PWSwitch'
   pod 'DZNEmptyDataSet'
+  pod 'RealmSwift'
   # pod 'ReachabilitySwift', '~> 2.4'
   # Pods for Tricky
 

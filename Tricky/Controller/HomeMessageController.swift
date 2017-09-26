@@ -250,6 +250,7 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
     func doActionOnReply(sender : UIButton) {
         
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChatDetailViewIdentifier") as! ChatDetailViewController
+        vc.dictChatData = self.arrMessageList[sender.tag]
         self.navigationController?.pushViewController(vc, animated: true)
     
         

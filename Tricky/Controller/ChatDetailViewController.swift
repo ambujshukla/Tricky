@@ -21,21 +21,27 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var viewBottom : UIView!
     @IBOutlet weak var txtChat : UITextView!
     
-    //    @IBOutlet weak var htTxtViewConstraint : NSLayoutConstraint!
-    //    @IBOutlet weak var bottomViewOriginConstraint : NSLayoutConstraint!
-    
     @IBOutlet weak var originConstraintTxtView: NSLayoutConstraint!
     @IBOutlet weak var heightConstrntTxtView: NSLayoutConstraint!
     
-    var arrChat : NSArray = [
-        ["chatMessage": "Are you Julia Are you Julia Are you Julia Are you Julia", "dateTime": "13:24"]
-        ,["chatMessage": "Are you Julia Are you Julia Are you Julia Are you Julia", "dateTime": "13:24"],["chatMessage": "No, I am not Julia", "dateTime": "13:26"],["chatMessage": "No, I am not Julia", "dateTime": "13:26"],["chatMessage": "Are you Julia Are you Julia Are you Julia Are you Julia", "dateTime": "13:24"],["chatMessage": "Are you Julia Are you Julia Are you Julia Are you Julia", "dateTime": "13:24"],["chatMessage": "Are you Julia Are you Julia Are you Julia Are you Julia Are you Julia Are you Julia Are you Julia Are you Julia", "dateTime": "13:24"],["chatMessage": "Are you Julia Are you Julia Are you Julia Are you Julia", "dateTime": "13:24"]
-    ]
+    var dictChatData = [String : AnyObject]()
+    
+    var totalCount : Int = 0
+    var limit : Int = 10
+    var offSet : Int = 0
+    
+    var arrChat = Array<Dictionary<String,AnyObject>>()
+    
+    //    var arrChat : NSArray = [
+    //        ["chatMessage": "Are you Julia Are you Julia Are you Julia Are you Julia", "dateTime": "13:24"]
+    //        ,["chatMessage": "Are you Julia Are you Julia Are you Julia Are you Julia", "dateTime": "13:24"],["chatMessage": "No, I am not Julia", "dateTime": "13:26"],["chatMessage": "No, I am not Julia", "dateTime": "13:26"],["chatMessage": "Are you Julia Are you Julia Are you Julia Are you Julia", "dateTime": "13:24"],["chatMessage": "Are you Julia Are you Julia Are you Julia Are you Julia", "dateTime": "13:24"],["chatMessage": "Are you Julia Are you Julia Are you Julia Are you Julia Are you Julia Are you Julia Are you Julia Are you Julia", "dateTime": "13:24"],["chatMessage": "Are you Julia Are you Julia Are you Julia Are you Julia", "dateTime": "13:24"]
+    //    ]
     override func viewDidLoad()
     {
         super.viewDidLoad()
         self.configureInitialParameters()
         self.decorateUI()
+        self.doCallGetChatMessageWS(shouldShowLoader: false)
     }
     
     func decorateUI()
@@ -66,13 +72,6 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
         
         self.btnNo.layer.cornerRadius = 10;
         self.btnYes.layer.cornerRadius = 10;
-//        self.btnNo.setTitleColor(color(red: 113, green: 136, blue: 154), for: .normal)
-//        self.btnNo.setTitleColor(UIColor.white, for: .selected)
-//        
-//        self.btnYes.setTitleColor(color(red: 113, green: 136, blue: 154), for: .normal)
-//        self.btnYes.setTitleColor(UIColor.white, for: .selected)
-//        
-//        self.btnYes .isSelected = true
         
         self.btnYes.setTitle("txt_you_got_me".localized(), for: .normal)
         self.btnNo.setTitle("txt_not_got_me".localized(), for: .normal)
@@ -80,6 +79,17 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
         self.txtChat.backgroundColor = UIColor.clear
         
         self.viewBottom.layer.cornerRadius = 25
+    }
+    
+    func doCallGetChatMessageWS(shouldShowLoader : Bool)
+    {
+        let params = ["version" : "1.0" , "os" : "ios" , "language" : "english","userId":UserManager.sharedUserManager.userId!, "messageId" : self.dictChatData["chatId"] as! String,"receiverId" :self.dictChatData["userId"] as! String, "lastMessageDateTime": "2017-09-01 12:23:23", "chatId" : self.dictChatData["chatId"] as! String]  as [String : Any]
+        print(params)
+        WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOSTAndPullToRefresh(isShowLoder: shouldShowLoader, strURL: kBaseUrl, strServiceName: "getChatMessageList", parameter: params, success: { (obj) in
+            print(obj)
+        }) { (error) in
+            print(error)
+        }
     }
     
     func doClickBack(){
@@ -202,7 +212,7 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
     
     @IBAction func doClickYesOrNo (id : UIButton)
     {
-
+        
     }
     
     func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString?

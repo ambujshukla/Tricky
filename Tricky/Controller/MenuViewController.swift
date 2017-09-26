@@ -44,9 +44,11 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
         self.lblUserName.textColor = UIColor.white
         self.lblUserName.text = UserManager.sharedUserManager.name
         self.lblEmail.text = UserManager.sharedUserManager.userUrl
-        self.imgProfile.sd_setImage(with: URL(string : (UserManager.sharedUserManager.profilePic)!) )
 
-        
+        if let image = CommanUtility.getImage(userId: UserManager.sharedUserManager.userId!) as? UIImage {
+            self.imgProfile.image = image
+        }
+
         self.menuData = ["Home".localized() ,"txt_block_users".localized() , "contacts" , "Favorite" , "language", "My Post" , "Filter vulgar messages" , "Block Unauthorised user","Display all anonymous post" , "Logout"];
         
         self.tblMenu.tableFooterView = UIView()
