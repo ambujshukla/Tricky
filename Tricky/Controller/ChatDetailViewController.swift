@@ -246,9 +246,15 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
     
     func doSaveChatData(arrChatData : Array<Dictionary<String,AnyObject>>)
     {
+        do {
+            let realm = try Realm()
+        } catch let error as NSError {
+            // handle error
+        }
+        
 //        for dictData in arrChatData
 //        {
-//            let realm = try! RealmSwift
+            let realm1 = try! Realm()
 //
 //            let chatObj = ChatData()
 //            chatObj.message = ""
