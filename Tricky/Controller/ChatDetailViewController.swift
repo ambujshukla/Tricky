@@ -10,6 +10,7 @@ import UIKit
 import IQKeyboardManager
 import UITextView_Placeholder;
 import DZNEmptyDataSet
+import RealmSwift
 
 class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
 {
@@ -83,9 +84,13 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
     
     func doCallGetChatMessageWS(shouldShowLoader : Bool)
     {
-        let params = ["version" : "1.0" , "os" : "ios" , "language" : "english","userId":UserManager.sharedUserManager.userId!, "messageId" : self.dictChatData["chatId"] as! String,"receiverId" :self.dictChatData["userId"] as! String, "lastMessageDateTime": "2017-09-01 12:23:23", "chatId" : self.dictChatData["chatId"] as! String]  as [String : Any]
+        let params = ["version" : "1.0" , "os" : "ios" , "language" : "english","userId":UserManager.sharedUserManager.userId!, "messageId" : self.dictChatData["messageId"] as! String,"receiverId" :self.dictChatData["recieverId"] as! String, "lastMessageDateTime": "2017-09-01 12:23:23", "chatId" : self.dictChatData["messageId"] as! String]  as [String : Any]
         print(params)
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOSTAndPullToRefresh(isShowLoder: shouldShowLoader, strURL: kBaseUrl, strServiceName: "getChatMessageList", parameter: params, success: { (obj) in
+            if let chatData : Array<Dictionary<String,AnyObject>> = obj as! Array<Dictionary<String,AnyObject>>
+            {
+                self.doSaveChatData(arrChatData: chatData)
+            }
             print(obj)
         }) { (error) in
             print(error)
@@ -206,8 +211,25 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
     
     @IBAction func doClickSend(id : UIButton)
     {
+        let params = ["version" : "1.0" , "os" : "ios" , "language" : "english","userId":UserManager.sharedUserManager.userId!, "messageId" : self.dictChatData["messageId"] as! String,"receiverId" :self.dictChatData["recieverId"] as! String, "message": self.txtChat.text, "type" : "0","lastMessageDateTime" : self.doGetCurrentTime(),"status" : "0"]  as [String : Any]
+        print(params)
+        WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOSTAndPullToRefresh(isShowLoder: false, strURL: kBaseUrl, strServiceName: "sendChatMessage", parameter: params, success: { (obj) in
+            print(obj)
+        }) { (error) in
+            print(error)
+        }
+        
         self.heightConstrntTxtView.constant = 33;
         self.txtChat.text = ""
+    }
+    
+    func doGetCurrentTime() -> String
+    {
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let result = formatter.string(from: date)
+        return result
     }
     
     @IBAction func doClickYesOrNo (id : UIButton)
@@ -221,6 +243,25 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
             [NSForegroundColorAttributeName: UIColor.white,
              NSFontAttributeName: UIFont(name: Font_Helvetica_Neue, size: 14.0)!])
     }
+    
+    func doSaveChatData(arrChatData : Array<Dictionary<String,AnyObject>>)
+    {
+//        for dictData in arrChatData
+//        {
+//            let realm = try! RealmSwift
+//
+//            let chatObj = ChatData()
+//            chatObj.message = ""
+//            
+//          //  try! realm.write {
+//           //     realm.add(chatObj)
+//          //  }
+//        }
+//        //myDog.name = "Rex"
+//        //myDog.age = 1
+//
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

@@ -87,7 +87,8 @@ class ChatViewController: UIViewController  , UITableViewDataSource , UITableVie
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChatDetailViewIdentifier") as! ChatDetailViewController
         let dictData = self.chatData[indexPath.row]
         vc.dictChatData = dictData
-        self.navigationController?.pushViewController(vc, animated: true)
+        self.navigationController?.pushViewController(vc
+            , animated: true)
     }
     
     func doActionDelete(sender : UIButton)

@@ -104,6 +104,7 @@
 		31D031CB1F49C6F700D41E4C /* ProfileBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 31D031C81F49C6F700D41E4C /* ProfileBG.png */; };
 		31D031CC1F49C6F700D41E4C /* ProfileBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 31D031C91F49C6F700D41E4C /* ProfileBG@2x.png */; };
 		31D031CD1F49C6F700D41E4C /* ProfileBG@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 31D031CA1F49C6F700D41E4C /* ProfileBG@3x.png */; };
+		31D0BB7D1F7AD6D0007B5BA8 /* ChatData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D0BB7C1F7AD6D0007B5BA8 /* ChatData.swift */; };
 		31D9D1061F4F4FF800ED9B78 /* UserPostAnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D9D1051F4F4FF700ED9B78 /* UserPostAnswerViewController.swift */; };
 		31D9D1081F4F58E200ED9B78 /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D9D1071F4F58E200ED9B78 /* PostDetailViewController.swift */; };
 		31DF5DAC1F76CBC80087B302 /* MyPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DF5DAB1F76CBC80087B302 /* MyPostViewController.swift */; };
@@ -215,6 +216,7 @@
 		31D031C81F49C6F700D41E4C /* ProfileBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ProfileBG.png; sourceTree = "<group>"; };
 		31D031C91F49C6F700D41E4C /* ProfileBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProfileBG@2x.png"; sourceTree = "<group>"; };
 		31D031CA1F49C6F700D41E4C /* ProfileBG@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProfileBG@3x.png"; sourceTree = "<group>"; };
+		31D0BB7C1F7AD6D0007B5BA8 /* ChatData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatData.swift; sourceTree = "<group>"; };
 		31D9D1051F4F4FF700ED9B78 /* UserPostAnswerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPostAnswerViewController.swift; sourceTree = "<group>"; };
 		31D9D1071F4F58E200ED9B78 /* PostDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
 		31DF5DAB1F76CBC80087B302 /* MyPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPostViewController.swift; sourceTree = "<group>"; };
@@ -421,6 +423,7 @@
 		31B72F7C1F4760E3007D24E6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				31D0BB7B1F7AD6A2007B5BA8 /* ChatModel */,
 				3151CE8C1F48ADBB00C322C3 /* ContactModel.swift */,
 				18E266AF1F5B2BE9009F8B01 /* LoginModel.swift */,
 				18E266B31F5B2E75009F8B01 /* LoginResposeDataModel.swift */,
@@ -485,6 +488,14 @@
 				31D031BB1F49C43E00D41E4C /* searchicon@3x.png */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		31D0BB7B1F7AD6A2007B5BA8 /* ChatModel */ = {
+			isa = PBXGroup;
+			children = (
+				31D0BB7C1F7AD6D0007B5BA8 /* ChatData.swift */,
+			);
+			path = ChatModel;
 			sourceTree = "<group>";
 		};
 		7BAAE10DC7061EE8C8FF87ED /* Pods */ = {
@@ -678,6 +689,8 @@
 				"${BUILT_PRODUCTS_DIR}/MagicalRecord/MagicalRecord.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PWSwitch/PWSwitch.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
@@ -694,6 +707,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MagicalRecord.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PWSwitch.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
@@ -764,6 +779,7 @@
 				31DF5DAC1F76CBC80087B302 /* MyPostViewController.swift in Sources */,
 				183A10B11F4B529A00579A7A /* ViewPagerTab.swift in Sources */,
 				31B72F691F475A15007D24E6 /* AppDelegate.swift in Sources */,
+				31D0BB7D1F7AD6D0007B5BA8 /* ChatData.swift in Sources */,
 				31D9D1061F4F4FF800ED9B78 /* UserPostAnswerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
