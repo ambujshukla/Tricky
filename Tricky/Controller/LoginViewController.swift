@@ -109,7 +109,7 @@ class LoginViewController: UIViewController
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "VerifyOTPController") as! VerifyOTPController
         vc.isFromSignUp = false
         vc.strMobileNo = self.txtMobile.text
-        vc.strOTP = "\(String(describing: OTPData.otp!))"
+     //   vc.strOTP = "\(String(describing: OTPData.otp!))"
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

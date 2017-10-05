@@ -7,9 +7,9 @@
 //
 
 import UIKit
-import Realm
+import RealmSwift
 
-class ChatData : RLMObject
+class ChatData : Object
 {
     dynamic var message = ""
     dynamic var isFavorite = 0
@@ -18,4 +18,5 @@ class ChatData : RLMObject
     dynamic var time = ""
     dynamic var type = ""
     dynamic var receiverId = ""
+    dynamic var timeStamp = 0
 }

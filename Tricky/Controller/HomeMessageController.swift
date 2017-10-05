@@ -14,12 +14,14 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
     
     @IBOutlet weak var tblMessage : UITableView!
     @IBOutlet weak var btnPlus : UIButton!
+    
     var arrMessageList = [[String : AnyObject]]()
     {
         didSet{
             self.tblMessage.reloadData()
         }
     }
+    
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(self.handleRefresh(_:)), for: UIControlEvents.valueChanged)
@@ -27,12 +29,11 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
         return refreshControl
     }()
     
-    
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         self.decorateUI()
         self.doGetMessageList(isComeFromPullToRefresh:  false)
-        // Do any additional setup after loading the view.
     }
     
     func handleRefresh(_ refreshControl: UIRefreshControl) {
@@ -85,7 +86,6 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
         }
     }
     
-    
     func doCallServiceForBlockMessage(sender : UIButton){
         
         var dictData = self.arrMessageList[sender.tag]
@@ -110,12 +110,10 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
             {
                 CommonUtil.showTotstOnWindow(strMessgae: responseObject["responseMessage"] as! String)
             }
-            
         }) { (error) in
             
         }
     }
-    
     
     func doCallServiceForRemoveMessage(sender : UIButton){
      

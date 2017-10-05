@@ -21,7 +21,6 @@ class OTPModel: Mappable {
         mapping(map: map)
     }
     
-    
     func mapping(map: Map) {
         status         <- map["status"]
         responseMessage      <- map["responseMessage"]
@@ -29,6 +28,4 @@ class OTPModel: Mappable {
         otp       <- map["otp"]
         
     }
-
-    
 }
