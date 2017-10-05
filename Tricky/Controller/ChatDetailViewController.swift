@@ -10,6 +10,7 @@ import UIKit
 import IQKeyboardManager
 import UITextView_Placeholder;
 import DZNEmptyDataSet
+import RealmSwift
 
 class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
 {
@@ -20,27 +21,43 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var btnSend : UIButton!
     @IBOutlet weak var viewBottom : UIView!
     @IBOutlet weak var txtChat : UITextView!
-    
-    //    @IBOutlet weak var htTxtViewConstraint : NSLayoutConstraint!
-    //    @IBOutlet weak var bottomViewOriginConstraint : NSLayoutConstraint!
-    
     @IBOutlet weak var originConstraintTxtView: NSLayoutConstraint!
     @IBOutlet weak var heightConstrntTxtView: NSLayoutConstraint!
     
-    var arrChat : NSArray = [
-        ["chatMessage": "Are you Julia Are you Julia Are you Julia Are you Julia", "dateTime": "13:24"]
-        ,["chatMessage": "Are you Julia Are you Julia Are you Julia Are you Julia", "dateTime": "13:24"],["chatMessage": "No, I am not Julia", "dateTime": "13:26"],["chatMessage": "No, I am not Julia", "dateTime": "13:26"],["chatMessage": "Are you Julia Are you Julia Are you Julia Are you Julia", "dateTime": "13:24"],["chatMessage": "Are you Julia Are you Julia Are you Julia Are you Julia", "dateTime": "13:24"],["chatMessage": "Are you Julia Are you Julia Are you Julia Are you Julia Are you Julia Are you Julia Are you Julia Are you Julia", "dateTime": "13:24"],["chatMessage": "Are you Julia Are you Julia Are you Julia Are you Julia", "dateTime": "13:24"]
-    ]
+    var lastTimeSyncTime : String = "0"
+    var lastTimeStamp = 0
+    var dictChatData = [String : AnyObject]()
+    
+    var totalCount : Int = 0
+    var limit : Int = 2
+    var offSet : Int = 0
+    
+    var arrChat = List<ChatData>()
+    
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(self.handleRefresh(_:)), for: UIControlEvents.valueChanged)
+        refreshControl.tintColor = UIColor.white
+        return refreshControl
+    }()
+    
+    func handleRefresh(_ refreshControl: UIRefreshControl) {
+        self.doCallGetChatMessageWS(shouldShowLoader: false)
+        refreshControl.endRefreshing()
+    }
     override func viewDidLoad()
     {
         super.viewDidLoad()
         self.configureInitialParameters()
         self.decorateUI()
+        self.doCallGetChatMessageWS(shouldShowLoader: true)
     }
     
     func decorateUI()
     {
         self.navigationController?.navigationBar.barTintColor = color(red: 113, green: 136, blue: 154)
+        
+        self.tblView.addSubview(self.refreshControl)
         
         CommanUtility.decorateNavigationbarWithBackButtonAndTitle(target: self, leftselect: #selector(doClickBack), strTitle: "Michael Smith".localized(), strBackImag: BACK_BUTTON, strFontName: "Arial", size: 20, color: UIColor.white)
         
@@ -66,20 +83,32 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
         
         self.btnNo.layer.cornerRadius = 10;
         self.btnYes.layer.cornerRadius = 10;
-//        self.btnNo.setTitleColor(color(red: 113, green: 136, blue: 154), for: .normal)
-//        self.btnNo.setTitleColor(UIColor.white, for: .selected)
-//        
-//        self.btnYes.setTitleColor(color(red: 113, green: 136, blue: 154), for: .normal)
-//        self.btnYes.setTitleColor(UIColor.white, for: .selected)
-//        
-//        self.btnYes .isSelected = true
         
         self.btnYes.setTitle("txt_you_got_me".localized(), for: .normal)
         self.btnNo.setTitle("txt_not_got_me".localized(), for: .normal)
         
         self.txtChat.backgroundColor = UIColor.clear
         
-        self.viewBottom.layer.cornerRadius = 25
+        self.viewBottom.layer.cornerRadius = 15
+    }
+    
+    func doCallGetChatMessageWS(shouldShowLoader : Bool)
+    {
+        let params = ["version" : "1.0" , "os" : "2" , "language" : "english","userId":UserManager.sharedUserManager.userId!, "messageId" : self.dictChatData["messageId"] as! String,"receiverId" :self.dictChatData["recieverId"] as! String, "lastMessageDateTime" : self.lastTimeSyncTime, "chatId" : self.dictChatData["messageId"] as! String,"limit" : "\(self.limit)","offset" : "\(self.offSet)"]  as [String : Any]
+        
+        print(params)
+        WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOSTAndPullToRefresh(isShowLoder: shouldShowLoader, strURL: kBaseUrl, strServiceName: "getChatMessageList", parameter: params, success: { (obj) in
+            print(obj)
+            if let chatData : Array<Dictionary<String,AnyObject>> = obj["responseData"] as? Array<Dictionary<String,AnyObject>>
+            {
+                self.offSet += 1
+                self.doPopulateDataIn(arrChat : chatData)
+                self.doGetChatData()
+            }
+        }) { (error) in
+            self.doGetChatData()
+            print(error!)
+        }
     }
     
     func doClickBack(){
@@ -88,6 +117,11 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
     
     func configureInitialParameters()
     {
+        let realm = try! Realm()
+        try! realm.write {
+            realm.deleteAll()
+        }
+        
         IQKeyboardManager.shared().isEnabled = false
         self.tblView.delegate = self
         self.tblView.dataSource = self
@@ -104,7 +138,9 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
     
     func doClickRefresh()
     {
-        
+        self.lastTimeSyncTime = "0"
+        self.arrChat.removeAll()
+        self.doCallGetChatMessageWS(shouldShowLoader: true)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -120,7 +156,7 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView() // The width will be the same as the cell, and the height should be set in tableView:heightForRowAtIndexPath:
+        let view = UIView()
         
         view.backgroundColor = UIColor.clear
         return view
@@ -128,21 +164,20 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellToShow : UITableViewCell!
-        let dictChatData : [String : String] = self.arrChat[indexPath.row] as! [String : String]
-        if (indexPath.row%2) == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cellChat1") as! ChatTableViewCell
-            cell.lblMessage.text = dictChatData["chatMessage"]
+        let chatData : ChatData = self.arrChat[indexPath.row] as! ChatData
+        if chatData.senderId == UserManager.sharedUserManager.userId {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cellChat2") as! ChatTableViewCell
+            cell.lblMessage.text = chatData.message
             cell.imgBG.layer.cornerRadius = 10
             cell.imgBG.backgroundColor = UIColor.white
             cellToShow = cell
         }else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cellChat2") as! ChatTableViewCell
-            cell.lblMessage.text = dictChatData["chatMessage"]
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cellChat1") as! ChatTableViewCell
+            cell.lblMessage.text = chatData.message
             cell.imgBG.layer.cornerRadius = 10
             cell.imgBG.backgroundColor = UIColor.white
             cellToShow = cell
         }
-        // cellToShow.layer.cornerRadius = 4.0
         cellToShow.backgroundColor = UIColor.clear
         cellToShow.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
         cellToShow.selectionStyle = .none
@@ -160,6 +195,7 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
             }
         }
     }
+    
     func keyboardWillShow(_ sender: Notification) {
         if let userInfo = (sender as NSNotification).userInfo {
             if let keyboardHeight = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size.height {
@@ -196,13 +232,38 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
     
     @IBAction func doClickSend(id : UIButton)
     {
+        let params = ["version" : "1.0" , "os" : "2" , "language" : "english","userId":UserManager.sharedUserManager.userId!, "messageId" : self.dictChatData["messageId"] as! String,"receiverId" :self.dictChatData["recieverId"] as! String, "message": self.txtChat.text, "type" : "0","lastMessageDateTime" : self.doGetCurrentTime(),"status" : "0"]  as [String : Any]
+        print(params)
+        WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOSTAndPullToRefresh(isShowLoder: false, strURL: kBaseUrl, strServiceName: "sendChatMessage", parameter: params, success: { (obj) in
+            if(obj["status"] as! String == "1")
+            {
+                print(obj)
+                if let chatData : Array<Dictionary<String,AnyObject>> = obj["responseData"] as? Array<Dictionary<String,AnyObject>>
+                {
+                    self.doPopulateDataIn(arrChat : chatData)
+                    self.doGetChatData()
+                }
+            }
+        }) { (error) in
+            print(error!)
+        }
+        
         self.heightConstrntTxtView.constant = 33;
         self.txtChat.text = ""
     }
     
+    func doGetCurrentTime() -> String
+    {
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let result = formatter.string(from: date)
+        return result
+    }
+    
     @IBAction func doClickYesOrNo (id : UIButton)
     {
-
+        
     }
     
     func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString?
@@ -211,6 +272,91 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
             [NSForegroundColorAttributeName: UIColor.white,
              NSFontAttributeName: UIFont(name: Font_Helvetica_Neue, size: 14.0)!])
     }
+    
+    func doGetChatData()
+    {
+        let realm = try! Realm()
+        
+        let predicate = NSPredicate(format: "(((senderId = %@ AND receiverId = %@) || (receiverId = %@ AND senderId = %@)) && timeStamp > %d)", self.dictChatData["senderId"] as! String, self.dictChatData["recieverId"] as! String,self.dictChatData["senderId"] as! String, self.dictChatData["recieverId"] as! String,self.lastTimeStamp)
+        
+        let objs = realm.objects(ChatData.self).filter(predicate)
+        
+//        if objs.count > 9
+//        {
+//            for i in 0..<10
+//            {
+//                self.arrChat .append(objs[i])
+//            }
+//        }else{
+//            self.arrChat .append(objectsIn: objs)
+//        }
+        
+        self.arrChat .append(objectsIn: objs)
+        
+        if self.arrChat.count > 0
+        {
+            let chatTempData = self.arrChat.last
+            self.lastTimeSyncTime = (chatTempData?.time)!
+            self.lastTimeStamp = (chatTempData?.timeStamp)!
+            self.tblView.reloadData()
+         //   perform(#selector(scrollToBottom), with: nil, afterDelay: 1.0)
+            //perform(#selector(scrollToBottom()), with: nil, afterDelay: 1.0, inModes: [.commonModes])
+        }
+    }
+    
+    func doPopulateDataIn(arrChat : Array<Dictionary<String,AnyObject>>)
+    {
+        for dictData in arrChat
+        {
+            let realm = try! Realm()
+            
+            let predicate = NSPredicate(format: "messageId = %@", dictData["messageId"] as! String)
+            let arrTempChat = realm.objects(ChatData.self).filter(predicate)
+            if arrTempChat.count == 0
+            {
+                let chatObj = ChatData()
+                chatObj.message = dictData["message"] as!  String
+                chatObj.time = dictData["time"] as!  String
+                chatObj.senderId = dictData["senderId"] as!  String
+                if let val = dictData["isFavorite"] {
+                    chatObj.isFavorite = val as! Int
+                }else{
+                    chatObj.isFavorite = 0
+                }
+                chatObj.type = dictData["type"] as!  String
+                chatObj.messageId = dictData["messageId"] as!  String
+                chatObj.timeStamp = self .doGetTimeStamp(date: dictData["time"] as!  String)
+                if chatObj.senderId == self.dictChatData["recieverId"] as! String
+                {
+                    chatObj.receiverId = self.dictChatData["senderId"] as! String
+                }else
+                {
+                    chatObj.receiverId = self.dictChatData["recieverId"] as! String
+                }
+                try! realm.write
+                {
+                    realm.add(chatObj)
+                }
+            }
+        }
+    }
+    
+   @objc func scrollToBottom(){
+        DispatchQueue.global(qos: .background).async {
+            let indexPath = IndexPath(row: self.arrChat.count-1, section: 0)
+            self.tblView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+        }
+    }
+    func doGetTimeStamp(date : String) -> Int
+    {
+        let dfmatter = DateFormatter()
+        dfmatter.dateFormat="yyyy-MM-dd HH:mm:ss"
+        let date = dfmatter.date(from: date)
+        let dateStamp:TimeInterval = date!.timeIntervalSince1970
+        let dateSt:Int = Int(dateStamp)
+        return dateSt
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

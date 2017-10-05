@@ -163,6 +163,7 @@ class CommanUtility: NSObject {
         return time2
     }
     
+<<<<<<< HEAD
     
    class func textToImage(drawText text: NSString, inImage image: UIImage, atPoint point: CGPoint) -> UIImage {
         let textColor = UIColor.white
@@ -184,6 +185,33 @@ class CommanUtility: NSObject {
         UIGraphicsEndImageContext()
         
         return newImage!
+=======
+    class func saveImageDocumentDirectory(userId : String, img : UIImage){
+        let fileManager = FileManager.default
+        let paths = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent("image_\(userId).png")
+       // let image = UIImage(named: ("image \(userId).png"))
+        print(paths)
+        let imageData = UIImageJPEGRepresentation(img, 0.5)
+        fileManager.createFile(atPath: paths as String, contents: imageData, attributes: nil)
+    }
+    
+   class func getImage(userId : String) -> UIImage{
+        var img = UIImage()
+        let fileManager = FileManager.default
+        let imagePAth = (self.getDirectoryPath() as NSString).appendingPathComponent("image_\(userId).png")
+        if fileManager.fileExists(atPath: imagePAth){
+            img = UIImage(contentsOfFile: imagePAth)!
+        }else{
+            img = UIImage(named : "avatar.png")!
+    }
+        return img
+    }
+    
+   class func getDirectoryPath() -> String {
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
+>>>>>>> e35b1b9c7743735c41640c8c7aef1c2e87c304cf
     }
 }
 

@@ -81,15 +81,14 @@ class ChatViewController: UIViewController  , UITableViewDataSource , UITableVie
         cell.btnDelete.tag = indexPath.row
         cell.btnDelete.addTarget(self, action: #selector(self.doActionDelete(sender:)), for: .touchUpInside)
         return cell
-        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChatDetailViewIdentifier") as! ChatDetailViewController
-        self.navigationController?.pushViewController(vc, animated: true)
-        
-        
-
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChatDetailViewIdentifier") as! ChatDetailViewController
+        let dictData = self.chatData[indexPath.row]
+        vc.dictChatData = dictData
+        self.navigationController?.pushViewController(vc
+            , animated: true)
     }
     
     func doActionDelete(sender : UIButton)

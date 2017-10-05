@@ -13,6 +13,7 @@ class PostViewController: UIViewController , UITableViewDelegate , UITableViewDa
     
     @IBOutlet weak var tblPost : UITableView!
     @IBOutlet weak var btnPlus : UIButton!
+    
     var arrPostListData = [[String : AnyObject]]()
     {
         didSet{
@@ -21,9 +22,11 @@ class PostViewController: UIViewController , UITableViewDelegate , UITableViewDa
     }
     @IBOutlet weak var activityView : UIActivityIndicatorView!
     @IBOutlet weak var vwFotter : UIView!
+    
     var totalCount : Int = 0
     var limit : Int = 10
     var offSet : Int = 0
+    
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(self.handleRefresh(_:)), for: UIControlEvents.valueChanged)

@@ -56,8 +56,15 @@ class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDa
         self.imgProfilePic.layer.cornerRadius = self.imgProfilePic.frame.size.width / 2
         self.imgProfilePic.layer.masksToBounds = true
         
+        if let image = CommanUtility.getImage(userId: UserManager.sharedUserManager.userId!) as? UIImage {
+            self.imgProfilePic.image = image
+        }
+        
+<<<<<<< HEAD
+=======
         CommanUtility.decorateNavigationbarWithBackButtonAndTitle(target: self, leftselect: #selector(doClickBack), strTitle: "txt_profile".localized(), strBackImag: BACK_BUTTON, strFontName: "Arial", size: 20, color: UIColor.white)
         
+>>>>>>> e35b1b9c7743735c41640c8c7aef1c2e87c304cf
         self.imgBG.image = UIImage(named : PROFILE_BG)
         self.btnChangeic.setImage(UIImage(named : EDIT_ICON), for: .normal)
         
@@ -81,7 +88,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDa
                     self.dictData["0"] = dictResponseData[0]["name"] as? String
                     self.dictData["1"] = dictResponseData[0]["mobileNo"] as? String
                     self.dictData["2"] = dictResponseData[0][""] as? String
-                    self.imgProfilePic.sd_setImage(with: URL(string : (dictResponseData[0]["profilePic"] as? String)!) )
+                   // self.imgProfilePic.sd_setImage(with: URL(string : (dictResponseData[0]["profilePic"] as? String)!) )
                 }
                 self.tblView.reloadData()
                 
@@ -237,6 +244,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDa
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             self.imgProfilePic.image = image
+            CommanUtility.saveImageDocumentDirectory(userId: UserManager.sharedUserManager.userId!, img: image)
         }
         picker.dismiss(animated: true, completion: nil);
     }
@@ -284,7 +292,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDa
     //                return
     //        }, cancel: { ActionMultipleStringCancelBlock in return }, origin: sender)
     //    }
-    
     
     
     override func didReceiveMemoryWarning() {

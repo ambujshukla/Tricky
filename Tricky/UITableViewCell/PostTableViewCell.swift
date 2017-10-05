@@ -26,7 +26,7 @@ class PostTableViewCell: UITableViewCell {
     func decorateTableView(dictData : [String : AnyObject])
     {
       self.lblMessage.text = dictData["message"]! as? String
-      self.lblTime.text = CommanUtility.doChangeTimeFormat(time: (dictData["time"] as? String)!, firstFormat: "yyyy-MM-dd HH:mm:ss", SecondFormat: "HH:mm")
+      self.lblTime.text = CommanUtility.doChangeTimeFormat(time: (dictData["time"] as? String)!, firstFormat: "yyyy-MM-dd HH:mm:ss", SecondFormat: "dd-MM-yyyy")
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
