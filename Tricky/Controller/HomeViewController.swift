@@ -30,7 +30,7 @@ class HomeViewController: UIViewController {
     func doShowAlert()
     {
         CommonUtil.showAlertInSwift_3Format("txt_logout".localized(), title: "txt_trickychat".localized(), btnCancel: "txt_no".localized(), btnOk: "txt_yes".localized(), crl: self, successBlock: { (obj) in
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewIdentifier") as! LoginViewController
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "SignUpViewIdentifier") as! SignUpViewController
             self.navigationController?.pushViewController(vc, animated: true)
         }) { (obj) in
             print("ok")
@@ -94,9 +94,7 @@ extension HomeViewController: ViewPagerControllerDataSource {
         let vcs  = [self.storyboard?.instantiateViewController(withIdentifier:"HomeMessageController") as!  HomeMessageController
             , self.storyboard?.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController ,
               self.storyboard?.instantiateViewController(withIdentifier: "PostViewController") as! PostViewController ]
-        
         return vcs[position]
-        
     }
     
     func tabsForPages() -> [ViewPagerTab] {

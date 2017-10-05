@@ -13,6 +13,12 @@
 "txt_mobile" = "Mobile";
 "txt_password" = "Password";
 "txt_cnf_mobile" = "Confirm Password";
+"txt_SignUp_nav_title" = "Express Honesty";
+"txt_btn_Reg" = "Start Now";
+"txt_allready_ac" = "Already have an account?";
+
+"txt_click_here" = "Click here";
+
 
 "txt_TnC" = "I Agree on Terms and Conditions";
 "txt_name" = "Name";

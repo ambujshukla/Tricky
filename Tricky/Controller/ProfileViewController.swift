@@ -36,7 +36,14 @@ class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDa
         super.viewDidLoad()
         self.decorateUI()
         self.configureInitialParameters()
-        self.doCallGetProfile()
+        
+        DispatchQueue.global(qos: .background).async {
+            print("This is run on the background queue")
+            self.doCallGetProfile()
+            DispatchQueue.main.async {
+                print("This is run on the main queue, after the previous code in outer block")
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,12 +57,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDa
         self.imgProfilePic.layer.masksToBounds = true
         
         CommanUtility.decorateNavigationbarWithBackButtonAndTitle(target: self, leftselect: #selector(doClickBack), strTitle: "txt_profile".localized(), strBackImag: BACK_BUTTON, strFontName: "Arial", size: 20, color: UIColor.white)
-        
-        //        self.btnSave.setTitle("txt_save".localized(), for: .normal)
-        //        self.btnSave.backgroundColor = UIColor.clear
-        //        self.btnSave.layer.borderWidth = 1.0
-        //        self.tblView.backgroundColor = UIColor.clear
-        //        self.btnSave.layer.borderColor = UIColor.white.cgColor
         
         self.imgBG.image = UIImage(named : PROFILE_BG)
         self.btnChangeic.setImage(UIImage(named : EDIT_ICON), for: .normal)
@@ -82,13 +83,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDa
                     self.dictData["2"] = dictResponseData[0][""] as? String
                     self.imgProfilePic.sd_setImage(with: URL(string : (dictResponseData[0]["profilePic"] as? String)!) )
                 }
-                print(obj["responseData"])
                 self.tblView.reloadData()
                 
             }
-            print("")
-            
-            print("this is object \(obj)")
         }) { (error) in
             CommonUtil.showTotstOnWindow(strMessgae: (error?.localizedDescription)!)
             

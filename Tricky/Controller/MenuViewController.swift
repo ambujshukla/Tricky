@@ -53,8 +53,8 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
         self.lblSent.textColor = UIColor.white
         self.lblReceived.textColor = UIColor.white
         
-        self.lblSent.text = "954 Sent"
-        self.lblReceived.text = "457 Recieved"
+        self.lblSent.text = "\(String(describing: UserManager.sharedUserManager.sentMsgCount!)) Sent"
+        self.lblReceived.text = "\(String(describing: UserManager.sharedUserManager.receiveMsgCount!)) Recieved"
         self.tblMenu.reloadData()
     }
     

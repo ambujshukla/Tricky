@@ -15,7 +15,7 @@ class OTPModel: Mappable {
     var status    : String?
     var responseCode    : String?
     var responseMessage    : String?
-    var otp : Int?
+    var otp : String?
     
     required init?(map: Map) {
         mapping(map: map)

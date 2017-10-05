@@ -96,17 +96,17 @@ class CommonUtil: NSObject {
     {
         
         controller.txtMobile.text = controller.txtMobile.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-        
         controller.txtLink.text = controller.txtLink.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-        
-        if(controller.txtLink.text!.isEmpty)
+       
+        if(controller.txtMobile.text!.isEmpty)
+        {
+            return (false,NSString(format: "%@", "Please enter mobile no") as String)
+        }
+       else if(controller.txtLink.text!.isEmpty)
         {
             return (false,NSString(format: "%@", "Please enter link") as String)
         }
-        else  if(controller.txtMobile.text!.isEmpty)
-        {
-            return (false,NSString(format: "%@", "Please enter mobile no") as String)
-        }else if(!controller.btnTnC.isSelected)
+          else if(!controller.btnTnC.isSelected)
         {
             return (false,NSString(format: "%@", "Please select Terms and Conditions") as String)
         }

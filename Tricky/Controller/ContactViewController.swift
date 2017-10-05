@@ -9,7 +9,7 @@
  import UIKit
  import DZNEmptyDataSet
 
- class ContactViewController: UIViewController , UITableViewDelegate , UITableViewDataSource,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+ class ContactViewController: UIViewController , UITableViewDelegate , UITableViewDataSource,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UISearchBarDelegate {
     
     var contactsArray = NSMutableArray()
     var arrSyncContacts = [[String : AnyObject]]()
@@ -18,9 +18,17 @@
             self.tblContact.reloadData()
         }
     }
+    
+    var arrMainData = [[String : AnyObject]]()
+
+    
     @IBOutlet weak var imgBg : UIImageView!
     var isFromMenu : Bool = false
     var contactShowFrom : Int = 0
+    var searchBar : UISearchBar!
+    var shouldSearchStart : Bool = false
+
+
     
     @IBOutlet weak var tblContact : UITableView!
     
@@ -38,12 +46,21 @@
             self.navigationController?.navigationBar.barTintColor = color(red: 97, green: 118, blue: 138)
         }else if (self.contactShowFrom == 2)
         {
+            CommanUtility.createCustomRightButton(self, navBarItem: self.navigationItem, strRightImage: SEARCH_ICON as NSString, select: #selector(doClickSearch))
+            self.searchBar = UISearchBar()
+            self.searchBar.sizeToFit()
+            self.searchBar.placeholder = "txt_search".localized()
+            self.searchBar.delegate = self
+            self.searchBar.isHidden = true
+
             self.navigationController?.navigationBar.barTintColor = color(red: 148, green: 108, blue: 139)
         }
         else{
             self.navigationController?.navigationBar.barTintColor = color(red: 148, green: 108, blue: 139)
         }
     }
+    
+
     
     func decorateUI()
     {
@@ -114,7 +131,8 @@
             WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "SyncContact", parameter: dictData, success: { (obj) in
                 if let dictContactsData = obj["responseData"] as? [[String : AnyObject]]
                 {
-                    self.arrSyncContacts.append(contentsOf: dictContactsData)
+                    self.arrMainData.append(contentsOf: dictContactsData)
+                    self.arrSyncContacts = self.arrMainData
                     
                     if (self.contactShowFrom == 1){
                         self.doFilterBlockContactLis()
@@ -154,6 +172,34 @@
     {
         self.navigationController?.popViewController(animated: true)
     }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        let predicate = NSPredicate(format: "SELF contains %@", searchBar.text!)
+        self.arrSyncContacts = self.arrMainData.filter { predicate.evaluate(with: $0["userName"]) }
+        
+        if (searchBar.text?.isEmpty)! {
+            self.arrSyncContacts = self.arrMainData
+        }
+        self.tblContact.reloadData()
+    }
+    
+    func doClickSearch(){
+        if shouldSearchStart == false
+        {
+            navigationItem.titleView = self.searchBar
+            self.searchBar.isHidden = false
+        }else{
+            navigationItem.titleView = nil
+            self.searchBar.isHidden = true
+            self.searchBar.text = ""
+        }
+        shouldSearchStart = !(self.searchBar.isHidden)
+    }
+    
+
+    
+    
+    
     // MARK: - Table View DataSource
     
     func numberOfSections(in tableView: UITableView) -> Int{
@@ -220,11 +266,6 @@
         present(vc, animated: true, completion: nil)
     }
 
-    
-
-        
- 
-    
     
     func doCallServiceForBlockAndUnblock(sender : UIButton , dataContacts : [String : AnyObject]) {
         

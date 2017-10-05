@@ -19,6 +19,8 @@ class UserManager: NSObject {
     var mobileNo : String?
     var name : String?
     var profilePic : String?
+    var receiveMsgCount : String?
+    var sentMsgCount : String?
 
     
     class var  sharedUserManager: UserManager {
@@ -44,6 +46,13 @@ class UserManager: NSObject {
         self.name = userData.name
         self.profilePic = userData.profilePic
     }
+  
+    func doSetReceiveMsgAndSentMessage(strSentMsg : String , strReceiveMsg : String){
+        
+      self.receiveMsgCount = strReceiveMsg
+      self.sentMsgCount = strSentMsg
+    }
+    
     
     
 }

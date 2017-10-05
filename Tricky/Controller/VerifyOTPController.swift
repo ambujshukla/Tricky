@@ -86,7 +86,8 @@ class VerifyOTPController: UIViewController
     
     func doCallWebAPIForLogin()
     {
-        let dictData = ["mobileNo" :self.strMobileNo ,"deviceToken":"asfs" , "otp" : self.strOTP , "countryCode" : "+91" , "os" :"2" ,"version" : "1.0.0" ,"language" : "english" ] as [String : Any]
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let dictData = ["mobileNo" :self.strMobileNo ,"deviceToken":appDelegate.strDeviceToken , "otp" : self.strOTP , "countryCode" : "+91" , "os" :"2" ,"version" : "1.0.0" ,"language" : "english" ] as [String : Any]
         print(dictData)
         
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: METHOD_LOGIN, parameter: dictData , success: { (obj) in
@@ -133,7 +134,9 @@ class VerifyOTPController: UIViewController
     
     func doCallWebAPIForRegistration()
     {
-        let dictData = ["version" : "1.0" , "os" : "2" , "language" : "english" , "mobileNo": self.strMobileNo  , "url":self.strLink , "deviceToken" : "asfs" , "countryCode" : "+91" , "otp" : self.strOTP] as [String : Any]
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+
+        let dictData = ["version" : "1.0" , "os" : "2" , "language" : "english" , "mobileNo": self.strMobileNo  , "url":self.strLink , "deviceToken" : appDelegate.strDeviceToken , "countryCode" : "+91" , "otp" : self.strOTP] as [String : Any]
         
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "register", parameter: dictData , success: { (obj) in
             let regData = Mapper<RegistrationModel>().map(JSON: obj)

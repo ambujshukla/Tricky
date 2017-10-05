@@ -35,6 +35,10 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var imgBG : UIImageView!
     @IBOutlet weak var viewTop : UIView!
     @IBOutlet var btnCountryCode : UIButton!
+    
+    @IBOutlet var btnClickHere : UIButton!
+    @IBOutlet var btnAllredyAC : UIButton!
+
 
     let arrCountryCode = ["Afghanistan(+93)","Aland Islands(+358)","Albania(+355)"]
     
@@ -71,7 +75,10 @@ class SignUpViewController: UIViewController {
         self.viewTop.layer.cornerRadius = 5.0
         self.viewTop.layer.borderWidth = 1.0
         
-        CommanUtility.decorateNavigationbarWithBackButtonAndTitle(target: self, leftselect: #selector(doClickBack), strTitle: "txt_SignUp".localized(), strBackImag: BACK_BUTTON, strFontName: "Arial", size: 20, color: UIColor.white)
+        self.title = "txt_SignUp_nav_title".localized()
+
+        
+       // CommanUtility.decorateNavigationbarWithBackButtonAndTitle(target: self, leftselect: #selector(doClickBack), strTitle: "txt_SignUp_nav_title".localized(), strBackImag: BACK_BUTTON, strFontName: "Arial", size: 20, color: UIColor.white)
         
         self.imgBG.backgroundColor = color(red: 89, green: 165, blue: 171)
         
@@ -79,13 +86,8 @@ class SignUpViewController: UIViewController {
         self.btnTnC.setImage(UIImage(named : CHECKBOX_SELECTED) , for: .selected)
         self.btnTnC.isSelected = false
         
-        //  self.btnNotifications.setImage(UIImage(named : CHECKBOX_UNSELECTED) , for: .normal)
-        //        self.btnNotifications.setImage(UIImage(named : CHECKBOX_SELECTED) , for: .selected)
-        //        self.btnNotifications.isSelected = false
-        
         self.lblTnC.text = "txt_TnC".localized()
-        // self.lblNotifications.text = "txt_notifications".localized()
-        self.btnRegister.setTitle("txt_SignUp".localized(), for: .normal)
+        self.btnRegister.setTitle("txt_btn_Reg".localized(), for: .normal)
         self.btnRegister.setTitleColor(UIColor.white, for: .normal)
         self.btnRegister.layer.borderColor = UIColor.white.cgColor
         self.btnRegister.layer.borderWidth = 1.0
@@ -99,11 +101,25 @@ class SignUpViewController: UIViewController {
         
         self.txtMobile.textColor = UIColor.white
         self.txtLink.textColor = UIColor.white
+        
+        self.btnAllredyAC.setTitle("txt_allready_ac".localized(), for: .normal)
+        self.btnAllredyAC.titleLabel?.textColor = UIColor.white
+        self.btnClickHere.setTitle("txt_click_here".localized(), for: .normal)
+        self.btnClickHere.titleLabel?.textColor = UIColor.white
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.navigationController?.navigationBar.barTintColor = color(red: 244, green: 166, blue: 202)
+        self.navigationItem.setHidesBackButton(true, animated: false)
+
+    }
+    
+    @IBAction func doActionOnClickHereButton() {
+        
+        let controller = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewIdentifier") as! LoginViewController
+        self.navigationController?.pushViewController(controller, animated: true)
     }
     
     func doClickBack()
@@ -143,28 +159,6 @@ class SignUpViewController: UIViewController {
     
 
     
-//    func doCallWebAPIForRegistration()
-//    {
-//        let dictData = ["version" : "1.0" , "os" : "ios" , "language" : "english" , "mobileNo": self.txtMobile.text!  , "url":self.txtLink.text! , "deviceToken" : "324343434343434343" , "countryCode" : "+91"] as [String : Any]
-//        
-//        WebAPIManager.sharedWebAPIMAnager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "register", parameter: dictData , success: { (obj) in
-//            let regData = Mapper<RegistrationModel>().map(JSON: obj)
-//            
-//            if (regData?.status == "1")
-//            {
-//                UserManager.sharedUserManager.doSetLoginData(userData: (regData?.responseData?[0])!)
-//                self.goTOVerifyScreen(OTPData: <#OTPModel#>)
-//            }
-//            else
-//            {
-//                CommonUtil.showTotstOnWindow(strMessgae: (regData?.responseMessage)!)
-//            }
-//            
-//            print("this is object \(obj)")
-//        }) { (error) in
-//            CommonUtil.showTotstOnWindow(strMessgae: (error?.localizedDescription)!)
-//        }
-//    }
     
     func goTOVerifyScreen(OTPData : OTPModel) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "VerifyOTPController") as! VerifyOTPController
@@ -206,30 +200,14 @@ class SignUpViewController: UIViewController {
     
     @IBAction func doClickRegister()
     {
-        self.doCallServiceForGenrateOTP()
+        let (boolValue , message) = CommonUtil.doValidateRegistration(self)
+        if boolValue {
+            self.doCallServiceForGenrateOTP()
+        }else{
+            CommonUtil.showTotstOnWindow(strMessgae: message)
+        }
     }
     
-    //    @IBAction func doClickChangeProfilePic()
-    //    {
-    //        //Create the AlertController and add Its action like button in Actionsheet
-    //        let actionSheetControllerIOS8: UIAlertController = UIAlertController(title: "txt_profile_photo".localized(), message: "txt_options".localized(), preferredStyle: .actionSheet)
-    //
-    //        let cancelActionButton = UIAlertAction(title: "txt_cancel".localized(), style: .cancel) { _ in
-    //            print("Cancel")
-    //        }
-    //        actionSheetControllerIOS8.addAction(cancelActionButton)
-    //
-    //
-    //        actionSheetControllerIOS8.addAction(deleteActionButton)
-    //        self.present(actionSheetControllerIOS8, animated: true, completion: nil)
-    //    }
-    //
-    //    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-    //        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-    //            self.imgBG.image = image
-    //        }
-    //        picker.dismiss(animated: true, completion: nil);
-    //    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

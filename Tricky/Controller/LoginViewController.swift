@@ -47,7 +47,7 @@ class LoginViewController: UIViewController
         self.btnForgotPassword.setTitle("txt_forgot_password".localized(), for: .normal)
         self.btnForgotPassword.titleLabel?.textColor = UIColor.white
         
-        self.btnSignup.setTitle("txt_SignUp".localized(), for: .normal)
+        self.btnSignup.setTitle("txt_click_here".localized(), for: .normal)
         self.btnSignup.titleLabel?.textColor = UIColor.white
         
         self.btnDontAccount.setTitle("txt_don't_have_account".localized(), for: .normal)
@@ -121,8 +121,10 @@ class LoginViewController: UIViewController
     
     @IBAction func doClickSignUp(sender: UIButton)
     {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "SignUpViewIdentifier") as! SignUpViewController
-        self.navigationController?.pushViewController(vc, animated: true)
+        self.navigationController?.popViewController(animated: true)
+        
+//        let vc = self.storyboard?.instantiateViewController(withIdentifier: "SignUpViewIdentifier") as! SignUpViewController
+//        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

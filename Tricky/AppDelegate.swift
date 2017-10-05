@@ -8,11 +8,13 @@
 
 import UIKit
 import Localize_Swift
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var strDeviceToken : String!
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions:
@@ -24,9 +26,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         {
             let rootViewController = self.window!.rootViewController as! UINavigationController
             let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = mainStoryboard.instantiateViewController(withIdentifier: "LoginViewIdentifier") as! LoginViewController
+            let vc = mainStoryboard.instantiateViewController(withIdentifier: "SignUpViewIdentifier") as! SignUpViewController
             rootViewController.pushViewController(vc, animated: false)
         }
+        
+        // iOS 10 support
+        if #available(iOS 10, *) {
+            UNUserNotificationCenter.current().requestAuthorization(options:[.badge, .alert, .sound]){ (granted, error) in }
+            application.registerForRemoteNotifications()
+        }
+            // iOS 9 support
+        else if #available(iOS 9, *) {
+            UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil))
+            UIApplication.shared.registerForRemoteNotifications()
+        }
+            // iOS 8 support
+        else if #available(iOS 8, *) {
+            UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil))
+            UIApplication.shared.registerForRemoteNotifications()
+        }
+            // iOS 7 support
+        else {  
+            application.registerForRemoteNotifications(matching: [.badge, .sound, .alert])
+        }
+
         
         return true
     }
@@ -34,6 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         
         let deviceTokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
+        self.strDeviceToken = deviceTokenString
         print(deviceTokenString)
         
         
@@ -41,6 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         
+        self.strDeviceToken = "asfs"
         print("i am not available in simulator \(error)")
         
     }
@@ -67,6 +92,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
+    
+    
+    
 }
 

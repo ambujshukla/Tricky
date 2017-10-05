@@ -50,6 +50,11 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
             
             if (obj["status"] as! String == "1")
             {
+                let strSentMsgC = String(describing: obj["sentMessageCount"]!)
+                let strReceiveMsgC = String(describing: obj["RecieveMessageCount"]!)
+                
+                UserManager.sharedUserManager.doSetReceiveMsgAndSentMessage(strSentMsg: strSentMsgC, strReceiveMsg: strReceiveMsgC)
+                
                 if let result : Array<Dictionary<String, Any>> = obj["responseData"] as? Array<Dictionary<String, Any>>
                 {
                     if isComeFromPullToRefresh {
@@ -264,7 +269,10 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
     {
         let dictData = self.arrMessageList[sender.tag]
         let shareText = dictData["message"]
-        let vc = UIActivityViewController(activityItems: [shareText ?? ""], applicationActivities: [])
+        
+        let image = CommanUtility.textToImage(drawText: shareText as! NSString, inImage: #imageLiteral(resourceName: "languagebackground"), atPoint: CGPoint(x : 5 , y : 100))
+
+        let vc = UIActivityViewController(activityItems: [image], applicationActivities: [])
         present(vc, animated: true, completion: nil)
     }
     func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString?
