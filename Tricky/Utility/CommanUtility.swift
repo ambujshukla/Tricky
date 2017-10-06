@@ -162,21 +162,31 @@ class CommanUtility: NSObject {
         
         return time2
     }
+<<<<<<< HEAD
+    
+    
+=======
         
+>>>>>>> 0a357b480a9e42fe0919b4d63c14445535a6d8ce
    class func textToImage(drawText text: NSString, inImage image: UIImage, atPoint point: CGPoint) -> UIImage {
-        let textColor = UIColor.white
-        let textFont = UIFont(name: "Helvetica Bold", size: 12)!
+    
+        let textColor = UIColor.black
+        let textFont = UIFont(name: "Menlo-Italic", size: 50)!
         
         let scale = UIScreen.main.scale
         UIGraphicsBeginImageContextWithOptions(image.size, false, scale)
-        
+    
+       let style = NSMutableParagraphStyle()
+         style.alignment = NSTextAlignment.center
+    
         let textFontAttributes = [
             NSFontAttributeName: textFont,
+            NSParagraphStyleAttributeName: style ,
             NSForegroundColorAttributeName: textColor,
             ] as [String : Any]
-        image.draw(in: CGRect(origin: CGPoint.zero, size: image.size))
-        
-        let rect = CGRect(origin: point, size: image.size)
+    image.draw(in: CGRect(origin: CGPoint.zero, size: CGSize(width : image.size.width , height : image.size.height)))
+    
+        let rect = CGRect(origin: point, size: CGSize(width : image.size.width-220 , height : image.size.height-230))
         text.draw(in: rect, withAttributes: textFontAttributes)
         
         let newImage = UIGraphicsGetImageFromCurrentImageContext()

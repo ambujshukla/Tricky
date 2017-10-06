@@ -45,7 +45,7 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
     {
         self.view.endEditing(true)
         //UpdateProfile
-        let dictData = ["version" : "1.0" , "os" : "2" , "language" : "english","userId": UserManager.sharedUserManager.userId! ,"filterVulgar" : "0","messageForOnlyRegisterUser":"0","offset":"0","limit" : "10","showOnlyFavorite":"0"] as [String : Any]
+        let dictData = ["version" : "1.0" , "os" : "2" , "language" : "english","userId": UserManager.sharedUserManager.userId! ,"filterVulgar" : CommonUtil.filterVulgerMsg(),"messageForOnlyRegisterUser":CommonUtil.isBlockUser(),"offset":"0","limit" : "10","showOnlyFavorite":"0"] as [String : Any]
         
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOSTAndPullToRefresh(isShowLoder :!isComeFromPullToRefresh ,strURL: kBaseUrl, strServiceName: "getRecSentList", parameter: dictData , success: { (obj) in
             print("this is object \(obj)")
@@ -268,7 +268,7 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
         let dictData = self.arrMessageList[sender.tag]
         let shareText = dictData["message"]
         
-        let image = CommanUtility.textToImage(drawText: shareText as! NSString, inImage: #imageLiteral(resourceName: "languagebackground"), atPoint: CGPoint(x : 5 , y : 100))
+        let image = CommanUtility.textToImage(drawText: shareText as! NSString, inImage: #imageLiteral(resourceName: "sharemessage"), atPoint: CGPoint(x : 90 , y : 250))
 
         let vc = UIActivityViewController(activityItems: [image], applicationActivities: [])
         present(vc, animated: true, completion: nil)

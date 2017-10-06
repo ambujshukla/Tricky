@@ -250,7 +250,9 @@ class FavouriteViewController: UIViewController , UITableViewDelegate , UITableV
     {
         let dictData = self.arrMessageList[sender.tag]
         let shareText = dictData["message"]
-        let vc = UIActivityViewController(activityItems: [shareText ?? ""], applicationActivities: [])
+        let image = CommanUtility.textToImage(drawText: shareText as! NSString, inImage: #imageLiteral(resourceName: "sharemessage"), atPoint: CGPoint(x : 90 , y : 250))
+        
+        let vc = UIActivityViewController(activityItems: [image], applicationActivities: [])
         present(vc, animated: true, completion: nil)
     }
     

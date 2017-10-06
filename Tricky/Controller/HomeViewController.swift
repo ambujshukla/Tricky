@@ -13,6 +13,8 @@ class HomeViewController: UIViewController {
     
     var viewPager:ViewPagerController!
     @IBOutlet weak var lblType : UILabel!
+    var Vcs = [UIViewController]()
+    
     var tabs = [
         ViewPagerTab(title: "Message", image: UIImage(named: "fries")),
         ViewPagerTab(title: "Chat", image: UIImage(named: "hamburger")),
@@ -50,6 +52,11 @@ class HomeViewController: UIViewController {
     
     func doCustomSetUp(){
         
+        self.Vcs  = [self.storyboard?.instantiateViewController(withIdentifier:"HomeMessageController") as!  HomeMessageController
+            , self.storyboard?.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController ,
+              self.storyboard?.instantiateViewController(withIdentifier: "PostViewController") as! PostViewController ]
+
+        
         let revealViewController: SWRevealViewController? = self.revealViewController()
         if revealViewController != nil {
             CommanUtility.decorateNavigationbarWithRevealToggleButton(target : revealViewController!, strTitle: "txt_trickychat".localized(), strBackButtonImage: "menuicon", selector: #selector(SWRevealViewController.revealToggle(_:)) , controller : self , color:  color(red: 56, green: 152, blue: 108) )
@@ -77,6 +84,8 @@ class HomeViewController: UIViewController {
         self.addChildViewController(viewPager)
         self.view.addSubview(viewPager.view)
         viewPager.didMove(toParentViewController: self)
+        
+
     }
 }
 
@@ -91,10 +100,7 @@ extension HomeViewController: ViewPagerControllerDataSource {
         //        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MessageViewController") as! MessageViewController
         //        return vc
         
-        let vcs  = [self.storyboard?.instantiateViewController(withIdentifier:"HomeMessageController") as!  HomeMessageController
-            , self.storyboard?.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController ,
-              self.storyboard?.instantiateViewController(withIdentifier: "PostViewController") as! PostViewController ]
-        return vcs[position]
+        return self.Vcs[position]
     }
     
     func tabsForPages() -> [ViewPagerTab] {
