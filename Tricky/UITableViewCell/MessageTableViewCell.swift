@@ -18,6 +18,7 @@ class MessageTableViewCell: UITableViewCell {
     @IBOutlet weak var btnBlock : UIButton!
     @IBOutlet weak var btnShare : UIButton!
     @IBOutlet weak var btnDelete : UIButton!
+    @IBOutlet weak var lblTo : UILabel!
     
     
     override func awakeFromNib() {
@@ -30,6 +31,12 @@ class MessageTableViewCell: UITableViewCell {
         self.lblMessage.text = dictData["message"] as? String
         self.lblTime.text =  CommanUtility.doChangeTimeFormat(time: (dictData["time"] as? String)!, firstFormat: "yyyy-MM-dd HH:mm:ss", SecondFormat: "dd-MM-yyyy")
         
+        if let reveiverName = dictData["recieverName"] as? String {
+            if (self.lblTo != nil)
+            {
+                self.lblTo.text = "To: \(reveiverName)"
+            }
+        }
         let isFavourite = dictData["isFavorite"] as! Bool
         if isFavourite {
           self.btnfavourite.isSelected = true
