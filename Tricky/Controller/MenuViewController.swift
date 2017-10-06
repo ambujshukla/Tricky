@@ -44,11 +44,11 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
         self.lblUserName.textColor = UIColor.white
         self.lblUserName.text = UserManager.sharedUserManager.name
         self.lblEmail.text = UserManager.sharedUserManager.userUrl
-
+        
         if let image = CommanUtility.getImage(userId: UserManager.sharedUserManager.userId!) as? UIImage {
             self.imgProfile.image = image
         }
-
+        
         self.menuData = ["Home".localized() ,"txt_block_users".localized() , "contacts" , "Favorite" , "language", "My Post" , "Filter vulgar messages" , "Block Unauthorised user","Display all anonymous post" , "Logout"];
         
         self.tblMenu.tableFooterView = UIView()
@@ -65,11 +65,11 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
         // Dispose of any resources that can be recreated.
     }
     
-    func switchValueDidChange(sender:UISwitch!) {
-
+    func switchValueDidChange(sender:PWSwitch!) {
+        
         if sender.tag == 6 {
-            if sender.isOn {
-            CommonUtil.setData("filterMessage", value: "1")
+            if sender.on {
+                CommonUtil.setData("filterMessage", value: "1")
             }
             else{
                 CommonUtil.setData("filterMessage", value: "0")
@@ -77,17 +77,17 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
             
         }else if sender.tag == 7{
             
-            if sender.isOn {
+            if sender.on {
                 CommonUtil.setData("isBlockUser", value: "1")
             }
             else{
                 CommonUtil.setData("isBlockUser", value: "0")
             }
-
+            
             
         }else if sender.tag == 8{
             
-            if sender.isOn {
+            if sender.on {
                 CommonUtil.setData("isAnonymous", value: "1")
             }
             else{
@@ -95,7 +95,7 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
             }
         }
         self.tblMenu.reloadData()
-    
+        
     }
     
     // MARK: - Table View DataSource
@@ -117,33 +117,40 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
         
         if indexPath.row == 6 || indexPath.row == 7 || indexPath.row == 8 {
             cell.switchPW?.isHidden = false
-            if indexPath.row == 6 && (CommonUtil.filterVulgerMsg() == "1") {
-              cell.switchPW.on = true
-            }else{
-                cell.switchPW.on = false
+            if indexPath.row == 6
+            {
+                if (CommonUtil.filterVulgerMsg() == "1") {
+                    cell.switchPW.on = true
+                }else{
+                    cell.switchPW.on = false
+                }
             }
             
-            if indexPath.row == 7 && (CommonUtil.isBlockUser() == "1") {
-                cell.switchPW.on = true
-            }else{
-                cell.switchPW.on = false
+            if indexPath.row == 7
+            {
+                if (CommonUtil.isBlockUser() == "1") {
+                    cell.switchPW.on = true
+                }else{
+                    cell.switchPW.on = false
+                }
             }
-            if indexPath.row == 8 && (CommonUtil.isAnonymous() == "1") {
-                cell.switchPW.on = true
-            }else{
-                cell.switchPW.on = false
+            if indexPath.row == 8
+            {
+                if (CommonUtil.isAnonymous() == "1") {
+                    cell.switchPW.on = true
+                }else{
+                    cell.switchPW.on = false
+                }
             }
         }
         else
         {
             cell.switchPW?.isHidden = true
-            
         }
         cell.lblTitle?.text = self.menuData[indexPath.row]
         cell.selectionStyle = .none
         cell.switchPW.tag = indexPath.row
         cell.switchPW.addTarget(self, action: #selector(self.switchValueDidChange(sender:)), for: .valueChanged)
-        
         return cell
     }
     
@@ -161,7 +168,6 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
             
             self.revealViewController().revealToggle(animated: true)
             
-          
             let contrlHome = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
             let navController = UINavigationController.init()
             navController.setViewControllers([contrlHome], animated: true)
@@ -172,7 +178,7 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
         }
         else if (indexPath.row == 2)
         {
-          self.doNavigateToContactsView(showContactsFrom: 2)
+            self.doNavigateToContactsView(showContactsFrom: 2)
         }else if (indexPath.row == 3) {
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "FavouriteViewController") as! FavouriteViewController
             let contrlHome = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
