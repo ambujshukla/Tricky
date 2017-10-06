@@ -65,6 +65,39 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
         // Dispose of any resources that can be recreated.
     }
     
+    func switchValueDidChange(sender:UISwitch!) {
+
+        if sender.tag == 6 {
+            if sender.isOn {
+            CommonUtil.setData("filterMessage", value: "1")
+            }
+            else{
+                CommonUtil.setData("filterMessage", value: "0")
+            }
+            
+        }else if sender.tag == 7{
+            
+            if sender.isOn {
+                CommonUtil.setData("isBlockUser", value: "1")
+            }
+            else{
+                CommonUtil.setData("isBlockUser", value: "0")
+            }
+
+            
+        }else if sender.tag == 8{
+            
+            if sender.isOn {
+                CommonUtil.setData("isAnonymous", value: "1")
+            }
+            else{
+                CommonUtil.setData("isAnonymous", value: "0")
+            }
+        }
+        self.tblMenu.reloadData()
+    
+    }
+    
     // MARK: - Table View DataSource
     
     func numberOfSections(in tableView: UITableView) -> Int
@@ -84,13 +117,33 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
         
         if indexPath.row == 6 || indexPath.row == 7 || indexPath.row == 8 {
             cell.switchPW?.isHidden = false
+            if indexPath.row == 6 && (CommonUtil.filterVulgerMsg() == "1") {
+              cell.switchPW.on = true
+            }else{
+                cell.switchPW.on = false
+            }
+            
+            if indexPath.row == 7 && (CommonUtil.isBlockUser() == "1") {
+                cell.switchPW.on = true
+            }else{
+                cell.switchPW.on = false
+            }
+            if indexPath.row == 8 && (CommonUtil.isAnonymous() == "1") {
+                cell.switchPW.on = true
+            }else{
+                cell.switchPW.on = false
+            }
         }
         else
         {
             cell.switchPW?.isHidden = true
+            
         }
         cell.lblTitle?.text = self.menuData[indexPath.row]
         cell.selectionStyle = .none
+        cell.switchPW.tag = indexPath.row
+        cell.switchPW.addTarget(self, action: #selector(self.switchValueDidChange(sender:)), for: .valueChanged)
+        
         return cell
     }
     

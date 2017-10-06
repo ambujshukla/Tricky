@@ -138,7 +138,9 @@ class PostDetailViewController: UIViewController , UITableViewDelegate , UITable
     {
         let dictData = self.arrPostDetailListData[sender.tag]
         let shareText = dictData["message"]
-        let vc = UIActivityViewController(activityItems: [shareText ?? ""], applicationActivities: [])
+        let image = CommanUtility.textToImage(drawText: shareText as! NSString, inImage: #imageLiteral(resourceName: "sharemessage"), atPoint: CGPoint(x : 90 , y : 250))
+        
+        let vc = UIActivityViewController(activityItems: [image], applicationActivities: [])
         present(vc, animated: true, completion: nil)
     }
     

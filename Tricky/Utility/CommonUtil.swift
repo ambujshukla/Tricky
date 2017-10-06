@@ -617,23 +617,14 @@ class CommonUtil: NSObject {
         //   print("setUserDefaultBooleanValue() strValue " + String(strValue) + " strKey " + strKey)
     }
     
-    class func getDataForKey(_ key:String)->String
+    class func getDataForKey(_ key:String)-> String?
     {
         let userDefault:UserDefaults = UserDefaults.standard
-        if userDefault.object(forKey: key as String) != nil
+        if let data =  userDefault.object(forKey: key as String)
         {
-            return userDefault.value(forKey: key) as! String
-            
+            return data as? String
         }
-        return ""
-    }
-    
-    class func setExtensionData(_ key:NSString,value:NSString)
-    {
-        
-        let userDefault:UserDefaults = UserDefaults.init(suiteName : "group.com.photospring.app")!
-        userDefault.set(value, forKey: key as String)
-        userDefault.synchronize()
+        return nil
     }
     
     class func setBooleanValue(_ key : NSString , value : Bool)
@@ -652,6 +643,36 @@ class CommonUtil: NSObject {
         }
         return nil
     }
+    
+    
+    class func filterVulgerMsg() -> String {
+        if let isFilterOn  = self.getDataForKey("filterMessage"){
+            return isFilterOn
+        }
+        else{
+            return "0"
+        }
+    }
+    
+    class func isBlockUser() -> String {
+        if let isBlockOn  = self.getDataForKey("isBlockUser"){
+            return isBlockOn
+        }
+        else{
+            return "0"
+        }
+    }
+ 
+    class func isAnonymous() -> String {
+        if let isAnonym  = self.getDataForKey("isAnonymous"){
+            return isAnonym
+        }
+        else{
+            return "0"
+        }
+    }
+    
+
     
     class func getAttributedString(strCommanFont : String , commanFontSize : Float , strUniqueFont : String , uniqueFontSize : Float , strSpecialString : String , strCompleteString : String) -> NSMutableAttributedString
     {

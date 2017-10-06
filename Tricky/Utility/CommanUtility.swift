@@ -163,29 +163,33 @@ class CommanUtility: NSObject {
         return time2
     }
     
-<<<<<<< HEAD
     
    class func textToImage(drawText text: NSString, inImage image: UIImage, atPoint point: CGPoint) -> UIImage {
-        let textColor = UIColor.white
-        let textFont = UIFont(name: "Helvetica Bold", size: 12)!
+    
+        let textColor = UIColor.black
+        let textFont = UIFont(name: "Menlo-Italic", size: 50)!
         
         let scale = UIScreen.main.scale
         UIGraphicsBeginImageContextWithOptions(image.size, false, scale)
-        
+    
+       let style = NSMutableParagraphStyle()
+         style.alignment = NSTextAlignment.center
+    
         let textFontAttributes = [
             NSFontAttributeName: textFont,
+            NSParagraphStyleAttributeName: style ,
             NSForegroundColorAttributeName: textColor,
             ] as [String : Any]
-        image.draw(in: CGRect(origin: CGPoint.zero, size: image.size))
-        
-        let rect = CGRect(origin: point, size: image.size)
+    image.draw(in: CGRect(origin: CGPoint.zero, size: CGSize(width : image.size.width , height : image.size.height)))
+    
+        let rect = CGRect(origin: point, size: CGSize(width : image.size.width-220 , height : image.size.height-230))
         text.draw(in: rect, withAttributes: textFontAttributes)
         
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
         return newImage!
-=======
+    }
     class func saveImageDocumentDirectory(userId : String, img : UIImage){
         let fileManager = FileManager.default
         let paths = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent("image_\(userId).png")
@@ -211,7 +215,6 @@ class CommanUtility: NSObject {
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         let documentsDirectory = paths[0]
         return documentsDirectory
->>>>>>> e35b1b9c7743735c41640c8c7aef1c2e87c304cf
     }
 }
 

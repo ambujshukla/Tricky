@@ -255,7 +255,8 @@
 				183A10AD1F4B529A00579A7A /* ViewPagerTab.swift */,
 				183A10AE1F4B529A00579A7A /* ViewPagerTabView.swift */,
 			);
-			path = ViewPager;
+			name = ViewPager;
+			path = ../Utility/ViewPager;
 			sourceTree = "<group>";
 		};
 		183A10B31F4B52BE00579A7A /* SWrevealViewController */ = {
@@ -285,6 +286,7 @@
 				1820E1B61F777562000DAC9A /* MyPostTableViewCell.swift */,
 				3163FC251F4DF902004AA3CF /* ChatTableViewCell.swift */,
 				3151CE911F48B2F900C322C3 /* ProfileTableViewCell.swift */,
+				183A10AA1F4B529A00579A7A /* ViewPager */,
 				181BD4D21F55E00300E60277 /* UserPostTableViewCell.swift */,
 				181BD4D01F55DFF900E60277 /* PostTableViewCell.swift */,
 				3151CE951F48C5F000C322C3 /* BlockUserListTableViewCell.swift */,
@@ -440,7 +442,6 @@
 			isa = PBXGroup;
 			children = (
 				183A10B31F4B52BE00579A7A /* SWrevealViewController */,
-				183A10AA1F4B529A00579A7A /* ViewPager */,
 				3151CE8E1F48ADD100C322C3 /* ContactPickerUtils.swift */,
 				3151CE801F48AC4F00C322C3 /* CommanUtility.swift */,
 				3151CE861F48ACEA00C322C3 /* WebAPIManager.swift */,

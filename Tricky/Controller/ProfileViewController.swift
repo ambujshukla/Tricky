@@ -60,11 +60,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDa
             self.imgProfilePic.image = image
         }
         
-<<<<<<< HEAD
-=======
         CommanUtility.decorateNavigationbarWithBackButtonAndTitle(target: self, leftselect: #selector(doClickBack), strTitle: "txt_profile".localized(), strBackImag: BACK_BUTTON, strFontName: "Arial", size: 20, color: UIColor.white)
         
->>>>>>> e35b1b9c7743735c41640c8c7aef1c2e87c304cf
         self.imgBG.image = UIImage(named : PROFILE_BG)
         self.btnChangeic.setImage(UIImage(named : EDIT_ICON), for: .normal)
         
