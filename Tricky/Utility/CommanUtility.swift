@@ -162,9 +162,7 @@ class CommanUtility: NSObject {
         
         return time2
     }
-    
-<<<<<<< HEAD
-    
+        
    class func textToImage(drawText text: NSString, inImage image: UIImage, atPoint point: CGPoint) -> UIImage {
         let textColor = UIColor.white
         let textFont = UIFont(name: "Helvetica Bold", size: 12)!
@@ -185,7 +183,7 @@ class CommanUtility: NSObject {
         UIGraphicsEndImageContext()
         
         return newImage!
-=======
+    }
     class func saveImageDocumentDirectory(userId : String, img : UIImage){
         let fileManager = FileManager.default
         let paths = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent("image_\(userId).png")
@@ -211,7 +209,6 @@ class CommanUtility: NSObject {
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         let documentsDirectory = paths[0]
         return documentsDirectory
->>>>>>> e35b1b9c7743735c41640c8c7aef1c2e87c304cf
     }
 }
 
