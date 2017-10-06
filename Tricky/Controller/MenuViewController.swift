@@ -21,8 +21,15 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
     @IBOutlet weak var lblReceived : UILabel!
     private var tap: UITapGestureRecognizer!
     
+    
+    var controller : UINavigationController!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.controller = self.revealViewController().frontViewController as! UINavigationController!
+   //     self.controller = UINavigationController.init()
+    //    self.controller.setViewControllers([contrlHome!], animated: true)
+
     }
     
     override func viewWillAppear(_ animated: Bool)
@@ -58,6 +65,8 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
         self.lblSent.text = "\(String(describing: UserManager.sharedUserManager.sentMsgCount!)) \nSent"
         self.lblReceived.text = "\(String(describing: UserManager.sharedUserManager.receiveMsgCount!)) \nRecieved"
         self.tblMenu.reloadData()
+        
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -158,14 +167,9 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
         //        }
         
         if (indexPath.row == 0) {
-            
             self.revealViewController().revealToggle(animated: true)
+            self.revealViewController().pushFrontViewController(self.controller, animated: true)
             
-          
-            let contrlHome = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-            let navController = UINavigationController.init()
-            navController.setViewControllers([contrlHome], animated: true)
-            self.revealViewController().pushFrontViewController(navController, animated: true)
         }else if (indexPath.row == 1)
         {
             self.doNavigateToContactsView(showContactsFrom: 1)

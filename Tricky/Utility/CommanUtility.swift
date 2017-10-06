@@ -162,12 +162,8 @@ class CommanUtility: NSObject {
         
         return time2
     }
-<<<<<<< HEAD
     
     
-=======
-        
->>>>>>> 0a357b480a9e42fe0919b4d63c14445535a6d8ce
    class func textToImage(drawText text: NSString, inImage image: UIImage, atPoint point: CGPoint) -> UIImage {
     
         let textColor = UIColor.black
