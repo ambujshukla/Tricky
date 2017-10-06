@@ -48,7 +48,7 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
         let dictData = ["version" : "1.0" , "os" : "2" , "language" : "english","userId": UserManager.sharedUserManager.userId! ,"filterVulgar" : "0","messageForOnlyRegisterUser":"0","offset":"0","limit" : "10","showOnlyFavorite":"0"] as [String : Any]
         
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOSTAndPullToRefresh(isShowLoder :!isComeFromPullToRefresh ,strURL: kBaseUrl, strServiceName: "getRecSentList", parameter: dictData , success: { (obj) in
-            
+            print("this is object \(obj)")
             if (obj["status"] as! String == "1")
             {
                 let strSentMsgC = String(describing: obj["sentMessageCount"]!)
@@ -67,7 +67,6 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
                     }
                 }
             }
-            print("this is object \(obj)")
         }) { (error) in
             CommonUtil.showTotstOnWindow(strMessgae: (error?.localizedDescription)!)
         }

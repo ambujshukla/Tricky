@@ -48,6 +48,7 @@ class MessageTableViewCell: UITableViewCell {
         let isBlock = dictData["isUserBlock"] as! Bool
         if isBlock {
             self.btnBlock.isSelected = true
+            self.btnReply.isHidden = true
         }
         else
         {

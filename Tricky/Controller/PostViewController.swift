@@ -150,6 +150,8 @@ class PostViewController: UIViewController , UITableViewDelegate , UITableViewDa
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "PostDetailViewController") as! PostDetailViewController
         vc.strPostId = dictData["postId"] as! String
         vc.strPost = dictData["message"] as! String
+        vc.strPostTime = CommanUtility.doChangeTimeFormat(time: (dictData["time"] as? String)!, firstFormat: "yyyy-MM-dd HH:mm:ss", SecondFormat: "dd-MM-yyyy")
+        
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

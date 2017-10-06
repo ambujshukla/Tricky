@@ -20,6 +20,7 @@ class PostDetailViewController: UIViewController , UITableViewDelegate , UITable
     var arrPostDetailListData = [Dictionary<String, AnyObject>]()
     var strPostId : String = ""
     var strPost : String = ""
+    var strPostTime : String = ""
     var totalCount : Int = 0
     var limit : Int = 10
     var offSet : Int = 0
@@ -81,7 +82,7 @@ class PostDetailViewController: UIViewController , UITableViewDelegate , UITable
         self.tblPosts.rowHeight = UITableViewAutomaticDimension;
         self.tblPosts.estimatedRowHeight = 82.0;
         
-        self.lblPostCreated.text = "Post Created : 20:25"
+        self.lblPostCreated.text = "Post Created : \(strPostTime)"
         self.lblPostCreated.textColor = UIColor.white
         
         self.lblPost.text = self.strPost
@@ -125,8 +126,12 @@ class PostDetailViewController: UIViewController , UITableViewDelegate , UITable
         cell.btnShare.tag = indexPath.row
         cell.btnReply.addTarget(self, action: #selector(self.doActionOnReply(sender:)), for: .touchUpInside)
         cell.btnShare.addTarget(self, action: #selector(self.doActionOnShare(sender:)), for: .touchUpInside)
-        cell.btnDelete.tag = indexPath.row
-        cell.btnDelete.addTarget(self, action: #selector(self.doActionDelete(sender:)), for: .touchUpInside)
+        cell.btnFavorite.tag = indexPath.row
+        cell.btnFavorite.addTarget(self, action: #selector(self.doActionOnFavouriteButton(sender:)), for: .touchUpInside)
+        cell.btnBlock.tag = indexPath.row
+
+        cell.btnBlock.addTarget(self, action: #selector(self.doActionOnBlockButton(sender:)), for: .touchUpInside)
+
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -179,4 +184,80 @@ class PostDetailViewController: UIViewController , UITableViewDelegate , UITable
             [NSForegroundColorAttributeName: UIColor.white,
              NSFontAttributeName: UIFont(name: Font_Helvetica_Neue, size: 14.0)!])
     }
+    
+    func doActionOnFavouriteButton(sender : UIButton) {
+        
+        var dictData = self.arrPostDetailListData[sender.tag]
+        let messageID = dictData["postMessageId"]! as! String
+//        let type = dictData["type"]! as! NSNumber
+        let type = "1"
+        
+        let dictParam = ["userId" : UserManager.sharedUserManager.userId! , "messageId" : messageID , "type" : "\(type)"] as [String : Any]
+        print(dictParam)
+        
+        WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl , strServiceName: "favoriteMsg", parameter: dictParam , success: { (responseObject) in
+            print("this is object \(responseObject)")
+            if(responseObject["status"] as! String == "1"){
+                
+                if let resultData : Array<Dictionary<String, Any>> = responseObject["responseData"] as? Array<Dictionary<String, Any>> {
+                    
+                    dictData["isFavorite"] = resultData[0]["isFavorite"]  as AnyObject
+                    self.arrPostDetailListData[sender.tag] = dictData
+                    self.tblPosts.reloadData()
+                }
+                self.arrPostDetailListData[sender.tag] = dictData
+            }
+            else
+            {
+                CommonUtil.showTotstOnWindow(strMessgae: responseObject["responseMessage"] as! String)
+            }
+            
+        }) { (error) in
+        }
+    }
+    func doActionOnBlockButton(sender : UIButton){
+        
+        var strMessage = "Are you sure you want to block?"
+        
+        if sender.isSelected {
+            strMessage = "Are you sure you want to un block?"
+        }
+        
+        CommonUtil.showAlertInSwift_3Format(strMessage, title: "txt_trickychat".localized(), btnCancel: "txt_no".localized(), btnOk: "txt_yes".localized(), crl: self, successBlock: { (obj) in
+            
+            self.doCallServiceForBlockMessage(sender: sender)
+            
+        }) { (obj) in
+            print("ok")
+        }
+    }
+    func doCallServiceForBlockMessage(sender : UIButton){
+        
+        var dictData = self.arrPostDetailListData[sender.tag]
+        let messageID = dictData["postMessageId"]! as! String
+        
+        let dictParam = ["userId" : UserManager.sharedUserManager.userId! , "messageId" : messageID] as [String : Any]
+        print(dictParam)
+        
+        WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl , strServiceName: "blockMessageUser", parameter: dictParam , success: { (responseObject) in
+            print("this is object \(responseObject)")
+            if(responseObject["status"] as! String == "1"){
+                
+                if let resultData : Array<Dictionary<String, Any>> = responseObject["responseData"] as? Array<Dictionary<String, Any>> {
+                    
+                    dictData["isUserBlock"] = resultData[0]["isBlocked"]  as AnyObject
+                    self.arrPostDetailListData[sender.tag] = dictData
+                    self.tblPosts.reloadData()
+                }
+                self.arrPostDetailListData[sender.tag] = dictData
+            }
+            else
+            {
+                CommonUtil.showTotstOnWindow(strMessgae: responseObject["responseMessage"] as! String)
+            }
+        }) { (error) in
+            
+        }
+    }
+
 }

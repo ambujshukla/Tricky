@@ -359,15 +359,15 @@
                         <viewControllerLayoutGuide type="top" id="fcL-8E-rJS"/>
                         <viewControllerLayoutGuide type="bottom" id="ENO-Ib-Fsj"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="If7-H4-XM0">
+                    <view key="view" contentMode="scaleToFill" id="If7-H4-XM0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="msgbackground" translatesAutoresizingMaskIntoConstraints="NO" id="fWr-lE-hX7">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="92" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="b6u-h4-fre">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell1" rowHeight="92" id="6w1-OP-NUu" customClass="MessageTableViewCell" customModule="Tricky" customModuleProvider="target">
@@ -549,7 +549,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j58-wh-dEg">
-                                <rect key="frame" x="269.5" y="453.5" width="35.5" height="35.5"/>
+                                <rect key="frame" x="265" y="513" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="j58-wh-dEg" secondAttribute="height" multiplier="1:1" id="CoG-4e-cjm"/>
                                 </constraints>
@@ -2895,25 +2895,30 @@
                                                             <rect key="frame" x="278" y="0.0" width="20" height="22"/>
                                                             <state key="normal" image="threedoticon"/>
                                                         </button>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="0y4-MD-HLf">
-                                                            <rect key="frame" x="8" y="42" width="96" height="22"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="0y4-MD-HLf">
+                                                            <rect key="frame" x="8" y="42" width="276" height="22"/>
                                                             <subviews>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7NS-Sy-Asy">
                                                                     <rect key="frame" x="0.0" y="0.0" width="12" height="22"/>
                                                                     <state key="normal" image="replyicon"/>
                                                                 </button>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cuW-XY-y6K">
+                                                                    <rect key="frame" x="88" y="0.0" width="12" height="22"/>
+                                                                    <state key="normal" image="unblockicon"/>
+                                                                    <state key="selected" image="blockselecticon"/>
+                                                                    <state key="highlighted" image="blockselecticon"/>
+                                                                </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hrJ-Bh-dba">
-                                                                    <rect key="frame" x="42" y="0.0" width="12" height="22"/>
-                                                                    <state key="normal" image="shareicon"/>
+                                                                    <rect key="frame" x="176" y="0.0" width="12" height="22"/>
+                                                                    <state key="normal" image="favoriteicon"/>
+                                                                    <state key="selected" image="favoriteselecticon"/>
+                                                                    <state key="highlighted" image="favoriteselecticon"/>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FSn-JT-xVj">
-                                                                    <rect key="frame" x="84" y="0.0" width="12" height="22"/>
-                                                                    <state key="normal" image="deleteicon"/>
+                                                                    <rect key="frame" x="264" y="0.0" width="12" height="22"/>
+                                                                    <state key="normal" image="shareicon"/>
                                                                 </button>
                                                             </subviews>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" secondItem="0y4-MD-HLf" secondAttribute="height" multiplier="48:11" id="JHo-D9-yzK"/>
-                                                            </constraints>
                                                         </stackView>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.46274509803921571" green="0.45490196078431372" blue="0.43137254901960786" alpha="1" colorSpace="calibratedRGB"/>
@@ -2927,6 +2932,7 @@
                                                         <constraint firstItem="0y4-MD-HLf" firstAttribute="leading" secondItem="jjZ-1k-LpQ" secondAttribute="leading" constant="8" id="hYM-jo-s4P"/>
                                                         <constraint firstItem="0y4-MD-HLf" firstAttribute="top" secondItem="Rm7-3v-Skx" secondAttribute="bottom" constant="1" id="k85-qJ-p3K"/>
                                                         <constraint firstItem="Rm7-3v-Skx" firstAttribute="leading" secondItem="jjZ-1k-LpQ" secondAttribute="leading" constant="8" id="os9-BZ-Uhg"/>
+                                                        <constraint firstAttribute="trailing" secondItem="0y4-MD-HLf" secondAttribute="trailing" constant="20" id="xfQ-r9-udD"/>
                                                         <constraint firstItem="BEm-9Y-sh4" firstAttribute="centerY" secondItem="RsM-mN-2ur" secondAttribute="centerY" id="z8S-ZP-y20"/>
                                                     </constraints>
                                                 </view>
@@ -2940,10 +2946,11 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
-                                            <outlet property="btnDelete" destination="FSn-JT-xVj" id="CfS-Nr-Xtw"/>
+                                            <outlet property="btnBlock" destination="cuW-XY-y6K" id="jWG-eI-l7q"/>
+                                            <outlet property="btnFavorite" destination="hrJ-Bh-dba" id="xQU-4w-G6w"/>
                                             <outlet property="btnOptions" destination="BEm-9Y-sh4" id="xcM-km-nrB"/>
-                                            <outlet property="btnReply" destination="7NS-Sy-Asy" id="7vQ-sO-GAX"/>
-                                            <outlet property="btnShare" destination="hrJ-Bh-dba" id="Eji-DO-nLp"/>
+                                            <outlet property="btnReply" destination="7NS-Sy-Asy" id="r4v-D6-Uhl"/>
+                                            <outlet property="btnShare" destination="FSn-JT-xVj" id="Ysw-gb-iq0"/>
                                             <outlet property="lblDate" destination="RsM-mN-2ur" id="rx0-zJ-rCK"/>
                                             <outlet property="lblPost" destination="Rm7-3v-Skx" id="fBO-Qj-RfW"/>
                                             <outlet property="view" destination="jjZ-1k-LpQ" id="MvA-bp-XS2"/>
@@ -2960,11 +2967,11 @@
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="t0h-W2-6qd"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X5u-vB-kra">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X5u-vB-kra">
                                 <rect key="frame" x="13" y="99" width="293" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="5gP-I6-bqz"/>
