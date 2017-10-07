@@ -19,9 +19,10 @@ class VerifyOTPController: UIViewController
     var strMobileNo : String!
     var strOTP : String!
     var strLink : String!
+    var strCountryCode : String!
     @IBOutlet weak var lblTimer : UILabel!
     var timer = Timer()
-    var time = 60
+    var time = 15
     
     var isFromForgotPasswordScren : Bool = false
     
@@ -41,6 +42,8 @@ class VerifyOTPController: UIViewController
             let seconds = Int(time) % 60
             self.lblTimer.text = String(format:"%02i:%02i", minutes, seconds)
         }else{
+            
+            self.lblTimer.text = ""
             self.btnResend.isEnabled = true
             timer.invalidate()
         }
@@ -55,17 +58,24 @@ class VerifyOTPController: UIViewController
     func decorateUI ()
     {
         self.btnOTP.backgroundColor = UIColor.white
-        self.btnOTP.setTitleColor(UIColor.darkGray, for: .normal)
+        
+        self.btnOTP.setTitleColor(UIColor.white, for: .normal)
+        self.btnOTP.layer.borderColor = UIColor.white.cgColor
+        self.btnOTP.layer.borderWidth = 1.0
+        self.btnOTP.backgroundColor = UIColor.clear
+        
+        
+        
         self.tfOtp.attributedPlaceholder = NSAttributedString(string: "txt_otp".localized(),
                                                               attributes: [NSForegroundColorAttributeName: UIColor.white])
-        if self.isFromSignUp {
+      //  if self.isFromSignUp {
             self.btnOTP.setTitle("txt_verify".localized(), for: .normal)
             self.imgBG.image = UIImage(named : OTP_BG)
-        }else
-        {
-            self.imgBG.image = UIImage(named : OTP_FORGOT_BG)
-            self.btnOTP.setTitle("txt_reset".localized(), for: .normal)
-        }
+//        }else
+//        {
+//            self.imgBG.image = UIImage(named : OTP_FORGOT_BG)
+//            self.btnOTP.setTitle("txt_reset".localized(), for: .normal)
+//        }
         self.btnResend.setTitleColor(UIColor.darkGray, for: .normal)
         
         CommanUtility.decorateNavigationbarWithBackButtonAndTitle(target: self, leftselect: #selector(doClickBack), strTitle: "txt_otp_verify".localized(), strBackImag: BACK_BUTTON, strFontName: "Arial", size: 20, color: color(red: 60, green: 120, blue: 101))
@@ -73,15 +83,23 @@ class VerifyOTPController: UIViewController
         self.tfOtp.textColor = UIColor.white
         self.btnResend.setTitleColor(UIColor.white, for: .normal)
         self.tfOtp.text = self.strOTP
+        
+        CommanUtility.createCustomRightButton(self, navBarItem: self.navigationItem, strRightImage: "headericon", select: #selector(self.doNothing))
+
     }
+    
+    func doNothing(){
+        
+    }
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        if self.isFromSignUp {
+      //  if self.isFromSignUp {
             self.navigationController?.navigationBar.barTintColor = color(red: 120, green: 211, blue: 151)
-        }else{
-            self.navigationController?.navigationBar.barTintColor = color(red: 102, green: 198, blue: 178)
-        }
+//        }else{
+//            self.navigationController?.navigationBar.barTintColor = color(red: 102, green: 198, blue: 178)
+//        }
     }
     
     func doCallWebAPIForLogin()
@@ -110,26 +128,6 @@ class VerifyOTPController: UIViewController
             CommonUtil.showTotstOnWindow(strMessgae: (error?.localizedDescription)!)
         }
         
-        
-        //        WebAPIManager.sharedWebAPIMAnager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: METHOD_LOGIN, parameter: dictData , success: { (obj) in
-        //            print("this is object \(obj)")
-        //
-        //            let loginData = Mapper<LoginModel>().map(JSON: obj)
-        //
-        //            if (loginData?.status == "1")
-        //            {
-        //                UserManager.sharedUserManager.doSetLoginData(userData: (loginData?.responseData?[0])!)
-        //                self.goTOHomeScreen()
-        //            }
-        //            else
-        //            {
-        //                CommonUtil.showTotstOnWindow(strMessgae: (loginData?.responseMessage)!)
-        //            }
-        //
-        //
-        //        }) { (error) in
-        //            CommonUtil.showTotstOnWindow(strMessgae: (error?.localizedDescription)!)
-        //        }
     }
     
     func doCallWebAPIForRegistration()
@@ -162,6 +160,34 @@ class VerifyOTPController: UIViewController
         self.navigationController?.popViewController(animated: true)
     }
     
+    
+    func doCallServiceForGenrateOTP() {
+        
+        let dictData = ["mobileNo" :self.strMobileNo , "countryCode" : self.strCountryCode] as [String : Any]
+        print(dictData)
+        
+        WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: METHOD_OTP, parameter: dictData , success: { (obj) in
+            print("this is object \(obj)")
+            
+            let OTPData = Mapper<OTPModel>().map(JSON: obj)
+            
+            if (OTPData?.status == "1")
+            {
+                self.time = 15
+                self.btnResend.isEnabled = false
+                self.timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(self.doCallTimer)), userInfo: nil, repeats: true)
+            }
+            else
+            {
+                CommonUtil.showTotstOnWindow(strMessgae: (OTPData?.responseMessage)!)
+            }
+            
+            
+        }) { (error) in
+            CommonUtil.showTotstOnWindow(strMessgae: (error?.localizedDescription)!)
+        }    }
+
+    
     @IBAction func doClickReset()
     {
         //        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MessageViewController") as! MessageViewController
@@ -185,18 +211,13 @@ class VerifyOTPController: UIViewController
     
     @IBAction func doClickResend(sender : UIButton)
     {
-        self.btnResend.isEnabled = false
-        if isFromSignUp {
-            self.doCallWebAPIForRegistration()
-        }
-        else{
-            self.doCallWebAPIForLogin()
-        }
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(doCallTimer)), userInfo: nil, repeats: true)
+
+        self.doCallServiceForGenrateOTP()
     }
     
     func goTOHomeScreen()
     {
+        CommonUtil.setBooleanValue("isLogin", value: true)
         let controller = self.storyboard?.instantiateViewController(withIdentifier: "SWRevealViewController") as! SWRevealViewController
         self.present(controller, animated: true, completion: nil)
     }

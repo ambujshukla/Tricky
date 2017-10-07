@@ -52,7 +52,7 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
     {
         self.view.endEditing(true)
         //UpdateProfile
-        let dictData = ["version" : "1.0" , "os" : "2" , "language" : "english","userId": UserManager.sharedUserManager.userId! ,"filterVulgar" : CommonUtil.filterVulgerMsg(),"messageForOnlyRegisterUser":CommonUtil.isBlockUser(),"offset":"0","limit" : "10","showOnlyFavorite":"0"] as [String : Any]
+        let dictData = ["version" : "1.0" , "os" : "2" , "language" : "english","userId": CommonUtil.getUserId() ,"filterVulgar" : CommonUtil.filterVulgerMsg(),"messageForOnlyRegisterUser":CommonUtil.isBlockUser(),"offset":"0","limit" : "10","showOnlyFavorite":"0"] as [String : Any]
         
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOSTAndPullToRefresh(isShowLoder :!isComeFromPullToRefresh ,strURL: kBaseUrl, strServiceName: "getRecSentList", parameter: dictData , success: { (obj) in
             print("this is object \(obj)")
@@ -109,7 +109,7 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
         var dictData = self.arrMessageList[sender.tag]
         let messageID = dictData["messageId"]! as! String
         
-        let dictParam = ["userId" : UserManager.sharedUserManager.userId! , "messageId" : messageID] as [String : Any]
+        let dictParam = ["userId" : CommonUtil.getUserId() , "messageId" : messageID] as [String : Any]
         print(dictParam)
         
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl , strServiceName: "blockMessageUser", parameter: dictParam , success: { (responseObject) in
@@ -139,7 +139,7 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
         let messageID = dictData["messageId"]! as! String
         let type = dictData["type"]! as! NSNumber
         
-        let dictParam = ["userId" : UserManager.sharedUserManager.userId! , "messageId" : messageID , "type" : "\(type)"] as [String : Any]
+        let dictParam = ["userId" : CommonUtil.getUserId() , "messageId" : messageID , "type" : "\(type)"] as [String : Any]
         print(dictParam)
         
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl , strServiceName: "removeMessage", parameter: dictParam , success: { (responseObject) in
@@ -190,7 +190,7 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
         let messageID = dictData["messageId"]! as! String
         let type = dictData["type"]! as! NSNumber
         
-        let dictParam = ["userId" : UserManager.sharedUserManager.userId! , "messageId" : messageID , "type" : "\(type)"] as [String : Any]
+        let dictParam = ["userId" : CommonUtil.getUserId() , "messageId" : messageID , "type" : "\(type)"] as [String : Any]
         print(dictParam)
         
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl , strServiceName: "favoriteMsg", parameter: dictParam , success: { (responseObject) in

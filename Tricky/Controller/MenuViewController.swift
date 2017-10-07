@@ -49,14 +49,14 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
         
         self.lblEmail.textColor = UIColor.white
         self.lblUserName.textColor = UIColor.white
-        self.lblUserName.text = UserManager.sharedUserManager.name
-        self.lblEmail.text = UserManager.sharedUserManager.userUrl
+        self.lblUserName.text = CommonUtil.getDataForKey("name") //UserManager.sharedUserManager.name
+        self.lblEmail.text = CommonUtil.getDataForKey("userUrl")// UserManager.sharedUserManager.userUrl
         
-        if let image = CommanUtility.getImage(userId: UserManager.sharedUserManager.userId!) as? UIImage {
+        if let image = CommanUtility.getImage(userId: CommonUtil.getUserId()) as? UIImage {
             self.imgProfile.image = image
         }
         
-        self.menuData = ["Home".localized() ,"txt_block_users".localized() , "contacts" , "Favorite" , "language", "My Post" , "Filter vulgar messages" , "Block Unauthorised user","Display all anonymous post" , "Logout"];
+        self.menuData = ["Home".localized() ,"txt_block_users".localized() , "Contacts" , "Favorite" , "Language", "My Post" , "Filter vulgar messages" , "Block unauthorised user","Display all anonymous post" , "Logout"];
         
         self.tblMenu.tableFooterView = UIView()
         self.lblSent.textColor = UIColor.white
@@ -176,14 +176,6 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
         if (indexPath.row == 0) {
             self.revealViewController().revealToggle(animated: true)
             self.revealViewController().pushFrontViewController(self.controller, animated: true)
-            
-<<<<<<< HEAD
-=======
-            let contrlHome = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-            let navController = UINavigationController.init()
-            navController.setViewControllers([contrlHome], animated: true)
-            self.revealViewController().pushFrontViewController(navController, animated: true)
->>>>>>> 548a3f58e692b12b89557dd4aca59028ac0024da
         }else if (indexPath.row == 1)
         {
             self.doNavigateToContactsView(showContactsFrom: 1)

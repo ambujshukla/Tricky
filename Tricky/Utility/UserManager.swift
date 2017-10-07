@@ -45,6 +45,15 @@ class UserManager: NSObject {
         self.mobileNo = userData.mobileNo
         self.name = userData.name
         self.profilePic = userData.profilePic
+        
+        CommonUtil.setData("userId", value: self.userId! as NSString)
+        CommonUtil.setData("userUrl", value: self.userUrl! as NSString)
+        CommonUtil.setData("language", value: self.language! as NSString)
+        CommonUtil.setData("mobileNo", value: self.mobileNo! as NSString)
+        CommonUtil.setData("name", value: self.name! as NSString)
+        CommonUtil.setData("profilePic", value: self.profilePic! as NSString)
+
+
     }
   
     func doSetReceiveMsgAndSentMessage(strSentMsg : String , strReceiveMsg : String){

@@ -22,25 +22,33 @@ class LoginViewController: UIViewController
     @IBOutlet  var imgSeparator1 : UIImageView!
     @IBOutlet var imgBg : UIImageView!
     @IBOutlet var btnCountryCode : UIButton!
-    let arrCountryCode = ["Afghanistan(+93)","Aland Islands(+358)","Albania(+355)"]
+    var arrCountryCode =  [String]()
 
     override func viewDidLoad()
     {
         super.viewDidLoad()
         self.decorateUI()
     }
+   
     
-    func decorateUI()
-    {
+    
+    
+    func decorateUI(){
         //self.txtPassword.text = "123456"
-        self.txtMobile.text = "8770236795"
+       //
+        
+        self.txtMobile.text = "9039395421"
         self.btnCountryCode.setTitle("+91", for: .normal)
         
         self.title = "txt_login".localized()
 
         self.btnLogin.setTitle("txt_login".localized(), for: .normal)
-        self.btnLogin.backgroundColor = UIColor.white
-        self.btnLogin.setTitleColor(UIColor.darkGray, for: .normal)
+        self.btnLogin.setTitleColor(UIColor.white, for: .normal)
+        self.btnLogin.layer.borderColor = UIColor.white.cgColor
+        self.btnLogin.layer.borderWidth = 1.0
+        self.btnLogin.backgroundColor = UIColor.clear
+        
+
         
         self.imgBg.image = UIImage(named : LOGIN_BG)
         
@@ -57,8 +65,46 @@ class LoginViewController: UIViewController
                                                                   attributes: [NSForegroundColorAttributeName: UIColor.white])
         
         self.imgSeparator1.backgroundColor = UIColor.white
-        
         self.txtMobile.textColor = UIColor.white
+        CommanUtility.createCustomRightButton(self, navBarItem: self.navigationItem, strRightImage: "headericon", select: #selector(self.doNothing))
+        
+        self.readJson()
+    }
+    
+    func doNothing(){
+        
+    }
+    
+    
+    private func readJson() {
+        do {
+            if let file = Bundle.main.url(forResource: "CountryCodes", withExtension: "json") {
+                let data = try Data(contentsOf: file)
+                let json = try JSONSerialization.jsonObject(with: data, options: [])
+                if let object = json as? [String: Any] {
+                    // json is a dictionary
+                    print(object)
+                } else if let object = json as? [Any] {
+                    // json is an array
+                    print(object)
+                    
+                    for obj in object {
+                        
+                    let data : [String : Any] = obj as! [String : Any]
+                    self.arrCountryCode.append("\(data["name"]!)(\(data["dial_code"]!))")
+                    }
+                    
+                    print("this is arr data \(self.arrCountryCode)")
+                    
+                } else {
+                    print("JSON is invalid")
+                }
+            } else {
+                print("no file")
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -109,6 +155,7 @@ class LoginViewController: UIViewController
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "VerifyOTPController") as! VerifyOTPController
         vc.isFromSignUp = false
         vc.strMobileNo = self.txtMobile.text
+        vc.strCountryCode = self.btnCountryCode.titleLabel?.text
      //   vc.strOTP = "\(String(describing: OTPData.otp!))"
         self.navigationController?.pushViewController(vc, animated: true)
     }

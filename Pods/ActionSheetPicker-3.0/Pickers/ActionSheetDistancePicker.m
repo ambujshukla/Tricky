@@ -175,7 +175,7 @@
 
     label.textAlignment = NSTextAlignmentCenter;
 
-    label.font = [UIFont boldSystemFontOfSize:20];
+    label.font = [UIFont systemFontOfSize:12];
 
     if ( component == self.bigUnitDigits )
     {
@@ -188,7 +188,7 @@
         return label;
     }
 
-    label.font = [UIFont systemFontOfSize:20];
+    label.font = [UIFont systemFontOfSize:12];
     label.text = [NSString stringWithFormat:@"%li", (long)row];
     return label;
 }

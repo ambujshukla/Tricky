@@ -20,7 +20,7 @@
 "txt_click_here" = "Click here";
 
 
-"txt_TnC" = "I Agree on Terms and Conditions";
+"txt_TnC" = "I agree on Terms and Conditions";
 "txt_name" = "Name";
 "txt_save" = "Save";
 "txt_title_forgot_password" = "Forgot Password";
@@ -35,7 +35,7 @@
 "txt_photo" = "Photo";
 "txt_options" = "Option to select";
 "txt_profile" = "Profile";
-"txt_block_users" = "Block Users";
+"txt_block_users" = "Blocked User";
 "txt_search" = "Search";
 "txt_yes" = "Yes";
 "txt_no" = "No";
@@ -52,11 +52,11 @@
 
 "txt_new_password" = "New Password";
 "txt_submit" = "Submit";
-"txt_link" = "Link";
+"txt_link" = "Username";
 "txt_continue" = "Continue";
 
 ////////////////////////0080917
-"txt_trickychat" = "Trickychat";
+"txt_trickychat" = "TrickyChat";
 "txt_file_not_found" = "未找到文件";
 "txt_no_app" = "没有可用的应用程序来执行此操作";
 "txt_under_construction" = "正在建设中";
@@ -77,13 +77,12 @@
 "txt.spanish" = "西班牙語";
 "txt.porugues" = "葡萄牙语";
 
-"txt_block_users" = "阻止用戶";
 "txt_change_language" = "Change language to";
 "txt_yes" = "是";
 "txt_no" = "没有";
 
 "txt_logout" = "Do you want to Logout from the app?";
-"txt_copied" = "Text copied to clipboard";
+"txt_copied" = "Link copied to clipboard";
 
 "txt_please_enter_post" = "Please enter post message.";
 "txt_success_post" = "Successfully Posted.";

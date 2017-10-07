@@ -126,7 +126,7 @@
             let theJSONText = String(data: jsonData,
                                      encoding: .utf8)
             
-            let dictData = ["version" : "1.0" , "os" : "2" , "language" : "english","userId":UserManager.sharedUserManager.userId!, "requestData" : theJSONText!] as [String : Any]
+            let dictData = ["version" : "1.0" , "os" : "2" , "language" : "english","userId":CommonUtil.getUserId(), "requestData" : theJSONText!] as [String : Any]
             print(dictData)
             WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "SyncContact", parameter: dictData, success: { (obj) in
                 if let dictContactsData = obj["responseData"] as? [[String : AnyObject]]
@@ -270,7 +270,7 @@
     func doCallServiceForBlockAndUnblock(sender : UIButton , dataContacts : [String : AnyObject]) {
         
         let blockUserId = dataContacts["userId"]!
-        let dictData = ["version" : "1.0" , "os" : "1" , "language" : "english","userId":UserManager.sharedUserManager.userId!,"blockUserId":blockUserId] as [String : Any]
+        let dictData = ["version" : "1.0" , "os" : "1" , "language" : "english","userId":CommonUtil.getUserId(),"blockUserId":blockUserId] as [String : Any]
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "blockUser", parameter: dictData, success: { (responseObject) in
             
             print("this is response object \(responseObject)")

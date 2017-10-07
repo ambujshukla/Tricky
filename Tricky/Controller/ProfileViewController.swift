@@ -56,7 +56,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDa
         self.imgProfilePic.layer.cornerRadius = self.imgProfilePic.frame.size.width / 2
         self.imgProfilePic.layer.masksToBounds = true
         
-        if let image = CommanUtility.getImage(userId: UserManager.sharedUserManager.userId!) as? UIImage {
+        if let image = CommanUtility.getImage(userId: CommonUtil.getUserId()) as? UIImage {
             self.imgProfilePic.image = image
         }
         
@@ -241,7 +241,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDa
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             self.imgProfilePic.image = image
-            CommanUtility.saveImageDocumentDirectory(userId: UserManager.sharedUserManager.userId!, img: image)
+            CommanUtility.saveImageDocumentDirectory(userId: CommonUtil.getUserId(), img: image)
         }
         picker.dismiss(animated: true, completion: nil);
     }

@@ -20,7 +20,9 @@
 "txt_click_here" = "Click here";
 
 
-"txt_TnC" = "I Agree on Terms and Conditions";
+"txt_TnC" = "I agree on Terms and Conditions";
+
+
 "txt_name" = "Name";
 "txt_save" = "Save";
 "txt_title_forgot_password" = "Forgot Password";
@@ -35,7 +37,7 @@
 "txt_photo" = "Photo";
 "txt_options" = "Option to select";
 "txt_profile" = "Profile";
-"txt_block_users" = "Block Users";
+"txt_block_users" = "Blocked User";
 "txt_search" = "Search";
 "txt_yes" = "Yes";
 "txt_no" = "No";
@@ -52,11 +54,11 @@
 
 "txt_new_password" = "New Password";
 "txt_submit" = "Submit";
-"txt_link" = "Link";
+"txt_link" = "Username";
 "txt_continue" = "Continue";
 
 
-"txt_trickychat" = "Tricky Chat";
+"txt_trickychat" = "TrickyChat";
 "txt_file_not_found" = "Arquivo não encontrado";
 "txt_no_app" = "Não existe um aplicativo disponível para executar esta ação";
 "txt_under_construction" = "Em construção";
@@ -84,7 +86,7 @@
 "txt_no" = "não";
 
 "txt_logout" = "Do you want to Logout from the app?";
-"txt_copied" = "Text copied to clipboard";
+"txt_copied" = "Link copied to clipboard";
 
 "txt_please_enter_post" = "Please enter post message.";
 "txt_success_post" = "Successfully Posted.";
