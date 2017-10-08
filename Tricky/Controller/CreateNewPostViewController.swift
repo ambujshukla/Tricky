@@ -13,8 +13,8 @@ import Localize_Swift
     @objc optional func createNewPost()
 }
 
-class CreateNewPostViewController: UIViewController {
-
+class CreateNewPostViewController: UIViewController, UITextViewDelegate {
+    
     @IBOutlet weak var btnCreate : UIButton!
     @IBOutlet weak var txtViewComment : UITextView!
     @IBOutlet weak var imgBg : UIImageView!
@@ -24,21 +24,25 @@ class CreateNewPostViewController: UIViewController {
     @IBOutlet weak var lblReply : UILabel!
     @IBOutlet weak var btnAnonymous : UIButton!
     @IBOutlet weak var lblAnonymoust : UILabel!
+    @IBOutlet weak var lblCharacter : UILabel!
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
-         self.decorateUI()
+        self.decorateUI()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     func decorateUI () {
         
+        self.lblCharacter.text = "160"
+        self.lblCharacter.textColor = UIColor.white
+        self.txtViewComment.delegate = self
         self.lblAnonymoust.text = "Post as anonymous".localized()
         self.btnAnonymous.setImage(UIImage(named : CHECKBOX_UNSELECTED) , for: .normal)
         self.btnAnonymous.setImage(UIImage(named : CHECKBOX_SELECTED) , for: .selected)
@@ -49,11 +53,11 @@ class CreateNewPostViewController: UIViewController {
         var strTitle = "Create Post"
         
         if isPostReply {
-          strTitle = "Reply"
-          self.lblReply.text = "Reply to : \(UserManager.sharedUserManager.name!)"
+            strTitle = "Reply"
+            self.lblReply.text = "Reply to : \(UserManager.sharedUserManager.name!)"
         }
         
-       CommanUtility.decorateNavigationbarWithBackButton(target: self, strTitle: strTitle , strBackButtonImage: BACK_BUTTON, selector: #selector(self.goTOBack), color: color(red: 147, green: 108, blue: 234))
+        CommanUtility.decorateNavigationbarWithBackButton(target: self, strTitle: strTitle , strBackButtonImage: BACK_BUTTON, selector: #selector(self.goTOBack), color: color(red: 147, green: 108, blue: 234))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -74,15 +78,15 @@ class CreateNewPostViewController: UIViewController {
         }
         
         if isPostReply {
-        self.doCallServiceForPostReply()
+            self.doCallServiceForPostReply()
         }
         else
         {
-        self.doCallServiceForCreatePost()
+            self.doCallServiceForCreatePost()
         }
     }
     
-   
+    
     func doCallServiceForPostReply() {
         
         let params = ["userId" : UserManager.sharedUserManager.userId!,"postReply" : self.txtViewComment.text, "postId" : self.strPostID, "version" : "1.0", "os" : "2", "language" : "english"] as [String : Any]
@@ -98,7 +102,7 @@ class CreateNewPostViewController: UIViewController {
             }
         }) { (error) in
             print(error as! NSError)
-        }        
+        }
     }
     
     func doCallServiceForCreatePost() {
@@ -120,13 +124,40 @@ class CreateNewPostViewController: UIViewController {
                 
             }
         }) { (error) in
-            print(error as! NSError)
+            print(error!)
         }
     }
-
+    
     @IBAction func doClickAnonymous(sender : UIButton)
     {
         self.btnAnonymous.isSelected = !self.btnAnonymous.isSelected
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        
+    }
+    
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        return true
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        
+        //        if ((textView.text.characters.count + 1) < 16) {
+        //          //  self.lblCharacter.text = String(16 - textView.text.characters.count)
+        //
+        //            return true
+        //        }
+        let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
+        let numberOfChars = newText.characters.count // for Swift use count(newText)
+        if numberOfChars < 161
+        {
+            self.lblCharacter.text = String(160 - numberOfChars)
+            return true
+        }
+        return false
+        
+        //   return false
     }
     
 }

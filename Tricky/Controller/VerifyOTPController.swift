@@ -164,8 +164,6 @@ class VerifyOTPController: UIViewController
     
     @IBAction func doClickReset()
     {
-        //        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MessageViewController") as! MessageViewController
-        //        self.navigationController?.pushViewController(vc, animated: true)
         if self.isFromForgotPasswordScren
         {
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "NewPasswordController") as! NewPasswordController
@@ -178,8 +176,6 @@ class VerifyOTPController: UIViewController
             else{
                 self.doCallWebAPIForLogin()
             }
-            
-            //self.navigationController?.popToRootViewController(animated: true)
         }
     }
     

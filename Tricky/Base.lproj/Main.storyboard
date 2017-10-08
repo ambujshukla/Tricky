@@ -3064,6 +3064,15 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uZu-Cn-7zr">
+                                <rect key="frame" x="238" y="417" width="42" height="0.0"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="42" id="1Ay-ju-KJw"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -3081,6 +3090,8 @@
                             <constraint firstItem="gLA-4L-cQ1" firstAttribute="leading" secondItem="UzG-hF-bGu" secondAttribute="trailing" constant="8" id="Qhd-8U-HIq"/>
                             <constraint firstItem="kEb-yX-uTQ" firstAttribute="leading" secondItem="jUw-FZ-0ru" secondAttribute="leading" id="S4b-hI-U98"/>
                             <constraint firstItem="Hep-He-lfl" firstAttribute="centerX" secondItem="jUw-FZ-0ru" secondAttribute="centerX" id="W8y-w2-age"/>
+                            <constraint firstItem="uZu-Cn-7zr" firstAttribute="top" secondItem="yjI-iX-g9K" secondAttribute="bottom" constant="13.5" id="kCZ-oA-2GA"/>
+                            <constraint firstItem="uZu-Cn-7zr" firstAttribute="trailing" secondItem="yjI-iX-g9K" secondAttribute="trailing" id="qgr-xr-dvR"/>
                             <constraint firstItem="yjI-iX-g9K" firstAttribute="top" secondItem="NYC-wF-VTN" secondAttribute="bottom" constant="14" id="tJJ-KT-igY"/>
                             <constraint firstItem="yjI-iX-g9K" firstAttribute="top" secondItem="jUw-FZ-0ru" secondAttribute="bottom" multiplier="124:568" id="vo1-hQ-HnK"/>
                         </constraints>
@@ -3092,6 +3103,7 @@
                         <outlet property="btnCreate" destination="Hep-He-lfl" id="saz-wr-QVc"/>
                         <outlet property="imgBg" destination="kEb-yX-uTQ" id="z94-Ut-RZ1"/>
                         <outlet property="lblAnonymoust" destination="gLA-4L-cQ1" id="9ZM-3V-ieh"/>
+                        <outlet property="lblCharacter" destination="uZu-Cn-7zr" id="yQa-m8-o0E"/>
                         <outlet property="lblReply" destination="NYC-wF-VTN" id="R25-U7-YH9"/>
                         <outlet property="txtViewComment" destination="yjI-iX-g9K" id="ZjS-WO-pHz"/>
                     </connections>
