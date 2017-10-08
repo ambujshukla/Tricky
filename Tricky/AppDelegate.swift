@@ -21,13 +21,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         [UIApplicationLaunchOptionsKey: Any]?) -> Bool
     {
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
-        
         if (UserDefaults.standard.bool(forKey: "isLanguageSelected") == true)
         {
+            if(CommonUtil.isLoggedIn())
+            {
+                let rootViewController = self.window!.rootViewController as! UINavigationController
+                let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let controller = mainStoryboard.instantiateViewController(withIdentifier: "SWRevealViewController") as! SWRevealViewController
+                rootViewController.isNavigationBarHidden = true
+                rootViewController.pushViewController(controller, animated: false)
+            }
+            else
+            {
             let rootViewController = self.window!.rootViewController as! UINavigationController
             let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = mainStoryboard.instantiateViewController(withIdentifier: "SignUpViewIdentifier") as! SignUpViewController
             rootViewController.pushViewController(vc, animated: false)
+            }
         }
         
         // iOS 10 support
@@ -49,7 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         else {  
             application.registerForRemoteNotifications(matching: [.badge, .sound, .alert])
         }
-
+      UIApplication.shared.statusBarStyle = .lightContent
         
         return true
     }

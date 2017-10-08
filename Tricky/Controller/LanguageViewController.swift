@@ -146,7 +146,7 @@ class LanguageViewController: UIViewController, UITableViewDataSource , UITableV
     @IBAction func doClickContinue()
     {
         UserDefaults.standard.set(true, forKey: "isLanguageSelected") //Bool
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewIdentifier") as! LoginViewController
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "SignUpViewIdentifier") as! SignUpViewController
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

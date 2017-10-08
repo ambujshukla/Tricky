@@ -83,10 +83,9 @@ class CommanUtility: NSObject {
         buttonEdit.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
         buttonEdit.setImage(UIImage(named:strRightImage as String), for: UIControlState())
         buttonEdit.addTarget(target, action: select, for: UIControlEvents.touchUpInside)
+        buttonEdit.adjustsImageWhenHighlighted = false
         let rightBarButtonItemEdit: UIBarButtonItem = UIBarButtonItem(customView: buttonEdit)
         // add multiple right bar button items
-        //  navBarItem.setRightBarButtonItems(NSArray(objects: rightBarButtonItemEdit) as NSArray as? [UIBarButtonItem], animated: true)
-        // uncomment to add single right bar button item
         navBarItem.setRightBarButton(rightBarButtonItemEdit, animated: false)
     }
     
@@ -163,7 +162,7 @@ class CommanUtility: NSObject {
         return time2
     }
     
-   class func textToImage(drawText text: NSString, inImage image: UIImage, atPoint point: CGPoint) -> UIImage {
+       class func textToImage(drawText text: NSString, inImage image: UIImage, atPoint point: CGPoint) -> UIImage {
     
         let textColor = UIColor.black
         let textFont = UIFont(name: "Menlo-Italic", size: 50)!

@@ -32,6 +32,8 @@ class HomeViewController: UIViewController {
     func doShowAlert()
     {
         CommonUtil.showAlertInSwift_3Format("txt_logout".localized(), title: "txt_trickychat".localized(), btnCancel: "txt_no".localized(), btnOk: "txt_yes".localized(), crl: self, successBlock: { (obj) in
+            
+            CommonUtil.setBooleanValue("isLogin", value: false)
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "SignUpViewIdentifier") as! SignUpViewController
             self.navigationController?.pushViewController(vc, animated: true)
         }) { (obj) in

@@ -19,7 +19,7 @@
 "txt_click_here" = "Click here";
 
 
-"txt_TnC" = "I Agree on Terms and Conditions";
+"txt_TnC" = "I agree on Terms and Conditions";
 "txt_name" = "Name";
 "txt_save" = "Save";
 "txt_title_forgot_password" = "Forgot Password";
@@ -34,7 +34,7 @@
 "txt_photo" = "Photo";
 "txt_options" = "Option to select";
 "txt_profile" = "Profile";
-"txt_block_users" = "Block Users";
+"txt_block_users" = "Blocked User";
 "txt_search" = "Search";
 "txt_yes" = "Yes";
 "txt_no" = "No";
@@ -51,11 +51,11 @@
 
 "txt_new_password" = "New Password";
 "txt_submit" = "Submit";
-"txt_link" = "Link";
+"txt_link" = "Username";
 "txt_continue" = "Continue";
 
 ////////////////////////0080917
-"txt_trickychat" = "Tricky Chat";
+"txt_trickychat" = "TrickyChat";
 "txt_file_not_found" = "Archivo no encontrado";
 "txt_no_app" = "La aplicación no está disponible para realizar esta acción";
 "txt_under_construction" = "En construcción";
@@ -76,14 +76,13 @@
 "txt.spanish" = "Español";
 "txt.porugues" = "portugués";
 
-"txt_block_users" = "Usuarios Bloque";
 "txt_change_language" = "Change language to";
 
 "txt_yes" = "sí";
 "txt_no" = "no";
 
 "txt_logout" = "Do you want to Logout from the app?";
-"txt_copied" = "Text copied to clipboard";
+"txt_copied" = "Link copied to clipboard";
 
 "txt_please_enter_post" = "Please enter post message.";
 "txt_success_post" = "Successfully Posted.";

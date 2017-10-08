@@ -21,6 +21,13 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
             self.tblMessage.reloadData()
         }
     }
+    var totalCount : Int = 0
+    var limit : Int = 10
+    var offSet : Int = 0
+    
+    @IBOutlet weak var activityView : UIActivityIndicatorView!
+    @IBOutlet weak var vwFotter : UIView!
+
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -45,7 +52,7 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
     {
         self.view.endEditing(true)
         //UpdateProfile
-        let dictData = ["version" : "1.0" , "os" : "2" , "language" : "english","userId": UserManager.sharedUserManager.userId! ,"filterVulgar" : CommonUtil.filterVulgerMsg(),"messageForOnlyRegisterUser":CommonUtil.isBlockUser(),"offset":"0","limit" : "10","showOnlyFavorite":"0"] as [String : Any]
+        let dictData = ["version" : "1.0" , "os" : "2" , "language" : "english","userId": CommonUtil.getUserId() ,"filterVulgar" : CommonUtil.filterVulgerMsg(),"messageForOnlyRegisterUser":CommonUtil.isBlockUser(),"offset":"0","limit" : "10","showOnlyFavorite":"0"] as [String : Any]
         
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOSTAndPullToRefresh(isShowLoder :!isComeFromPullToRefresh ,strURL: kBaseUrl, strServiceName: "getRecSentList", parameter: dictData , success: { (obj) in
             print("this is object \(obj)")
@@ -58,6 +65,9 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
                 
                 if let result : Array<Dictionary<String, Any>> = obj["responseData"] as? Array<Dictionary<String, Any>>
                 {
+                    self.totalCount = obj["totalRecordCount"] as! Int
+
+                    
                     if isComeFromPullToRefresh {
                         self.arrMessageList.removeAll()
                     }
@@ -66,6 +76,10 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
                         self.arrMessageList .append(element as [String : AnyObject])
                     }
                 }
+                else {
+                    self.hideAndShowFotterView(isHideFotter: true, isAnimateActivityInd: false)
+                }
+
             }
         }) { (error) in
             CommonUtil.showTotstOnWindow(strMessgae: (error?.localizedDescription)!)
@@ -95,7 +109,7 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
         var dictData = self.arrMessageList[sender.tag]
         let messageID = dictData["messageId"]! as! String
         
-        let dictParam = ["userId" : UserManager.sharedUserManager.userId! , "messageId" : messageID] as [String : Any]
+        let dictParam = ["userId" : CommonUtil.getUserId() , "messageId" : messageID] as [String : Any]
         print(dictParam)
         
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl , strServiceName: "blockMessageUser", parameter: dictParam , success: { (responseObject) in
@@ -125,7 +139,7 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
         let messageID = dictData["messageId"]! as! String
         let type = dictData["type"]! as! NSNumber
         
-        let dictParam = ["userId" : UserManager.sharedUserManager.userId! , "messageId" : messageID , "type" : "\(type)"] as [String : Any]
+        let dictParam = ["userId" : CommonUtil.getUserId() , "messageId" : messageID , "type" : "\(type)"] as [String : Any]
         print(dictParam)
         
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl , strServiceName: "removeMessage", parameter: dictParam , success: { (responseObject) in
@@ -162,9 +176,10 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
     func decorateUI () {
         
         self.tblMessage.addSubview(self.refreshControl)
-        self.tblMessage.tableFooterView = UIView()
         self.tblMessage.rowHeight = UITableViewAutomaticDimension;
         self.tblMessage.estimatedRowHeight = 90.0;
+        self.activityView.startAnimating()
+
         self.tblMessage.emptyDataSetSource = self
         self.tblMessage.emptyDataSetDelegate = self
     }
@@ -175,7 +190,7 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
         let messageID = dictData["messageId"]! as! String
         let type = dictData["type"]! as! NSNumber
         
-        let dictParam = ["userId" : UserManager.sharedUserManager.userId! , "messageId" : messageID , "type" : "\(type)"] as [String : Any]
+        let dictParam = ["userId" : CommonUtil.getUserId() , "messageId" : messageID , "type" : "\(type)"] as [String : Any]
         print(dictParam)
         
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl , strServiceName: "favoriteMsg", parameter: dictParam , success: { (responseObject) in
@@ -184,6 +199,7 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
                 
                 if let resultData : Array<Dictionary<String, Any>> = responseObject["responseData"] as? Array<Dictionary<String, Any>> {
                     
+ 
                     dictData["isFavorite"] = resultData[0]["isFavorite"]  as AnyObject
                     self.arrMessageList[sender.tag] = dictData
                     self.tblMessage.reloadData()
@@ -262,6 +278,29 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
 //        controller.strPostID = postID
 //        self.navigationController?.pushViewController(controller, animated: true)
     }
+    
+    func hideAndShowFotterView(isHideFotter : Bool , isAnimateActivityInd : Bool){
+        
+        self.vwFotter.isHidden = isHideFotter
+        (isAnimateActivityInd) ? self.activityView.startAnimating() : self.activityView.stopAnimating()
+    }
+
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        let lastElement = self.arrMessageList.count - 1
+        if indexPath.row == lastElement{
+            
+            if self.totalCount != self.arrMessageList.count {
+                self.offSet += 10
+                self.doGetMessageList(isComeFromPullToRefresh: true)
+                self.hideAndShowFotterView(isHideFotter: false, isAnimateActivityInd: true)
+            }
+            else{
+                self.hideAndShowFotterView(isHideFotter: true, isAnimateActivityInd: false)
+            }
+        }
+    }
+
     
     func doActionOnShare(sender : UIButton)
     {

@@ -19,6 +19,28 @@ class ChatViewController: UIViewController  , UITableViewDataSource , UITableVie
         }
     }
     
+    var totalCount : Int = 0
+    var limit : Int = 10
+    var offSet : Int = 0
+    @IBOutlet weak var activityView : UIActivityIndicatorView!
+    @IBOutlet weak var vwFotter : UIView!
+
+
+    
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(self.handleRefresh(_:)), for: UIControlEvents.valueChanged)
+        refreshControl.tintColor = UIColor.white
+        return refreshControl
+    }()
+
+    
+    func handleRefresh(_ refreshControl: UIRefreshControl) {
+        self.doCallWebServiceForGetChatList(isComeFromPullToRefresh: true)
+        refreshControl.endRefreshing()
+    }
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.decorateUI()
@@ -32,26 +54,32 @@ class ChatViewController: UIViewController  , UITableViewDataSource , UITableVie
     
     
     func decorateUI() {
-        
-        self.tblChat.tableFooterView = UIView()
-        self.doCallWebServiceForGetChatList()
+        self.tblChat.addSubview(self.refreshControl)
+        self.doCallWebServiceForGetChatList(isComeFromPullToRefresh:  false)
         
         self.tblChat.emptyDataSetSource = self
         self.tblChat.emptyDataSetDelegate = self
+        self.activityView.startAnimating()
+
     }
     
-    func doCallWebServiceForGetChatList()
+    func doCallWebServiceForGetChatList(isComeFromPullToRefresh : Bool)
     {
-        let dictData = ["userId" : UserManager.sharedUserManager.userId! , "os" : "2" , "version" : "1.0" , "language" : "english" , "limit" : "10" , "offset" : "0"] as [String : Any]
+        let dictData = ["userId" : CommonUtil.getUserId() , "os" : "2" , "version" : "1.0" , "language" : "english" , "limit" : "10" , "offset" : "0"] as [String : Any]
         
-        WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl , strServiceName: "chatList", parameter: dictData, success: { (obj) in
+        WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOSTAndPullToRefresh(isShowLoder :!isComeFromPullToRefresh , strURL: kBaseUrl , strServiceName: "chatList", parameter: dictData, success: { (obj) in
             print(obj)
             if (obj["status"] as! String == "1"){
+                
+                self.totalCount = obj["totalRecordCount"] as! Int
+
                 let chatData = obj["responseData"]
                 self.chatData = chatData as! Array<Dictionary<String, AnyObject>>
             }
             else{
                 CommonUtil.showTotstOnWindow(strMessgae: obj["responseMessage"] as! String)
+                self.hideAndShowFotterView(isHideFotter: true, isAnimateActivityInd: false)
+
             }
         }) { (error) in
             
@@ -112,6 +140,30 @@ class ChatViewController: UIViewController  , UITableViewDataSource , UITableVie
             
         }
     }
+    
+    
+    func hideAndShowFotterView(isHideFotter : Bool , isAnimateActivityInd : Bool){
+        
+        self.vwFotter.isHidden = isHideFotter
+        (isAnimateActivityInd) ? self.activityView.startAnimating() : self.activityView.stopAnimating()
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        let lastElement = self.chatData.count - 1
+        if indexPath.row == lastElement{
+            
+            if self.totalCount != self.chatData.count {
+                self.offSet += 10
+                self.doCallWebServiceForGetChatList(isComeFromPullToRefresh: true)
+                self.hideAndShowFotterView(isHideFotter: false, isAnimateActivityInd: true)
+            }
+            else{
+                self.hideAndShowFotterView(isHideFotter: true, isAnimateActivityInd: false)
+            }
+        }
+    }
+
     
     func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString?
     {

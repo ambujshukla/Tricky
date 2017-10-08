@@ -40,7 +40,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet var btnAllredyAC : UIButton!
 
 
-    let arrCountryCode = ["Afghanistan(+93)","Aland Islands(+358)","Albania(+355)"]
+    var arrCountryCode =  [String]()
     
     //  let arrCountryCode = ["+91","+01","+02"]
     //  var imagePicker = UIImagePickerController()
@@ -65,9 +65,17 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+
         self.decorateUI()
         // Do any additional setup after loading the view.
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+    }
+    
     func decorateUI()
     {
         self.btnCountryCode.setTitle("+91", for: .normal)
@@ -101,18 +109,60 @@ class SignUpViewController: UIViewController {
         
         self.txtMobile.textColor = UIColor.white
         self.txtLink.textColor = UIColor.white
-        
         self.btnAllredyAC.setTitle("txt_allready_ac".localized(), for: .normal)
         self.btnAllredyAC.titleLabel?.textColor = UIColor.white
         self.btnClickHere.setTitle("txt_click_here".localized(), for: .normal)
         self.btnClickHere.titleLabel?.textColor = UIColor.white
+        
+        CommanUtility.createCustomRightButton(self, navBarItem: self.navigationItem, strRightImage: "headericon", select: #selector(self.doNothing))
+        
+        self.readJson()
+
 
     }
+    
+    private func readJson() {
+        do {
+            if let file = Bundle.main.url(forResource: "CountryCodes", withExtension: "json") {
+                let data = try Data(contentsOf: file)
+                let json = try JSONSerialization.jsonObject(with: data, options: [])
+                if let object = json as? [String: Any] {
+                    // json is a dictionary
+                    print(object)
+                } else if let object = json as? [Any] {
+                    // json is an array
+                    print(object)
+                    
+                    for obj in object {
+                        
+                        let data : [String : Any] = obj as! [String : Any]
+                        self.arrCountryCode.append("\(data["name"]!)(\(data["dial_code"]!))")
+                    }
+                    
+                    print("this is arr data \(self.arrCountryCode)")
+                    
+                } else {
+                    print("JSON is invalid")
+                }
+            } else {
+                print("no file")
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+
+    
+    func doNothing(){
+        
+    }
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.navigationController?.navigationBar.barTintColor = color(red: 244, green: 166, blue: 202)
         self.navigationItem.setHidesBackButton(true, animated: false)
+        
 
     }
     
@@ -166,6 +216,7 @@ class SignUpViewController: UIViewController {
         vc.strMobileNo = self.txtMobile.text
         vc.strLink = self.txtLink.text
         vc.strOTP = "\(String(describing: OTPData.otp!))"
+        vc.strCountryCode = self.btnCountryCode.titleLabel?.text
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

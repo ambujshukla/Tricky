@@ -78,7 +78,7 @@
     if ( !self.window || [labels count] == 0 )
         return;
 
-    UIFont *labelfont = [UIFont boldSystemFontOfSize:20];
+    UIFont *labelfont = [UIFont boldSystemFontOfSize:12];
 
     // find the width of all the wheels combined 
     CGFloat widthofwheels = 0;

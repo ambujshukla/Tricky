@@ -553,7 +553,7 @@ class CommonUtil: NSObject {
     class func showTotstOnWindow(strMessgae: String) {
         
         let window :UIWindow = UIApplication.shared.keyWindow!
-        window.makeToast(strMessgae, duration: 2.0, position: .center)
+        window.makeToast(strMessgae, duration: 2.0, position: .bottom)
     }
     
     class func showWhiteTostOnWindow (strMessgae: String)
@@ -672,6 +672,14 @@ class CommonUtil: NSObject {
         }
     }
     
+    class func isLoggedIn() -> Bool{
+        if let isLogged  = self.getBooleanDataForKey("isLogin"){
+            return isLogged
+        }
+        else{
+            return false
+        }
+    }
 
     
     class func getAttributedString(strCommanFont : String , commanFontSize : Float , strUniqueFont : String , uniqueFontSize : Float , strSpecialString : String , strCompleteString : String) -> NSMutableAttributedString

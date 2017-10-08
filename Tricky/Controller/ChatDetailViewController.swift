@@ -94,7 +94,7 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
     
     func doCallGetChatMessageWS(shouldShowLoader : Bool)
     {
-        let params = ["version" : "1.0" , "os" : "2" , "language" : "english","userId":UserManager.sharedUserManager.userId!, "messageId" : self.dictChatData["messageId"] as! String,"receiverId" :self.dictChatData["recieverId"] as! String, "lastMessageDateTime" : self.lastTimeSyncTime, "chatId" : self.dictChatData["messageId"] as! String,"limit" : "\(self.limit)","offset" : "\(self.offSet)"]  as [String : Any]
+        let params = ["version" : "1.0" , "os" : "2" , "language" : "english","userId":UserManager.sharedUserManager.userId!, "messageId" : self.dictChatData["chatId"] as! String,"receiverId" :"", "lastMessageDateTime" : self.lastTimeSyncTime, "chatId" : self.dictChatData["chatId"] as! String,"limit" : "\(self.limit)","offset" : "\(self.offSet)"]  as [String : Any]
         
         print(params)
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOSTAndPullToRefresh(isShowLoder: shouldShowLoader, strURL: kBaseUrl, strServiceName: "getChatMessageList", parameter: params, success: { (obj) in
@@ -103,10 +103,10 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
             {
                 self.offSet += 1
                 self.doPopulateDataIn(arrChat : chatData)
-                self.doGetChatData()
+               // self.doGetChatData()
             }
         }) { (error) in
-            self.doGetChatData()
+          //  self.doGetChatData()
             print(error!)
         }
     }
@@ -232,6 +232,7 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
     
     @IBAction func doClickSend(id : UIButton)
     {
+        /*
         let params = ["version" : "1.0" , "os" : "2" , "language" : "english","userId":UserManager.sharedUserManager.userId!, "messageId" : self.dictChatData["messageId"] as! String,"receiverId" :self.dictChatData["recieverId"] as! String, "message": self.txtChat.text, "type" : "0","lastMessageDateTime" : self.doGetCurrentTime(),"status" : "0"]  as [String : Any]
         print(params)
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOSTAndPullToRefresh(isShowLoder: false, strURL: kBaseUrl, strServiceName: "sendChatMessage", parameter: params, success: { (obj) in
@@ -250,6 +251,7 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
         
         self.heightConstrntTxtView.constant = 33;
         self.txtChat.text = ""
+ */
     }
     
     func doGetCurrentTime() -> String
