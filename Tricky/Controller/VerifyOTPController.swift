@@ -188,13 +188,14 @@ class VerifyOTPController: UIViewController
         }    }
 
     
-    @IBAction func doClickReset()
-    {
+    @IBAction func doClickReset(){
         if self.isFromForgotPasswordScren
         {
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "NewPasswordController") as! NewPasswordController
             self.navigationController?.pushViewController(vc, animated: true)
         }else{
+            
+            CommonUtil.setData("countryCode", value: self.strCountryCode as! NSString)
             self.btnResend.isEnabled = false
             if isFromSignUp {
                 self.doCallWebAPIForRegistration()
@@ -205,8 +206,7 @@ class VerifyOTPController: UIViewController
         }
     }
     
-    @IBAction func doClickResend(sender : UIButton)
-    {
+    @IBAction func doClickResend(sender : UIButton){
 
         self.doCallServiceForGenrateOTP()
     }
