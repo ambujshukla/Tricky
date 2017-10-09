@@ -52,7 +52,7 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
     {
         self.view.endEditing(true)
         //UpdateProfile
-        let dictData = ["version" : "1.0" , "os" : "2" , "language" : "english","userId": CommonUtil.getUserId() ,"filterVulgar" : CommonUtil.filterVulgerMsg(),"messageForOnlyRegisterUser":CommonUtil.isBlockUser(),"offset":"0","limit" : "10","showOnlyFavorite":"0"] as [String : Any]
+        let dictData = ["version" : "1.0" , "os" : "2" , "language" : "english","userId": CommonUtil.getUserId() ,"filterVulgar" : CommonUtil.filterVulgerMsg(),"messageForOnlyRegisterUser":CommonUtil.isBlockUser(),"offset":"\(self.offSet)","limit" : "\(self.limit)","showOnlyFavorite":"0"] as [String : Any]
         
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOSTAndPullToRefresh(isShowLoder :!isComeFromPullToRefresh ,strURL: kBaseUrl, strServiceName: "getRecSentList", parameter: dictData , success: { (obj) in
             print("this is object \(obj)")
@@ -80,9 +80,15 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
                     self.hideAndShowFotterView(isHideFotter: true, isAnimateActivityInd: false)
                 }
 
+            }else
+            {
+                self.activityView.stopAnimating()
+                UserManager.sharedUserManager.doSetReceiveMsgAndSentMessage(strSentMsg: "0", strReceiveMsg: "0")
             }
         }) { (error) in
-            CommonUtil.showTotstOnWindow(strMessgae: (error?.localizedDescription)!)
+            self.activityView.stopAnimating()
+            UserManager.sharedUserManager.doSetReceiveMsgAndSentMessage(strSentMsg: "0", strReceiveMsg: "0")
+            CommonUtil.showTotstOnWindow(strMessgae: "txt_something_went_wrong".localized())
         }
     }
     
@@ -256,7 +262,12 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
         //        }
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChatDetailViewIdentifier") as! ChatDetailViewController
+        vc.dictChatData = self.arrMessageList[indexPath.row]
+        vc.strName = vc.dictChatData["recieverName"] as! String
+        vc.strChatId = vc.dictChatData["messageId"] as! String
+        vc.strReceiverId = vc.dictChatData["recieverId"] as! String
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func doClickPlus()
@@ -269,14 +280,10 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
         
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChatDetailViewIdentifier") as! ChatDetailViewController
         vc.dictChatData = self.arrMessageList[sender.tag]
+        vc.strName = vc.dictChatData["recieverName"] as! String
+        vc.strChatId = vc.dictChatData["messageId"] as! String
+        vc.strReceiverId = vc.dictChatData["recieverId"] as! String
         self.navigationController?.pushViewController(vc, animated: true)
-    
-        
-//        let controller = self.storyboard?.instantiateViewController(withIdentifier: "CreateNewPostViewController") as! CreateNewPostViewController
-//        controller.isPostReply = true
-//        let postID : String = self.arrMessageList[sender.tag]["messageId"] as! String
-//        controller.strPostID = postID
-//        self.navigationController?.pushViewController(controller, animated: true)
     }
     
     func hideAndShowFotterView(isHideFotter : Bool , isAnimateActivityInd : Bool){

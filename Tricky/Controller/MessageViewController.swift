@@ -28,7 +28,7 @@ class MessageViewController: UIViewController {
         self.btnSend.layer.borderColor = UIColor.white.cgColor
         self.btnSend.layer.borderWidth = 1.0
         self.btnSend.layer.masksToBounds = true
-        CommanUtility.decorateNavigationbarWithBackButton(target: self, strTitle: "John smith", strBackButtonImage: BACK_BUTTON, selector: #selector(self.goTOBack), color: color(red: 147, green: 108, blue: 234))
+        CommanUtility.decorateNavigationbarWithBackButton(target: self, strTitle: "", strBackButtonImage: BACK_BUTTON, selector: #selector(self.goTOBack), color: color(red: 147, green: 108, blue: 234))
     }
     
     override func viewWillAppear(_ animated: Bool) {

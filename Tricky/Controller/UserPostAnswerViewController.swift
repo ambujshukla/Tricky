@@ -52,7 +52,7 @@ class UserPostAnswerViewController: UIViewController {
     }
     func doCallServiceForSendMessgae() {
         
-        let dictData = ["version" : "1.0" , "type" : "1"  , "message": self.txtViewComment.text!  , "userId" : "19","receiverId" : self.strUserId] as [String : Any]
+        let dictData = ["version" : "1.0" , "type" : "1"  , "message": self.txtViewComment.text!  , "userId" : CommonUtil.getUserId(),"receiverId" : self.strUserId] as [String : Any]
         
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "sendMessage", parameter: dictData , success: { (obj) in
             
@@ -71,7 +71,7 @@ class UserPostAnswerViewController: UIViewController {
             
             print("this is object \(obj)")
         }) { (error) in
-            CommonUtil.showTotstOnWindow(strMessgae: (error?.localizedDescription)!)
+            CommonUtil.showTotstOnWindow(strMessgae: "txt_something_went_wrong".localized())
             
         }
         

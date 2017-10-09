@@ -17,8 +17,9 @@ class HomeViewController: UIViewController {
     
     var tabs = [
         ViewPagerTab(title: "Message", image: UIImage(named: "fries")),
-        ViewPagerTab(title: "Chat", image: UIImage(named: "hamburger")),
-        ViewPagerTab(title: "Post", image: UIImage(named: "pint")),
+        ViewPagerTab(title: "Chat", image: UIImage(named: "hamburger"))
+        //,
+    //    ViewPagerTab(title: "Post", image: UIImage(named: "pint")),
         ]
     
     override func viewDidLoad() {

@@ -52,7 +52,8 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
             self.imgProfile.image = image
         }
         
-        self.menuData = ["Home".localized() ,"txt_block_users".localized() , "Contacts" , "Favorite" , "Language", "My Post" , "Filter vulgar messages" , "Block unauthorised user","Display all anonymous post" , "Logout"];
+        //, "My Post"
+        self.menuData = ["Home".localized() ,"txt_block_users".localized() , "Contacts" , "Favorite" , "Language" , "Filter vulgar messages" , "Block unauthorised user","Display all anonymous post" , "Logout"];
         
         self.tblMenu.tableFooterView = UIView()
         self.lblSent.textColor = UIColor.white
@@ -70,7 +71,7 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
     
     func switchValueDidChange(sender:PWSwitch!) {
         
-        if sender.tag == 6 {
+        if sender.tag == 5 {
             if sender.on {
                 CommonUtil.setData("filterMessage", value: "1")
             }
@@ -78,7 +79,7 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
                 CommonUtil.setData("filterMessage", value: "0")
             }
             
-        }else if sender.tag == 7{
+        }else if sender.tag == 6{
             
             if sender.on {
                 CommonUtil.setData("isBlockUser", value: "1")
@@ -88,7 +89,7 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
             }
             
             
-        }else if sender.tag == 8{
+        }else if sender.tag == 7{
             
             if sender.on {
                 CommonUtil.setData("isAnonymous", value: "1")
@@ -118,9 +119,9 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MenuTableViewCell
         
-        if indexPath.row == 6 || indexPath.row == 7 || indexPath.row == 8 {
+        if indexPath.row == 5 || indexPath.row == 6 || indexPath.row == 7 {
             cell.switchPW?.isHidden = false
-            if indexPath.row == 6
+            if indexPath.row == 5
             {
                 if (CommonUtil.filterVulgerMsg() == "1") {
                     cell.switchPW.on = true
@@ -129,7 +130,7 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
                 }
             }
             
-            if indexPath.row == 7
+            if indexPath.row == 6
             {
                 if (CommonUtil.isBlockUser() == "1") {
                     cell.switchPW.on = true
@@ -137,7 +138,7 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
                     cell.switchPW.on = false
                 }
             }
-            if indexPath.row == 8
+            if indexPath.row == 7
             {
                 if (CommonUtil.isAnonymous() == "1") {
                     cell.switchPW.on = true
@@ -192,13 +193,13 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
             self.revealViewController().pushFrontViewController(navController, animated: true)
         }else if(indexPath.row == 5)
         {
-            let controller = self.storyboard?.instantiateViewController(withIdentifier: "MyPostViewController") as! MyPostViewController
-            let contrlHome = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-            let navController = UINavigationController.init()
-            navController.setViewControllers([contrlHome , controller], animated: true)
-            self.revealViewController().pushFrontViewController(navController, animated: true)
+//            let controller = self.storyboard?.instantiateViewController(withIdentifier: "MyPostViewController") as! MyPostViewController
+//            let contrlHome = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+//            let navController = UINavigationController.init()
+//            navController.setViewControllers([contrlHome , controller], animated: true)
+//            self.revealViewController().pushFrontViewController(navController, animated: true)
             
-        }else  if (indexPath.row == 9)
+        }else  if (indexPath.row == 8)
         {
             //  self.dismiss(animated: true, completion: nil)
             self.revealViewController().revealToggle(animated: true)

@@ -125,7 +125,7 @@ class VerifyOTPController: UIViewController
             
             
         }) { (error) in
-            CommonUtil.showTotstOnWindow(strMessgae: (error?.localizedDescription)!)
+            CommonUtil.showTotstOnWindow(strMessgae: "txt_something_went_wrong".localized())
         }
         
     }
@@ -151,7 +151,7 @@ class VerifyOTPController: UIViewController
             
             print("this is object \(obj)")
         }) { (error) in
-            CommonUtil.showTotstOnWindow(strMessgae: (error?.localizedDescription)!)
+            CommonUtil.showTotstOnWindow(strMessgae: "txt_something_went_wrong".localized())
         }
     }
     
@@ -184,7 +184,7 @@ class VerifyOTPController: UIViewController
             
             
         }) { (error) in
-            CommonUtil.showTotstOnWindow(strMessgae: (error?.localizedDescription)!)
+            CommonUtil.showTotstOnWindow(strMessgae: "txt_something_went_wrong".localized())
         }    }
 
     
