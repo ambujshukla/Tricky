@@ -83,10 +83,12 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
             }else
             {
                 self.activityView.stopAnimating()
+                self.vwFotter.isHidden = true
                 UserManager.sharedUserManager.doSetReceiveMsgAndSentMessage(strSentMsg: "0", strReceiveMsg: "0")
             }
         }) { (error) in
             self.activityView.stopAnimating()
+             self.vwFotter.isHidden = true
             UserManager.sharedUserManager.doSetReceiveMsgAndSentMessage(strSentMsg: "0", strReceiveMsg: "0")
             CommonUtil.showTotstOnWindow(strMessgae: "txt_something_went_wrong".localized())
         }
