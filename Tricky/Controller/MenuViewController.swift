@@ -21,15 +21,11 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
     @IBOutlet weak var lblReceived : UILabel!
     private var tap: UITapGestureRecognizer!
     
-    
     var controller : UINavigationController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.controller = self.revealViewController().frontViewController as! UINavigationController!
-   //     self.controller = UINavigationController.init()
-    //    self.controller.setViewControllers([contrlHome!], animated: true)
-
     }
     
     override func viewWillAppear(_ animated: Bool)
@@ -65,8 +61,6 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
         self.lblSent.text = "\(String(describing: UserManager.sharedUserManager.sentMsgCount!)) \nSent"
         self.lblReceived.text = "\(String(describing: UserManager.sharedUserManager.receiveMsgCount!)) \nRecieved"
         self.tblMenu.reloadData()
-        
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -241,7 +235,9 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
     @IBAction func doClickShareLink()
     {
         let shareText = self.lblEmail.text
-        let vc = UIActivityViewController(activityItems: [shareText ?? ""], applicationActivities: [])
+        let image = CommanUtility.textToImage(drawText: shareText! as NSString, inImage: #imageLiteral(resourceName: "sharemessage"), atPoint: CGPoint(x : 90 , y : 250))
+
+        let vc = UIActivityViewController(activityItems: [image], applicationActivities: [])
         present(vc, animated: true, completion: nil)
     }
     

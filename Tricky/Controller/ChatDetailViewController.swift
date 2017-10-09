@@ -59,7 +59,7 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
         
         self.tblView.addSubview(self.refreshControl)
         
-        CommanUtility.decorateNavigationbarWithBackButtonAndTitle(target: self, leftselect: #selector(doClickBack), strTitle: "Michael Smith".localized(), strBackImag: BACK_BUTTON, strFontName: "Arial", size: 20, color: UIColor.white)
+        CommanUtility.decorateNavigationbarWithBackButtonAndTitle(target: self, leftselect: #selector(doClickBack), strTitle: self.dictChatData["name"] as! String , strBackImag: BACK_BUTTON, strFontName: "Arial", size: 20, color: UIColor.white)
         
         self.tblView.backgroundColor = UIColor.clear
         self.imgBG.image = UIImage(named : CHAT_BG)
@@ -70,7 +70,7 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
         
         self.btnSend .setImage(UIImage(named : SEND_ICON), for: .normal)
         
-        CommanUtility.createCustomRightButton(self, navBarItem: self.navigationItem, strRightImage: REFRESH_ICON as NSString, select: #selector(doClickRefresh))
+        //   CommanUtility.createCustomRightButton(self, navBarItem: self.navigationItem, strRightImage: REFRESH_ICON as NSString, select: #selector(doClickRefresh))
         
         self.btnYes.backgroundColor = UIColor.clear
         self.btnNo.backgroundColor =  UIColor.clear
@@ -94,7 +94,7 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
     
     func doCallGetChatMessageWS(shouldShowLoader : Bool)
     {
-        let params = ["version" : "1.0" , "os" : "2" , "language" : "english","userId":UserManager.sharedUserManager.userId!, "messageId" : self.dictChatData["chatId"] as! String,"receiverId" :"", "lastMessageDateTime" : self.lastTimeSyncTime, "chatId" : self.dictChatData["chatId"] as! String,"limit" : "\(self.limit)","offset" : "\(self.offSet)"]  as [String : Any]
+        let params = ["version" : "1.0" , "os" : "2" , "language" : "english","userId":CommonUtil.getUserId(), "messageId" : self.dictChatData["chatId"] as! String,"receiverId" :self.dictChatData["receiverId"] as! String, "lastMessageDateTime" : self.lastTimeSyncTime, "chatId" : self.dictChatData["chatId"] as! String,"limit" : "\(self.limit)","offset" : "\(self.offSet)"]  as [String : Any]
         
         print(params)
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOSTAndPullToRefresh(isShowLoder: shouldShowLoader, strURL: kBaseUrl, strServiceName: "getChatMessageList", parameter: params, success: { (obj) in
@@ -103,10 +103,10 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
             {
                 self.offSet += 1
                 self.doPopulateDataIn(arrChat : chatData)
-               // self.doGetChatData()
+                // self.doGetChatData()
             }
         }) { (error) in
-          //  self.doGetChatData()
+            //  self.doGetChatData()
             print(error!)
         }
     }
@@ -136,7 +136,7 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
         self.txtChat.delegate = self
     }
     
-    func doClickRefresh()
+    @IBAction func doClickRefresh()
     {
         self.lastTimeSyncTime = "0"
         self.arrChat.removeAll()
@@ -233,25 +233,25 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
     @IBAction func doClickSend(id : UIButton)
     {
         /*
-        let params = ["version" : "1.0" , "os" : "2" , "language" : "english","userId":UserManager.sharedUserManager.userId!, "messageId" : self.dictChatData["messageId"] as! String,"receiverId" :self.dictChatData["recieverId"] as! String, "message": self.txtChat.text, "type" : "0","lastMessageDateTime" : self.doGetCurrentTime(),"status" : "0"]  as [String : Any]
-        print(params)
-        WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOSTAndPullToRefresh(isShowLoder: false, strURL: kBaseUrl, strServiceName: "sendChatMessage", parameter: params, success: { (obj) in
-            if(obj["status"] as! String == "1")
-            {
-                print(obj)
-                if let chatData : Array<Dictionary<String,AnyObject>> = obj["responseData"] as? Array<Dictionary<String,AnyObject>>
-                {
-                    self.doPopulateDataIn(arrChat : chatData)
-                    self.doGetChatData()
-                }
-            }
-        }) { (error) in
-            print(error!)
-        }
-        
-        self.heightConstrntTxtView.constant = 33;
-        self.txtChat.text = ""
- */
+         let params = ["version" : "1.0" , "os" : "2" , "language" : "english","userId":UserManager.sharedUserManager.userId!, "messageId" : self.dictChatData["messageId"] as! String,"receiverId" :self.dictChatData["recieverId"] as! String, "message": self.txtChat.text, "type" : "0","lastMessageDateTime" : self.doGetCurrentTime(),"status" : "0"]  as [String : Any]
+         print(params)
+         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOSTAndPullToRefresh(isShowLoder: false, strURL: kBaseUrl, strServiceName: "sendChatMessage", parameter: params, success: { (obj) in
+         if(obj["status"] as! String == "1")
+         {
+         print(obj)
+         if let chatData : Array<Dictionary<String,AnyObject>> = obj["responseData"] as? Array<Dictionary<String,AnyObject>>
+         {
+         self.doPopulateDataIn(arrChat : chatData)
+         self.doGetChatData()
+         }
+         }
+         }) { (error) in
+         print(error!)
+         }
+         
+         self.heightConstrntTxtView.constant = 33;
+         self.txtChat.text = ""
+         */
     }
     
     func doGetCurrentTime() -> String
@@ -283,15 +283,15 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
         
         let objs = realm.objects(ChatData.self).filter(predicate)
         
-//        if objs.count > 9
-//        {
-//            for i in 0..<10
-//            {
-//                self.arrChat .append(objs[i])
-//            }
-//        }else{
-//            self.arrChat .append(objectsIn: objs)
-//        }
+        //        if objs.count > 9
+        //        {
+        //            for i in 0..<10
+        //            {
+        //                self.arrChat .append(objs[i])
+        //            }
+        //        }else{
+        //            self.arrChat .append(objectsIn: objs)
+        //        }
         
         self.arrChat .append(objectsIn: objs)
         
@@ -301,7 +301,7 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
             self.lastTimeSyncTime = (chatTempData?.time)!
             self.lastTimeStamp = (chatTempData?.timeStamp)!
             self.tblView.reloadData()
-         //   perform(#selector(scrollToBottom), with: nil, afterDelay: 1.0)
+            //   perform(#selector(scrollToBottom), with: nil, afterDelay: 1.0)
             //perform(#selector(scrollToBottom()), with: nil, afterDelay: 1.0, inModes: [.commonModes])
         }
     }
@@ -328,12 +328,12 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
                 chatObj.type = dictData["type"] as!  String
                 chatObj.messageId = dictData["messageId"] as!  String
                 chatObj.timeStamp = self .doGetTimeStamp(date: dictData["time"] as!  String)
-                if chatObj.senderId == self.dictChatData["recieverId"] as! String
+                if chatObj.senderId == self.dictChatData["receiverId"] as! String
                 {
                     chatObj.receiverId = self.dictChatData["senderId"] as! String
                 }else
                 {
-                    chatObj.receiverId = self.dictChatData["recieverId"] as! String
+                    chatObj.receiverId = self.dictChatData["receiverId"] as! String
                 }
                 try! realm.write
                 {
@@ -343,7 +343,7 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
         }
     }
     
-   @objc func scrollToBottom(){
+    @objc func scrollToBottom(){
         DispatchQueue.global(qos: .background).async {
             let indexPath = IndexPath(row: self.arrChat.count-1, section: 0)
             self.tblView.scrollToRow(at: indexPath, at: .bottom, animated: true)

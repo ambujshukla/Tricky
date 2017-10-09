@@ -59,19 +59,22 @@ class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDa
         if let image = CommanUtility.getImage(userId: CommonUtil.getUserId()) as? UIImage {
             self.imgProfilePic.image = image
         }
-        
         CommanUtility.decorateNavigationbarWithBackButtonAndTitle(target: self, leftselect: #selector(doClickBack), strTitle: "txt_profile".localized(), strBackImag: BACK_BUTTON, strFontName: "Arial", size: 20, color: UIColor.white)
         
         self.imgBG.image = UIImage(named : PROFILE_BG)
         self.btnChangeic.setImage(UIImage(named : EDIT_ICON), for: .normal)
         
-        //179 39 40
         self.imgProfilePic.layer.borderColor = color(red: 175, green: 35, blue: 30).cgColor
         self.imgProfilePic.layer.borderWidth = 5.0
+        
+        CommanUtility.createCustomRightButton(self, navBarItem: self.navigationItem, strRightImage: "headericon", select: #selector(self.doNothing))
+    }
+    func doNothing()
+    {
     }
     func doCallGetProfile()
     {
-        let dictData = ["version" : "1.0" , "os" : "ios" , "language" : "english","userId":"61"]
+        let dictData = ["version" : "1.0" , "os" : "ios" , "language" : "english","userId": CommonUtil.getUserId()]  as [String : Any]
         
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "getProfile", parameter: dictData , success: { (obj) in
             
@@ -83,12 +86,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDa
                     self.lblEmail.text = dictResponseData[0]["url"] as? String
                     
                     self.dictData["0"] = dictResponseData[0]["name"] as? String
-                    self.dictData["1"] = dictResponseData[0]["mobileNo"] as? String
+                    self.dictData["1"] =  "\(dictResponseData[0]["countryCode"] as? String ?? "")  \(dictResponseData[0]["mobileNo"] as? String ?? "")"
                     self.dictData["2"] = dictResponseData[0][""] as? String
-                   // self.imgProfilePic.sd_setImage(with: URL(string : (dictResponseData[0]["profilePic"] as? String)!) )
                 }
                 self.tblView.reloadData()
-                
             }
         }) { (error) in
             CommonUtil.showTotstOnWindow(strMessgae: (error?.localizedDescription)!)
@@ -179,23 +180,11 @@ class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDa
         tblViewCell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
         return tblViewCell
     }
-    //    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-    //        if section == 1 {
-    //            return 40.0
-    //        }
-    //        return 0.0
-    //    }
-    
-    //    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView?
-    //    {
-    //        let footerView: ProfileTableViewCell? = tableView.dequeueReusableCell(withIdentifier: "cellFooter") as? ProfileTableViewCell
-    //        footerView?.btnSave .addTarget(self, action: #selector(doClickSave), for: .touchUpOutside)
-    //        return footerView;
-    //    }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.backgroundColor = UIColor.clear
     }
+    
     func textFieldDidEndEditing(_ textField: UITextField)
     {
         let key = String(format: "%d", textField.tag)
@@ -262,7 +251,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDa
                     self.dictData["0"] = dictResponseData[0]["name"] as? String
                     self.dictData["1"] = dictResponseData[0]["mobileNo"] as? String
                     self.dictData["2"] = dictResponseData[0][""] as? String
-                    self.imgProfilePic.sd_setImage(with: URL(string : (dictResponseData[0]["profilePic"] as? String)!) )
+                  //  self.imgProfilePic.sd_setImage(with: URL(string : (dictResponseData[0]["profilePic"] as? String)!) )
                 }
                 print(obj["responseData"])
                 self.tblView.reloadData()
@@ -275,20 +264,22 @@ class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDa
         }
     }
     
-    //    @IBAction func doClickSelectCode(sender : UIButton)
-    //    {
-    //        ActionSheetMultipleStringPicker.show(withTitle: "Select Code", rows: [
-    //            self.arrCountryCode
-    //            ], initialSelection: [0], doneBlock: {
-    //                picker, indexes, values in
-    //
-    //                if let arrValue = values as? [String] {
-    ////                    self.txtSelectCode.text = arrValue[0]
-    //                    self.dictData["countryCode"] = arrValue[0]
-    //                }
-    //                return
-    //        }, cancel: { ActionMultipleStringCancelBlock in return }, origin: sender)
-    //    }
+  @IBAction func doActionOnShare(sender : UIButton)
+    {
+       // let dictData = self.arrPostListData[sender.tag]
+        let shareText = self.lblEmail.text
+        let image = CommanUtility.textToImage(drawText: shareText! as NSString, inImage: #imageLiteral(resourceName: "sharemessage"), atPoint: CGPoint(x : 90 , y : 250))
+        
+        let vc = UIActivityViewController(activityItems: [image], applicationActivities: [])
+        present(vc, animated: true, completion: nil)
+    }
+    
+    @IBAction func doClickCopyLink()
+    {
+        UIPasteboard.general.string = self.lblEmail.text
+        CommonUtil.showTotstOnWindow(strMessgae: "txt_copied".localized())
+    }
+
     
     
     override func didReceiveMemoryWarning() {
