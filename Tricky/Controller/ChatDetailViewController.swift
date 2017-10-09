@@ -16,8 +16,8 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
 {
     @IBOutlet weak var tblView : UITableView!
     @IBOutlet weak var imgBG : UIImageView!
-    @IBOutlet weak var btnYes : UIButton!
-    @IBOutlet weak var btnNo : UIButton!
+//    @IBOutlet weak var btnYes : UIButton!
+//    @IBOutlet weak var btnNo : UIButton!
     @IBOutlet weak var btnSend : UIButton!
     @IBOutlet weak var viewBottom : UIView!
     @IBOutlet weak var txtChat : UITextView!
@@ -74,20 +74,20 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
         
         //   CommanUtility.createCustomRightButton(self, navBarItem: self.navigationItem, strRightImage: REFRESH_ICON as NSString, select: #selector(doClickRefresh))
         
-        self.btnYes.backgroundColor = UIColor.clear
-        self.btnNo.backgroundColor =  UIColor.clear
+//        self.btnYes.backgroundColor = UIColor.clear
+//        self.btnNo.backgroundColor =  UIColor.clear
+//        
+//        self.btnYes.layer.borderWidth = 1.0
+//        self.btnNo.layer.borderWidth = 1.0
+//        
+//        self.btnYes.layer.borderColor = UIColor.white.cgColor
+//        self.btnNo.layer.borderColor = UIColor.white.cgColor
+//        
+//        self.btnNo.layer.cornerRadius = 10;
+//        self.btnYes.layer.cornerRadius = 10;
         
-        self.btnYes.layer.borderWidth = 1.0
-        self.btnNo.layer.borderWidth = 1.0
-        
-        self.btnYes.layer.borderColor = UIColor.white.cgColor
-        self.btnNo.layer.borderColor = UIColor.white.cgColor
-        
-        self.btnNo.layer.cornerRadius = 10;
-        self.btnYes.layer.cornerRadius = 10;
-        
-        self.btnYes.setTitle("txt_you_got_me".localized(), for: .normal)
-        self.btnNo.setTitle("txt_not_got_me".localized(), for: .normal)
+       // self.btnYes.setTitle("txt_you_got_me".localized(), for: .normal)
+      //  self.btnNo.setTitle("txt_not_got_me".localized(), for: .normal)
         
         self.txtChat.backgroundColor = UIColor.clear
         
@@ -105,10 +105,10 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
             {
                 self.offSet += 1
                 self.doPopulateDataIn(arrChat : chatData)
-                // self.doGetChatData()
+                self.doGetChatData()
             }
         }) { (error) in
-            //  self.doGetChatData()
+              self.doGetChatData()
             print(error!)
         }
     }
@@ -167,7 +167,7 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellToShow : UITableViewCell!
         let chatData : ChatData = self.arrChat[indexPath.row] as! ChatData
-        if chatData.senderId == UserManager.sharedUserManager.userId {
+        if chatData.senderId == CommonUtil.getUserId() {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cellChat2") as! ChatTableViewCell
             cell.lblMessage.text = chatData.message
             cell.imgBG.layer.cornerRadius = 10
@@ -235,7 +235,7 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
     @IBAction func doClickSend(id : UIButton)
     {
         
-         let params = ["version" : "1.0" , "os" : "2" , "language" : "english","userId":UserManager.sharedUserManager.userId!, "messageId" : self.strChatId,"receiverId" :self.strReceiverId, "message": self.txtChat.text, "type" : "0","lastMessageDateTime" : self.doGetCurrentTime(),"status" : "0"]  as [String : Any]
+         let params = ["version" : "1.0" , "os" : "2" , "language" : "english","userId":CommonUtil.getUserId(), "messageId" : self.strChatId,"receiverId" :self.strReceiverId, "message": self.txtChat.text, "type" : "0","lastMessageDateTime" : self.doGetCurrentTime(),"status" : "0"]  as [String : Any]
          print(params)
          WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOSTAndPullToRefresh(isShowLoder: false, strURL: kBaseUrl, strServiceName: "sendChatMessage", parameter: params, success: { (obj) in
          if(obj["status"] as! String == "1")
@@ -281,7 +281,7 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
     {
         let realm = try! Realm()
         
-        let predicate = NSPredicate(format: "(((senderId = %@ AND receiverId = %@) || (receiverId = %@ AND senderId = %@)) && timeStamp > %d)", self.dictChatData["senderId"] as! String, self.dictChatData["recieverId"] as! String,self.dictChatData["senderId"] as! String, self.dictChatData["recieverId"] as! String,self.lastTimeStamp)
+        let predicate = NSPredicate(format: "(((senderId = %@ AND receiverId = %@) || (receiverId = %@ AND senderId = %@)) && timeStamp > %d)", self.dictChatData["senderId"] as! String, self.strReceiverId,self.dictChatData["senderId"] as! String, self.strReceiverId,self.lastTimeStamp)
         
         let objs = realm.objects(ChatData.self).filter(predicate)
         
@@ -330,12 +330,12 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
                 chatObj.type = dictData["type"] as!  String
                 chatObj.messageId = dictData["messageId"] as!  String
                 chatObj.timeStamp = self .doGetTimeStamp(date: dictData["time"] as!  String)
-                if chatObj.senderId == self.dictChatData["receiverId"] as! String
+                if chatObj.senderId == self.strReceiverId
                 {
                     chatObj.receiverId = self.dictChatData["senderId"] as! String
                 }else
                 {
-                    chatObj.receiverId = self.dictChatData["receiverId"] as! String
+                    chatObj.receiverId = self.strReceiverId
                 }
                 try! realm.write
                 {
