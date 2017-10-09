@@ -68,9 +68,8 @@ class ContactModel: NSObject {
             
             if(!(phone.hasPrefix("+"))){
                 if (!(phone.hasPrefix("0"))){
-                    phone = "+\(91)\(phone)"
-  
-                }
+                    phone = "\(CommonUtil.countryCode())\(phone)"
+                  }
             }
             phoneNumbers.append((phone,phoneLabel))
         }

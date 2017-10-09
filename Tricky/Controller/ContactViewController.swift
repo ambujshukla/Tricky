@@ -74,13 +74,13 @@
     
     func doGetContactFromConactBook()
     {
+        CommonUtil.showLoader()
         self.tblContact.tableFooterView = UIView()
         DispatchQueue.global(qos: .background).async
             {
                 ContactPickerUtils.sharedContactPicker.getContctFromContactBook(target: self) { (contacts, error) in
                     DispatchQueue.main.async {
                         self.contactsArray = contacts
-                        print(self.contactsArray)
                         self.doCallSyncContactsWS()
                     }
                 }
@@ -114,11 +114,8 @@
                 let cleanedstring = string.components(separatedBy: badchar).joined()
                 dictContactsData["userNumber"] =  cleanedstring.stringByRemovingWhitespaces as String
                 dictContactsData["userName"] = contact.fullName! as String
-                print(phoneNo)
-                print(dictContactsData)
             }
             arrayTempContacts.append(dictContactsData)
-            print(contact)
         }
         let data = ["data" : arrayTempContacts]
         do {
@@ -127,7 +124,6 @@
                                      encoding: .utf8)
             
             let dictData = ["version" : "1.0" , "os" : "2" , "language" : "english","userId":CommonUtil.getUserId(), "requestData" : theJSONText!] as [String : Any]
-            print(dictData)
             WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "SyncContact", parameter: dictData, success: { (obj) in
                 if let dictContactsData = obj["responseData"] as? [[String : AnyObject]]
                 {
@@ -147,9 +143,7 @@
                     }
                     
                 }
-                print(obj)
             }) { (error) in
-                print(error!)
             }
         } catch {
             print(error.localizedDescription)
@@ -195,10 +189,6 @@
         }
         shouldSearchStart = !(self.searchBar.isHidden)
     }
-    
-
-    
-    
     
     // MARK: - Table View DataSource
     
@@ -273,7 +263,6 @@
         let dictData = ["version" : "1.0" , "os" : "1" , "language" : "english","userId":CommonUtil.getUserId(),"blockUserId":blockUserId] as [String : Any]
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "blockUser", parameter: dictData, success: { (responseObject) in
             
-            print("this is response object \(responseObject)")
             self.arrSyncContacts.remove(at: sender.tag)
             CommonUtil.showTotstOnWindow(strMessgae: responseObject["responseMessage"]! as! String)
             

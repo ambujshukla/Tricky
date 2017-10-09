@@ -654,6 +654,15 @@ class CommonUtil: NSObject {
         }
     }
     
+    class func countryCode() -> String{
+        if let code  = self.getDataForKey("countryCode"){
+            return code
+        }
+        else{
+            return "0"
+        }
+    }
+    
     class func isBlockUser() -> String {
         if let isBlockOn  = self.getDataForKey("isBlockUser"){
             return isBlockOn

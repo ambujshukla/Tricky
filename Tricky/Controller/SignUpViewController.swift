@@ -157,6 +157,10 @@ class SignUpViewController: UIViewController {
         
     }
 
+    @IBAction func doActionOnTermAndCondition(){
+        
+        
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
