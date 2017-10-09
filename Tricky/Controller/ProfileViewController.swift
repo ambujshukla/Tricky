@@ -92,7 +92,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDa
                 self.tblView.reloadData()
             }
         }) { (error) in
-            CommonUtil.showTotstOnWindow(strMessgae: (error?.localizedDescription)!)
+            CommonUtil.showTotstOnWindow(strMessgae: "txt_something_went_wrong".localized())
             
         }
     }
@@ -259,7 +259,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDa
             }
             print("this is object \(obj)")
         }) { (error) in
-            CommonUtil.showTotstOnWindow(strMessgae: (error?.localizedDescription)!)
+            CommonUtil.showTotstOnWindow(strMessgae: "txt_something_went_wrong".localized())
             
         }
     }

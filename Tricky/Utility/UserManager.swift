@@ -57,7 +57,6 @@ class UserManager: NSObject {
     }
   
     func doSetReceiveMsgAndSentMessage(strSentMsg : String , strReceiveMsg : String){
-        
       self.receiveMsgCount = strReceiveMsg
       self.sentMsgCount = strSentMsg
     }

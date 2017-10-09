@@ -204,7 +204,7 @@ class SignUpViewController: UIViewController {
             
             
         }) { (error) in
-            CommonUtil.showTotstOnWindow(strMessgae: (error?.localizedDescription)!)
+            CommonUtil.showTotstOnWindow(strMessgae: "txt_something_went_wrong".localized())
         }    }
     
 

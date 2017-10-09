@@ -31,9 +31,11 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
     var totalCount : Int = 0
     var limit : Int = 2
     var offSet : Int = 0
-    
+    var strName : String = ""
     var arrChat = List<ChatData>()
-    
+    var strChatId : String = ""
+    var strReceiverId : String = ""
+
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(self.handleRefresh(_:)), for: UIControlEvents.valueChanged)
@@ -59,7 +61,7 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
         
         self.tblView.addSubview(self.refreshControl)
         
-        CommanUtility.decorateNavigationbarWithBackButtonAndTitle(target: self, leftselect: #selector(doClickBack), strTitle: self.dictChatData["name"] as! String , strBackImag: BACK_BUTTON, strFontName: "Arial", size: 20, color: UIColor.white)
+        CommanUtility.decorateNavigationbarWithBackButtonAndTitle(target: self, leftselect: #selector(doClickBack), strTitle: self.strName , strBackImag: BACK_BUTTON, strFontName: "Arial", size: 20, color: UIColor.white)
         
         self.tblView.backgroundColor = UIColor.clear
         self.imgBG.image = UIImage(named : CHAT_BG)
@@ -94,7 +96,7 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
     
     func doCallGetChatMessageWS(shouldShowLoader : Bool)
     {
-        let params = ["version" : "1.0" , "os" : "2" , "language" : "english","userId":CommonUtil.getUserId(), "messageId" : self.dictChatData["chatId"] as! String,"receiverId" :self.dictChatData["receiverId"] as! String, "lastMessageDateTime" : self.lastTimeSyncTime, "chatId" : self.dictChatData["chatId"] as! String,"limit" : "\(self.limit)","offset" : "\(self.offSet)"]  as [String : Any]
+        let params = ["version" : "1.0" , "os" : "2" , "language" : "english","userId":CommonUtil.getUserId(), "messageId" : self.strChatId ,"receiverId" :self.strReceiverId, "lastMessageDateTime" : self.lastTimeSyncTime, "chatId" : self.strChatId,"limit" : "\(self.limit)","offset" : "\(self.offSet)"]  as [String : Any]
         
         print(params)
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOSTAndPullToRefresh(isShowLoder: shouldShowLoader, strURL: kBaseUrl, strServiceName: "getChatMessageList", parameter: params, success: { (obj) in
@@ -232,8 +234,8 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
     
     @IBAction func doClickSend(id : UIButton)
     {
-        /*
-         let params = ["version" : "1.0" , "os" : "2" , "language" : "english","userId":UserManager.sharedUserManager.userId!, "messageId" : self.dictChatData["messageId"] as! String,"receiverId" :self.dictChatData["recieverId"] as! String, "message": self.txtChat.text, "type" : "0","lastMessageDateTime" : self.doGetCurrentTime(),"status" : "0"]  as [String : Any]
+        
+         let params = ["version" : "1.0" , "os" : "2" , "language" : "english","userId":UserManager.sharedUserManager.userId!, "messageId" : self.strChatId,"receiverId" :self.strReceiverId, "message": self.txtChat.text, "type" : "0","lastMessageDateTime" : self.doGetCurrentTime(),"status" : "0"]  as [String : Any]
          print(params)
          WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOSTAndPullToRefresh(isShowLoder: false, strURL: kBaseUrl, strServiceName: "sendChatMessage", parameter: params, success: { (obj) in
          if(obj["status"] as! String == "1")
@@ -251,7 +253,7 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
          
          self.heightConstrntTxtView.constant = 33;
          self.txtChat.text = ""
-         */
+ 
     }
     
     func doGetCurrentTime() -> String
