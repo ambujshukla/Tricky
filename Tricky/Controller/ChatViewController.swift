@@ -59,7 +59,8 @@ class ChatViewController: UIViewController  , UITableViewDataSource , UITableVie
         
         self.tblChat.emptyDataSetSource = self
         self.tblChat.emptyDataSetDelegate = self
-        self.activityView.startAnimating()
+        self.hideAndShowFotterView(isHideFotter: true, isAnimateActivityInd: false)
+
 
     }
     

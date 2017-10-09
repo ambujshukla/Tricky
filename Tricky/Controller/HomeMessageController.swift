@@ -190,6 +190,8 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
 
         self.tblMessage.emptyDataSetSource = self
         self.tblMessage.emptyDataSetDelegate = self
+        self.hideAndShowFotterView(isHideFotter: true, isAnimateActivityInd: false)
+
     }
     
     func doActionOnFavouriteButton(sender : UIButton) {

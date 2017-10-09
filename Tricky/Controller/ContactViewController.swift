@@ -56,14 +56,18 @@
             self.navigationController?.navigationBar.barTintColor = color(red: 148, green: 108, blue: 139)
         }
         else{
+            
+            CommanUtility.createCustomRightButton(self, navBarItem: self.navigationItem, strRightImage: SEARCH_ICON as NSString, select: #selector(doClickSearch))
+            self.searchBar = UISearchBar()
+            self.searchBar.sizeToFit()
+            self.searchBar.placeholder = "txt_search".localized()
+            self.searchBar.delegate = self
+            self.searchBar.isHidden = true
             self.navigationController?.navigationBar.barTintColor = color(red: 148, green: 108, blue: 139)
         }
     }
     
-
-    
-    func decorateUI()
-    {
+    func decorateUI(){
         self.tblContact.emptyDataSetSource = self
         self.tblContact.emptyDataSetDelegate = self
     }
@@ -85,12 +89,11 @@
                     }
                 }
         }
-        var strTitle = ""
-        if (self.contactShowFrom == 1)
-        {
+        var strTitle = "txt_AllContact".localized()
+        if (self.contactShowFrom == 1){
             strTitle = "txt_block_users".localized()
             self.imgBg.image = UIImage(named : BLOCK_LIST_BG)
-        }else
+        }else if(self.contactShowFrom == 2)
         {
             strTitle = "txt_contacts".localized()
             self.imgBg.image = UIImage(named : ALL_CONTACTS_BG)

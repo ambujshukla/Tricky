@@ -9,6 +9,8 @@
 import UIKit
 import ActionSheetPicker_3_0
 import ObjectMapper
+import SafariServices
+
 
 class SignUpViewController: UIViewController {
     
@@ -158,8 +160,8 @@ class SignUpViewController: UIViewController {
     }
 
     @IBAction func doActionOnTermAndCondition(){
-        
-        
+        let svc = SFSafariViewController(url: URL(string: "http://www.trickychat.com/user/privacypolicy")!)
+        present(svc, animated: true, completion: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {

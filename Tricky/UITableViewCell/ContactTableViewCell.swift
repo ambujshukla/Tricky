@@ -28,7 +28,7 @@ class ContactTableViewCell: UITableViewCell {
     func setBlockContactListData(dictData : [String : AnyObject]) {
         self.lblName?.text = dictData["userName"] as? String
         self.lblNumber?.text = dictData["userNumber"] as? String
-        self.btnBlockOrInvite.setImage(#imageLiteral(resourceName: "unblock_user_icon"), for: .normal)
+        self.btnBlockOrInvite.setImage(#imageLiteral(resourceName: "blockselecticon"), for: .normal)
     }
     
     func setCompleteContactListDataOn(dictData : [String : AnyObject]){
@@ -37,7 +37,7 @@ class ContactTableViewCell: UITableViewCell {
         self.lblNumber?.text = dictData["userNumber"] as? String
         let isOnApp = dictData["isOnApp"] as! Bool
         if isOnApp {
-            self.btnBlockOrInvite.setImage(#imageLiteral(resourceName: "blockselecticon"), for: .normal)
+            self.btnBlockOrInvite.setImage(#imageLiteral(resourceName: "unblock_user_icon"), for: .normal)
         }
         else
         { //shareicon
