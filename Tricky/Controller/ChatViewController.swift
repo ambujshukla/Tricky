@@ -83,7 +83,8 @@ class ChatViewController: UIViewController  , UITableViewDataSource , UITableVie
 
             }
         }) { (error) in
-            
+            self.hideAndShowFotterView(isHideFotter: true, isAnimateActivityInd: false)
+    
         }
     }
     
@@ -157,14 +158,14 @@ class ChatViewController: UIViewController  , UITableViewDataSource , UITableVie
         let lastElement = self.chatData.count - 1
         if indexPath.row == lastElement{
             
-            if self.totalCount != self.chatData.count {
+           // if self.totalCount != self.chatData.count {
                 self.offSet += 10
                 self.doCallWebServiceForGetChatList(isComeFromPullToRefresh: true)
-                self.hideAndShowFotterView(isHideFotter: false, isAnimateActivityInd: true)
-            }
-            else{
-                self.hideAndShowFotterView(isHideFotter: true, isAnimateActivityInd: false)
-            }
+                self.hideAndShowFotterView(isHideFotter: true, isAnimateActivityInd: true)
+//            }
+//            else{
+//                self.hideAndShowFotterView(isHideFotter: true, isAnimateActivityInd: false)
+//            }
         }
     }
 

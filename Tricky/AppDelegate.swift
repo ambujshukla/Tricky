@@ -31,8 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 rootViewController.isNavigationBarHidden = true
                 rootViewController.pushViewController(controller, animated: false)
             }
-            else
-            {
+            else{
             let rootViewController = self.window!.rootViewController as! UINavigationController
             let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = mainStoryboard.instantiateViewController(withIdentifier: "SignUpViewIdentifier") as! SignUpViewController

@@ -277,6 +277,7 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
     @IBAction func doClickPlus()
     {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ContactViewController") as! ContactViewController
+        vc.contactShowFrom = 2
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -301,16 +302,33 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
         let lastElement = self.arrMessageList.count - 1
         if indexPath.row == lastElement{
             
-            if self.totalCount != self.arrMessageList.count {
-                self.offSet += 10
-                self.doGetMessageList(isComeFromPullToRefresh: true)
-                self.hideAndShowFotterView(isHideFotter: false, isAnimateActivityInd: true)
-            }
-            else{
-                self.hideAndShowFotterView(isHideFotter: true, isAnimateActivityInd: false)
-            }
+            // if self.totalCount != self.arrMessageList.count {
+            self.offSet += 10
+            self.doGetMessageList(isComeFromPullToRefresh: false)
+            self.hideAndShowFotterView(isHideFotter: false, isAnimateActivityInd: true)
+            //            }
+            //            else{
+            //                self.hideAndShowFotterView(isHideFotter: true, isAnimateActivityInd: false)
+            //            }
         }
     }
+    
+    
+//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        
+//        let lastElement = self.arrMessageList.count - 1
+//        if indexPath.row == lastElement{
+//            
+//            if self.totalCount != self.arrMessageList.count {
+//                self.offSet += 10
+//                self.doGetMessageList(isComeFromPullToRefresh: true)
+//                self.hideAndShowFotterView(isHideFotter: false, isAnimateActivityInd: true)
+//            }
+//            else{
+//                self.hideAndShowFotterView(isHideFotter: true, isAnimateActivityInd: false)
+//            }
+//        }
+//    }
 
     
     func doActionOnShare(sender : UIButton)

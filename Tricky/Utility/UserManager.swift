@@ -51,7 +51,7 @@ class UserManager: NSObject {
         CommonUtil.setData("language", value: self.language! as NSString)
         CommonUtil.setData("mobileNo", value: self.mobileNo! as NSString)
         CommonUtil.setData("name", value: self.name! as NSString)
-        CommonUtil.setData("profilePic", value: self.profilePic! as NSString)
+     //   CommonUtil.setData("profilePic", value: self.profilePic! as NSString)
 
 
     }
