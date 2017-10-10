@@ -25,7 +25,7 @@ class ChatListCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func doSetDataOnCell(dictData : Dictionary<String, Any>){
+    func doSetDataOnCell(dictData : [String : AnyObject]){
         
         if let value = dictData["name"] as? String {
             self.lblName.text = (value )
