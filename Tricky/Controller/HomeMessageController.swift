@@ -268,7 +268,7 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChatDetailViewIdentifier") as! ChatDetailViewController
         vc.dictChatData = self.arrMessageList[indexPath.row]
-        vc.strName = vc.dictChatData["recieverName"] as! String
+        vc.strName = vc.dictChatData["senderName"] as! String
         vc.strChatId = vc.dictChatData["messageId"] as! String
         vc.strReceiverId = vc.dictChatData["recieverId"] as! String
         self.navigationController?.pushViewController(vc, animated: true)
@@ -284,7 +284,7 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
         
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChatDetailViewIdentifier") as! ChatDetailViewController
         vc.dictChatData = self.arrMessageList[sender.tag]
-        vc.strName = vc.dictChatData["recieverName"] as! String
+        vc.strName = vc.dictChatData["senderName"] as! String
         vc.strChatId = vc.dictChatData["messageId"] as! String
         vc.strReceiverId = vc.dictChatData["recieverId"] as! String
         self.navigationController?.pushViewController(vc, animated: true)
@@ -301,14 +301,14 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
         let lastElement = self.arrMessageList.count - 1
         if indexPath.row == lastElement{
             
-            if self.totalCount != self.arrMessageList.count {
+           // if self.totalCount != self.arrMessageList.count {
                 self.offSet += 10
-                self.doGetMessageList(isComeFromPullToRefresh: true)
+                self.doGetMessageList(isComeFromPullToRefresh: false)
                 self.hideAndShowFotterView(isHideFotter: false, isAnimateActivityInd: true)
-            }
-            else{
-                self.hideAndShowFotterView(isHideFotter: true, isAnimateActivityInd: false)
-            }
+//            }
+//            else{
+//                self.hideAndShowFotterView(isHideFotter: true, isAnimateActivityInd: false)
+//            }
         }
     }
 

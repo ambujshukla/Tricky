@@ -42,19 +42,19 @@ class CommanUtility: NSObject {
         
     }
     
-//    class func decorateNavigationbar(target : UIViewController , strTitle : String) {
-//        
-//        target.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-//        target.navigationController?.navigationBar.shadowImage = UIImage()
-//        target.navigationController?.navigationBar.isTranslucent = true
-//        target.navigationController?.view.backgroundColor = UIColor.clear
-//        UINavigationBar.appearance().clipsToBounds = true
-//        target.navigationController?.interactivePopGestureRecognizer?.delegate = nil
-//        target.navigationController?.navigationBar.backgroundColor = UIColor.clear
-//        target.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
-//        target.navigationController?.setNavigationBarHidden(false, animated: true)
-//        target.navigationItem.title = strTitle
-//    }
+    //    class func decorateNavigationbar(target : UIViewController , strTitle : String) {
+    //
+    //        target.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+    //        target.navigationController?.navigationBar.shadowImage = UIImage()
+    //        target.navigationController?.navigationBar.isTranslucent = true
+    //        target.navigationController?.view.backgroundColor = UIColor.clear
+    //        UINavigationBar.appearance().clipsToBounds = true
+    //        target.navigationController?.interactivePopGestureRecognizer?.delegate = nil
+    //        target.navigationController?.navigationBar.backgroundColor = UIColor.clear
+    //        target.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+    //        target.navigationController?.setNavigationBarHidden(false, animated: true)
+    //        target.navigationItem.title = strTitle
+    //    }
     
     class func createCustomRightButtons(_ target:AnyObject,navBarItem:UINavigationItem,strLeftImage:NSString,leftselect:Selector,strRightImage:NSString,select:Selector)
     {
@@ -106,7 +106,7 @@ class CommanUtility: NSObject {
         target.navigationItem.setLeftBarButton(rightBarButtonItemEdit, animated: false)
         
         target.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-
+        
     }
     
     class func doDefaultSettingOfNavigationBar (controller : UIViewController) {
@@ -115,7 +115,7 @@ class CommanUtility: NSObject {
         controller.navigationController?.navigationBar.isTranslucent = false
         controller.navigationController?.navigationBar.clipsToBounds = false
     }
-  
+    
     class func doCheckValidationForSignUp(){
         
         
@@ -162,24 +162,24 @@ class CommanUtility: NSObject {
         return time2
     }
     
-       class func textToImage(drawText text: NSString, inImage image: UIImage, atPoint point: CGPoint) -> UIImage {
-    
+    class func textToImage(drawText text: NSString, inImage image: UIImage, atPoint point: CGPoint) -> UIImage {
+        
         let textColor = UIColor.black
         let textFont = UIFont(name: "Menlo-Italic", size: 50)!
         
         let scale = UIScreen.main.scale
         UIGraphicsBeginImageContextWithOptions(image.size, false, scale)
-    
-       let style = NSMutableParagraphStyle()
-         style.alignment = NSTextAlignment.center
-    
+        
+        let style = NSMutableParagraphStyle()
+        style.alignment = NSTextAlignment.center
+        
         let textFontAttributes = [
             NSFontAttributeName: textFont,
             NSParagraphStyleAttributeName: style ,
             NSForegroundColorAttributeName: textColor,
             ] as [String : Any]
-    image.draw(in: CGRect(origin: CGPoint.zero, size: CGSize(width : image.size.width , height : image.size.height)))
-    
+        image.draw(in: CGRect(origin: CGPoint.zero, size: CGSize(width : image.size.width , height : image.size.height)))
+        
         let rect = CGRect(origin: point, size: CGSize(width : image.size.width-220 , height : image.size.height-230))
         text.draw(in: rect, withAttributes: textFontAttributes)
         
@@ -191,13 +191,13 @@ class CommanUtility: NSObject {
     class func saveImageDocumentDirectory(userId : String, img : UIImage){
         let fileManager = FileManager.default
         let paths = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent("image_\(userId).png")
-       // let image = UIImage(named: ("image \(userId).png"))
+        // let image = UIImage(named: ("image \(userId).png"))
         print(paths)
         let imageData = UIImageJPEGRepresentation(img, 0.5)
         fileManager.createFile(atPath: paths as String, contents: imageData, attributes: nil)
     }
     
-   class func getImage(userId : String) -> UIImage{
+    class func getImage(userId : String) -> UIImage{
         var img = UIImage()
         let fileManager = FileManager.default
         let imagePAth = (self.getDirectoryPath() as NSString).appendingPathComponent("image_\(userId).png")
@@ -205,11 +205,11 @@ class CommanUtility: NSObject {
             img = UIImage(contentsOfFile: imagePAth)!
         }else{
             img = UIImage(named : "avatar.png")!
-    }
+        }
         return img
     }
     
-   class func getDirectoryPath() -> String {
+    class func getDirectoryPath() -> String {
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         let documentsDirectory = paths[0]
         return documentsDirectory
