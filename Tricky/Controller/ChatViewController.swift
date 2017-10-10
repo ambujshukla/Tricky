@@ -117,7 +117,7 @@ class ChatViewController: UIViewController  , UITableViewDataSource , UITableVie
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChatDetailViewIdentifier") as! ChatDetailViewController
         let dictData = self.chatData[indexPath.row]
         vc.dictChatData = dictData
-        vc.strName = dictData["name"] as! String
+        vc.strName = dictData["receiverName"] as! String
         vc.strChatId = dictData["chatId"] as! String
         vc.strReceiverId = vc.dictChatData["receiverId"] as! String
         self.navigationController?.pushViewController(vc

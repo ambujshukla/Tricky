@@ -52,6 +52,7 @@ class MessageTableViewCell: UITableViewCell {
         }
         else
         {
+            self.btnReply.isHidden = false
             self.btnBlock.isSelected = false
         }
         

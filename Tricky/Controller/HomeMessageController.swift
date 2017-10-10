@@ -268,7 +268,7 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChatDetailViewIdentifier") as! ChatDetailViewController
         vc.dictChatData = self.arrMessageList[indexPath.row]
-        vc.strName = vc.dictChatData["recieverName"] as! String
+        vc.strName = vc.dictChatData["senderName"] as! String
         vc.strChatId = vc.dictChatData["messageId"] as! String
         vc.strReceiverId = vc.dictChatData["recieverId"] as! String
         self.navigationController?.pushViewController(vc, animated: true)
@@ -285,7 +285,7 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
         
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChatDetailViewIdentifier") as! ChatDetailViewController
         vc.dictChatData = self.arrMessageList[sender.tag]
-        vc.strName = vc.dictChatData["recieverName"] as! String
+        vc.strName = vc.dictChatData["senderName"] as! String
         vc.strChatId = vc.dictChatData["messageId"] as! String
         vc.strReceiverId = vc.dictChatData["recieverId"] as! String
         self.navigationController?.pushViewController(vc, animated: true)
@@ -302,6 +302,7 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
         let lastElement = self.arrMessageList.count - 1
         if indexPath.row == lastElement{
             
+<<<<<<< HEAD
             // if self.totalCount != self.arrMessageList.count {
             self.offSet += 10
             self.doGetMessageList(isComeFromPullToRefresh: false)
@@ -310,6 +311,16 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
             //            else{
             //                self.hideAndShowFotterView(isHideFotter: true, isAnimateActivityInd: false)
             //            }
+=======
+           // if self.totalCount != self.arrMessageList.count {
+                self.offSet += 10
+                self.doGetMessageList(isComeFromPullToRefresh: false)
+                self.hideAndShowFotterView(isHideFotter: false, isAnimateActivityInd: true)
+//            }
+//            else{
+//                self.hideAndShowFotterView(isHideFotter: true, isAnimateActivityInd: false)
+//            }
+>>>>>>> 5b3731d8d72812d78f8f65519ce64eeb0aaf616d
         }
     }
     
