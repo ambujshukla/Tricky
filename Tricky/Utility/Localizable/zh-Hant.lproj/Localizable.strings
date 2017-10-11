@@ -28,7 +28,7 @@
 "txt_otp" = "OTP";
 "txt_verify" = "Verify";
 "txt_resend_otp" = "Resend OTP";
-"txt_otp_verify" = "OTP Verify";
+"txt_otp_verify" = "Verify OTP";
 "txt_profile_photo" = "Profile Photo";
 "txt_cancel" = "Cancel";
 "txt_gallery" = "Gallery";

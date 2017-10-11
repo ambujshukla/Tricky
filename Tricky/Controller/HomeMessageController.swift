@@ -312,13 +312,12 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
         }
     }
 
-    
     func doActionOnShare(sender : UIButton)
     {
         let dictData = self.arrMessageList[sender.tag]
         let shareText = dictData["message"]
         
-        let image = CommanUtility.textToImage(drawText: shareText as! NSString, inImage: #imageLiteral(resourceName: "sharemessage"), atPoint: CGPoint(x : 90 , y : 250))
+        let image = CommanUtility.textToImage(drawText: shareText as! NSString, inImage: #imageLiteral(resourceName: "sharemessage"), atPoint: CGPoint(x : 90 , y : 250),view : self.view)
 
         let vc = UIActivityViewController(activityItems: [image], applicationActivities: [])
         present(vc, animated: true, completion: nil)
