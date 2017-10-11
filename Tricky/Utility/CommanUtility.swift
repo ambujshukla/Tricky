@@ -163,13 +163,13 @@ class CommanUtility: NSObject {
     }
     class func textToImage(drawText text: NSString, inImage image: UIImage, atPoint point: CGPoint) -> UIImage
     {
-         let image = UIImage(named: "bear.jpeg")
-         return image!
+        let image = UIImage(named: "bear.jpeg")
+        return image!
     }
     
     class func textToImage(drawText text: NSString, inImage image: UIImage, atPoint point: CGPoint, view : UIView) -> UIImage
     {
-      //  let image = UIImage(named: "bear.jpeg")
+        //  let image = UIImage(named: "bear.jpeg")
         
         let viewToRender = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.width)) // here you can set the actual image width : image.size.with ?? 0 / height : image.size.height ?? 0
         
@@ -191,36 +191,36 @@ class CommanUtility: NSObject {
         UIGraphicsEndImageContext()
         
         return finalImage!
-
+        
     }
-//    {
-//        
-//        let textColor = UIColor.black
-//        let textFont = UIFont(name: "Menlo-Italic", size: 50)!
-//        
-//        let scale = UIScreen.main.scale
-//        UIGraphicsBeginImageContextWithOptions(image.size, false, scale)
-//        
-//        let style = NSMutableParagraphStyle()
-//        style.alignment = NSTextAlignment.center
-//        
-//        let textFontAttributes = [
-//            NSFontAttributeName: textFont,
-//            NSParagraphStyleAttributeName: style ,
-//            NSForegroundColorAttributeName: textColor,
-//            ] as [String : Any]
-//        image.draw(in: CGRect(origin: CGPoint.zero, size: CGSize(width : image.size.width , height : image.size.height)))
-//        
-//        let rect = CGRect(origin: point, size: CGSize(width : image.size.width-220 , height : image.size.height-230))
-//        text.draw(in: rect, withAttributes: textFontAttributes)
-//        
-//        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-//        UIGraphicsEndImageContext()
-//        
-//        return newImage!
-//    }
+    //    {
+    //
+    //        let textColor = UIColor.black
+    //        let textFont = UIFont(name: "Menlo-Italic", size: 50)!
+    //
+    //        let scale = UIScreen.main.scale
+    //        UIGraphicsBeginImageContextWithOptions(image.size, false, scale)
+    //
+    //        let style = NSMutableParagraphStyle()
+    //        style.alignment = NSTextAlignment.center
+    //
+    //        let textFontAttributes = [
+    //            NSFontAttributeName: textFont,
+    //            NSParagraphStyleAttributeName: style ,
+    //            NSForegroundColorAttributeName: textColor,
+    //            ] as [String : Any]
+    //        image.draw(in: CGRect(origin: CGPoint.zero, size: CGSize(width : image.size.width , height : image.size.height)))
+    //
+    //        let rect = CGRect(origin: point, size: CGSize(width : image.size.width-220 , height : image.size.height-230))
+    //        text.draw(in: rect, withAttributes: textFontAttributes)
+    //
+    //        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+    //        UIGraphicsEndImageContext()
+    //
+    //        return newImage!
+    //    }
     
-   class func imageFrom(text: String , size:CGSize) -> UIImage {
+    class func imageFrom(text: String , size:CGSize) -> UIImage {
         
         let renderer = UIGraphicsImageRenderer(size: size)
         let img = renderer.image { ctx in
@@ -260,6 +260,16 @@ class CommanUtility: NSObject {
         let documentsDirectory = paths[0]
         return documentsDirectory
     }
+    
+    class func getDateFromString(format : String, time : String) -> Date
+    {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        let date = dateFormatter.date(from: time)
+        return date!
+    }
 }
+
+
 
 

@@ -15,6 +15,7 @@ class VerifyOTPController: UIViewController
     @IBOutlet weak var btnOTP  : UIButton!
     @IBOutlet weak var btnResend  : UIButton!
     @IBOutlet weak var imgBG : UIImageView!
+    @IBOutlet weak var lblInfo : UILabel!
     var isFromSignUp : Bool = false
     var strMobileNo : String!
     var strOTP : String!
@@ -31,6 +32,7 @@ class VerifyOTPController: UIViewController
         super.viewDidLoad()
         self.decorateUI()
         self.btnResend.isEnabled = false
+        self.btnResend.setTitleColor(UIColor.darkGray, for: .normal)
         timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(doCallTimer)), userInfo: nil, repeats: true)
     }
     
@@ -45,6 +47,7 @@ class VerifyOTPController: UIViewController
             
             self.lblTimer.text = ""
             self.btnResend.isEnabled = true
+            self.btnResend.setTitleColor(UIColor.white, for: .normal)
             timer.invalidate()
         }
     }
@@ -57,6 +60,7 @@ class VerifyOTPController: UIViewController
     
     func decorateUI ()
     {
+        self.lblInfo.text = "otp_info".localized()
         self.btnOTP.backgroundColor = UIColor.white
         
         self.btnOTP.setTitleColor(UIColor.white, for: .normal)
@@ -76,12 +80,10 @@ class VerifyOTPController: UIViewController
 //            self.imgBG.image = UIImage(named : OTP_FORGOT_BG)
 //            self.btnOTP.setTitle("txt_reset".localized(), for: .normal)
 //        }
-        self.btnResend.setTitleColor(UIColor.darkGray, for: .normal)
-        
         CommanUtility.decorateNavigationbarWithBackButtonAndTitle(target: self, leftselect: #selector(doClickBack), strTitle: "txt_otp_verify".localized(), strBackImag: BACK_BUTTON, strFontName: "Arial", size: 20, color: color(red: 60, green: 120, blue: 101))
         
         self.tfOtp.textColor = UIColor.white
-        self.btnResend.setTitleColor(UIColor.white, for: .normal)
+        self.btnResend.setTitleColor(UIColor.darkGray, for: .normal)
         self.tfOtp.text = self.strOTP
         
         CommanUtility.createCustomRightButton(self, navBarItem: self.navigationItem, strRightImage: "headericon", select: #selector(self.doNothing))
@@ -175,6 +177,7 @@ class VerifyOTPController: UIViewController
             {
                 self.time = 15
                 self.btnResend.isEnabled = false
+                self.btnResend.setTitleColor(UIColor.darkGray, for: .normal)
                 self.timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(self.doCallTimer)), userInfo: nil, repeats: true)
             }
             else
@@ -206,7 +209,7 @@ class VerifyOTPController: UIViewController
                 self.doCallWebAPIForLogin()
             }
             }else{
-                CommonUtil.showTotstOnWindow(strMessgae: "Please enter opt first")
+                CommonUtil.showTotstOnWindow(strMessgae: "Please enter otp first")
             }
         }
     }

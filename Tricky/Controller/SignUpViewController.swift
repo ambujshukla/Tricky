@@ -221,7 +221,6 @@ class SignUpViewController: UIViewController {
         vc.isFromSignUp = true
         vc.strMobileNo = self.txtMobile.text
         vc.strLink = self.txtLink.text
-        vc.strOTP = "\(String(describing: OTPData.otp!))"
         vc.strCountryCode = self.btnCountryCode.titleLabel?.text
         self.navigationController?.pushViewController(vc, animated: true)
     }

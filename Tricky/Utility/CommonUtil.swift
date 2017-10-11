@@ -104,7 +104,7 @@ class CommonUtil: NSObject {
         }
        else if(controller.txtLink.text!.isEmpty)
         {
-            return (false,NSString(format: "%@", "Please enter link") as String)
+            return (false,NSString(format: "%@", "Please enter Username") as String)
         }
           else if(!controller.btnTnC.isSelected)
         {

@@ -31,7 +31,7 @@
 "txt_profile_photo" = "Profile Photo";
 "txt_cancel" = "Cancel";
 "txt_gallery" = "Gallery";
-"txt_photo" = "Photo";
+"txt_photo" = "Camera";
 "txt_options" = "Option to select";
 "txt_profile" = "Profile";
 "txt_block_users" = "Blocked User";
@@ -94,3 +94,5 @@
 
 
 "txt_no_record" = "No record found.";
+"otp_info" = "Don't attend the incoming call. You will receive a missed call. Enter the last 6 digit of missed call number.";
+"txt_message_user_blocked" = "You have blocked this user";
