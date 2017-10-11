@@ -40,21 +40,22 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
     {
         super.viewDidLoad()
         self.decorateUI()
-        self.doGetMessageList(isComeFromPullToRefresh:  false)
+        self.doGetMessageList(isComeFromPullToRefresh:  false , isShowLoader:  true)
     }
     
     func handleRefresh(_ refreshControl: UIRefreshControl) {
-        self.doGetMessageList(isComeFromPullToRefresh: true)
+        self.offSet = 0
+        self.doGetMessageList(isComeFromPullToRefresh: true , isShowLoader:  false)
         refreshControl.endRefreshing()
     }
     
-    func doGetMessageList(isComeFromPullToRefresh : Bool)
+    func doGetMessageList(isComeFromPullToRefresh : Bool , isShowLoader : Bool)
     {
         self.view.endEditing(true)
         //UpdateProfile
         let dictData = ["version" : "1.0" , "os" : "2" , "language" : "english","userId": CommonUtil.getUserId() ,"filterVulgar" : CommonUtil.filterVulgerMsg(),"messageForOnlyRegisterUser":CommonUtil.isBlockUser(),"offset":"\(self.offSet)","limit" : "\(self.limit)","showOnlyFavorite":"0"] as [String : Any]
         
-        WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOSTAndPullToRefresh(isShowLoder :!isComeFromPullToRefresh ,strURL: kBaseUrl, strServiceName: "getRecSentList", parameter: dictData , success: { (obj) in
+        WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOSTAndPullToRefresh(isShowLoder :isShowLoader ,strURL: kBaseUrl, strServiceName: "getRecSentList", parameter: dictData , success: { (obj) in
             print("this is object \(obj)")
             if (obj["status"] as! String == "1")
             {
@@ -277,6 +278,7 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
     @IBAction func doClickPlus()
     {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ContactViewController") as! ContactViewController
+        vc.contactShowFrom = 2
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -296,19 +298,21 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
         (isAnimateActivityInd) ? self.activityView.startAnimating() : self.activityView.stopAnimating()
     }
 
+    
+    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
         let lastElement = self.arrMessageList.count - 1
         if indexPath.row == lastElement{
             
-           // if self.totalCount != self.arrMessageList.count {
+            if self.totalCount != self.arrMessageList.count {
                 self.offSet += 10
-                self.doGetMessageList(isComeFromPullToRefresh: false)
+                self.doGetMessageList(isComeFromPullToRefresh: false , isShowLoader:  false)
                 self.hideAndShowFotterView(isHideFotter: false, isAnimateActivityInd: true)
-//            }
-//            else{
-//                self.hideAndShowFotterView(isHideFotter: true, isAnimateActivityInd: false)
-//            }
+            }
+            else{
+                self.hideAndShowFotterView(isHideFotter: true, isAnimateActivityInd: false)
+            }
         }
     }
 
@@ -317,7 +321,18 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
         let dictData = self.arrMessageList[sender.tag]
         let shareText = dictData["message"]
         
-        let image = CommanUtility.textToImage(drawText: shareText as! NSString, inImage: #imageLiteral(resourceName: "sharemessage"), atPoint: CGPoint(x : 90 , y : 250),view : self.view)
+        var yOrigin : Int = 250
+        
+        if (shareText?.length)! <= 100 {
+          yOrigin = 450
+        }
+        else if(shareText?.length)! <= 200 {
+            yOrigin = 350
+        }
+        else if(shareText?.length)! <= 300 {
+            yOrigin = 300
+        }
+        let image = CommanUtility.textToImage(drawText: shareText as! NSString, inImage: #imageLiteral(resourceName: "sharemessage"), atPoint: CGPoint(x : 90 , y : yOrigin))
 
         let vc = UIActivityViewController(activityItems: [image], applicationActivities: [])
         present(vc, animated: true, completion: nil)

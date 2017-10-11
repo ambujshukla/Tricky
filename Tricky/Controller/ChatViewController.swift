@@ -13,7 +13,7 @@ class ChatViewController: UIViewController  , UITableViewDataSource , UITableVie
     
     @IBOutlet weak var tblChat : UITableView!
     
-    var chatData =  Array<Dictionary<String , AnyObject>>(){
+    var chatData =  [[String : AnyObject]](){
         didSet {
             self.tblChat.reloadData()
         }
@@ -36,7 +36,7 @@ class ChatViewController: UIViewController  , UITableViewDataSource , UITableVie
 
     
     func handleRefresh(_ refreshControl: UIRefreshControl) {
-        self.doCallWebServiceForGetChatList(isComeFromPullToRefresh: true)
+        self.doCallWebServiceForGetChatList(isComeFromPullToRefresh: true , isShowLoader:  false)
         refreshControl.endRefreshing()
     }
 
@@ -55,27 +55,33 @@ class ChatViewController: UIViewController  , UITableViewDataSource , UITableVie
     
     func decorateUI() {
         self.tblChat.addSubview(self.refreshControl)
-        self.doCallWebServiceForGetChatList(isComeFromPullToRefresh:  false)
-        
+        self.doCallWebServiceForGetChatList(isComeFromPullToRefresh:  false , isShowLoader:  true)
         self.tblChat.emptyDataSetSource = self
         self.tblChat.emptyDataSetDelegate = self
         self.hideAndShowFotterView(isHideFotter: true, isAnimateActivityInd: false)
-
-
     }
     
-    func doCallWebServiceForGetChatList(isComeFromPullToRefresh : Bool)
+    func doCallWebServiceForGetChatList(isComeFromPullToRefresh : Bool , isShowLoader : Bool)
     {
         let dictData = ["userId" : CommonUtil.getUserId() , "os" : "2" , "version" : "1.0" , "language" : "english" , "limit" : "10" , "offset" : "0"] as [String : Any]
         
-        WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOSTAndPullToRefresh(isShowLoder :!isComeFromPullToRefresh , strURL: kBaseUrl , strServiceName: "chatList", parameter: dictData, success: { (obj) in
+        WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOSTAndPullToRefresh(isShowLoder :isShowLoader , strURL: kBaseUrl , strServiceName: "chatList", parameter: dictData, success: { (obj) in
             print(obj)
             if (obj["status"] as! String == "1"){
                 
-                self.totalCount = obj["totalRecordCount"] as! Int
 
-                let chatData = obj["responseData"]
-                self.chatData = chatData as! Array<Dictionary<String, AnyObject>>
+                if let result : Array<Dictionary<String, Any>> = obj["responseData"] as? Array<Dictionary<String, Any>>
+                {
+                self.totalCount = obj["totalRecordCount"] as! Int
+                if isComeFromPullToRefresh {
+                  self.chatData.removeAll()
+                }
+                    for(_, element) in result.enumerated()
+                    {
+                        self.chatData .append(element as [String : AnyObject])
+                    }
+                    
+                }
             }
             else{
                 CommonUtil.showTotstOnWindow(strMessgae: obj["responseMessage"] as! String)
@@ -83,7 +89,8 @@ class ChatViewController: UIViewController  , UITableViewDataSource , UITableVie
 
             }
         }) { (error) in
-            
+            self.hideAndShowFotterView(isHideFotter: true, isAnimateActivityInd: false)
+    
         }
     }
     
@@ -159,11 +166,11 @@ class ChatViewController: UIViewController  , UITableViewDataSource , UITableVie
             
             if self.totalCount != self.chatData.count {
                 self.offSet += 10
-                self.doCallWebServiceForGetChatList(isComeFromPullToRefresh: true)
-                self.hideAndShowFotterView(isHideFotter: false, isAnimateActivityInd: true)
+                self.doCallWebServiceForGetChatList(isComeFromPullToRefresh: false , isShowLoader:  false)
+                self.hideAndShowFotterView(isHideFotter: true, isAnimateActivityInd: true)
             }
-            else{
-                self.hideAndShowFotterView(isHideFotter: true, isAnimateActivityInd: false)
+           else{
+               self.hideAndShowFotterView(isHideFotter: true, isAnimateActivityInd: false)
             }
         }
     }

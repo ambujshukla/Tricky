@@ -195,13 +195,18 @@ class VerifyOTPController: UIViewController
             self.navigationController?.pushViewController(vc, animated: true)
         }else{
             
-            CommonUtil.setData("countryCode", value: self.strCountryCode as! NSString)
+            if ((self.tfOtp.text?.characters.count)! > 0){
+            
+            CommonUtil.setData("countryCode", value: self.strCountryCode! as NSString)
             self.btnResend.isEnabled = false
             if isFromSignUp {
                 self.doCallWebAPIForRegistration()
             }
             else{
                 self.doCallWebAPIForLogin()
+            }
+            }else{
+                CommonUtil.showTotstOnWindow(strMessgae: "Please enter opt first")
             }
         }
     }
