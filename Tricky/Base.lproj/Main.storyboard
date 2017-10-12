@@ -2374,7 +2374,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oS6-eQ-PmO">
-                                <rect key="frame" x="69" y="309" width="208" height="34"/>
+                                <rect key="frame" x="40" y="309" width="240" height="34"/>
                                 <state key="normal">
                                     <color key="titleColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -2383,7 +2383,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FKQ-PG-Y33">
-                                <rect key="frame" x="192" y="357" width="85" height="30"/>
+                                <rect key="frame" x="195" y="357" width="85" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="Resend OTP">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2430,11 +2430,10 @@
                             </label>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="oS6-eQ-PmO" firstAttribute="leading" secondItem="6Oc-Sh-CfS" secondAttribute="leading" id="0JN-vQ-U9h"/>
                             <constraint firstItem="6Oc-Sh-CfS" firstAttribute="leading" secondItem="uS0-sa-Fs2" secondAttribute="trailing" constant="9" id="5Zf-dP-B1a"/>
                             <constraint firstItem="FKQ-PG-Y33" firstAttribute="top" secondItem="NpZ-Nc-eAz" secondAttribute="bottom" multiplier="322:568" constant="35" id="5ar-uh-G5k"/>
+                            <constraint firstItem="oS6-eQ-PmO" firstAttribute="trailing" secondItem="ICQ-5u-ozG" secondAttribute="trailing" id="62J-Bm-Iy3"/>
                             <constraint firstItem="40a-Gc-LpR" firstAttribute="top" secondItem="89u-Hu-ocC" secondAttribute="bottom" constant="27" id="6nf-Lm-l9V"/>
-                            <constraint firstItem="FKQ-PG-Y33" firstAttribute="trailing" secondItem="oS6-eQ-PmO" secondAttribute="trailing" id="ABB-cR-LVa"/>
                             <constraint firstItem="6Oc-Sh-CfS" firstAttribute="leading" secondItem="NpZ-Nc-eAz" secondAttribute="trailing" multiplier="69:320" id="G5g-0b-LAf"/>
                             <constraint firstItem="40a-Gc-LpR" firstAttribute="centerX" secondItem="NpZ-Nc-eAz" secondAttribute="centerX" id="GD5-QM-O7Z"/>
                             <constraint firstItem="oS6-eQ-PmO" firstAttribute="height" secondItem="NpZ-Nc-eAz" secondAttribute="height" multiplier="34:568" id="Gcp-gr-H7G"/>
@@ -2444,8 +2443,10 @@
                             <constraint firstItem="eN8-1C-One" firstAttribute="centerX" secondItem="NpZ-Nc-eAz" secondAttribute="centerX" id="gqd-ni-lBq"/>
                             <constraint firstItem="6Oc-Sh-CfS" firstAttribute="top" secondItem="NpZ-Nc-eAz" secondAttribute="bottom" multiplier="248:568" id="ijN-tm-IH0"/>
                             <constraint firstAttribute="bottom" secondItem="Ea0-Go-Anh" secondAttribute="bottom" id="j6O-7s-RtG"/>
+                            <constraint firstItem="FKQ-PG-Y33" firstAttribute="trailing" secondItem="oS6-eQ-PmO" secondAttribute="trailing" id="lM8-E5-wkS"/>
+                            <constraint firstItem="oS6-eQ-PmO" firstAttribute="leading" secondItem="ICQ-5u-ozG" secondAttribute="leading" id="ml0-HI-WBc"/>
                             <constraint firstItem="Ea0-Go-Anh" firstAttribute="leading" secondItem="NpZ-Nc-eAz" secondAttribute="leading" id="ocF-8W-1vD"/>
-                            <constraint firstItem="oS6-eQ-PmO" firstAttribute="width" secondItem="6Oc-Sh-CfS" secondAttribute="width" id="qU2-IX-IIz"/>
+                            <constraint firstItem="oS6-eQ-PmO" firstAttribute="width" secondItem="6Oc-Sh-CfS" secondAttribute="width" constant="32" id="qU2-IX-IIz"/>
                             <constraint firstItem="6Oc-Sh-CfS" firstAttribute="height" secondItem="NpZ-Nc-eAz" secondAttribute="height" multiplier="30:568" id="sFY-yX-Gdb"/>
                             <constraint firstItem="ICQ-5u-ozG" firstAttribute="top" secondItem="6Oc-Sh-CfS" secondAttribute="bottom" id="tgU-vh-mL1"/>
                             <constraint firstItem="6Oc-Sh-CfS" firstAttribute="width" secondItem="NpZ-Nc-eAz" secondAttribute="width" multiplier="208:320" id="uTq-hQ-hff"/>
