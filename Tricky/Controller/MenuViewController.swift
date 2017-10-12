@@ -235,10 +235,9 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
     
     @IBAction func doClickShareLink()
     {
-        let shareText = self.lblEmail.text
-        let image = CommanUtility.textToImage(drawText: shareText! as NSString, inImage: #imageLiteral(resourceName: "sharemessage"), atPoint: CGPoint(x : 90 , y : 250))
-
-        let vc = UIActivityViewController(activityItems: [image], applicationActivities: [])
+        let shareText = "\("txt_link_share".localized()) \n \(self.lblEmail.text!)"
+        print(shareText)
+        let vc = UIActivityViewController(activityItems: [shareText], applicationActivities: [])
         present(vc, animated: true, completion: nil)
     }
     

@@ -82,7 +82,7 @@ class VerifyOTPController: UIViewController
         
         self.tfOtp.textColor = UIColor.white
         self.btnResend.setTitleColor(UIColor.white, for: .normal)
-        self.tfOtp.text = self.strOTP
+     //   self.tfOtp.text = self.strOTP
         
         CommanUtility.createCustomRightButton(self, navBarItem: self.navigationItem, strRightImage: "headericon", select: #selector(self.doNothing))
 

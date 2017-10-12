@@ -278,7 +278,7 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
     @IBAction func doClickPlus()
     {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ContactViewController") as! ContactViewController
-        vc.contactShowFrom = 2
+        vc.contactShowFrom = 3
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

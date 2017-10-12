@@ -91,6 +91,9 @@
 "txt_contacts" = "Contacts";
 "txt_favorite" = "Favorite";
 "txt_AllContact" = "All Contacts";
+"txt_select_cont" = "Select Contact";
+
 
 
 "txt_no_record" = "No record found.";
+"txt_link_share" = "I invite you to send me message anonymously on TrickyChat app";

@@ -62,7 +62,8 @@ class UserPostAnswerViewController: UIViewController {
             if sendMessageData?.status == "1"
             {
                 CommonUtil.showTotstOnWindow(strMessgae: (sendMessageData?.responseMessage)!)
-                self.navigationController?.popViewController(animated: true)
+                let controller = self.getHomeViewController()
+                self.navigationController?.popToViewController(controller!, animated: true)
             }
             else
             {
@@ -74,8 +75,17 @@ class UserPostAnswerViewController: UIViewController {
             CommonUtil.showTotstOnWindow(strMessgae: "txt_something_went_wrong".localized())
             
         }
+    }
+    
+    func getHomeViewController() -> UIViewController?{
         
-        
+        let controller = self.navigationController?.viewControllers
+        for obj in controller!{
+            if  obj.isKind(of: HomeViewController.self) {
+                return obj
+            }
+        }
+        return nil
     }
     
     @IBAction func doClickSend()

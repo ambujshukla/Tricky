@@ -23,6 +23,7 @@ class LoginViewController: UIViewController
     @IBOutlet var imgBg : UIImageView!
     @IBOutlet var btnCountryCode : UIButton!
     var arrCountryCode =  [String]()
+    var selectedIndex : Int = 0
 
     override func viewDidLoad()
     {
@@ -34,7 +35,7 @@ class LoginViewController: UIViewController
         //self.txtPassword.text = "123456"
        //
         
-        self.txtMobile.text = "8770236795"
+        //self.txtMobile.text = "8770236795"
         self.btnCountryCode.setTitle("+91", for: .normal)
         
         self.title = "txt_login".localized()
@@ -179,9 +180,13 @@ class LoginViewController: UIViewController
     {
                 ActionSheetMultipleStringPicker.show(withTitle: "Select Code", rows: [
                     self.arrCountryCode
-                    ], initialSelection: [0], doneBlock: {
+                    ], initialSelection: [self.selectedIndex], doneBlock: {
                         picker, indexes, values in
-        
+                        
+                        let array = indexes as! [Int]
+                        self.selectedIndex = array[0]
+                        print(array[0])
+                        
                         if let arrValue = values as? [String] {
                             let string = arrValue[0]
                             if let range = string.range(of: "(") {
