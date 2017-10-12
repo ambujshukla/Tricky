@@ -22,6 +22,11 @@ extension AAPopUp {
 
 let kBaseUrl = "http://www.trickychat.com/api/"
 
+let Font_Robitto_Regular = "Roboto-Regular"
+let Font_Robitto_Medium = "Roboto-Medium"
+let Font_Robitto_Light = "Roboto-Light"
+
+
 
 let kLoginService        = "users/login"
 let kReistration         = "register"

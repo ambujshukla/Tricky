@@ -246,6 +246,8 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
         let dictData = self.arrMessageList[indexPath.row]
         if dictData["senderId"] as! String == CommonUtil.getUserId()  {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell2", for: indexPath) as! MessageTableViewCell
+            cell.lblTo.text = "To: \(dictData["recieverName"] as! String)"
+
             let isFavourite = dictData["isFavorite"] as! Bool
             if isFavourite {
                 cell.btnfavourite.isSelected = true
@@ -263,7 +265,6 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
             cell.selectionStyle = .none
             cellToReturn = cell
         }else{
-            
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell1", for: indexPath) as! MessageTableViewCell
             cell.decorateTableViewCell(dictData: self.arrMessageList[indexPath.row])
             

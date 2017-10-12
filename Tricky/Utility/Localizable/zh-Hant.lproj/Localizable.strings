@@ -93,3 +93,5 @@
 "txt_no_record" = "No record found.";
 "otp_info" = "Don't attend the incoming call. You will receive a missed call. Enter the last 6 digit of missed call number.";
 "txt_message_user_blocked" = "You have blocked this user";
+"txt_share" = "I invite you to send me message anonymously on TrickyChat app";
+"txt_send_message" = "Send secret message here..";

@@ -9,9 +9,11 @@
 import UIKit
 import Localize_Swift
 import ObjectMapper
+import KMPlaceholderTextView
+
 class UserPostAnswerViewController: UIViewController,UITextViewDelegate {
     
-    @IBOutlet weak var txtViewComment : UITextView!
+    @IBOutlet weak var txtViewComment : KMPlaceholderTextView!
     @IBOutlet weak var btnSend : UIButton!
     @IBOutlet weak var lblHeader : UILabel!
     @IBOutlet weak var lblLeaveAnswer : UILabel!
@@ -28,6 +30,9 @@ class UserPostAnswerViewController: UIViewController,UITextViewDelegate {
     
     func decorateUI ()
     {
+        self.txtViewComment.placeholder = "txt_send_message".localized()
+        self.txtViewComment.placeholderColor = UIColor.white
+        self.txtViewComment.textColor = UIColor.white
         self.lblCharacter.text = "160"
         self.lblCharacter.textColor = UIColor.white
         self.txtViewComment.delegate = self

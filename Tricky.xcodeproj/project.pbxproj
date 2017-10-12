@@ -83,6 +83,9 @@
 		3163FC281F4DFB62004AA3CF /* ChatDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3163FC271F4DFB62004AA3CF /* ChatDetailViewController.swift */; };
 		316801101F6592D2000B912B /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3168010F1F6592D2000B912B /* MenuTableViewCell.swift */; };
 		318498201F798CBE00A78911 /* avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 3184981F1F798CBE00A78911 /* avatar.png */; };
+		31AFA4951F8FFB3F0024D0ED /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 31AFA4921F8FFB3F0024D0ED /* Roboto-Light.ttf */; };
+		31AFA4961F8FFB3F0024D0ED /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 31AFA4931F8FFB3F0024D0ED /* Roboto-Medium.ttf */; };
+		31AFA4971F8FFB3F0024D0ED /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 31AFA4941F8FFB3F0024D0ED /* Roboto-Regular.ttf */; };
 		31B72F691F475A15007D24E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B72F681F475A15007D24E6 /* AppDelegate.swift */; };
 		31B72F6E1F475A15007D24E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31B72F6C1F475A15007D24E6 /* Main.storyboard */; };
 		31B72F701F475A15007D24E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31B72F6F1F475A15007D24E6 /* Assets.xcassets */; };
@@ -193,6 +196,9 @@
 		3164B02E1F587A71006B8E52 /* Tricky.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tricky.entitlements; sourceTree = "<group>"; };
 		3168010F1F6592D2000B912B /* MenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		3184981F1F798CBE00A78911 /* avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatar.png; sourceTree = "<group>"; };
+		31AFA4921F8FFB3F0024D0ED /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
+		31AFA4931F8FFB3F0024D0ED /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		31AFA4941F8FFB3F0024D0ED /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		31B72F651F475A14007D24E6 /* Tricky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tricky.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31B72F681F475A15007D24E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		31B72F6D1F475A15007D24E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -350,6 +356,16 @@
 			path = ForgotPassword;
 			sourceTree = "<group>";
 		};
+		31AFA4911F8FFB230024D0ED /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				31AFA4921F8FFB3F0024D0ED /* Roboto-Light.ttf */,
+				31AFA4931F8FFB3F0024D0ED /* Roboto-Medium.ttf */,
+				31AFA4941F8FFB3F0024D0ED /* Roboto-Regular.ttf */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		31B72F5C1F475A14007D24E6 = {
 			isa = PBXGroup;
 			children = (
@@ -371,6 +387,7 @@
 		31B72F671F475A14007D24E6 /* Tricky */ = {
 			isa = PBXGroup;
 			children = (
+				31AFA4911F8FFB230024D0ED /* Resources */,
 				3164B02E1F587A71006B8E52 /* Tricky.entitlements */,
 				3151CE971F48CB2E00C322C3 /* Image */,
 				3151CE901F48B2E300C322C3 /* UITableViewCell */,
@@ -621,6 +638,7 @@
 				31D031BD1F49C43E00D41E4C /* blockicon@2x.png in Resources */,
 				31D031CC1F49C6F700D41E4C /* ProfileBG@2x.png in Resources */,
 				3151CEBE1F49615B00C322C3 /* checkbox_unselected@3x.png in Resources */,
+				31AFA4961F8FFB3F0024D0ED /* Roboto-Medium.ttf in Resources */,
 				31D031C71F49C43E00D41E4C /* searchicon@3x.png in Resources */,
 				3151CEAB1F4960E400C322C3 /* passwordicon@2x.png in Resources */,
 				3151CEA01F4960B400C322C3 /* loginBG@3x.png in Resources */,
@@ -637,6 +655,8 @@
 				3151CEBC1F49615B00C322C3 /* checkbox_unselected.png in Resources */,
 				31D031BF1F49C43E00D41E4C /* editicon.png in Resources */,
 				3151CEB81F49615100C322C3 /* checkbox_selected@3x.png in Resources */,
+				31AFA4951F8FFB3F0024D0ED /* Roboto-Light.ttf in Resources */,
+				31AFA4971F8FFB3F0024D0ED /* Roboto-Regular.ttf in Resources */,
 				31D031C01F49C43E00D41E4C /* editicon@2x.png in Resources */,
 				31D031C61F49C43E00D41E4C /* searchicon@2x.png in Resources */,
 			);
@@ -690,6 +710,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
+				"${BUILT_PRODUCTS_DIR}/KMPlaceholderTextView/KMPlaceholderTextView.framework",
 				"${BUILT_PRODUCTS_DIR}/Localize-Swift/Localize_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/MagicalRecord/MagicalRecord.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
@@ -708,6 +729,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KMPlaceholderTextView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Localize_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MagicalRecord.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
