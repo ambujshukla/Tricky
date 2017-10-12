@@ -22,7 +22,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDa
     @IBOutlet weak var lblEmail : UILabel!
     @IBOutlet weak var btnCopy : UIButton!
     @IBOutlet weak var btnShare : UIButton!
-    let arrCountryCode = ["+91","+01","+02"]
     
     var imagePicker = UIImagePickerController()
     
@@ -249,11 +248,12 @@ class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDa
                 {
                     print(dictResponseData)
                     self.dictData["0"] = dictResponseData[0]["name"] as? String
-                    self.dictData["1"] = "\(dictResponseData[0]["countryCode"] as? String ?? "")  \(dictResponseData[0]["mobileNo"] as? String ?? "")"
+                    
+                    self.dictData["1"] = "\(CommonUtil.countryCode())  \(dictResponseData[0]["mobileNo"] as? String ?? "")"
                     self.dictData["2"] = dictResponseData[0][""] as? String
                   //  self.imgProfilePic.sd_setImage(with: URL(string : (dictResponseData[0]["profilePic"] as? String)!) )
                 }
-                print(obj["responseData"])
+         //       print(obj["responseData"])
                 self.tblView.reloadData()
                 
             }

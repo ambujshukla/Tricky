@@ -132,22 +132,10 @@ class CreateNewPostViewController: UIViewController, UITextViewDelegate {
     {
         self.btnAnonymous.isSelected = !self.btnAnonymous.isSelected
     }
-    
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        
-    }
-    
-    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
-        return true
-    }
+
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         
-        //        if ((textView.text.characters.count + 1) < 16) {
-        //          //  self.lblCharacter.text = String(16 - textView.text.characters.count)
-        //
-        //            return true
-        //        }
         let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
         let numberOfChars = newText.characters.count // for Swift use count(newText)
         if numberOfChars < 161
@@ -156,8 +144,6 @@ class CreateNewPostViewController: UIViewController, UITextViewDelegate {
             return true
         }
         return false
-        
-        //   return false
     }
     
 }

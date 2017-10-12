@@ -9,13 +9,14 @@
 import UIKit
 import Localize_Swift
 import ObjectMapper
-class UserPostAnswerViewController: UIViewController {
+class UserPostAnswerViewController: UIViewController,UITextViewDelegate {
     
     @IBOutlet weak var txtViewComment : UITextView!
     @IBOutlet weak var btnSend : UIButton!
     @IBOutlet weak var lblHeader : UILabel!
     @IBOutlet weak var lblLeaveAnswer : UILabel!
     @IBOutlet weak var imgBG : UIImageView!
+    @IBOutlet weak var lblCharacter : UILabel!
     var strUserId : String = ""
     var strTitle : String = ""
     
@@ -27,9 +28,9 @@ class UserPostAnswerViewController: UIViewController {
     
     func decorateUI ()
     {
-        //  self.btnSend.layer.borderColor = UIColor.white.cgColor
-        //  self.btnSend.layer.borderWidth = 1.0
-        //  self.btnSend.layer.masksToBounds = true
+        self.lblCharacter.text = "160"
+        self.lblCharacter.textColor = UIColor.white
+        self.txtViewComment.delegate = self
         CommanUtility.decorateNavigationbarWithBackButton(target: self, strTitle: strTitle , strBackButtonImage: BACK_BUTTON, selector: #selector(self.goTOBack), color: color(red: 146, green: 102, blue: 236))
         
         //      self.txtViewComment.backgroundColor = color(red: 219, green: 192, blue: 177)
@@ -94,6 +95,18 @@ class UserPostAnswerViewController: UIViewController {
         
         // let vc = self.storyboard?.instantiateViewController(withIdentifier: "PostDetailViewController") as! PostDetailViewController
         // self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        
+        let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
+        let numberOfChars = newText.characters.count // for Swift use count(newText)
+        if numberOfChars < 161
+        {
+            self.lblCharacter.text = String(160 - numberOfChars)
+            return true
+        }
+        return false
     }
     
     override func didReceiveMemoryWarning() {
