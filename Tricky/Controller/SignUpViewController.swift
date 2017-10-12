@@ -26,13 +26,10 @@ class SignUpViewController: UIViewController {
     //  @IBOutlet weak var txtSelectCode : UITextField!
     @IBOutlet weak var txtMobile : UITextField!
     @IBOutlet weak var txtLink : UITextField!
-    //  @IBOutlet weak var txtUrl : UITextField!
     @IBOutlet weak var txtDomain : UITextField!
     
-    //  @IBOutlet weak var btnNotifications : UIButton!
     @IBOutlet weak var btnTnC : UIButton!
     @IBOutlet weak var btnRegister : UIButton!
-    //  @IBOutlet weak var btnChooseFile : UIButton!
     
     @IBOutlet weak var imgBG : UIImageView!
     @IBOutlet weak var viewTop : UIView!
