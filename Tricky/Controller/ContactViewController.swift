@@ -231,8 +231,7 @@
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if !(self.isFromMenu)
-        {
+        if !(self.isFromMenu){
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserPostAnswerViewController")
                 as! UserPostAnswerViewController
             let dictData = self.arrSyncContacts[indexPath.row] as [String : AnyObject]
@@ -277,7 +276,7 @@
     func doActionOnShare(sender : UIButton)
     {
         let userName = CommonUtil.getDataForKey("userUrl")
-        let shareText = "\("txt_link_share".localized()) \n \(userName!)"
+        let shareText = "\("txt_share".localized()) \n \(userName!)"
         print(shareText)
         let vc = UIActivityViewController(activityItems: [shareText ], applicationActivities: [])
         present(vc, animated: true, completion: nil)

@@ -29,7 +29,11 @@ class MessageTableViewCell: UITableViewCell {
     func decorateTableViewCell(dictData : [String : AnyObject]) {
         print("")
         self.lblMessage.text = dictData["message"] as? String
-        self.lblTime.text =  CommanUtility.doChangeTimeFormat(time: (dictData["time"] as? String)!, firstFormat: "yyyy-MM-dd HH:mm:ss", SecondFormat: "dd-MM-yyyy")
+        
+        let date : Date = CommanUtility.convertAStringIntodDte(time : (dictData["time"] as? String)! , formate : "yyyy-MM-dd HH:mm:ss")
+        
+        self.lblTime.text = CommonUtil.timeAgoSinceDate(date, currentDate: Date(), numericDates: true)
+        
         
         if let reveiverName = dictData["recieverName"] as? String {
             if (self.lblTo != nil)
