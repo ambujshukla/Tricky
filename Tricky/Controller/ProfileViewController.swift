@@ -11,6 +11,7 @@ import Localize_Swift
 import SDWebImage
 import ActionSheetPicker_3_0
 
+
 class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDataSource, UITextFieldDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate,UIActionSheetDelegate  {
     
     @IBOutlet weak var tblView : UITableView!
@@ -22,6 +23,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDa
     @IBOutlet weak var lblEmail : UILabel!
     @IBOutlet weak var btnCopy : UIButton!
     @IBOutlet weak var btnShare : UIButton!
+    weak var btnMenu : UIButton!
+    
+    var isFromSignUp : Bool = false
     
     var imagePicker = UIImagePickerController()
     
@@ -52,13 +56,22 @@ class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDa
     
     func decorateUI()
     {
+        if self.isFromSignUp
+        {
+            self.navigationItem.setHidesBackButton(true, animated:true);
+            self.title = "txt_profile".localized()
+        }
+        else
+        {
+            CommanUtility.decorateNavigationbarWithBackButtonAndTitle(target: self, leftselect: #selector(doClickBack), strTitle: "txt_profile".localized(), strBackImag: BACK_BUTTON, strFontName: "Arial", size: 20, color: UIColor.white)
+        }
+
         self.imgProfilePic.layer.cornerRadius = self.imgProfilePic.frame.size.width / 2
         self.imgProfilePic.layer.masksToBounds = true
         
         if let image = CommanUtility.getImage(userId: CommonUtil.getUserId()) as? UIImage {
             self.imgProfilePic.image = image
         }
-        CommanUtility.decorateNavigationbarWithBackButtonAndTitle(target: self, leftselect: #selector(doClickBack), strTitle: "txt_profile".localized(), strBackImag: BACK_BUTTON, strFontName: "Arial", size: 20, color: UIColor.white)
         
         self.imgBG.image = UIImage(named : PROFILE_BG)
         self.btnChangeic.setImage(UIImage(named : EDIT_ICON), for: .normal)
@@ -71,6 +84,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDa
     func doNothing()
     {
     }
+    
     func doCallGetProfile()
     {
         let dictData = ["version" : "1.0" , "os" : "ios" , "language" : "english","userId": CommonUtil.getUserId()]  as [String : Any]
@@ -220,7 +234,12 @@ class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDa
         
         let deleteActionButton = UIAlertAction(title: "txt_photo".localized(), style: .default)
         { _ in
-            print("Delete")
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
+                self.imagePicker.delegate = self
+                self.imagePicker.sourceType = UIImagePickerControllerSourceType.camera;
+                self.imagePicker.allowsEditing = false
+                self.present(self.imagePicker, animated: true, completion: nil)
+            }
         }
         actionSheetControllerIOS8.addAction(deleteActionButton)
         self.present(actionSheetControllerIOS8, animated: true, completion: nil)
@@ -228,7 +247,14 @@ class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDa
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            self.imgProfilePic.image = image
+            if let pickedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+                self.imgProfilePic.image = pickedImage
+                // self.imgProfile.layer.cornerRadius = 70;
+            }
+            else
+            {
+                self.imgProfilePic.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+            }
             CommanUtility.saveImageDocumentDirectory(userId: CommonUtil.getUserId(), img: image)
         }
         picker.dismiss(animated: true, completion: nil);
@@ -248,13 +274,15 @@ class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDa
                 {
                     print(dictResponseData)
                     self.dictData["0"] = dictResponseData[0]["name"] as? String
-                  //  self.dictData["1"] = dictResponseData[0]["mobileNo"] as? String
                     self.dictData["2"] = dictResponseData[0][""] as? String
-                  //  self.imgProfilePic.sd_setImage(with: URL(string : (dictResponseData[0]["profilePic"] as? String)!) )
                 }
-         //       print(obj["responseData"])
-                self.tblView.reloadData()
-                
+                if self.isFromSignUp
+                {
+                    let controller = self.storyboard?.instantiateViewController(withIdentifier: "SWRevealViewController") as! SWRevealViewController
+                    self.present(controller, animated: true, completion: nil)
+                }else{
+                    self.tblView.reloadData()
+                }
             }
             print("this is object \(obj)")
         }) { (error) in
@@ -263,7 +291,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDa
         }
     }
     
-  @IBAction func doActionOnShare(sender : UIButton)
+    @IBAction func doActionOnShare(sender : UIButton)
     {
         let link = "\("txt_share".localized()) \(self.lblEmail.text!)"
         
@@ -271,12 +299,12 @@ class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDa
         let activityViewController:UIActivityViewController = UIActivityViewController(activityItems: shareItems, applicationActivities: nil)
         present(activityViewController, animated: true, completion: nil)
         
-//       // let dictData = self.arrPostListData[sender.tag]
-//        let shareText = self.lblEmail.text
-//        let image = CommanUtility.textToImage(drawText: shareText! as NSString, inImage: #imageLiteral(resourceName: "sharemessage"), atPoint: CGPoint(x : 90 , y : 250))
-//        
-//        let vc = UIActivityViewController(activityItems: [image], applicationActivities: [])
-//        present(vc, animated: true, completion: nil)
+        //       // let dictData = self.arrPostListData[sender.tag]
+        //        let shareText = self.lblEmail.text
+        //        let image = CommanUtility.textToImage(drawText: shareText! as NSString, inImage: #imageLiteral(resourceName: "sharemessage"), atPoint: CGPoint(x : 90 , y : 250))
+        //
+        //        let vc = UIActivityViewController(activityItems: [image], applicationActivities: [])
+        //        present(vc, animated: true, completion: nil)
     }
     
     @IBAction func doClickCopyLink()
@@ -284,7 +312,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDa
         UIPasteboard.general.string = self.lblEmail.text
         CommonUtil.showTotstOnWindow(strMessgae: "txt_copied".localized())
     }
-
+    
     
     
     override func didReceiveMemoryWarning() {

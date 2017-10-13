@@ -19,8 +19,8 @@ class HomeViewController: UIViewController {
         ViewPagerTab(title: "Message", image: UIImage(named: "fries")),
         ViewPagerTab(title: "Chat", image: UIImage(named: "hamburger"))
         //,
-    //    ViewPagerTab(title: "Post", image: UIImage(named: "pint")),
-        ]
+        //    ViewPagerTab(title: "Post", image: UIImage(named: "pint")),
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,7 +58,7 @@ class HomeViewController: UIViewController {
         self.Vcs  = [self.storyboard?.instantiateViewController(withIdentifier:"HomeMessageController") as!  HomeMessageController
             , self.storyboard?.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController ,
               self.storyboard?.instantiateViewController(withIdentifier: "PostViewController") as! PostViewController ]
-
+        
         
         let revealViewController: SWRevealViewController? = self.revealViewController()
         if revealViewController != nil {
@@ -88,7 +88,7 @@ class HomeViewController: UIViewController {
         self.view.addSubview(viewPager.view)
         viewPager.didMove(toParentViewController: self)
         
-
+        
     }
 }
 
