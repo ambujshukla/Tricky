@@ -81,8 +81,7 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
                     self.hideAndShowFotterView(isHideFotter: true, isAnimateActivityInd: false)
                 }
                 
-            }else
-            {
+            }else{
                 self.activityView.stopAnimating()
                 self.vwFotter.isHidden = true
                 UserManager.sharedUserManager.doSetReceiveMsgAndSentMessage(strSentMsg: "0", strReceiveMsg: "0")
@@ -244,49 +243,68 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
         
         let cellToReturn : UITableViewCell!
         let dictData = self.arrMessageList[indexPath.row]
-        if dictData["senderId"] as! String == CommonUtil.getUserId()  {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell2", for: indexPath) as! MessageTableViewCell
-            cell.lblTo.text = "To: \(dictData["recieverName"] as! String)"
-
-            let isFavourite = dictData["isFavorite"] as! Bool
-            if isFavourite {
-                cell.btnfavourite.isSelected = true
+        if let senderId = dictData["senderId"] as? String {
+            
+            if senderId == CommonUtil.getUserId()  {
+                cellToReturn = self.doConfigReciverCell(dictData: dictData, indexPath: indexPath, tableView: tableView)
+            }else{
+                cellToReturn = self.doConfigSenderCell(dictData: dictData, indexPath: indexPath, tableView: tableView)
             }
-            else
-            {
-                cell.btnfavourite.isSelected = false
-            }
-            cell.lblMessage.text = dictData["message"] as? String
-            
-            let date : Date = CommanUtility.convertAStringIntodDte(time : (dictData["time"] as? String)! , formate : "yyyy-MM-dd HH:mm:ss")
-            cell.lblTime.text = CommonUtil.timeAgoSinceDate(date, currentDate: Date(), numericDates: true)
-
-            cell.btnfavourite.tag = indexPath.row
-            cell.btnDelete.tag = indexPath.row
-            cell.btnfavourite.addTarget(self, action: #selector(self.doActionOnFavouriteButton(sender:)), for: .touchUpInside)
-            cell.btnDelete.addTarget(self, action: #selector(self.doActionOnDeleteMessage(sender:)), for: .touchUpInside)
-            cell.selectionStyle = .none
-            cellToReturn = cell
-        }else{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell1", for: indexPath) as! MessageTableViewCell
-            cell.decorateTableViewCell(dictData: self.arrMessageList[indexPath.row])
-            
-            cell.btnfavourite.tag = indexPath.row
-            cell.btnShare.tag = indexPath.row
-            cell.btnReply.tag = indexPath.row
-            cell.btnBlock.tag = indexPath.row
-            cell.btnDelete.tag = indexPath.row
-            
-            cell.btnfavourite.addTarget(self, action: #selector(self.doActionOnFavouriteButton(sender:)), for: .touchUpInside)
-            cell.btnBlock.addTarget(self, action: #selector(self.doActionOnBlockButton(sender:)), for: .touchUpInside)
-            cell.btnDelete.addTarget(self, action: #selector(self.doActionOnDeleteMessage(sender:)), for: .touchUpInside)
-            cell.btnReply.addTarget(self, action: #selector(self.doActionOnReply(sender:)), for: .touchUpInside)
-            cell.btnShare.addTarget(self, action: #selector(self.doActionOnShare(sender:)), for: .touchUpInside)
-            cell.selectionStyle = .none
-            cellToReturn = cell
+        }
+        else{
+            cellToReturn = self.doConfigReciverCell(dictData: dictData, indexPath: indexPath, tableView: tableView)
         }
         return cellToReturn
     }
+    
+    
+    func doConfigSenderCell(dictData : [String : AnyObject] , indexPath : IndexPath , tableView : UITableView)-> UITableViewCell{
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell1", for: indexPath) as! MessageTableViewCell
+        cell.decorateTableViewCell(dictData: self.arrMessageList[indexPath.row])
+        
+        cell.btnfavourite.tag = indexPath.row
+        cell.btnShare.tag = indexPath.row
+        cell.btnReply.tag = indexPath.row
+        cell.btnBlock.tag = indexPath.row
+        cell.btnDelete.tag = indexPath.row
+        
+        cell.btnfavourite.addTarget(self, action: #selector(self.doActionOnFavouriteButton(sender:)), for: .touchUpInside)
+        cell.btnBlock.addTarget(self, action: #selector(self.doActionOnBlockButton(sender:)), for: .touchUpInside)
+        cell.btnDelete.addTarget(self, action: #selector(self.doActionOnDeleteMessage(sender:)), for: .touchUpInside)
+        cell.btnReply.addTarget(self, action: #selector(self.doActionOnReply(sender:)), for: .touchUpInside)
+        cell.btnShare.addTarget(self, action: #selector(self.doActionOnShare(sender:)), for: .touchUpInside)
+        cell.selectionStyle = .none
+        return cell
+    }
+    
+    func doConfigReciverCell(dictData : [String : AnyObject] , indexPath : IndexPath , tableView : UITableView) -> UITableViewCell{
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell2", for: indexPath) as! MessageTableViewCell
+        cell.lblTo.text = "To: \(dictData["recieverName"] as! String)"
+        
+        let isFavourite = dictData["isFavorite"] as! Bool
+        if isFavourite {
+            cell.btnfavourite.isSelected = true
+        }
+        else
+        {
+            cell.btnfavourite.isSelected = false
+        }
+        cell.lblMessage.text = dictData["message"] as? String
+        
+        let date : Date = CommanUtility.convertAStringIntodDte(time : (dictData["time"] as? String)! , formate : "yyyy-MM-dd HH:mm:ss")
+        cell.lblTime.text = CommonUtil.timeAgoSinceDate(date, currentDate: Date(), numericDates: true)
+        
+        cell.btnfavourite.tag = indexPath.row
+        cell.btnDelete.tag = indexPath.row
+        cell.btnfavourite.addTarget(self, action: #selector(self.doActionOnFavouriteButton(sender:)), for: .touchUpInside)
+        cell.btnDelete.addTarget(self, action: #selector(self.doActionOnDeleteMessage(sender:)), for: .touchUpInside)
+        cell.selectionStyle = .none
+        return cell
+        
+    }
+    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let dictData = self.arrMessageList[indexPath.row]
@@ -356,18 +374,23 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
         let dictData = self.arrMessageList[sender.tag]
         let shareText = dictData["message"]
         
-        var yOrigin : Int = 250
+        var yOrigin : Int = 600
         
-        if (shareText?.length)! <= 100 {
-            yOrigin = 450
+        if (shareText?.length)! <= 20 {
+            yOrigin = 550
+        }
+        
+       else if (shareText?.length)! <= 60 {
+            yOrigin = 520
+        }
+       else if (shareText?.length)! <= 100 {
+            yOrigin = 480
         }
         else if(shareText?.length)! <= 200 {
-            yOrigin = 350
+            yOrigin = 450
         }
-        else if(shareText?.length)! <= 300 {
-            yOrigin = 300
-        }
-        let image = CommanUtility.textToImage(drawText: shareText as! NSString, inImage: #imageLiteral(resourceName: "sharemessage"), atPoint: CGPoint(x : 90 , y : yOrigin))
+        
+        let image = CommanUtility.textToImage(drawText: shareText as! NSString, inImage: #imageLiteral(resourceName: "sharemessage"), atPoint: CGPoint(x : 120 , y : yOrigin))
         
         let vc = UIActivityViewController(activityItems: [image], applicationActivities: [])
         present(vc, animated: true, completion: nil)

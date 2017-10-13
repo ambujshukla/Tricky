@@ -181,7 +181,7 @@ class CommanUtility: NSObject {
         {
     
             let textColor = UIColor.black
-            let textFont = UIFont(name: "Menlo-Italic", size: 50)!
+            let textFont = UIFont(name: "Roboto-Medium", size: 50)!
     
             let scale = UIScreen.main.scale
             UIGraphicsBeginImageContextWithOptions(image.size, false, scale)
@@ -196,7 +196,7 @@ class CommanUtility: NSObject {
                 ] as [String : Any]
             image.draw(in: CGRect(origin: CGPoint.zero, size: CGSize(width : image.size.width , height : image.size.height)))
     
-            let rect = CGRect(origin: point, size: CGSize(width : image.size.width-220 , height : image.size.height-230))
+            let rect = CGRect(origin: point, size: CGSize(width : image.size.width-280 , height : image.size.height-230))
             text.draw(in: rect, withAttributes: textFontAttributes)
     
             let newImage = UIGraphicsGetImageFromCurrentImageContext()

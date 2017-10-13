@@ -275,8 +275,7 @@
     
     func doActionOnShare(sender : UIButton)
     {
-        let userName = CommonUtil.getDataForKey("userUrl")
-        let shareText = "\("txt_share".localized()) \n \(userName!)"
+        let shareText = "\("txt_Invite_Contact".localized())"
         print(shareText)
         let vc = UIActivityViewController(activityItems: [shareText ], applicationActivities: [])
         present(vc, animated: true, completion: nil)

@@ -48,19 +48,7 @@ class CommonUtil: NSObject {
         SVProgressHUD.dismiss()
     }
     // MARK:Error Messaging
-    class func alertShow(_ message:String)
-    {
-        let alert:UIAlertView = UIAlertView(title: App_Name, message: message, delegate: nil, cancelButtonTitle: "OK")
-        alert.show()
-        
-    }
     
-    class func alertShow(_ message:String,controller:UIViewController?)
-    {
-        let alert:UIAlertView = UIAlertView(title: App_Name, message: message, delegate: controller, cancelButtonTitle: "OK")
-        
-        alert.show()
-    }
     
     
     //MARK: Validation
