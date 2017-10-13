@@ -257,6 +257,9 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
                 cell.btnfavourite.isSelected = false
             }
             cell.lblMessage.text = dictData["message"] as? String
+            
+            let date : Date = CommanUtility.convertAStringIntodDte(time : (dictData["time"] as? String)! , formate : "yyyy-MM-dd HH:mm:ss")
+            cell.lblTime.text = CommonUtil.timeAgoSinceDate(date, currentDate: Date(), numericDates: true)
 
             cell.btnfavourite.tag = indexPath.row
             cell.btnDelete.tag = indexPath.row
@@ -309,7 +312,8 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
     @IBAction func doClickPlus()
     {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ContactViewController") as! ContactViewController
-        vc.contactShowFrom = 2
+        vc.contactShowFrom = 3
+        vc.isFromMenu = false
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

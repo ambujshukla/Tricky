@@ -37,6 +37,8 @@ class SignUpViewController: UIViewController {
     
     @IBOutlet var btnClickHere : UIButton!
     @IBOutlet var btnAllredyAC : UIButton!
+
+    var selectedIndex : Int = 0
     
     var arrCountryCode =  [String]()
     
@@ -210,8 +212,13 @@ class SignUpViewController: UIViewController {
     {
         ActionSheetMultipleStringPicker.show(withTitle: "Select Code", rows: [
             self.arrCountryCode
-            ], initialSelection: [0], doneBlock: {
+            ], initialSelection: [self.selectedIndex], doneBlock: {
                 picker, indexes, values in
+                
+                let array = indexes as! [Int]
+                self.selectedIndex = array[0]
+                print(array[0])
+
                 
                 if let arrValue = values as? [String] {
                     let string = arrValue[0]

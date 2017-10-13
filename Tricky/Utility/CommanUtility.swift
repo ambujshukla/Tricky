@@ -145,6 +145,16 @@ class CommanUtility: NSObject {
         userDefaults.synchronize()
     }
     
+    
+    class func convertAStringIntodDte(time : String , formate : String) -> Date{
+        let time = time
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = formate
+        let fullDate = dateFormatter.date(from: time)
+        return fullDate!
+   
+    }
+    
     class func doChangeTimeFormat(time : String, firstFormat : String, SecondFormat : String) -> String
     {
         let time = time
@@ -153,11 +163,11 @@ class CommanUtility: NSObject {
         
         dateFormatter.dateFormat = firstFormat
         
-        var fullDate = dateFormatter.date(from: time)
+        let fullDate = dateFormatter.date(from: time)
         
         dateFormatter.dateFormat = SecondFormat
         
-        var time2 = dateFormatter.string(from: fullDate!)
+        let time2 = dateFormatter.string(from: fullDate!)
         
         return time2
     }

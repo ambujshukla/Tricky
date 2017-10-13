@@ -84,7 +84,6 @@ class VerifyOTPController: UIViewController
         
         self.tfOtp.textColor = UIColor.white
         self.btnResend.setTitleColor(UIColor.darkGray, for: .normal)
-        self.tfOtp.text = self.strOTP
         
         CommanUtility.createCustomRightButton(self, navBarItem: self.navigationItem, strRightImage: "headericon", select: #selector(self.doNothing))
 
@@ -107,7 +106,7 @@ class VerifyOTPController: UIViewController
     func doCallWebAPIForLogin()
     {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let dictData = ["mobileNo" :self.strMobileNo ,"deviceToken":appDelegate.strDeviceToken , "otp" : self.strOTP , "countryCode" : "+91" , "os" :"2" ,"version" : "1.0.0" ,"language" : "english" ] as [String : Any]
+        let dictData = ["mobileNo" :self.strMobileNo ,"deviceToken":appDelegate.strDeviceToken , "otp" : self.tfOtp.text! , "countryCode" : "+91" , "os" :"2" ,"version" : "1.0.0" ,"language" : "english" ] as [String : Any]
         print(dictData)
         
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: METHOD_LOGIN, parameter: dictData , success: { (obj) in

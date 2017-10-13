@@ -98,6 +98,12 @@
             strTitle = "txt_contacts".localized()
             self.imgBg.image = UIImage(named : ALL_CONTACTS_BG)
         }
+        else if(self.contactShowFrom == 3){
+            
+            strTitle = "txt_select_cont".localized()
+            self.imgBg.image = UIImage(named : ALL_CONTACTS_BG)
+
+        }
         CommanUtility.decorateNavigationbarWithBackButton(target: self, strTitle: strTitle, strBackButtonImage: BACK_BUTTON, selector: #selector(self.goTOBack), color: color(red: 142, green: 110, blue: 137))
     }
     
@@ -225,8 +231,7 @@
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if !(self.isFromMenu)
-        {
+        if !(self.isFromMenu){
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserPostAnswerViewController")
                 as! UserPostAnswerViewController
             let dictData = self.arrSyncContacts[indexPath.row] as [String : AnyObject]
@@ -245,7 +250,23 @@
         let dataContacts = self.arrSyncContacts[sender.tag]
         let isOnApp = dataContacts["isOnApp"] as! Bool
         if isOnApp {
-       self.doCallServiceForBlockAndUnblock(sender: sender, dataContacts: dataContacts)
+            
+            var strMessage = "Are you sure you want to block?"
+            
+            if sender.isSelected {
+                strMessage = "Are you sure you want to un block?"
+            }
+            
+            CommonUtil.showAlertInSwift_3Format(strMessage, title: "txt_trickychat".localized(), btnCancel: "txt_no".localized(), btnOk: "txt_yes".localized(), crl: self, successBlock: { (obj) in
+                
+                self.doCallServiceForBlockAndUnblock(sender: sender, dataContacts: dataContacts)
+                
+            }) { (obj) in
+                print("ok")
+            }
+      
+            
+            
         }
         else{
        self.doActionOnShare(sender: sender)
@@ -254,7 +275,9 @@
     
     func doActionOnShare(sender : UIButton)
     {
-        let shareText = ""
+        let userName = CommonUtil.getDataForKey("userUrl")
+        let shareText = "\("txt_share".localized()) \n \(userName!)"
+        print(shareText)
         let vc = UIActivityViewController(activityItems: [shareText ], applicationActivities: [])
         present(vc, animated: true, completion: nil)
     }

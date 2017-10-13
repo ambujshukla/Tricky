@@ -264,7 +264,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDa
     {
         self.view.endEditing(true)
         //UpdateProfile
-        let dictData = ["version" : "1.0" , "os" : "ios" , "language" : "english","userId":CommonUtil.getUserId(), "mobileNo" : self.dictData["1"]!,"fullName" : self.dictData["0"]!] as [String : Any]
+        let dictData = ["version" : "1.0" , "os" : "2" , "language" : "english","userId":CommonUtil.getUserId(), "mobileNo" : self.dictData["1"]!,"fullName" : self.dictData["0"]!] as [String : Any]
         
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "UpdateProfile", parameter: dictData , success: { (obj) in
             
@@ -274,6 +274,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDa
                 {
                     print(dictResponseData)
                     self.dictData["0"] = dictResponseData[0]["name"] as? String
+                    self.dictData["1"] = "\(CommonUtil.countryCode())  \(dictResponseData[0]["mobileNo"] as? String ?? "")"
                     self.dictData["2"] = dictResponseData[0][""] as? String
                 }
                 if self.isFromSignUp

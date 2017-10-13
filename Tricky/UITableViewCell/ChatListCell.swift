@@ -34,7 +34,10 @@ class ChatListCell: UITableViewCell {
             self.lblMessage.text = (message )
         }
         if let time = dictData["recentMessageTime"] as? String {
-            self.lblTime.text = CommanUtility.doChangeTimeFormat(time: time, firstFormat: "yyyy-MM-dd HH:mm:ss", SecondFormat: "dd-MM-yyyy")
-        }
+            
+            let date : Date = CommanUtility.convertAStringIntodDte(time : (time) , formate : "yyyy-MM-dd HH:mm:ss")
+            self.lblTime.text = CommonUtil.timeAgoSinceDate(date, currentDate: Date(), numericDates: true)
+
+    }
     }
 }

@@ -153,7 +153,7 @@
 		310139801F49F84800A69E5A /* blockUserBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blockUserBG.png; sourceTree = "<group>"; };
 		310139811F49F84800A69E5A /* blockUserBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blockUserBG@2x.png"; sourceTree = "<group>"; };
 		310139821F49F84800A69E5A /* blockUserBG@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blockUserBG@3x.png"; sourceTree = "<group>"; };
-		312E38481F52C19A00F65651 /* CommonUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonUtil.swift; sourceTree = "<group>"; };
+		312E38481F52C19A00F65651 /* CommonUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommonUtil.swift; path = ../Utility/CommonUtil.swift; sourceTree = "<group>"; };
 		313B2EC81F5C636B0040F146 /* PostDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDetailTableViewCell.swift; sourceTree = "<group>"; };
 		3151CE7A1F48A8C900C322C3 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		3151CE7C1F48AAE800C322C3 /* ForgotPasswordController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordController.swift; sourceTree = "<group>"; };
@@ -412,6 +412,7 @@
 				183A108E1F4B51C000579A7A /* LanguageViewController.swift */,
 				183A108C1F4B51B900579A7A /* PostViewController.swift */,
 				183A108A1F4B51B100579A7A /* ChatViewController.swift */,
+				312E38481F52C19A00F65651 /* CommonUtil.swift */,
 				183A10881F4B51AA00579A7A /* HomeMessageController.swift */,
 				183A10861F4B51A200579A7A /* HomeViewController.swift */,
 				183A10821F4B519300579A7A /* MenuViewController.swift */,
@@ -468,7 +469,6 @@
 				3151CE821F48AC5C00C322C3 /* Constant.swift */,
 				18999DDF1F8945A6000AFA4E /* CountryCodes.json */,
 				31B72F801F4769EA007D24E6 /* Localizable */,
-				312E38481F52C19A00F65651 /* CommonUtil.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
