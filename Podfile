@@ -18,6 +18,7 @@ target 'Tricky' do
     pod 'PWSwitch'
     pod 'DZNEmptyDataSet'
     pod 'RealmSwift'
+    pod 'KMPlaceholderTextView', '~> 1.3.0'
     # pod 'ReachabilitySwift', '~> 2.4'
 # Pods
 end

@@ -20,7 +20,6 @@ class MessageTableViewCell: UITableViewCell {
     @IBOutlet weak var btnDelete : UIButton!
     @IBOutlet weak var lblTo : UILabel!
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

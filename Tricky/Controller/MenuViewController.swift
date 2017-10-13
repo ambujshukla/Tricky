@@ -233,13 +233,14 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
         CommonUtil.showTotstOnWindow(strMessgae: "txt_copied".localized())
     }
     
-    @IBAction func doClickShareLink()
-    {
-        let shareText = "\("txt_link_share".localized()) \n \(self.lblEmail.text!)"
-        print(shareText)
-        let vc = UIActivityViewController(activityItems: [shareText], applicationActivities: [])
-        present(vc, animated: true, completion: nil)
-    }
+    @IBAction func doClickShareLink(){
+        
+        let link = "\("txt_share".localized()) \(self.lblEmail.text!)"
+        let shareItems:Array = [link]
+        let activityViewController:UIActivityViewController = UIActivityViewController(activityItems: shareItems, applicationActivities: nil)
+         present(activityViewController, animated: true, completion: nil)
+        
+          }
     
     //Mark TapGestureDelegate
     // UIGestureRecognizerDelegate method

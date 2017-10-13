@@ -432,11 +432,18 @@
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sendmsgicon" translatesAutoresizingMaskIntoConstraints="NO" id="UaW-Do-tFC">
                                                             <rect key="frame" x="286" y="9" width="6" height="6"/>
                                                         </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mwT-sT-SB4">
+                                                            <rect key="frame" x="4" y="12.5" width="242" height="0.0"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.50196078430000002" green="0.73333333329999995" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="UaW-Do-tFC" firstAttribute="height" secondItem="BTF-80-VYd" secondAttribute="height" multiplier="6:80" id="Abf-gb-yYQ"/>
                                                         <constraint firstItem="B6w-24-C1D" firstAttribute="top" secondItem="Gvh-hU-RU4" secondAttribute="bottom" constant="2" id="Ctx-qp-vGg"/>
+                                                        <constraint firstItem="mwT-sT-SB4" firstAttribute="centerY" secondItem="pRE-jq-wP9" secondAttribute="centerY" id="E71-Yi-vAf"/>
                                                         <constraint firstItem="B6w-24-C1D" firstAttribute="leading" secondItem="BTF-80-VYd" secondAttribute="leading" constant="10" id="LYW-1O-kb6"/>
                                                         <constraint firstItem="pRE-jq-wP9" firstAttribute="centerY" secondItem="UaW-Do-tFC" secondAttribute="centerY" id="TNx-G1-JYs"/>
                                                         <constraint firstItem="UaW-Do-tFC" firstAttribute="leading" secondItem="pRE-jq-wP9" secondAttribute="trailing" constant="8" id="XNr-gX-bkr"/>
@@ -447,6 +454,8 @@
                                                         <constraint firstItem="UaW-Do-tFC" firstAttribute="width" secondItem="BTF-80-VYd" secondAttribute="width" multiplier="6:304" id="oPU-U7-Cpl"/>
                                                         <constraint firstItem="Gvh-hU-RU4" firstAttribute="leading" secondItem="BTF-80-VYd" secondAttribute="leading" constant="8" id="oSU-ua-Z7S"/>
                                                         <constraint firstAttribute="trailing" secondItem="UaW-Do-tFC" secondAttribute="trailing" constant="12" id="qaa-Uf-MS1"/>
+                                                        <constraint firstItem="mwT-sT-SB4" firstAttribute="width" secondItem="BTF-80-VYd" secondAttribute="width" multiplier="242:304" id="y75-aQ-erT"/>
+                                                        <constraint firstItem="mwT-sT-SB4" firstAttribute="leading" secondItem="BTF-80-VYd" secondAttribute="leading" constant="4" id="zsp-0t-D9f"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -463,6 +472,7 @@
                                             <outlet property="btnfavourite" destination="awH-Hv-hbd" id="6Fg-VT-S0G"/>
                                             <outlet property="lblMessage" destination="Gvh-hU-RU4" id="XCr-1V-nKX"/>
                                             <outlet property="lblTime" destination="pRE-jq-wP9" id="WZZ-Jl-Dtd"/>
+                                            <outlet property="lblTo" destination="mwT-sT-SB4" id="Sxt-Eb-Abi"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell1" rowHeight="92" id="6w1-OP-NUu" customClass="MessageTableViewCell" customModule="Tricky" customModuleProvider="target">
@@ -2856,14 +2866,11 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yOd-cb-BGy">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="QFJ-KD-usO">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="QFJ-KD-usO" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
                                 <rect key="frame" x="40" y="124" width="240" height="331"/>
                                 <color key="backgroundColor" red="0.65490196078431373" green="0.53725490196078429" blue="0.85490196078431369" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Send secret message here.."/>
-                                </userDefinedRuntimeAttributes>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dQ8-sJ-Mla">
                                 <rect key="frame" x="25" y="95" width="271" height="21"/>
@@ -2916,7 +2923,7 @@
                         <outlet property="btnSend" destination="dqU-nH-dHb" id="eHa-D7-ccG"/>
                         <outlet property="imgBG" destination="yOd-cb-BGy" id="fPJ-Wu-9Fs"/>
                         <outlet property="lblCharacter" destination="3DK-GE-WhU" id="nbg-gS-HoF"/>
-                        <outlet property="txtViewComment" destination="QFJ-KD-usO" id="CYi-eZ-5wz"/>
+                        <outlet property="txtViewComment" destination="QFJ-KD-usO" id="o1O-Gf-Ivr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aCP-Ql-cRm" userLabel="First Responder" sceneMemberID="firstResponder"/>

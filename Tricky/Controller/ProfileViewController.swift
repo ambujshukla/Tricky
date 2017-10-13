@@ -266,12 +266,18 @@ class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDa
     
   @IBAction func doActionOnShare(sender : UIButton)
     {
-       // let dictData = self.arrPostListData[sender.tag]
-        let shareText = self.lblEmail.text
-        let image = CommanUtility.textToImage(drawText: shareText! as NSString, inImage: #imageLiteral(resourceName: "sharemessage"), atPoint: CGPoint(x : 90 , y : 250))
+        let link = "\("txt_share".localized()) \(self.lblEmail.text!)"
         
-        let vc = UIActivityViewController(activityItems: [image], applicationActivities: [])
-        present(vc, animated: true, completion: nil)
+        let shareItems:Array = [link]
+        let activityViewController:UIActivityViewController = UIActivityViewController(activityItems: shareItems, applicationActivities: nil)
+        present(activityViewController, animated: true, completion: nil)
+        
+//       // let dictData = self.arrPostListData[sender.tag]
+//        let shareText = self.lblEmail.text
+//        let image = CommanUtility.textToImage(drawText: shareText! as NSString, inImage: #imageLiteral(resourceName: "sharemessage"), atPoint: CGPoint(x : 90 , y : 250))
+//        
+//        let vc = UIActivityViewController(activityItems: [image], applicationActivities: [])
+//        present(vc, animated: true, completion: nil)
     }
     
     @IBAction func doClickCopyLink()
