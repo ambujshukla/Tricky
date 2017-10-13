@@ -221,8 +221,16 @@ class VerifyOTPController: UIViewController
     func goTOHomeScreen()
     {
         CommonUtil.setBooleanValue("isLogin", value: true)
-        let controller = self.storyboard?.instantiateViewController(withIdentifier: "SWRevealViewController") as! SWRevealViewController
-        self.present(controller, animated: true, completion: nil)
+        if (self.isFromSignUp)
+        {
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfileViewIdentifier") as! ProfileViewController
+            vc.isFromSignUp = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        }else
+        {
+            let controller = self.storyboard?.instantiateViewController(withIdentifier: "SWRevealViewController") as! SWRevealViewController
+            self.present(controller, animated: true, completion: nil)
+        }
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)

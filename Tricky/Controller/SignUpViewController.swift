@@ -37,42 +37,21 @@ class SignUpViewController: UIViewController {
     
     @IBOutlet var btnClickHere : UIButton!
     @IBOutlet var btnAllredyAC : UIButton!
-    var selectedIndex : Int = 0
 
+    var selectedIndex : Int = 0
+    
     var arrCountryCode =  [String]()
     
-    //  let arrCountryCode = ["+91","+01","+02"]
-    //  var imagePicker = UIImagePickerController()
-    
-    /*  @IBOutlet  var txtMobile : UITextField!
-     @IBOutlet  var txtPassword : UITextField!
-     @IBOutlet  var txtCnfPassword : UITextField!
-     
-     @IBOutlet  var btnTnC : UIButton!
-     @IBOutlet  var btnSignUp : UIButton!
-     
-     @IBOutlet  var imgBG : UIImageView!
-     
-     @IBOutlet  var imgMobile : UIImageView!
-     @IBOutlet  var imgPassword : UIImageView!
-     @IBOutlet  var imgCnfPassword : UIImageView!
-     
-     @IBOutlet  var imgSeparator1 : UIImageView!
-     @IBOutlet  var imgSeparator2 : UIImageView!
-     @IBOutlet  var imgSeparator3 : UIImageView!
-     */
-    
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
-        
-
         self.decorateUI()
         // Do any additional setup after loading the view.
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool)
+    {
         super.viewDidAppear(animated)
-
     }
     
     func decorateUI()
@@ -83,9 +62,7 @@ class SignUpViewController: UIViewController {
         self.viewTop.layer.borderWidth = 1.0
         
         self.title = "txt_SignUp_nav_title".localized()
-
         
-       // CommanUtility.decorateNavigationbarWithBackButtonAndTitle(target: self, leftselect: #selector(doClickBack), strTitle: "txt_SignUp_nav_title".localized(), strBackImag: BACK_BUTTON, strFontName: "Arial", size: 20, color: UIColor.white)
         
         self.imgBG.backgroundColor = color(red: 89, green: 165, blue: 171)
         
@@ -116,8 +93,8 @@ class SignUpViewController: UIViewController {
         CommanUtility.createCustomRightButton(self, navBarItem: self.navigationItem, strRightImage: "headericon", select: #selector(self.doNothing))
         
         self.readJson()
-
-
+        
+        
     }
     
     private func readJson() {
@@ -150,12 +127,12 @@ class SignUpViewController: UIViewController {
             print(error.localizedDescription)
         }
     }
-
+    
     
     func doNothing(){
         
     }
-
+    
     @IBAction func doActionOnTermAndCondition(){
         let svc = SFSafariViewController(url: URL(string: "http://www.trickychat.com/user/privacypolicy")!)
         present(svc, animated: true, completion: nil)
@@ -166,7 +143,7 @@ class SignUpViewController: UIViewController {
         self.navigationController?.navigationBar.barTintColor = color(red: 244, green: 166, blue: 202)
         self.navigationItem.setHidesBackButton(true, animated: false)
         
-
+        
     }
     
     @IBAction func doActionOnClickHereButton() {
@@ -210,7 +187,7 @@ class SignUpViewController: UIViewController {
             CommonUtil.showTotstOnWindow(strMessgae: "txt_something_went_wrong".localized())
         }    }
     
-
+    
     
     
     func goTOVerifyScreen(OTPData : OTPModel) {

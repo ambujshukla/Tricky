@@ -69,28 +69,8 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
         self.tblView.estimatedRowHeight = 40
         self.tblView.separatorColor = UIColor.clear
         self.txtChat.backgroundColor = UIColor.lightGray
-        
         self.btnSend .setImage(UIImage(named : SEND_ICON), for: .normal)
-        
-        //   CommanUtility.createCustomRightButton(self, navBarItem: self.navigationItem, strRightImage: REFRESH_ICON as NSString, select: #selector(doClickRefresh))
-        
-//        self.btnYes.backgroundColor = UIColor.clear
-//        self.btnNo.backgroundColor =  UIColor.clear
-//        
-//        self.btnYes.layer.borderWidth = 1.0
-//        self.btnNo.layer.borderWidth = 1.0
-//        
-//        self.btnYes.layer.borderColor = UIColor.white.cgColor
-//        self.btnNo.layer.borderColor = UIColor.white.cgColor
-//        
-//        self.btnNo.layer.cornerRadius = 10;
-//        self.btnYes.layer.cornerRadius = 10;
-        
-       // self.btnYes.setTitle("txt_you_got_me".localized(), for: .normal)
-      //  self.btnNo.setTitle("txt_not_got_me".localized(), for: .normal)
-        
         self.txtChat.backgroundColor = UIColor.clear
-        
         self.viewBottom.layer.cornerRadius = 15
     }
     
@@ -105,8 +85,8 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
             {
                 self.offSet += 1
                 self.doPopulateDataIn(arrChat : chatData)
-                self.doGetChatData()
             }
+            self.doGetChatData()
         }) { (error) in
               self.doGetChatData()
             print(error!)
