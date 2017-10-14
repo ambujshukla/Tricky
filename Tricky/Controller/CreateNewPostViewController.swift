@@ -50,11 +50,11 @@ class CreateNewPostViewController: UIViewController, UITextViewDelegate {
         
         self.imgBg.image = UIImage(named : CREATE_POST_BG)
         
-        var strTitle = "Create Post"
+        var strTitle = "txt_create_post".localized()
         
         if isPostReply {
-            strTitle = "Reply"
-            self.lblReply.text = "Reply to : \(UserManager.sharedUserManager.name!)"
+            strTitle = "txt_reply".localized()
+            self.lblReply.text = "\("txt_reply_to".localized()) : \(UserManager.sharedUserManager.name!)"
         }
         
         CommanUtility.decorateNavigationbarWithBackButton(target: self, strTitle: strTitle , strBackButtonImage: BACK_BUTTON, selector: #selector(self.goTOBack), color: color(red: 147, green: 108, blue: 234))

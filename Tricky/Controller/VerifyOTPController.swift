@@ -208,7 +208,7 @@ class VerifyOTPController: UIViewController
                 self.doCallWebAPIForLogin()
             }
             }else{
-                CommonUtil.showTotstOnWindow(strMessgae: "Please enter otp first")
+                CommonUtil.showTotstOnWindow(strMessgae: "txt_opt_check".localized())
             }
         }
     }

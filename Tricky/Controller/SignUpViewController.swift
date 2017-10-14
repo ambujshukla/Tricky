@@ -210,7 +210,7 @@ class SignUpViewController: UIViewController {
     
     @IBAction func doClickSelectCode(sender : UIButton)
     {
-        ActionSheetMultipleStringPicker.show(withTitle: "Select Code", rows: [
+        ActionSheetMultipleStringPicker.show(withTitle: "txt_code".localized(), rows: [
             self.arrCountryCode
             ], initialSelection: [self.selectedIndex], doneBlock: {
                 picker, indexes, values in

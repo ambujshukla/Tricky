@@ -97,10 +97,10 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
     
     func doActionOnBlockButton(sender : UIButton){
         
-        var strMessage = "Are you sure you want to block?"
+        var strMessage =  "txt_block".localized()
         
         if sender.isSelected {
-            strMessage = "Are you sure you want to un block?"
+            strMessage = "txt_unblock".localized()
         }
         
         CommonUtil.showAlertInSwift_3Format(strMessage, title: "txt_trickychat".localized(), btnCancel: "txt_no".localized(), btnOk: "txt_yes".localized(), crl: self, successBlock: { (obj) in
@@ -167,7 +167,7 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
     
     func doActionOnDeleteMessage(sender : UIButton){
         
-        CommonUtil.showAlertInSwift_3Format("Are you sure you want to delete this message?", title: "txt_trickychat".localized(), btnCancel: "txt_no".localized(), btnOk: "txt_yes".localized(), crl: self, successBlock: { (obj) in
+        CommonUtil.showAlertInSwift_3Format("txt_msg_dlt".localized(), title: "txt_trickychat".localized(), btnCancel: "txt_no".localized(), btnOk: "txt_yes".localized(), crl: self, successBlock: { (obj) in
             
             self.doCallServiceForRemoveMessage(sender: sender)
             

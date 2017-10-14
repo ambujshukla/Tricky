@@ -407,30 +407,30 @@
 		31B72F7A1F4760A4007D24E6 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				181BD4CC1F55DE9600E60277 /* CreateNewPostViewController.swift */,
-				181BD4CD1F55DE9600E60277 /* UserPostViewController.swift */,
 				183A108E1F4B51C000579A7A /* LanguageViewController.swift */,
+				181BD4CC1F55DE9600E60277 /* CreateNewPostViewController.swift */,
 				183A108C1F4B51B900579A7A /* PostViewController.swift */,
 				183A108A1F4B51B100579A7A /* ChatViewController.swift */,
 				312E38481F52C19A00F65651 /* CommonUtil.swift */,
 				183A10881F4B51AA00579A7A /* HomeMessageController.swift */,
 				183A10861F4B51A200579A7A /* HomeViewController.swift */,
 				183A10821F4B519300579A7A /* MenuViewController.swift */,
-				183A10841F4B519900579A7A /* NewPasswordController.swift */,
 				183A10801F4B517A00579A7A /* ContactViewController.swift */,
 				3151CE891F48AD6000C322C3 /* MessageViewController.swift */,
-				3151CE7C1F48AAE800C322C3 /* ForgotPasswordController.swift */,
 				3151CE7D1F48AAE800C322C3 /* VerifyOTPController.swift */,
 				31B72F7D1F4760FD007D24E6 /* LoginViewController.swift */,
 				31B72F871F4778C2007D24E6 /* SignUpViewController.swift */,
 				3151CE7A1F48A8C900C322C3 /* ProfileViewController.swift */,
-				3151CE931F48C56000C322C3 /* BlockUserListViewController.swift */,
 				1833F9DB1F4C94E1004AB7EE /* FavouriteViewController.swift */,
 				3163FC271F4DFB62004AA3CF /* ChatDetailViewController.swift */,
 				31D9D1051F4F4FF700ED9B78 /* UserPostAnswerViewController.swift */,
 				31D9D1071F4F58E200ED9B78 /* PostDetailViewController.swift */,
 				181BD4D41F55E7C900E60277 /* PopupViewController.swift */,
+				181BD4CD1F55DE9600E60277 /* UserPostViewController.swift */,
+				3151CE7C1F48AAE800C322C3 /* ForgotPasswordController.swift */,
 				31DF5DAB1F76CBC80087B302 /* MyPostViewController.swift */,
+				3151CE931F48C56000C322C3 /* BlockUserListViewController.swift */,
+				183A10841F4B519900579A7A /* NewPasswordController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

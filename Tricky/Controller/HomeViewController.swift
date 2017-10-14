@@ -16,8 +16,8 @@ class HomeViewController: UIViewController {
     var Vcs = [UIViewController]()
     
     var tabs = [
-        ViewPagerTab(title: "Message", image: UIImage(named: "fries")),
-        ViewPagerTab(title: "Chat", image: UIImage(named: "hamburger"))
+        ViewPagerTab(title: "txt_msg".localized(), image: UIImage(named: "fries")),
+        ViewPagerTab(title: "txt_chat".localized(), image: UIImage(named: "hamburger"))
         //,
         //    ViewPagerTab(title: "Post", image: UIImage(named: "pint")),
     ]

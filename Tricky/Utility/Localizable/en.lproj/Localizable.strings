@@ -105,3 +105,19 @@
 
 "txt_Invite_Contact" = "I am inviting you to try TrickyChat app. Download from below link \nhttp://www.trickychat.com";
 
+/////////////////////////////////// New Added ////////////////////////////////
+
+"txt_create_post" = "Create Post";
+"txt_reply" = "Reply" ;
+"txt_reply_to" = "Reply to";
+"txt_block" = "Do you want to block this user?";
+"txt_unblock" = "Do you want to unblock this user?";
+"txt_msg_dlt" = "Do you want to delete this message?";
+"txt_msg" = "Message";
+"txt_chat" = "Chat";
+"txt_opt_check" = "Please enter otp first" ;
+"txt_code" = "Select Code" ;
+
+
+
+

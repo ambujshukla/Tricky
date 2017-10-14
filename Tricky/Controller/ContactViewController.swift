@@ -251,10 +251,10 @@
         let isOnApp = dataContacts["isOnApp"] as! Bool
         if isOnApp {
             
-            var strMessage = "Are you sure you want to block?"
+            var strMessage = "txt_block".localized()
             
             if sender.isSelected {
-                strMessage = "Are you sure you want to un block?"
+                strMessage = "txt_unblock".localized()
             }
             
             CommonUtil.showAlertInSwift_3Format(strMessage, title: "txt_trickychat".localized(), btnCancel: "txt_no".localized(), btnOk: "txt_yes".localized(), crl: self, successBlock: { (obj) in

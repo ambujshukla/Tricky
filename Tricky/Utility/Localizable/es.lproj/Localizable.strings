@@ -6,39 +6,39 @@
   Copyright © 2017 Gopal Sara. All rights reserved.
 */
 
-"txt_login" = "Login";
-"txt_forgot_password" = "Forgot Password?";
-"txt_SignUp" = "Signup";
+"txt_login" = "Iniciar sesión";
+"txt_forgot_password" = "¿Has olvidado tu contraseña?";
+"txt_SignUp" = "Regístrate";
 "txt_don't_have_account" = "Don't have an accout?";
-"txt_mobile" = "Mobile";
-"txt_password" = "Password";
-"txt_cnf_mobile" = "Confirm Password";
-"txt_SignUp_nav_title" = "Express Honesty";
-"txt_btn_Reg" = "Start Now";
-"txt_allready_ac" = "Already have an account?";
-"txt_click_here" = "Click here";
+"txt_mobile" = "Móvil";
+"txt_password" = "Contraseña";
+"txt_cnf_mobile" = "Confirmar contraseña";
+"txt_SignUp_nav_title" = "Expresar honestidad";
+"txt_btn_Reg" = "empezar ahora";
+"txt_allready_ac" = "¿Ya tienes una cuenta?";
+"txt_click_here" = "haga clic aquí";
 
 
-"txt_TnC" = "I agree on Terms and Conditions";
-"txt_name" = "Name";
-"txt_save" = "Save";
-"txt_title_forgot_password" = "Forgot Password";
-"txt_reset" = "Reset";
+"txt_TnC" = "Estoy de acuerdo en Terms y condiciones";
+"txt_name" = "Nombre";
+"txt_save" = "Guardar";
+"txt_title_forgot_password" = "¿Olvidó su Contraseña?";
+"txt_reset" = "Reiniciar";
 "txt_otp" = "OTP";
-"txt_verify" = "Verify";
-"txt_resend_otp" = "Resend OTP";
+"txt_verify" = "Verificar";
+"txt_resend_otp" = "Reenviar contraseña temporal";
 "txt_otp_verify" = "Verify OTP";
 "txt_profile_photo" = "Profile Photo";
-"txt_cancel" = "Cancel";
-"txt_gallery" = "Gallery";
-"txt_photo" = "Camera";
+"txt_cancel" = "Cancle";
+"txt_gallery" = "Galería de fotos";
+"txt_photo" = "Cámara";
 "txt_options" = "Option to select";
-"txt_profile" = "Profile";
+"txt_profile" = "Perfil";
 "txt_block_users" = "Blocked User";
 "txt_search" = "Search";
-"txt_yes" = "Yes";
+"txt_yes" = "Sí";
 "txt_no" = "No";
-"txt_type_message" = "Type a message";
+"txt_type_message" = "Escriba un mensaje";
 "txt_leave_answer" = "Leave a Answer";
 "txt_post_detail" = "Post Detail";
 "txt_notifications" = "Notifications";
@@ -46,11 +46,11 @@
 "txt_no_file_choosen" = "No file choosen";
 "txt_choose_file" = "Choose File";
 
-"txt_you_got_me" = "You got me!";
-"txt_not_got_me" = "Nah! not yet..";
+"txt_you_got_me" = "Me tienes!";
+"txt_not_got_me" = "No, todavia no!";
 
-"txt_new_password" = "New Password";
-"txt_submit" = "Submit";
+"txt_new_password" = "Nueva contraseña";
+"txt_submit" = "Enviar";
 "txt_link" = "Username";
 "txt_continue" = "Continue";
 
@@ -76,31 +76,47 @@
 "txt.spanish" = "Español";
 "txt.porugues" = "portugués";
 
-"txt_change_language" = "Change language to";
+"txt_change_language" = "Cambiar el idioma a";
 
 "txt_yes" = "sí";
 "txt_no" = "no";
 
-"txt_logout" = "Do you want to Logout from the app?";
-"txt_copied" = "Link copied to clipboard";
+"txt_logout" = "¿Desea cerrar la aplicación?";
+"txt_copied" = "Enlace copiado en el portapapeles";
 
 "txt_please_enter_post" = "Please enter post message.";
 "txt_success_post" = "Successfully Posted.";
-"txt_contacts" = "Contacts";
-"txt_favorite" = "Favorite";
-"txt_AllContact" = "All Contacts";
+"txt_contacts" = "Contactos";
+"txt_favorite" = "Favorito";
+"txt_AllContact" = "Todos los contactos";
 
 
 "txt_no_record" = "No record found.";
 "txt_select_cont" = "Select Contact";
 
-"txt_link_share" = "I invite you to send me message anonymously on TrickyChat app";
+"txt_link_share" = "Te invito a que me envíes un mensaje de forma anónima en la aplicación TrickyChat";
 
 "otp_info" = "Don't attend the incoming call. You will receive a missed call. Enter the last 6 digit of missed call number";
 
 
 "txt_message_user_blocked" = "You have blocked this user";
-"txt_share" = "I invite you to send me message anonymously on TrickyChat app";
+"txt_share" = "Te invito a que me envíes un mensaje de forma anónima en la aplicación TrickyChat";
 "txt_send_message" = "Send secret message here..";
 "txt_Invite_Contact" = "I am inviting you to try TrickyChat app. Download from below link \nhttp://www.trickychat.com";
+
+
+/////////////////////////////////// New Added ////////////////////////////////
+
+"txt_create_post" = "Create Post";
+"txt_reply" = "Responder" ;
+"txt_reply_to" = "Responder a";
+"txt_block" = "¿Quieres bloquear este usuario?";
+"txt_unblock" = "¿Quieres desbloquear este usuario?";
+"txt_msg_dlt" = "Deseas eliminar esta mensaje?";
+"txt_msg" = "Mensaje";
+"txt_chat" = "Chat";
+"txt_opt_check" = "Please enter otp first" ;
+"txt_code" = "Select Code" ;
+
+
 

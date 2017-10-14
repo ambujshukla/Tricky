@@ -159,7 +159,7 @@ class PostDetailViewController: UIViewController , UITableViewDelegate , UITable
     
     func doActionDelete(sender : UIButton)
     {
-        CommonUtil.showAlertInSwift_3Format("Are you sure you want to delete?", title: "Alert", btnCancel: "txt_no".localized(), btnOk: "txt_yes".localized(), crl: self, successBlock: { (no) in
+        CommonUtil.showAlertInSwift_3Format("txt_msg_dlt".localized(), title: "Alert", btnCancel: "txt_no".localized(), btnOk: "txt_yes".localized(), crl: self, successBlock: { (no) in
             let dictData = self.arrPostDetailListData[sender.tag]
             
             let params = ["version" : "1.0" , "os" : "ios" , "language" : "english","userId":CommonUtil.getUserId(),"postId" :dictData["postMessageId"]!] as [String : Any]
@@ -219,10 +219,10 @@ class PostDetailViewController: UIViewController , UITableViewDelegate , UITable
     }
     func doActionOnBlockButton(sender : UIButton){
         
-        var strMessage = "Are you sure you want to block?"
+        var strMessage = "txt_block".localized()
         
         if sender.isSelected {
-            strMessage = "Are you sure you want to un block?"
+            strMessage = "txt_unblock".localized()
         }
         
         CommonUtil.showAlertInSwift_3Format(strMessage, title: "txt_trickychat".localized(), btnCancel: "txt_no".localized(), btnOk: "txt_yes".localized(), crl: self, successBlock: { (obj) in

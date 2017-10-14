@@ -6,40 +6,40 @@
   Copyright © 2017 Gopal Sara. All rights reserved.
 */
 
-"txt_login" = "Login";
-"txt_forgot_password" = "Forgot Password?";
-"txt_SignUp" = "Signup";
+"txt_login" = "登录";
+"txt_forgot_password" = "忘记了密码?";
+"txt_SignUp" = "会员注册";
 "txt_don't_have_account" = "Don't have an accout?";
-"txt_mobile" = "Mobile";
-"txt_password" = "Password";
-"txt_cnf_mobile" = "Confirm Password";
-"txt_SignUp_nav_title" = "Express Honesty";
-"txt_btn_Reg" = "Start Now";
-"txt_allready_ac" = "Already have an account?";
+"txt_mobile" = "移动数据终端";
+"txt_password" = "密码";
+"txt_cnf_mobile" = "确认密码";
+"txt_SignUp_nav_title" = "表达诚实";
+"txt_btn_Reg" = "现在开始";
+"txt_allready_ac" = "已经有账户？";
 
-"txt_click_here" = "Click here";
+"txt_click_here" = "点击这里";
 
 
-"txt_TnC" = "I agree on Terms and Conditions";
-"txt_name" = "Name";
-"txt_save" = "Save";
-"txt_title_forgot_password" = "Forgot Password";
-"txt_reset" = "Reset";
+"txt_TnC" = "我同意 条款和条件";
+"txt_name" = "名称";
+"txt_save" = "保存";
+"txt_title_forgot_password" = "忘记了密码";
+"txt_reset" = "重置";
 "txt_otp" = "OTP";
-"txt_verify" = "Verify";
+"txt_verify" = "验证";
 "txt_resend_otp" = "Resend OTP";
 "txt_otp_verify" = "Verify OTP";
-"txt_profile_photo" = "Profile Photo";
-"txt_cancel" = "Cancel";
-"txt_gallery" = "Gallery";
-"txt_photo" = "Camera";
+"txt_profile_photo" = "配置文件 Photo";
+"txt_cancel" = "取消";
+"txt_gallery" = "图库";
+"txt_photo" = "摄像机";
 "txt_options" = "Option to select";
-"txt_profile" = "Profile";
+"txt_profile" = "配置文件";
 "txt_block_users" = "Blocked User";
 "txt_search" = "Search";
-"txt_yes" = "Yes";
-"txt_no" = "No";
-"txt_type_message" = "Type a message";
+"txt_yes" = "是的";
+"txt_no" = "无";
+"txt_type_message" = "键入消息";
 "txt_leave_answer" = "Leave a Answer";
 "txt_post_detail" = "Post Detail";
 "txt_notifications" = "Notifications";
@@ -47,11 +47,11 @@
 "txt_no_file_choosen" = "No file choosen";
 "txt_choose_file" = "Choose File";
 
-"txt_you_got_me" = "You got me!";
-"txt_not_got_me" = "Nah! not yet..";
+"txt_you_got_me" = "你有我";
+"txt_not_got_me" = "没有，还没呢";
 
-"txt_new_password" = "New Password";
-"txt_submit" = "Submit";
+"txt_new_password" = "新的密码。";
+"txt_submit" = "提交";
 "txt_link" = "Username";
 "txt_continue" = "Continue";
 
@@ -77,29 +77,45 @@
 "txt.spanish" = "西班牙語";
 "txt.porugues" = "葡萄牙语";
 
-"txt_change_language" = "Change language to";
+"txt_change_language" = "语言更改为";
 "txt_yes" = "是";
 "txt_no" = "没有";
 
-"txt_logout" = "Do you want to Logout from the app?";
-"txt_copied" = "Link copied to clipboard";
+"txt_logout" = "您是否要注销程序？";
+"txt_copied" = "链接已复制到剪贴板";
 
 "txt_please_enter_post" = "Please enter post message.";
 "txt_success_post" = "Successfully Posted.";
-"txt_contacts" = "Contacts";
-"txt_favorite" = "Favorite";
-"txt_AllContact" = "All Contacts";
+"txt_contacts" = "联系人";
+"txt_favorite" = "收藏夹";
+"txt_AllContact" = "所有联系人";
 
-"txt_no_record" = "No record found.";
+"txt_no_record" = "没有找到记录！.";
 "txt_select_cont" = "Select Contact";
-"txt_link_share" = "I invite you to send me message anonymously on TrickyChat app";
+"txt_link_share" = "我邀请你在TrickyChat应用程序匿名发送消息";
 
 "otp_info" = "Don't attend the incoming call. You will receive a missed call. Enter the last 6 digit of missed call number";
 
 
 "txt_message_user_blocked" = "You have blocked this user";
-"txt_share" = "I invite you to send me message anonymously on TrickyChat app";
+"txt_share" = "我邀请你在TrickyChat应用程序匿名发送消息";
+
 "txt_send_message" = "Send secret message here..";
 
 "txt_Invite_Contact" = "I am inviting you to try TrickyChat app. Download from below link \nhttp://www.trickychat.com";
+
+/////////////////////////////////// New Added ////////////////////////////////
+
+"txt_create_post" = "Create Post";
+"txt_reply" = "回复" ;
+"txt_reply_to" = "回复";
+"txt_block" = "阻止这个用户？";
+"txt_unblock" = "解除阻止这个用户？";
+"txt_msg_dlt" = "你要删除这条消息？";
+"txt_msg" = "消息";
+"txt_chat" = "Chat";
+"txt_opt_check" = "Please enter otp first" ;
+"txt_code" = "Select Code" ;
+
+
 
