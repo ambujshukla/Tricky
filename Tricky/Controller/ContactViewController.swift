@@ -9,7 +9,7 @@
  import UIKit
  import DZNEmptyDataSet
 
- class ContactViewController: UIViewController , UITableViewDelegate , UITableViewDataSource,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UISearchBarDelegate {
+ class ContactViewController: GAITrackedViewController , UITableViewDelegate , UITableViewDataSource,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UISearchBarDelegate {
     
     var contactsArray = NSMutableArray()
     var arrSyncContacts = [[String : AnyObject]]()
@@ -91,10 +91,13 @@
         }
         var strTitle = "txt_AllContact".localized()
         if (self.contactShowFrom == 1){
+            // Set screen name.
+            self.screenName = "Blocked Contacts";
             strTitle = "txt_block_users".localized()
             self.imgBg.image = UIImage(named : BLOCK_LIST_BG)
         }else if(self.contactShowFrom == 2)
         {
+            self.screenName = "Contact";
             strTitle = "txt_contacts".localized()
             self.imgBg.image = UIImage(named : ALL_CONTACTS_BG)
         }

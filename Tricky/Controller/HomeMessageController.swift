@@ -10,7 +10,7 @@ import UIKit
 import AAPopUp
 import DZNEmptyDataSet
 
-class HomeMessageController: UIViewController , UITableViewDelegate , UITableViewDataSource,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate{
+class HomeMessageController: GAITrackedViewController , UITableViewDelegate , UITableViewDataSource,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate{
     
     @IBOutlet weak var tblMessage : UITableView!
     @IBOutlet weak var btnPlus : UIButton!
@@ -41,6 +41,12 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
         super.viewDidLoad()
         self.decorateUI()
         self.doGetMessageList(isComeFromPullToRefresh:  false , isShowLoader:  true)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        // Set screen name.
+        self.screenName = "Message Home";
     }
     
     func handleRefresh(_ refreshControl: UIRefreshControl) {

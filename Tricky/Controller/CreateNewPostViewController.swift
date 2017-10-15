@@ -13,7 +13,7 @@ import Localize_Swift
     @objc optional func createNewPost()
 }
 
-class CreateNewPostViewController: UIViewController, UITextViewDelegate {
+class CreateNewPostViewController: GAITrackedViewController, UITextViewDelegate {
     
     @IBOutlet weak var btnCreate : UIButton!
     @IBOutlet weak var txtViewComment : UITextView!
@@ -62,6 +62,8 @@ class CreateNewPostViewController: UIViewController, UITextViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        // Set screen name.
+        self.screenName = "New Post";
         self.navigationController?.navigationBar.barTintColor = color(red: 36, green: 149, blue: 178)
     }
     

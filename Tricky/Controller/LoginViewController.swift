@@ -11,7 +11,7 @@ import Localize_Swift
 import ObjectMapper
 import ActionSheetPicker_3_0
 
-class LoginViewController: UIViewController
+class LoginViewController: GAITrackedViewController
 {
     @IBOutlet  var txtMobile : UITextField!
     
@@ -105,8 +105,12 @@ class LoginViewController: UIViewController
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool)
+    {
         super.viewWillAppear(true)
+        // Set screen name.
+        self.screenName = "Login"
+        
         self.navigationController?.navigationBar.barTintColor = color(red: 105, green: 181, blue: 198)
         self.navigationItem.setHidesBackButton(true, animated: false)
     }

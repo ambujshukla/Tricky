@@ -10,7 +10,7 @@ import UIKit
 import AAPopUp
 import DZNEmptyDataSet
 
-class FavouriteViewController: UIViewController , UITableViewDelegate , UITableViewDataSource,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+class FavouriteViewController: GAITrackedViewController , UITableViewDelegate , UITableViewDataSource,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
     @IBOutlet weak var tblFav : UITableView!
     var arrMessageList = [Dictionary<String, AnyObject>]()
@@ -81,6 +81,8 @@ class FavouriteViewController: UIViewController , UITableViewDelegate , UITableV
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        // Set screen name.
+        self.screenName = "Favourite";
         self.navigationController?.navigationBar.barTintColor = color(red: 181, green: 121, blue: 240)
     }
     
@@ -170,8 +172,8 @@ class FavouriteViewController: UIViewController , UITableViewDelegate , UITableV
         
     }
     
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
         let dictData = self.arrMessageList[indexPath.row]
         if dictData["senderId"] as! String == CommonUtil.getUserId()  {
             return

@@ -9,7 +9,7 @@
 import UIKit
 import ObjectMapper
 
-class VerifyOTPController: UIViewController
+class VerifyOTPController: GAITrackedViewController
 {
     @IBOutlet weak var tfOtp   : UITextField!
     @IBOutlet weak var btnOTP  : UIButton!
@@ -96,6 +96,8 @@ class VerifyOTPController: UIViewController
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        // Set screen name.
+        self.screenName = "Verify OTP"
       //  if self.isFromSignUp {
             self.navigationController?.navigationBar.barTintColor = color(red: 120, green: 211, blue: 151)
 //        }else{

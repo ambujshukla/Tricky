@@ -12,7 +12,7 @@ import ObjectMapper
 import SafariServices
 
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: GAITrackedViewController {
     
     //  @IBOutlet weak var lblTitle : UILabel!
     //  @IBOutlet weak var lblMobile : UILabel!
@@ -140,6 +140,8 @@ class SignUpViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        // Set screen name.
+        self.screenName = "Signup"
         self.navigationController?.navigationBar.barTintColor = color(red: 244, green: 166, blue: 202)
         self.navigationItem.setHidesBackButton(true, animated: false)
         

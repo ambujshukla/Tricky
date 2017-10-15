@@ -11,7 +11,7 @@ import Localize_Swift
 import ObjectMapper
 import KMPlaceholderTextView
 
-class UserPostAnswerViewController: UIViewController,UITextViewDelegate {
+class UserPostAnswerViewController: GAITrackedViewController,UITextViewDelegate {
     
     @IBOutlet weak var txtViewComment : KMPlaceholderTextView!
     @IBOutlet weak var btnSend : UIButton!
@@ -27,6 +27,7 @@ class UserPostAnswerViewController: UIViewController,UITextViewDelegate {
         super.viewDidLoad()
         self.decorateUI()
     }
+    
     
     func decorateUI ()
     {
@@ -48,6 +49,8 @@ class UserPostAnswerViewController: UIViewController,UITextViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        // Set screen name.
+        self.screenName = "New Message"
         self.navigationController?.navigationBar.barTintColor = color(red: 146, green: 102, blue: 236)
     }
     

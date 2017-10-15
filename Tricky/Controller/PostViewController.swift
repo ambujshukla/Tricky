@@ -9,7 +9,7 @@
 import UIKit
 import DZNEmptyDataSet
 
-class PostViewController: UIViewController , UITableViewDelegate , UITableViewDataSource, PostMessageDelegate,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+class PostViewController: GAITrackedViewController , UITableViewDelegate , UITableViewDataSource, PostMessageDelegate,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
     @IBOutlet weak var tblPost : UITableView!
     @IBOutlet weak var btnPlus : UIButton!
@@ -38,6 +38,12 @@ class PostViewController: UIViewController , UITableViewDelegate , UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         self.decorateUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        // Set screen name.
+        self.screenName = "Post Home"
     }
     
     override func didReceiveMemoryWarning() {

@@ -10,7 +10,7 @@ import UIKit
 import Localize_Swift
 import DZNEmptyDataSet
 
-class PostDetailViewController: UIViewController , UITableViewDelegate , UITableViewDataSource,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
+class PostDetailViewController: GAITrackedViewController , UITableViewDelegate , UITableViewDataSource,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
 {
     @IBOutlet weak var tblPosts : UITableView!
     @IBOutlet weak var lblPostCreated : UILabel!
@@ -66,6 +66,8 @@ class PostDetailViewController: UIViewController , UITableViewDelegate , UITable
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        // Set screen name.
+        self.screenName = "Post Detail"
         self.navigationController?.navigationBar.barTintColor = color(red: 106, green: 103, blue: 111)
     }
     

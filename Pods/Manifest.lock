@@ -3,7 +3,23 @@ PODS:
   - ActionSheetPicker-3.0 (2.2.0)
   - Alamofire (4.4.0)
   - DZNEmptyDataSet (1.8.1)
+  - FirebaseAnalytics (3.9.0):
+    - FirebaseCore (~> 3.6)
+    - FirebaseInstanceID (~> 1.0)
+    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+  - FirebaseCore (3.6.0):
+    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+  - FirebaseInstanceID (1.0.10):
+    - FirebaseCore (~> 3.6)
+  - Google/Analytics (3.1.0):
+    - Google/Core
+    - GoogleAnalytics (~> 3.12)
+  - Google/Core (3.1.0):
+    - FirebaseAnalytics (~> 3.2)
   - GoogleAnalytics (3.17.0)
+  - GoogleToolboxForMac/Defines (2.1.1)
+  - GoogleToolboxForMac/NSData+zlib (2.1.1):
+    - GoogleToolboxForMac/Defines (= 2.1.1)
   - IQKeyboardManager (4.0.10)
   - KMPlaceholderTextView (1.3.0)
   - Localize-Swift (1.7.1)
@@ -29,7 +45,7 @@ DEPENDENCIES:
   - ActionSheetPicker-3.0
   - Alamofire (~> 4.4)
   - DZNEmptyDataSet
-  - GoogleAnalytics
+  - Google/Analytics
   - IQKeyboardManager
   - KMPlaceholderTextView (~> 1.3.0)
   - Localize-Swift (~> 1.7)
@@ -47,7 +63,12 @@ SPEC CHECKSUMS:
   ActionSheetPicker-3.0: d11a4c12c6aaf704b8a3f56d179198c99f3e41e6
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
+  FirebaseAnalytics: e5fe8486efc01bec33f6bf82e2fa9fce4b124052
+  FirebaseCore: 9691ee2ade70c098d7cf92440f4303f16d83ca75
+  FirebaseInstanceID: b9eedd6846fb5e1f0f7279e1deaa7a7e4cf8392e
+  Google: 98da4b1a60ed0beb80a290387a28333406a1eb90
   GoogleAnalytics: f42cc53a87a51fe94334821868d9c8481ff47a7b
+  GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   IQKeyboardManager: 593ee99b88381f4b9ccb22bd680f22606351bd41
   KMPlaceholderTextView: 2bbcd19a273648a80a61e1e48f9743a24d8930e3
   Localize-Swift: 6cabc1087c0e910e77bfa87c2ed3f65c80c0b2df
@@ -61,6 +82,6 @@ SPEC CHECKSUMS:
   Toast-Swift: 5b2f8f720f7e78e48511f693df1f9c9a6e38a25a
   UITextView+Placeholder: 77680995fcdd07c3f52ec92fe1150874a2ac89ff
 
-PODFILE CHECKSUM: 31d3a3512bf16997358b9dfcd7a10d001d5010d0
+PODFILE CHECKSUM: 24c9521a185801ee5b748eb4a623c6360b8b2002
 
 COCOAPODS: 1.3.1

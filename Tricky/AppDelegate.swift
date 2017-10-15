@@ -60,7 +60,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         UIApplication.shared.statusBarStyle = .lightContent
         
-        
+        //Google Analytics
+        guard let gai = GAI.sharedInstance() else {
+            assert(false, "Google Analytics not configured correctly")
+        }
+        gai.tracker(withTrackingId: "UA-105626100-1")
+        // Optional: automatically report uncaught exceptions.
+        gai.trackUncaughtExceptions = true
+
         return true
     }
     

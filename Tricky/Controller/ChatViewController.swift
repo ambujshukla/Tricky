@@ -9,7 +9,7 @@
 import UIKit
 import DZNEmptyDataSet
 
-class ChatViewController: UIViewController  , UITableViewDataSource , UITableViewDelegate,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate{
+class ChatViewController: GAITrackedViewController  , UITableViewDataSource , UITableViewDelegate,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate{
     
     @IBOutlet weak var tblChat : UITableView!
     
@@ -45,6 +45,12 @@ class ChatViewController: UIViewController  , UITableViewDataSource , UITableVie
         super.viewDidLoad()
         self.decorateUI()
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        // Set screen name.
+        self.screenName = "Chat Home"
     }
     
     override func didReceiveMemoryWarning() {

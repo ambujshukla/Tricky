@@ -12,7 +12,7 @@ import SDWebImage
 import ActionSheetPicker_3_0
 
 
-class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDataSource, UITextFieldDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate,UIActionSheetDelegate  {
+class ProfileViewController: GAITrackedViewController, UITableViewDelegate,UITableViewDataSource, UITextFieldDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate,UIActionSheetDelegate  {
     
     @IBOutlet weak var tblView : UITableView!
     @IBOutlet weak var imgProfilePic : UIImageView!
@@ -51,6 +51,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate,UITableViewDa
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        // Set screen name.
+        self.screenName = "Profile";
         self.navigationController?.navigationBar.barTintColor = color(red: 236, green: 92, blue: 83)
     }
     

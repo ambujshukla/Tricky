@@ -12,7 +12,7 @@ import UITextView_Placeholder;
 import DZNEmptyDataSet
 import RealmSwift
 
-class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
+class ChatDetailViewController : GAITrackedViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
 {
     @IBOutlet weak var tblView : UITableView!
     @IBOutlet weak var btnSend : UIButton!
@@ -55,6 +55,12 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
         self.configureInitialParameters()
         self.decorateUI()
         self.doCallGetChatMessageWS(shouldShowLoader: true)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        // Set screen name.
+        self.screenName = "Chat Detail";
     }
     
     override func viewDidLayoutSubviews() {
