@@ -14,7 +14,8 @@ class ChatTableViewCell: UITableViewCell {
     @IBOutlet weak var view : UIView!
     @IBOutlet weak var imgBG : UIImageView!
     @IBOutlet weak var btnSend : UIButton!
-    
+    @IBOutlet weak var lblTime : UILabel!
+
     override func awakeFromNib()
     {
         super.awakeFromNib()

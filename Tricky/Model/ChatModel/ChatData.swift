@@ -19,4 +19,5 @@ class ChatData : Object
     dynamic var type = ""
     dynamic var receiverId = ""
     dynamic var timeStamp = 0
+    dynamic var chatId = ""
 }

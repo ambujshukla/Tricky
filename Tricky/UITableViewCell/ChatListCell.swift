@@ -27,7 +27,7 @@ class ChatListCell: UITableViewCell {
     
     func doSetDataOnCell(dictData : [String : AnyObject]){
         
-        if let value = dictData["name"] as? String {
+        if let value = dictData["chatMessage"] as? String {
             self.lblName.text = (value )
         }
         if let message = dictData["recentMessage"] as? String {
@@ -37,7 +37,6 @@ class ChatListCell: UITableViewCell {
             
             let date : Date = CommanUtility.convertAStringIntodDte(time : (time) , formate : "yyyy-MM-dd HH:mm:ss")
             self.lblTime.text = CommonUtil.timeAgoSinceDate(date, currentDate: Date(), numericDates: true)
-
-    }
+        }
     }
 }
