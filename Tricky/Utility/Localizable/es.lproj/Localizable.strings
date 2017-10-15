@@ -97,7 +97,7 @@
 
 "txt_link_share" = "Te invito a que me envíes un mensaje de forma anónima en la aplicación TrickyChat";
 
-"otp_info" = "No asista a la llamada entrante. Recibirá una llamada perdida. Ingrese los últimos 6 dígitos del número de llamada perdida";
+"otp_info" = "No asista a la llamada entrante. Recibirá una llamada perdida. Ingrese los últimos 4 dígitos del número de llamada perdida";
 
 
 "txt_message_user_blocked" = "Has bloqueado a este usuario";
