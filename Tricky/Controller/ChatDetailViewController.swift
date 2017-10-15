@@ -15,7 +15,7 @@ import RealmSwift
 class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
 {
     @IBOutlet weak var tblView : UITableView!
-    @IBOutlet weak var imgBG : UIImageView!
+   // @IBOutlet weak var imgBG : UIImageView!
 //    @IBOutlet weak var btnYes : UIButton!
 //    @IBOutlet weak var btnNo : UIButton!
     @IBOutlet weak var btnSend : UIButton!
@@ -23,6 +23,7 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var txtChat : UITextView!
     @IBOutlet weak var originConstraintTxtView: NSLayoutConstraint!
     @IBOutlet weak var heightConstrntTxtView: NSLayoutConstraint!
+    @IBOutlet weak var headerView : CustomHeaderView!
     
     var lastTimeSyncTime : String = "0"
     var lastTimeStamp = 0
@@ -35,6 +36,8 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
     var arrChat = List<ChatData>()
     var strChatId : String = ""
     var strReceiverId : String = ""
+    var strChatMessage : String = ""
+    var strMessageId : String = ""
 
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -55,16 +58,34 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
         self.doCallGetChatMessageWS(shouldShowLoader: true)
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        sizeHeaderToFit()
+    }
+    
+    func sizeHeaderToFit() {
+        let headerView = tblView.tableHeaderView!
+        headerView.setNeedsLayout()
+        headerView.layoutIfNeeded()
+        
+        let height = headerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
+        var frame = headerView.frame
+        frame.size.height = height
+        headerView.frame = frame
+        tblView.tableHeaderView = headerView
+    }
+
+    
     func decorateUI()
     {
-        self.navigationController?.navigationBar.barTintColor = color(red: 113, green: 136, blue: 154)
+        self.navigationController?.navigationBar.barTintColor = color(red: 56, green: 192, blue: 110)
         
         self.tblView.addSubview(self.refreshControl)
         
         CommanUtility.decorateNavigationbarWithBackButtonAndTitle(target: self, leftselect: #selector(doClickBack), strTitle: self.strName , strBackImag: BACK_BUTTON, strFontName: "Arial", size: 20, color: UIColor.white)
         
         self.tblView.backgroundColor = UIColor.clear
-        self.imgBG.image = UIImage(named : CHAT_BG)
+      //  self.imgBG.image = UIImage(named : CHAT_BG)
         self.tblView.rowHeight = UITableViewAutomaticDimension
         self.tblView.estimatedRowHeight = 40
         self.tblView.separatorColor = UIColor.clear
@@ -72,11 +93,26 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
         self.btnSend .setImage(UIImage(named : SEND_ICON), for: .normal)
         self.txtChat.backgroundColor = UIColor.clear
         self.viewBottom.layer.cornerRadius = 15
+        self.viewBottom.layer.borderWidth = 1.0
+        self.viewBottom.layer.borderColor = UIColor.gray.cgColor
+        
+        self.headerView.label.text = self.strChatMessage
     }
     
     func doCallGetChatMessageWS(shouldShowLoader : Bool)
     {
-        let params = ["version" : "1.0" , "os" : "2" , "language" : "english","userId":CommonUtil.getUserId(), "messageId" : self.strChatId ,"receiverId" :self.strReceiverId, "lastMessageDateTime" : self.lastTimeSyncTime, "chatId" : self.strChatId,"limit" : "\(self.limit)","offset" : "\(self.offSet)"]  as [String : Any]
+        /*
+         
+        Request
+        -lastMessageDateTime  (send chats after this time update)     Ex: 2017-08-01 12:23:23
+        -chatId
+        -messageId(New Added)
+        -userId
+        -receiverId
+ */
+
+        
+        let params = ["version" : "1.0" , "os" : "2" , "language" : "english","userId":CommonUtil.getUserId(), "messageId" : self.strMessageId ,"receiverId" :self.strReceiverId, "lastMessageDateTime" : self.lastTimeSyncTime, "chatId" : self.strChatId,"limit" : "\(self.limit)","offset" : "\(self.offSet)"]  as [String : Any]
         
         print(params)
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOSTAndPullToRefresh(isShowLoder: shouldShowLoader, strURL: kBaseUrl, strServiceName: "getChatMessageList", parameter: params, success: { (obj) in
@@ -133,16 +169,13 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
         return self.arrChat.count
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 10
-    }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView()
-        
-        view.backgroundColor = UIColor.clear
-        return view
-    }
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        
+//        let viewCustom  = CustomHeaderView()
+//        viewCustom.label.text = self.strChatMessage
+//        return viewCustom
+//    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellToShow : UITableViewCell!
@@ -150,14 +183,14 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
         if chatData.senderId == CommonUtil.getUserId() {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cellChat2") as! ChatTableViewCell
             cell.lblMessage.text = chatData.message
-            cell.imgBG.layer.cornerRadius = 10
-            cell.imgBG.backgroundColor = UIColor.white
+           // cell.imgBG.layer.cornerRadius = 10
+            cell.imgBG.backgroundColor = UIColor.clear
             cellToShow = cell
         }else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cellChat1") as! ChatTableViewCell
             cell.lblMessage.text = chatData.message
-            cell.imgBG.layer.cornerRadius = 10
-            cell.imgBG.backgroundColor = UIColor.white
+            //cell.imgBG.layer.cornerRadius = 10
+            cell.imgBG.backgroundColor = UIColor.clear
             cellToShow = cell
         }
         cellToShow.backgroundColor = UIColor.clear

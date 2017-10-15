@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "sendicon.png",
+      "filename" : "sendiconhdmi.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "sendicon@2x.png",
+      "filename" : "sendiconxhdmi.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "sendicon@3x.png",
+      "filename" : "sendiconxxhdmi.png",
       "scale" : "3x"
     }
   ],

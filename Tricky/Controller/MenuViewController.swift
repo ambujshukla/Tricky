@@ -53,7 +53,7 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
         }
         
         //, "My Post"
-        self.menuData = ["Home".localized() ,"txt_block_users".localized() , "Contacts" , "Favorite" , "Language" , "Filter vulgar messages" , "Block unauthorised user","Display all anonymous post" , "Logout"];
+        self.menuData = ["Home".localized() ,"txt_block_users".localized() , "txt_contacts".localized() , "txt_favorite".localized() , "txt_language".localized() , "Filter vulgar messages" , "Block unauthorised user","Display all anonymous post" , "Logout"];
         
         self.tblMenu.tableFooterView = UIView()
         self.lblSent.textColor = UIColor.white

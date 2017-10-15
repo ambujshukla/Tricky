@@ -30,6 +30,7 @@
 		183A10B11F4B529A00579A7A /* ViewPagerTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183A10AD1F4B529A00579A7A /* ViewPagerTab.swift */; };
 		183A10B21F4B529A00579A7A /* ViewPagerTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183A10AE1F4B529A00579A7A /* ViewPagerTabView.swift */; };
 		183A10B71F4B52D000579A7A /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 183A10B61F4B52D000579A7A /* SWRevealViewController.m */; };
+		186E58FE1F93463800DAA6FC /* CustomHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186E58FD1F93463800DAA6FC /* CustomHeaderView.swift */; };
 		18886DE81F76EAE800E2A760 /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18886DE71F76EAE800E2A760 /* ContactTableViewCell.swift */; };
 		18999DE01F8945A6000AFA4E /* CountryCodes.json in Resources */ = {isa = PBXBuildFile; fileRef = 18999DDF1F8945A6000AFA4E /* CountryCodes.json */; };
 		18E266B01F5B2BE9009F8B01 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E266AF1F5B2BE9009F8B01 /* LoginModel.swift */; };
@@ -142,6 +143,7 @@
 		183A10B41F4B52CE00579A7A /* Tricky-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tricky-Bridging-Header.h"; sourceTree = "<group>"; };
 		183A10B51F4B52D000579A7A /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		183A10B61F4B52D000579A7A /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		186E58FD1F93463800DAA6FC /* CustomHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomHeaderView.swift; sourceTree = "<group>"; };
 		18886DE71F76EAE800E2A760 /* ContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
 		18999DDF1F8945A6000AFA4E /* CountryCodes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CountryCodes.json; sourceTree = "<group>"; };
 		18E266AF1F5B2BE9009F8B01 /* LoginModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
@@ -431,6 +433,7 @@
 				31DF5DAB1F76CBC80087B302 /* MyPostViewController.swift */,
 				3151CE931F48C56000C322C3 /* BlockUserListViewController.swift */,
 				183A10841F4B519900579A7A /* NewPasswordController.swift */,
+				186E58FD1F93463800DAA6FC /* CustomHeaderView.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -761,6 +764,7 @@
 				183A10AF1F4B529A00579A7A /* ViewPagerController.swift in Sources */,
 				18E266B01F5B2BE9009F8B01 /* LoginModel.swift in Sources */,
 				183A10871F4B51A200579A7A /* HomeViewController.swift in Sources */,
+				186E58FE1F93463800DAA6FC /* CustomHeaderView.swift in Sources */,
 				180035601F6AFFD4005C1072 /* SendMessageModel.swift in Sources */,
 				3151CE921F48B2F900C322C3 /* ProfileTableViewCell.swift in Sources */,
 				181BD4D11F55DFF900E60277 /* PostTableViewCell.swift in Sources */,

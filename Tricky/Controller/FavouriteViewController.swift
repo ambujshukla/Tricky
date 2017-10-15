@@ -87,6 +87,9 @@ class FavouriteViewController: UIViewController , UITableViewDelegate , UITableV
     }
     
     //MARK: - Tableview delegate and datasource methods
+    //MARK: - Tableview delegate and datasource methods
+    
+    
     func numberOfSections(in tableView: UITableView) -> Int
     {
         return 1
@@ -98,37 +101,96 @@ class FavouriteViewController: UIViewController , UITableViewDelegate , UITableV
     }
     
     // MARK: - Table View Delegates
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
-    {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cellToReturn : UITableViewCell!
+        let dictData = self.arrMessageList[indexPath.row]
+        if let senderId = dictData["senderId"] as? String {
+            
+            if senderId == CommonUtil.getUserId()  {
+                cellToReturn = self.doConfigReciverCell(dictData: dictData, indexPath: indexPath, tableView: tableView)
+            }else{
+                cellToReturn = self.doConfigSenderCell(dictData: dictData, indexPath: indexPath, tableView: tableView)
+            }
+        }
+        else{
+            cellToReturn = self.doConfigReciverCell(dictData: dictData, indexPath: indexPath, tableView: tableView)
+        }
+        return cellToReturn
+    }
+    
+    
+    func doConfigSenderCell(dictData : [String : AnyObject] , indexPath : IndexPath , tableView : UITableView)-> UITableViewCell{
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell1", for: indexPath) as! MessageTableViewCell
         cell.decorateTableViewCell(dictData: self.arrMessageList[indexPath.row])
-        cell.btnBlock.addTarget(self, action: #selector(self.doActionOnBlockButton(sender:)), for: .touchUpInside)
-        cell.btnfavourite.addTarget(self, action: #selector(self.doCallServiceForFavouriteMessage(sender:)), for: .touchUpInside)
-        cell.selectionStyle = .none
-        cell.btnReply.addTarget(self, action: #selector(self.doActionOnReply(sender:)), for: .touchUpInside)
-        cell.btnDelete.addTarget(self, action: #selector(self.doActionOnDeleteMessage(sender:)), for: .touchUpInside)
-        cell.btnShare.addTarget(self, action: #selector(self.doActionOnShare(sender:)), for: .touchUpInside)
+        
+        cell.btnfavourite.tag = indexPath.row
         cell.btnShare.tag = indexPath.row
         cell.btnReply.tag = indexPath.row
-        cell.btnDelete.tag = indexPath.row
-        cell.btnfavourite.tag = indexPath.row
         cell.btnBlock.tag = indexPath.row
-        let dictData = self.arrMessageList[indexPath.row];
-        if ((dictData["isUserBlock"] as! Int) == 1)
-        {
-            cell.btnBlock.setImage(UIImage(named : "blockselecticon"), for: .normal)
-        }else{
-            cell.btnBlock.setImage(UIImage(named : "unblockicon"), for: .normal)
-        }
+        cell.btnDelete.tag = indexPath.row
+        
+        cell.btnfavourite.addTarget(self, action: #selector(self.doCallServiceForFavouriteMessage(sender:)), for: .touchUpInside)
+        cell.btnBlock.addTarget(self, action: #selector(self.doActionOnBlockButton(sender:)), for: .touchUpInside)
+        cell.btnDelete.addTarget(self, action: #selector(self.doActionOnDeleteMessage(sender:)), for: .touchUpInside)
+        cell.btnReply.addTarget(self, action: #selector(self.doActionOnReply(sender:)), for: .touchUpInside)
+        cell.btnShare.addTarget(self, action: #selector(self.doActionOnShare(sender:)), for: .touchUpInside)
+        cell.selectionStyle = .none
         return cell
-        // }
-        //        else
-        //        {
-        //            let cell = tableView.dequeueReusableCell(withIdentifier: "cell2", for: indexPath) as! MessageTableViewCell
-        //            cell.lblMessage.text = "hi jhon i am fine how about you. hope you are doing well and how about your work"
-        //
-        //            return cell
-        //        }
+    }
+    
+    func doConfigReciverCell(dictData : [String : AnyObject] , indexPath : IndexPath , tableView : UITableView) -> UITableViewCell{
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell2", for: indexPath) as! MessageTableViewCell
+        cell.lblTo.text = "To: \(dictData["recieverName"] as! String)"
+        
+        let isFavourite = dictData["isFavorite"] as! Bool
+        if isFavourite {
+            cell.btnfavourite.isSelected = true
+        }
+        else
+        {
+            cell.btnfavourite.isSelected = false
+        }
+        cell.lblMessage.text = dictData["message"] as? String
+        
+        let date : Date = CommanUtility.convertAStringIntodDte(time : (dictData["time"] as? String)! , formate : "yyyy-MM-dd HH:mm:ss")
+        cell.lblTime.text = CommonUtil.timeAgoSinceDate(date, currentDate: Date(), numericDates: true)
+        
+        cell.btnfavourite.tag = indexPath.row
+        cell.btnDelete.tag = indexPath.row
+        cell.btnfavourite.addTarget(self, action: #selector(self.doCallServiceForFavouriteMessage(sender:)), for: .touchUpInside)
+        cell.btnDelete.addTarget(self, action: #selector(self.doActionOnDeleteMessage(sender:)), for: .touchUpInside)
+        cell.selectionStyle = .none
+        return cell
+        
+    }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let dictData = self.arrMessageList[indexPath.row]
+        if dictData["senderId"] as! String == CommonUtil.getUserId()  {
+            return
+        }
+        let isBlock = dictData["isUserBlock"] as! Bool
+        if isBlock
+        {
+            CommonUtil.showTotstOnWindow(strMessgae: "txt_message_user_blocked".localized())
+        }else
+        {
+            //you have blocked this user
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChatDetailViewIdentifier") as! ChatDetailViewController
+            var dictLocalData = self.arrMessageList[indexPath.row]
+            dictLocalData["receiverId"] = dictLocalData["senderId"]
+            vc.dictChatData = dictLocalData
+            vc.strChatId = vc.dictChatData["messageId"] as! String
+            vc.strChatMessage = vc.dictChatData["message"] as! String
+            vc.strName = vc.dictChatData["senderName"] as! String
+            vc.strMessageId = vc.dictChatData["messageId"] as! String
+            vc.strReceiverId = vc.dictChatData["senderId"] as! String
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     func doActionOnDeleteMessage(sender : UIButton){
@@ -239,11 +301,16 @@ class FavouriteViewController: UIViewController , UITableViewDelegate , UITableV
     }
     
     func doActionOnReply(sender : UIButton) {
-        let controller = self.storyboard?.instantiateViewController(withIdentifier: "CreateNewPostViewController") as! CreateNewPostViewController
-        controller.isPostReply = true
-        let messageId : String = self.arrMessageList[sender.tag]["messageId"] as! String
-        controller.strPostID = messageId
-        self.navigationController?.pushViewController(controller, animated: true)
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChatDetailViewIdentifier") as! ChatDetailViewController
+        var dictLocalData = self.arrMessageList[sender.tag]
+        dictLocalData["receiverId"] = dictLocalData["senderId"]
+        vc.dictChatData = dictLocalData
+        vc.strChatId = vc.dictChatData["messageId"] as! String
+        vc.strChatMessage = vc.dictChatData["message"] as! String
+        vc.strName = vc.dictChatData["senderName"] as! String
+        vc.strMessageId = vc.dictChatData["messageId"] as! String
+        vc.strReceiverId = vc.dictChatData["senderId"] as! String
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func doActionOnShare(sender : UIButton)
