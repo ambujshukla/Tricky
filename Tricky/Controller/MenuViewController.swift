@@ -119,7 +119,7 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MenuTableViewCell
         
-        if indexPath.row == 5 || indexPath.row == 6 || indexPath.row == 7 {
+        if indexPath.row == 5 || indexPath.row == 6  {
             cell.switchPW?.isHidden = false
             if indexPath.row == 5
             {
@@ -133,14 +133,6 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
             if indexPath.row == 6
             {
                 if (CommonUtil.isBlockUser() == "1") {
-                    cell.switchPW.on = true
-                }else{
-                    cell.switchPW.on = false
-                }
-            }
-            if indexPath.row == 7
-            {
-                if (CommonUtil.isAnonymous() == "1") {
                     cell.switchPW.on = true
                 }else{
                     cell.switchPW.on = false
@@ -199,7 +191,7 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
 //            navController.setViewControllers([contrlHome , controller], animated: true)
 //            self.revealViewController().pushFrontViewController(navController, animated: true)
             
-        }else  if (indexPath.row == 8)
+        }else  if (indexPath.row == 7)
         {
             //  self.dismiss(animated: true, completion: nil)
             self.revealViewController().revealToggle(animated: true)
