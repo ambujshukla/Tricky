@@ -103,10 +103,10 @@ class VerifyOTPController: UIViewController
 //        }
     }
     
-    func doCallWebAPIForLogin()
+    func doCallWebAPIForLogin(isSignUp : String)
     {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let dictData = ["mobileNo" :self.strMobileNo ,"deviceToken":appDelegate.strDeviceToken , "otp" : self.tfOtp.text! , "countryCode" : "+91" , "os" :"2" ,"version" : "1.0.0" ,"language" : "english" ] as [String : Any]
+        let dictData = ["mobileNo" :self.strMobileNo ,"deviceToken":appDelegate.strDeviceToken , "otp" : self.tfOtp.text! , "countryCode" : "+91" , "os" :"2" ,"version" : "1.0.0" ,"language" : "english" , "isSignUp" : isSignUp] as [String : Any]
         print(dictData)
         
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: METHOD_LOGIN, parameter: dictData , success: { (obj) in
@@ -131,11 +131,11 @@ class VerifyOTPController: UIViewController
         
     }
     
-    func doCallWebAPIForRegistration()
+    func doCallWebAPIForRegistration(isSignUp : String)
     {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
 
-        let dictData = ["version" : "1.0" , "os" : "2" , "language" : "english" , "mobileNo": self.strMobileNo  , "url":self.strLink , "deviceToken" : appDelegate.strDeviceToken , "countryCode" : "+91" , "otp" : self.strOTP] as [String : Any]
+        let dictData = ["version" : "1.0" , "os" : "2" , "language" : "english" , "mobileNo": self.strMobileNo  , "url":self.strLink , "deviceToken" : appDelegate.strDeviceToken , "countryCode" : "+91" , "otp" : self.strOTP , "isSignUp" : isSignUp] as [String : Any]
         
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "register", parameter: dictData , success: { (obj) in
             let regData = Mapper<RegistrationModel>().map(JSON: obj)
@@ -202,10 +202,10 @@ class VerifyOTPController: UIViewController
             CommonUtil.setData("countryCode", value: self.strCountryCode! as NSString)
             self.btnResend.isEnabled = false
             if isFromSignUp {
-                self.doCallWebAPIForRegistration()
+                self.doCallWebAPIForRegistration(isSignUp : "1")
             }
             else{
-                self.doCallWebAPIForLogin()
+                self.doCallWebAPIForLogin(isSignUp : "0")
             }
             }else{
                 CommonUtil.showTotstOnWindow(strMessgae: "txt_opt_check".localized())
