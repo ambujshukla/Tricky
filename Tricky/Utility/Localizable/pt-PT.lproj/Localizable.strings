@@ -6,10 +6,11 @@
   Copyright © 2017 Gopal Sara. All rights reserved.
 */
 
+"txt_home" = "Casa";
 "txt_login" = "Login/ entrar";
 "txt_forgot_password" = "Esqueceu a senha?" ;
 "txt_SignUp" = "Efetuar a inscrição";
-"txt_don't_have_account" = "Don't have an accout?";
+"txt_don't_have_account" = "Não tem acesso?";
 "txt_mobile" = "celular";
 "txt_password" = "Senha";
 "txt_cnf_mobile" = "Confirmar senha";
@@ -35,19 +36,19 @@
 "txt_cancel" = "Cancelar";
 "txt_gallery" = "Galeria";
 "txt_photo" = "Câmera";
-"txt_options" = "Option to select";
+"txt_options" = "Opção para selecionar";
 "txt_profile" = "Perfil";
-"txt_block_users" = "Blocked User";
-"txt_search" = "Search";
+"txt_block_users" = "Usuário Bloqueado";
+"txt_search" = "Pesquisa";
 "txt_yes" = "Sim";
 "txt_no" = "Não";
 "txt_type_message" = "Digite uma mensagem";
-"txt_leave_answer" = "Leave a Answer";
-"txt_post_detail" = "Post Detail";
-"txt_notifications" = "Notifications";
-"txt_register" = "Register";
-"txt_no_file_choosen" = "No file choosen";
-"txt_choose_file" = "Choose File";
+"txt_leave_answer" = "Deixe uma resposta";
+"txt_post_detail" = "Detalhe postal";
+"txt_notifications" = "Notificações";
+"txt_register" = "registo";
+"txt_no_file_choosen" = "Nenhum arquivo selecionado";
+"txt_choose_file" = "Escolher arquivo";
 
 "txt_you_got_me" = "Você me pegou!";
 "txt_not_got_me" = "Nah! not yet..";
@@ -55,7 +56,7 @@
 "txt_new_password" = "Nova Senha";
 "txt_submit" = "Submeter";
 "txt_link" = "usuário";
-"txt_continue" = "Continue";
+"txt_continue" = "Continuar";
 
 
 "txt_trickychat" = "TrickyChat";
@@ -88,26 +89,26 @@
 "txt_logout" = "Deseja efetuar o logout do aplicativo?";
 "txt_copied" = "Link copiado para a área de transferência";
 
-"txt_please_enter_post" = "Please enter post message.";
-"txt_success_post" = "Successfully Posted.";
+"txt_please_enter_post" = "Digite a mensagem da mensagem.";
+"txt_success_post" = "Publicado com sucesso. ";
 "txt_contacts" = "Contatos";
 "txt_favorite" = "Favorito";
 "txt_AllContact" = "Todos os contatos";
 
 "txt_no_record" = "Nenhum registro encontrado!";
-"txt_select_cont" = "Select Contact";
+"txt_select_cont" = "Selecione Contato";
 
 "txt_link_share" = "Eu te convido a me enviar mensagens anonimamente no TrickyChat";
 
-"otp_info" = "Don't attend the incoming call. You will receive a missed call. Enter the last 6 digit of missed call number";
-"txt_message_user_blocked" = "You have blocked this user";
+"otp_info" = "Não atender a chamada recebida. Você receberá uma chamada perdida. Insira os últimos 6 dígitos do número de chamada perdida";
+"txt_message_user_blocked" = "Você bloqueou esse usuário";
 "txt_share" = "Eu te convido a me enviar mensagens anonimamente no TrickyChat";
-"txt_send_message" = "Send secret message here..";
-"txt_Invite_Contact" = "I am inviting you to try TrickyChat app. Download from below link \nhttp://www.trickychat.com";
+"txt_send_message" = "Envie uma mensagem secreta aqui ..";
+"txt_Invite_Contact" = "Estou convidando você a tentar o aplicativo TrickyChat. Faça o download a partir do link abaixo \nhttp://www.trickychat.com";
 
 /////////////////////////////////// New Added ////////////////////////////////
 
-"txt_create_post" = "Create Post";
+"txt_create_post" = "Criar postagem";
 "txt_reply" = "Resposta" ;
 "txt_reply_to" = "Responder para";
 "txt_block" = "Você deseja boquear esse usuário?";
@@ -115,7 +116,13 @@
 "txt_msg_dlt" = "Você deseja apagar essa mensagem?";
 "txt_msg" = "Mensagem";
 "txt_chat" = "Bate-papo";
-"txt_opt_check" = "Please enter otp first" ;
-"txt_code" = "Select Code" ;
+"txt_opt_check" = "Digite otp primeiro" ;
+"txt_code" = "Selecione o Código" ;
 
-
+"txt_filter_vulgar" = "Filtrar mensagens vulgares";
+"txt_block_unauthorized" = "Bloquear usuário não autorizado";
+"txt_display_all_anonymous_post" = "Exibir todas as postagens anônimas";
+"txt_logout" = "Sair";
+"txt_sent" = "Enviei";
+"txt_received" = "Recebido";
+"txt_please_enter_mobile" = "Digite o número do celular";

@@ -52,15 +52,15 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
             self.imgProfile.image = image
         }
         
-        //, "My Post"
-        self.menuData = ["Home".localized() ,"txt_block_users".localized() , "txt_contacts".localized() , "txt_favorite".localized() , "txt_language".localized() , "Filter vulgar messages" , "Block unauthorised user" , "Logout"];
+        //, "My Post" ,"txt_display_all_anonymous_post".localized()
+        self.menuData = ["txt_home".localized() ,"txt_block_users".localized() , "txt_contacts".localized() , "txt_favorite".localized() , "txt_language".localized() , "txt_filter_vulgar".localized() , "txt_block_unauthorized".localized() , "txt_logout".localized()];
         
         self.tblMenu.tableFooterView = UIView()
         self.lblSent.textColor = UIColor.white
         self.lblReceived.textColor = UIColor.white
         
-        self.lblSent.text = "\(String(describing: UserManager.sharedUserManager.sentMsgCount!)) \nSent"
-        self.lblReceived.text = "\(String(describing: UserManager.sharedUserManager.receiveMsgCount!)) \nRecieved"
+        self.lblSent.text = "\(String(describing: UserManager.sharedUserManager.sentMsgCount!)) \n\("txt_sent".localized())"
+        self.lblReceived.text = "\(String(describing: UserManager.sharedUserManager.receiveMsgCount!)) \n\("txt_received".localized())"
         self.tblMenu.reloadData()
     }
     

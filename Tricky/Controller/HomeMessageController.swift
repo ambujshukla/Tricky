@@ -349,7 +349,8 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
         vc.strChatMessage = vc.dictChatData["message"] as! String
         vc.strName = vc.dictChatData["senderName"] as! String
         vc.strMessageId = vc.dictChatData["messageId"] as! String
-        vc.strReceiverId = vc.dictChatData["senderId"] as! String
+        vc.strReceiverId = vc.dictChatData["recieverId"] as! String
+        vc.strSenderId =  vc.dictChatData["senderId"] as! String
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

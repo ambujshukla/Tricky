@@ -72,6 +72,9 @@ class FavouriteViewController: UIViewController , UITableViewDelegate , UITableV
         self.tblFav.rowHeight = UITableViewAutomaticDimension;
         self.tblFav.estimatedRowHeight = 90.0;
         
+        self.tblFav.delegate = self
+        self.tblFav.dataSource = self
+        
         self.tblFav.emptyDataSetSource = self
         self.tblFav.emptyDataSetDelegate = self
     }
@@ -188,7 +191,8 @@ class FavouriteViewController: UIViewController , UITableViewDelegate , UITableV
             vc.strChatMessage = vc.dictChatData["message"] as! String
             vc.strName = vc.dictChatData["senderName"] as! String
             vc.strMessageId = vc.dictChatData["messageId"] as! String
-            vc.strReceiverId = vc.dictChatData["senderId"] as! String
+            vc.strReceiverId = vc.dictChatData["recieverId"] as! String
+            vc.strSenderId =  dictData["senderId"] as! String
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
@@ -309,7 +313,8 @@ class FavouriteViewController: UIViewController , UITableViewDelegate , UITableV
         vc.strChatMessage = vc.dictChatData["message"] as! String
         vc.strName = vc.dictChatData["senderName"] as! String
         vc.strMessageId = vc.dictChatData["messageId"] as! String
-        vc.strReceiverId = vc.dictChatData["senderId"] as! String
+        vc.strReceiverId = vc.dictChatData["recieverId"] as! String
+        vc.strSenderId =  vc.dictChatData["senderId"] as! String
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
