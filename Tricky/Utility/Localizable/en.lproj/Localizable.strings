@@ -6,6 +6,7 @@
   Copyright © 2017 Gopal Sara. All rights reserved.
 */
 
+"txt_home" = "Home";
 "txt_login" = "Login";
 "txt_forgot_password" = "Forgot Password?";
 "txt_SignUp" = "Signup";
@@ -118,7 +119,10 @@
 "txt_opt_check" = "Please enter otp first" ;
 "txt_code" = "Select Code" ;
 
-"txt_filter_vulgar" = "Filtrar Mensagem vulgar";
-"txt_block_unauthorized" = "Bloquear usuário não autorizado";
-
-
+"txt_filter_vulgar" = "Filter vulgar messages";
+"txt_block_unauthorized" = "Block unauthorised user";
+"txt_display_all_anonymous_post" = "Display all anonymous post";
+"txt_logout" = "Logout";
+"txt_sent" = "Sent";
+"txt_received" = "Received";
+"txt_please_enter_mobile" = "Please enter mobile no.";

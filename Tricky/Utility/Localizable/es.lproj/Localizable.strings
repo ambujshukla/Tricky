@@ -6,10 +6,11 @@
   Copyright © 2017 Gopal Sara. All rights reserved.
 */
 
+"txt_home" = "Casa";
 "txt_login" = "Iniciar sesión";
 "txt_forgot_password" = "¿Has olvidado tu contraseña?";
 "txt_SignUp" = "Regístrate";
-"txt_don't_have_account" = "Don't have an accout?";
+"txt_don't_have_account" = "¿No tienes una cuenta?";
 "txt_mobile" = "Móvil";
 "txt_password" = "Contraseña";
 "txt_cnf_mobile" = "Confirmar contraseña";
@@ -27,32 +28,32 @@
 "txt_otp" = "OTP";
 "txt_verify" = "Verificar";
 "txt_resend_otp" = "Reenviar contraseña temporal";
-"txt_otp_verify" = "Verify OTP";
+"txt_otp_verify" = "Verificar OTP";
 "txt_profile_photo" = "Profile Photo";
 "txt_cancel" = "Cancle";
 "txt_gallery" = "Galería de fotos";
 "txt_photo" = "Cámara";
-"txt_options" = "Option to select";
+"txt_options" = "Opción para seleccionar";
 "txt_profile" = "Perfil";
-"txt_block_users" = "Blocked User";
-"txt_search" = "Search";
+"txt_block_users" = "Usuario bloqueado";
+"txt_search" = "Buscar";
 "txt_yes" = "Sí";
 "txt_no" = "No";
 "txt_type_message" = "Escriba un mensaje";
-"txt_leave_answer" = "Leave a Answer";
-"txt_post_detail" = "Post Detail";
-"txt_notifications" = "Notifications";
-"txt_register" = "Register";
-"txt_no_file_choosen" = "No file choosen";
-"txt_choose_file" = "Choose File";
+"txt_leave_answer" = "Deja una respuesta";
+"txt_post_detail" = "Detalle de publicación";
+"txt_notifications" = "Notificaciones";
+"txt_register" = "Registro";
+"txt_no_file_choosen" = "Ningún archivo elegido";
+"txt_choose_file" = "Elija el archivo";
 
 "txt_you_got_me" = "Me tienes!";
 "txt_not_got_me" = "No, todavia no!";
 
 "txt_new_password" = "Nueva contraseña";
 "txt_submit" = "Enviar";
-"txt_link" = "Username";
-"txt_continue" = "Continue";
+"txt_link" = "Nombre de usuario";
+"txt_continue" = "Continuar";
 
 ////////////////////////0080917
 "txt_trickychat" = "TrickyChat";
@@ -84,40 +85,46 @@
 "txt_logout" = "¿Desea cerrar la aplicación?";
 "txt_copied" = "Enlace copiado en el portapapeles";
 
-"txt_please_enter_post" = "Please enter post message.";
-"txt_success_post" = "Successfully Posted.";
+"txt_please_enter_post" = "Ingrese mensaje.";
+"txt_success_post" = "Publicado con éxito.";
 "txt_contacts" = "Contactos";
 "txt_favorite" = "Favorito";
 "txt_AllContact" = "Todos los contactos";
 
 
-"txt_no_record" = "No record found.";
-"txt_select_cont" = "Select Contact";
+"txt_no_record" = "Ningún record fue encontrado.";
+"txt_select_cont" = "Seleccionar Contacto";
 
 "txt_link_share" = "Te invito a que me envíes un mensaje de forma anónima en la aplicación TrickyChat";
 
-"otp_info" = "Don't attend the incoming call. You will receive a missed call. Enter the last 6 digit of missed call number";
+"otp_info" = "No asista a la llamada entrante. Recibirá una llamada perdida. Ingrese los últimos 6 dígitos del número de llamada perdida";
 
 
-"txt_message_user_blocked" = "You have blocked this user";
+"txt_message_user_blocked" = "Has bloqueado a este usuario";
 "txt_share" = "Te invito a que me envíes un mensaje de forma anónima en la aplicación TrickyChat";
-"txt_send_message" = "Send secret message here..";
-"txt_Invite_Contact" = "I am inviting you to try TrickyChat app. Download from below link \nhttp://www.trickychat.com";
+"txt_send_message" = "Envía un mensaje secreto aquí ...";
+"txt_Invite_Contact" = "Te invito a probar la aplicación TrickyChat. Descarga desde el siguiente enlace \nhttp://www.trickychat.com";
 
 
 /////////////////////////////////// New Added ////////////////////////////////
 
-"txt_create_post" = "Create Post";
+"txt_create_post" = "Crear publicación";
 "txt_reply" = "Responder" ;
 "txt_reply_to" = "Responder a";
 "txt_block" = "¿Quieres bloquear este usuario?";
 "txt_unblock" = "¿Quieres desbloquear este usuario?";
 "txt_msg_dlt" = "Deseas eliminar esta mensaje?";
 "txt_msg" = "Mensaje";
-"txt_chat" = "Chat";
-"txt_opt_check" = "Please enter otp first" ;
-"txt_code" = "Select Code" ;
+"txt_chat" = "Charla";
+"txt_opt_check" = "Por favor, ingrese otp primero" ;
+"txt_code" = "Seleccionar código" ;
 
-"txt_filter_vulgar" = "Filtro de mensajes vulgares";
+
+"txt_filter_vulgar" = "Filtrar mensajes vulgares";
 "txt_block_unauthorized" = "Bloquear usuario no autorizado";
+"txt_display_all_anonymous_post" = "Mostrar todas las publicaciones anónimas";
+"txt_logout" = "Cerrar sesión";
+"txt_sent" = "Expedido";
+"txt_received" = "Recibido";
+"txt_please_enter_mobile" = "Ingrese el móvil no.";
 

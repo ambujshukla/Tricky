@@ -88,7 +88,7 @@ class CommonUtil: NSObject {
        
         if(controller.txtMobile.text!.isEmpty)
         {
-            return (false,NSString(format: "%@", "Please enter mobile no.") as String)
+            return (false,NSString(format: "%@", "txt_please_enter_mobile".localized()) as String)
         }
        else if(controller.txtLink.text!.isEmpty)
         {
