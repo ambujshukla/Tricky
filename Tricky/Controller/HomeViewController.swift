@@ -30,6 +30,8 @@ class HomeViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    
+    
     func doShowAlert()
     {
         CommonUtil.showAlertInSwift_3Format("txt_logout".localized(), title: "txt_trickychat".localized(), btnCancel: "txt_no".localized(), btnOk: "txt_yes".localized(), crl: self, successBlock: { (obj) in
@@ -103,10 +105,18 @@ extension HomeViewController: ViewPagerControllerDataSource {
         //        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MessageViewController") as! MessageViewController
         //        return vc
         
+
         return self.Vcs[position]
     }
     
     func tabsForPages() -> [ViewPagerTab] {
+         tabs = [
+            ViewPagerTab(title: "txt_msg".localized(), image: UIImage(named: "fries")),
+            ViewPagerTab(title: "txt_chat".localized(), image: UIImage(named: "hamburger"))
+            //,
+            //    ViewPagerTab(title: "Post", image: UIImage(named: "pint")),
+        ]
+
         return tabs
     }
     

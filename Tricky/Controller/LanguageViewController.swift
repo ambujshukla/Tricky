@@ -122,6 +122,7 @@ class LanguageViewController: UIViewController, UITableViewDataSource , UITableV
         
         alert.addAction(UIAlertAction(title: "txt_yes".localized(), style: UIAlertActionStyle.default, handler:
             { action in
+                
                 switch (self.index) {
                 case (0):
                     Localize.setCurrentLanguage("en")

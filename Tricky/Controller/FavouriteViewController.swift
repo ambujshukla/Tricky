@@ -67,7 +67,7 @@ class FavouriteViewController: UIViewController , UITableViewDelegate , UITableV
     
     func decorateUI ()
     {
-        CommanUtility.decorateNavigationbarWithBackButton(target: self, strTitle: "Favourite", strBackButtonImage: BACK_BUTTON, selector: #selector(self.goTOBack), color: color(red: 181, green: 121, blue: 240))
+        CommanUtility.decorateNavigationbarWithBackButton(target: self, strTitle: "txt_favorite".localized(), strBackButtonImage: BACK_BUTTON, selector: #selector(self.goTOBack), color: color(red: 181, green: 121, blue: 240))
         
         self.tblFav.rowHeight = UITableViewAutomaticDimension;
         self.tblFav.estimatedRowHeight = 90.0;
