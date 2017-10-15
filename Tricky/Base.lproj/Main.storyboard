@@ -2791,7 +2791,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="0.86274509803921573" green="0.86274509803921573" blue="0.86274509803921573" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" red="0.86274509803921573" green="0.86274509803921573" blue="0.86274509803921573" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="plu-MO-PwG" firstAttribute="top" secondItem="bgI-AQ-gRc" secondAttribute="top" constant="2" id="93b-kh-acD"/>
                                                         <constraint firstItem="FGX-vs-BVf" firstAttribute="top" secondItem="bXR-pK-uSO" secondAttribute="bottom" id="G7x-X1-8Ql"/>
