@@ -100,7 +100,7 @@
 
 "txt_link_share" = "Eu te convido a me enviar mensagens anonimamente no TrickyChat";
 
-"otp_info" = "Não atender a chamada recebida. Você receberá uma chamada perdida. Insira os últimos 6 dígitos do número de chamada perdida";
+"otp_info" = "Não atender a chamada recebida. Você receberá uma chamada perdida. Insira os últimos 4 dígitos do número de chamada perdida";
 "txt_message_user_blocked" = "Você bloqueou esse usuário";
 "txt_share" = "Eu te convido a me enviar mensagens anonimamente no TrickyChat";
 "txt_send_message" = "Envie uma mensagem secreta aqui ..";
