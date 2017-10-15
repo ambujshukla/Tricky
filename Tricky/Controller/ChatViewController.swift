@@ -128,7 +128,8 @@ class ChatViewController: UIViewController  , UITableViewDataSource , UITableVie
         vc.strChatMessage = dictData["chatMessage"] as! String
         vc.strReceiverId = dictData["receiverId"] as! String
         vc.strMessageId =  dictData["messageId"] as! String
-
+        vc.strSenderId =  dictData["senderId"] as! String
+        
         self.navigationController?.pushViewController(vc
             , animated: true)
     }

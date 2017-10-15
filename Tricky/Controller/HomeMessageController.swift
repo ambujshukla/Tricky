@@ -302,9 +302,7 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
         cell.btnDelete.addTarget(self, action: #selector(self.doActionOnDeleteMessage(sender:)), for: .touchUpInside)
         cell.selectionStyle = .none
         return cell
-        
     }
-    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let dictData = self.arrMessageList[indexPath.row]
@@ -327,7 +325,8 @@ class HomeMessageController: UIViewController , UITableViewDelegate , UITableVie
             vc.strChatMessage = vc.dictChatData["message"] as! String
             vc.strName = vc.dictChatData["senderName"] as! String
             vc.strMessageId = vc.dictChatData["messageId"] as! String
-            vc.strReceiverId = vc.dictChatData["senderId"] as! String
+            vc.strReceiverId = vc.dictChatData["recieverId"] as! String
+            vc.strSenderId =  dictData["senderId"] as! String
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

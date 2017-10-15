@@ -20,15 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions:
         [UIApplicationLaunchOptionsKey: Any]?) -> Bool
     {
-       // func printFonts() {
-            let fontFamilyNames = UIFont.familyNames
-            for familyName in fontFamilyNames {
-                print("------------------------------")
-                print("Font Family Name = [\(familyName)]")
-                let names = UIFont.fontNames(forFamilyName: familyName )
-                print("Font Names = [\(names)]")
-            }
-       // }
+
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         if (UserDefaults.standard.bool(forKey: "isLanguageSelected") == true)
         {
