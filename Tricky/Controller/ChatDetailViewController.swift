@@ -15,9 +15,6 @@ import RealmSwift
 class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
 {
     @IBOutlet weak var tblView : UITableView!
-    // @IBOutlet weak var imgBG : UIImageView!
-    //    @IBOutlet weak var btnYes : UIButton!
-    //    @IBOutlet weak var btnNo : UIButton!
     @IBOutlet weak var btnSend : UIButton!
     @IBOutlet weak var viewBottom : UIView!
     @IBOutlet weak var txtChat : UITextView!
@@ -39,7 +36,8 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
     var strChatMessage : String = ""
     var strMessageId : String = ""
     var strSenderId : String = ""
-    
+    var timerToRefreshChat = Timer()
+
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(self.handleRefresh(_:)), for: UIControlEvents.valueChanged)
@@ -138,11 +136,14 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
     }
     
     func doClickBack(){
+        self.timerToRefreshChat.invalidate()
         self.navigationController?.popViewController(animated: true)
     }
     
     func configureInitialParameters()
     {
+        self.timerToRefreshChat = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(doRefreshChat), userInfo: nil, repeats: true)
+
         let realm = try! Realm()
         try! realm.write {
             realm.deleteAll()
@@ -160,6 +161,11 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
         NotificationCenter.default.addObserver(self, selector: #selector(ChatDetailViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         self.txtChat.delegate = self
+    }
+    
+    func doRefreshChat()
+    {
+        self.doCallGetChatMessageWS(shouldShowLoader: false)
     }
     
     @IBAction func doClickRefresh()

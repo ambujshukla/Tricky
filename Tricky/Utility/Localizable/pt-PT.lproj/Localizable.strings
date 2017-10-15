@@ -118,4 +118,5 @@
 "txt_opt_check" = "Please enter otp first" ;
 "txt_code" = "Select Code" ;
 
-
+"txt_filter_vulgar" = "Filtrar Mensagem vulgar";
+"txt_block_unauthorized" = "Bloquear usuário não autorizado";

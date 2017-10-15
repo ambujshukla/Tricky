@@ -117,5 +117,7 @@
 "txt_opt_check" = "Please enter otp first" ;
 "txt_code" = "Select Code" ;
 
+"txt_filter_vulgar" = "过滤低俗消息";
+"txt_block_unauthorized" = "阻止未经授权的用户";
 
 

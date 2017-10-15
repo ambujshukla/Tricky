@@ -19,6 +19,7 @@ target 'Tricky' do
     pod 'DZNEmptyDataSet'
     pod 'RealmSwift'
     pod 'KMPlaceholderTextView', '~> 1.3.0'
+    pod 'GoogleAnalytics'
     # pod 'ReachabilitySwift', '~> 2.4'
 # Pods
 end

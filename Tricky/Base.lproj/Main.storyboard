@@ -1558,8 +1558,8 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gqu-d4-jHz">
                                                     <rect key="frame" x="0.0" y="0.0" width="42" height="21"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" secondItem="gqu-d4-jHz" secondAttribute="height" multiplier="2:1" id="GTo-Dp-Sv2"/>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="TkF-Yw-oO0"/>
+                                                        <constraint firstAttribute="height" constant="21" id="oXO-1F-Kk6"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -1581,8 +1581,8 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstItem="f9M-2u-orX" firstAttribute="top" secondItem="2qi-d7-RM2" secondAttribute="top" constant="22" id="4Yj-gM-BUl"/>
                                                 <constraint firstAttribute="bottom" secondItem="f9M-2u-orX" secondAttribute="bottom" constant="2.5" id="4l8-bY-hCe"/>
+                                                <constraint firstItem="f9M-2u-orX" firstAttribute="top" secondItem="gqu-d4-jHz" secondAttribute="bottom" constant="1" id="Fdm-H7-u0n"/>
                                                 <constraint firstItem="f9M-2u-orX" firstAttribute="leading" secondItem="2qi-d7-RM2" secondAttribute="leading" id="UOp-MM-ErQ"/>
                                                 <constraint firstItem="gqu-d4-jHz" firstAttribute="leading" secondItem="2qi-d7-RM2" secondAttribute="leading" id="Ue6-Y2-VPG"/>
                                                 <constraint firstAttribute="bottom" secondItem="beJ-3m-eaN" secondAttribute="bottom" constant="0.5" id="bF2-W6-681"/>
