@@ -31,7 +31,6 @@ class ChatDetailViewController : GAITrackedViewController, UITableViewDelegate, 
     var offSet : Int = 0
     var strName : String = ""
     var arrChat = List<ChatData>()
-   // var strChatId : String = ""
     var strReceiverId : String = ""
     var strChatMessage : String = ""
     var strMessageId : String = ""
@@ -70,8 +69,6 @@ class ChatDetailViewController : GAITrackedViewController, UITableViewDelegate, 
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        // Set screen name.
-      //  self.tblView.reloadData()
 
         self.screenName = "Chat Detail";
     }
@@ -119,23 +116,6 @@ class ChatDetailViewController : GAITrackedViewController, UITableViewDelegate, 
     
     func doCallGetChatMessageWS(shouldShowLoader : Bool)
     {
-        /*
-         
-         Request
-         -lastMessageDateTime  (send chats after this time update)     Ex: 2017-08-01 12:23:23
-         -chatId
-         -messageId(New Added)
-         -userId
-         -receiverId
-         */
-        var receiverId = ""
-//        if self.strReceiverId == CommonUtil.getUserId()
-//        {
-//            receiverId = self.strSenderId
-//        }else
-//        {
-//            receiverId = self.strReceiverId
-//        }
         
         let params = ["version" : "1.0" , "os" : "2" , "language" : "english","userId":CommonUtil.getUserId(), "messageId" : self.strMessageId ,"receiverId" :self.strReceiverId, "lastMessageDateTime" : self.lastTimeSyncTime]  as [String : Any]
         
@@ -382,13 +362,7 @@ class ChatDetailViewController : GAITrackedViewController, UITableViewDelegate, 
                 chatObj.type = dictData["type"] as!  String
                 chatObj.messageId = dictData["messageId"] as!  String
                 chatObj.timeStamp = self .doGetTimeStamp(date: dictData["time"] as!  String)
-                if chatObj.senderId == self.strReceiverId
-                {
-                    chatObj.receiverId = self.dictChatData["senderId"] as! String
-                }else
-                {
-                    chatObj.receiverId = self.strReceiverId
-                }
+                chatObj.receiverId = self.strReceiverId
                 try! realm.write
                 {
                     realm.add(chatObj)

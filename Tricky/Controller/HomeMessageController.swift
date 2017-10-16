@@ -329,9 +329,10 @@ class HomeMessageController: GAITrackedViewController , UITableViewDelegate , UI
             if ((CommonUtil.getUserId()) == dictLocalData["senderId"] as! String){
                 dictLocalData["receiverId"] = dictLocalData["receiverId"]
 
+                
             }else{
                 dictLocalData["receiverId"] = dictLocalData["senderId"]
-
+            
             }
             vc.dictChatData = dictLocalData
             vc.strChatMessage = vc.dictChatData["message"] as! String
@@ -357,11 +358,12 @@ class HomeMessageController: GAITrackedViewController , UITableViewDelegate , UI
         var dictLocalData = self.arrMessageList[sender.tag]
         
         if ((CommonUtil.getUserId()) == dictLocalData["senderId"] as! String){
-            dictLocalData["receiverId"] = dictLocalData["receiverId"]
+            dictLocalData["receiverId"] = dictLocalData["senderId"]
+
             
         }else{
-            dictLocalData["receiverId"] = dictLocalData["senderId"]
-            
+            dictLocalData["receiverId"] = dictLocalData["receiverId"]
+
         }
         vc.dictChatData = dictLocalData
         vc.strChatMessage = vc.dictChatData["message"] as! String
