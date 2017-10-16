@@ -24,7 +24,6 @@ class VerifyOTPController: GAITrackedViewController
     @IBOutlet weak var lblTimer : UILabel!
     var timer = Timer()
     var time = 15
-    var signUP : String = ""
     
     var isFromForgotPasswordScren : Bool = false
     
@@ -167,7 +166,7 @@ class VerifyOTPController: GAITrackedViewController
     
     func doCallServiceForGenrateOTP() {
         
-        let dictData = ["mobileNo" :self.strMobileNo , "countryCode" : self.strCountryCode , "isSignUp" : self.signUP] as [String : Any]
+        let dictData = ["mobileNo" :self.strMobileNo , "countryCode" : self.strCountryCode ] as [String : Any]
         print(dictData)
         
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: METHOD_OTP, parameter: dictData , success: { (obj) in

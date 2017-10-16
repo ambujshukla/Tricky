@@ -34,8 +34,8 @@
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         self.decorateUI()
-        self.doGetContactFromConactBook()
     }
     
     override func viewWillAppear(_ animated: Bool)
@@ -70,22 +70,33 @@
     func decorateUI(){
         self.tblContact.emptyDataSetSource = self
         self.tblContact.emptyDataSetDelegate = self
+        self.arrMainData = CommanUtility.getObjectFromPrefrence(key: "contact")
+       if self.arrMainData.count > 0{
+        self.doCustmizeData()
+        self.doGetContactFromConactBook(isShowLoader: false)
+        }
+       else{
+        self.doGetContactFromConactBook(isShowLoader:  true)
+        }
+        
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    func doGetContactFromConactBook()
+    func doGetContactFromConactBook(isShowLoader : Bool)
     {
-        CommonUtil.showLoader()
+        if isShowLoader {
+            CommonUtil.showLoader()
+        }
         self.tblContact.tableFooterView = UIView()
         DispatchQueue.global(qos: .background).async
             {
                 ContactPickerUtils.sharedContactPicker.getContctFromContactBook(target: self) { (contacts, error) in
                     DispatchQueue.main.async {
                         self.contactsArray = contacts
-                        self.doCallSyncContactsWS()
+                        self.doCallSyncContactsWS(isShowLoader: isShowLoader)
                     }
                 }
         }
@@ -110,7 +121,7 @@
         CommanUtility.decorateNavigationbarWithBackButton(target: self, strTitle: strTitle, strBackButtonImage: BACK_BUTTON, selector: #selector(self.goTOBack), color: color(red: 142, green: 110, blue: 137))
     }
     
-    func doCallSyncContactsWS()
+    func doCallSyncContactsWS(isShowLoader : Bool)
     {
         var arrayTempContacts = [[String : String]]()
         for model in self.contactsArray
@@ -136,23 +147,13 @@
                                      encoding: .utf8)
             
             let dictData = ["version" : "1.0" , "os" : "2" , "language" : "english","userId":CommonUtil.getUserId(), "requestData" : theJSONText!] as [String : Any]
-            WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "SyncContact", parameter: dictData, success: { (obj) in
+            WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOSTAndPullToRefresh(isShowLoder :isShowLoader , strURL: kBaseUrl, strServiceName: "SyncContact", parameter: dictData, success: { (obj) in
                 if let dictContactsData = obj["responseData"] as? [[String : AnyObject]]
                 {
+                    self.arrMainData.removeAll()
                     self.arrMainData.append(contentsOf: dictContactsData)
-                    self.arrSyncContacts = self.arrMainData
-                    
-                    if (self.contactShowFrom == 1){
-                        self.doFilterBlockContactLis()
-                    }
-                    else if (self.contactShowFrom == 2)
-                    {
-                        self.doFilterAllContactWhichIsNotBlock()
-                    }
-                    else if (self.contactShowFrom == 3)
-                    {
-                        self.doFilterIsOnAppData()
-                    }
+                    CommanUtility.saveObjectInPreference(arrData: self.arrMainData, key: "contact")
+                    self.doCustmizeData()
                     
                 }
             }) { (error) in
@@ -160,6 +161,23 @@
         } catch {
             print(error.localizedDescription)
         }
+    }
+    
+    func doCustmizeData(){
+        
+        self.arrSyncContacts = self.arrMainData
+        if (self.contactShowFrom == 1){
+            self.doFilterBlockContactLis()
+        }
+        else if (self.contactShowFrom == 2)
+        {
+            self.doFilterAllContactWhichIsNotBlock()
+        }
+        else if (self.contactShowFrom == 3)
+        {
+            self.doFilterIsOnAppData()
+        }
+
     }
     
     func doFilterIsOnAppData(){

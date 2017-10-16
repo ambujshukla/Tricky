@@ -53,7 +53,10 @@ class WebAPIManager: NSObject {
                 case .success(let responseObject):
                     print(responseObject)
                     if let json = response.result.value {
-                        success(json as! [String : Any])
+                        
+                            success(json as! [String : Any])
+                        
+                        
                     }
                     else{
                         failure(response.result.error! as NSError?)

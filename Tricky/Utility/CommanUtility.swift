@@ -121,17 +121,17 @@ class CommanUtility: NSObject {
         
     }
     
-    class func saveObjectInPreference (arrData : [String] , key : String) {
+    class func saveObjectInPreference (arrData : [[String : AnyObject]] , key : String) {
         let userDefaults = UserDefaults.standard
         userDefaults.set(arrData, forKey: key)
         userDefaults.synchronize()
     }
-    class func getObjectFromPrefrence (key  : String) -> [String] {
+    class func getObjectFromPrefrence (key  : String) -> [[String : AnyObject]] {
         
         let userDefaults = UserDefaults.standard
         
         if let data = (userDefaults.object(forKey: key)){
-            return data as! [String]
+            return data as! [[String : AnyObject]]
         }
         else
         {
@@ -149,6 +149,7 @@ class CommanUtility: NSObject {
     class func convertAStringIntodDte(time : String , formate : String) -> Date{
         let time = time
         let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = NSTimeZone(name: "UTC")! as TimeZone
         dateFormatter.dateFormat = formate
         let fullDate = dateFormatter.date(from: time)
         return fullDate!

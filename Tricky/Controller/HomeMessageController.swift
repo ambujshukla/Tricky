@@ -297,7 +297,7 @@ class HomeMessageController: GAITrackedViewController , UITableViewDelegate , UI
         {
             cell.btnfavourite.isSelected = false
         }
-        cell.lblMessage.text = dictData["message"] as? String
+        cell.lblMessage.text = (dictData["message"] as? String)?.replacingOccurrences(of: "+", with: " ")
         
         let date : Date = CommanUtility.convertAStringIntodDte(time : (dictData["time"] as? String)! , formate : "yyyy-MM-dd HH:mm:ss")
         cell.lblTime.text = CommonUtil.timeAgoSinceDate(date, currentDate: Date(), numericDates: true)
@@ -325,9 +325,15 @@ class HomeMessageController: GAITrackedViewController , UITableViewDelegate , UI
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChatDetailViewIdentifier") as! ChatDetailViewController
             
             var dictLocalData = self.arrMessageList[indexPath.row]
-            dictLocalData["receiverId"] = dictLocalData["senderId"]
+            
+            if ((CommonUtil.getUserId()) == dictLocalData["senderId"] as! String){
+                dictLocalData["receiverId"] = dictLocalData["receiverId"]
+
+            }else{
+                dictLocalData["receiverId"] = dictLocalData["senderId"]
+
+            }
             vc.dictChatData = dictLocalData
-            vc.strChatId = vc.dictChatData["messageId"] as! String
             vc.strChatMessage = vc.dictChatData["message"] as! String
             vc.strName = vc.dictChatData["senderName"] as! String
             vc.strMessageId = vc.dictChatData["messageId"] as! String
@@ -349,9 +355,15 @@ class HomeMessageController: GAITrackedViewController , UITableViewDelegate , UI
         
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChatDetailViewIdentifier") as! ChatDetailViewController
         var dictLocalData = self.arrMessageList[sender.tag]
-        dictLocalData["receiverId"] = dictLocalData["senderId"]
+        
+        if ((CommonUtil.getUserId()) == dictLocalData["senderId"] as! String){
+            dictLocalData["receiverId"] = dictLocalData["receiverId"]
+            
+        }else{
+            dictLocalData["receiverId"] = dictLocalData["senderId"]
+            
+        }
         vc.dictChatData = dictLocalData
-        vc.strChatId = vc.dictChatData["messageId"] as! String
         vc.strChatMessage = vc.dictChatData["message"] as! String
         vc.strName = vc.dictChatData["senderName"] as! String
         vc.strMessageId = vc.dictChatData["messageId"] as! String

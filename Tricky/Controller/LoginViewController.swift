@@ -129,7 +129,7 @@ class LoginViewController: GAITrackedViewController
     
     func doCallServiceForGenrateOTP() {
         
-        let dictData = ["mobileNo" :(self.txtMobile.text!) , "countryCode" : "+91"] as [String : Any]
+        let dictData = ["mobileNo" :(self.txtMobile.text!) , "countryCode" : (self.btnCountryCode.titleLabel?.text)! , "isSignUp" : "0"] as [String : Any]
         print(dictData)
         
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: METHOD_OTP, parameter: dictData , success: { (obj) in
@@ -158,7 +158,6 @@ class LoginViewController: GAITrackedViewController
         vc.isFromSignUp = false
         vc.strMobileNo = self.txtMobile.text
         vc.strCountryCode = self.btnCountryCode.titleLabel?.text
-        vc.signUP = "0"
      //   vc.strOTP = "\(String(describing: OTPData.otp!))"
         self.navigationController?.pushViewController(vc, animated: true)
     }

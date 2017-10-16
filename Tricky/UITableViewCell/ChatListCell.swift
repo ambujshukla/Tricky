@@ -31,7 +31,8 @@ class ChatListCell: UITableViewCell {
             self.lblName.text = (value )
         }
         if let message = dictData["recentMessage"] as? String {
-            self.lblMessage.text = (message )
+            self.lblMessage.text = message.replacingOccurrences(of: "+", with: " ")
+
         }
         if let time = dictData["recentMessageTime"] as? String {
             

@@ -187,9 +187,14 @@ class FavouriteViewController: GAITrackedViewController , UITableViewDelegate , 
             //you have blocked this user
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChatDetailViewIdentifier") as! ChatDetailViewController
             var dictLocalData = self.arrMessageList[indexPath.row]
-            dictLocalData["receiverId"] = dictLocalData["senderId"]
+            if ((CommonUtil.getUserId()) == dictLocalData["senderId"] as! String){
+                dictLocalData["receiverId"] = dictLocalData["receiverId"]
+                
+            }else{
+                dictLocalData["receiverId"] = dictLocalData["senderId"]
+                
+            }
             vc.dictChatData = dictLocalData
-            vc.strChatId = vc.dictChatData["messageId"] as! String
             vc.strChatMessage = vc.dictChatData["message"] as! String
             vc.strName = vc.dictChatData["senderName"] as! String
             vc.strMessageId = vc.dictChatData["messageId"] as! String
@@ -309,9 +314,14 @@ class FavouriteViewController: GAITrackedViewController , UITableViewDelegate , 
     func doActionOnReply(sender : UIButton) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChatDetailViewIdentifier") as! ChatDetailViewController
         var dictLocalData = self.arrMessageList[sender.tag]
-        dictLocalData["receiverId"] = dictLocalData["senderId"]
+        if ((CommonUtil.getUserId()) == dictLocalData["senderId"] as! String){
+            dictLocalData["receiverId"] = dictLocalData["receiverId"]
+            
+        }else{
+            dictLocalData["receiverId"] = dictLocalData["senderId"]
+            
+        }
         vc.dictChatData = dictLocalData
-        vc.strChatId = vc.dictChatData["messageId"] as! String
         vc.strChatMessage = vc.dictChatData["message"] as! String
         vc.strName = vc.dictChatData["senderName"] as! String
         vc.strMessageId = vc.dictChatData["messageId"] as! String

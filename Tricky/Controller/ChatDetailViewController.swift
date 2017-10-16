@@ -31,7 +31,7 @@ class ChatDetailViewController : GAITrackedViewController, UITableViewDelegate, 
     var offSet : Int = 0
     var strName : String = ""
     var arrChat = List<ChatData>()
-    var strChatId : String = ""
+   // var strChatId : String = ""
     var strReceiverId : String = ""
     var strChatMessage : String = ""
     var strMessageId : String = ""
@@ -55,11 +55,24 @@ class ChatDetailViewController : GAITrackedViewController, UITableViewDelegate, 
         self.configureInitialParameters()
         self.decorateUI()
         self.doCallGetChatMessageWS(shouldShowLoader: true)
+        IQKeyboardManager.shared().isEnabled = true
+        
+        IQKeyboardManager.shared().isEnableAutoToolbar = false
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(true)
+        IQKeyboardManager.shared().isEnabled = true
+        
+        IQKeyboardManager.shared().isEnableAutoToolbar = true
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         // Set screen name.
+      //  self.tblView.reloadData()
+
         self.screenName = "Chat Detail";
     }
     
@@ -87,7 +100,7 @@ class ChatDetailViewController : GAITrackedViewController, UITableViewDelegate, 
         
         self.tblView.addSubview(self.refreshControl)
         
-        CommanUtility.decorateNavigationbarWithBackButtonAndTitle(target: self, leftselect: #selector(doClickBack), strTitle: self.strName , strBackImag: BACK_BUTTON, strFontName: "Arial", size: 20, color: UIColor.white)
+        CommanUtility.decorateNavigationbarWithBackButtonAndTitle(target: self, leftselect: #selector(doClickBack), strTitle:"" , strBackImag: BACK_BUTTON, strFontName: "Arial", size: 20, color: UIColor.white)
         
         self.tblView.backgroundColor = UIColor.clear
         //  self.imgBG.image = UIImage(named : CHAT_BG)
@@ -124,7 +137,7 @@ class ChatDetailViewController : GAITrackedViewController, UITableViewDelegate, 
             receiverId = self.strReceiverId
         }
         
-        let params = ["version" : "1.0" , "os" : "2" , "language" : "english","userId":CommonUtil.getUserId(), "messageId" : self.strMessageId ,"receiverId" :receiverId, "lastMessageDateTime" : self.lastTimeSyncTime, "chatId" : self.strChatId,"limit" : "\(self.limit)","offset" : "\(self.offSet)"]  as [String : Any]
+        let params = ["version" : "1.0" , "os" : "2" , "language" : "english","userId":CommonUtil.getUserId(), "messageId" : self.strMessageId ,"receiverId" :receiverId, "lastMessageDateTime" : self.lastTimeSyncTime]  as [String : Any]
         
         print(params)
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOSTAndPullToRefresh(isShowLoder: shouldShowLoader, strURL: kBaseUrl, strServiceName: "getChatMessageList", parameter: params, success: { (obj) in
@@ -181,6 +194,23 @@ class ChatDetailViewController : GAITrackedViewController, UITableViewDelegate, 
         self.doCallGetChatMessageWS(shouldShowLoader: true)
     }
     
+//    func scrollToBottomMessage() {
+//        if self.arrChat.count == 0 {
+//            return
+//        }
+//        
+//       // if self.tblView.numberOfRows(inSection: 0) > 0 {
+//            
+//     //   let bottomMessageIndex  = IndexPath(item: self.tblView.numberOfRows(inSection: (0)-1), section:0)
+//        // NSIndexPath(forRow: self.tblView.numberOfRowsInSection(0) - 1,
+//                                           //  inSection: 0)
+//      //  self.tblView.scrollToRow(at: bottomMessageIndex, at: .bottom,
+//                                     //         animated: false)
+//        }
+//    }
+    
+
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -188,21 +218,15 @@ class ChatDetailViewController : GAITrackedViewController, UITableViewDelegate, 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.arrChat.count
     }
-    
-    
-    //    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    //
-    //        let viewCustom  = CustomHeaderView()
-    //        viewCustom.label.text = self.strChatMessage
-    //        return viewCustom
-    //    }
+
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellToShow : UITableViewCell!
         let chatData : ChatData = self.arrChat[indexPath.row] as! ChatData
         if chatData.senderId == CommonUtil.getUserId() {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cellChat2") as! ChatTableViewCell
-            cell.lblMessage.text = chatData.message
+            cell.lblMessage.text = chatData.message.replacingOccurrences(of: "+", with: " ")
+
             cell.imgBG.backgroundColor = UIColor.clear
             if let time = chatData.time as? String {
                 let date : Date = CommanUtility.convertAStringIntodDte(time : (time) , formate : "yyyy-MM-dd HH:mm:ss")
@@ -212,7 +236,8 @@ class ChatDetailViewController : GAITrackedViewController, UITableViewDelegate, 
             cellToShow = cell
         }else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cellChat1") as! ChatTableViewCell
-            cell.lblMessage.text = chatData.message
+            cell.lblMessage.text = chatData.message.replacingOccurrences(of: "+", with: " ")
+
             cell.imgBG.backgroundColor = UIColor.clear
             if let time = chatData.time as? String {
                 let date : Date = CommanUtility.convertAStringIntodDte(time : (time) , formate : "yyyy-MM-dd HH:mm:ss")
@@ -289,7 +314,7 @@ class ChatDetailViewController : GAITrackedViewController, UITableViewDelegate, 
             receiverId = self.strReceiverId
         }
 
-        let params = ["version" : "1.0" , "os" : "2" , "language" : "english","userId":CommonUtil.getUserId(), "messageId" : self.strChatId,"receiverId" :receiverId, "message": self.txtChat.text, "type" : "0","lastMessageDateTime" : self.doGetCurrentTime(),"status" : "0"]  as [String : Any]
+        let params = ["version" : "1.0" , "os" : "2" , "language" : "english","userId":CommonUtil.getUserId(), "messageId" : self.strMessageId,"receiverId" :receiverId, "message": self.txtChat.text, "type" : "0","lastMessageDateTime" : self.doGetCurrentTime(),"status" : "0"]  as [String : Any]
         print(params)
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOSTAndPullToRefresh(isShowLoder: false, strURL: kBaseUrl, strServiceName: "sendChatMessage", parameter: params, success: { (obj) in
             if(obj["status"] as! String == "1")
@@ -338,17 +363,6 @@ class ChatDetailViewController : GAITrackedViewController, UITableViewDelegate, 
         let predicate = NSPredicate(format: "(((senderId = %@ AND receiverId = %@) || (receiverId = %@ AND senderId = %@)) && chatId = %@ && timeStamp > %d)", self.strSenderId, self.strReceiverId,self.strSenderId, self.strReceiverId,self.strMessageId,self.lastTimeStamp)
         
         let objs = realm.objects(ChatData.self).filter(predicate)
-        
-        //        if objs.count > 9
-        //        {
-        //            for i in 0..<10
-        //            {
-        //                self.arrChat .append(objs[i])
-        //            }
-        //        }else{
-        //            self.arrChat .append(objectsIn: objs)
-        //        }
-        
         self.arrChat .append(objectsIn: objs)
         
         if self.arrChat.count > 0
@@ -357,8 +371,16 @@ class ChatDetailViewController : GAITrackedViewController, UITableViewDelegate, 
             self.lastTimeSyncTime = (chatTempData?.time)!
             self.lastTimeStamp = (chatTempData?.timeStamp)!
             self.tblView.reloadData()
-            //   perform(#selector(scrollToBottom), with: nil, afterDelay: 1.0)
-            //perform(#selector(scrollToBottom()), with: nil, afterDelay: 1.0, inModes: [.commonModes])
+            
+            DispatchQueue.main.async() {
+                () -> Void in
+                if self.arrChat.count > 0 {
+                    let indexPath = IndexPath(row : self.arrChat.count - 1 , section : 0)
+                    self.tblView.scrollToRow(at: indexPath, at: .bottom, animated: false)
+                    
+                }
+            }
+
         }
     }
     

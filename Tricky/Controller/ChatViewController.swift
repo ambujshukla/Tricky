@@ -127,10 +127,17 @@ class ChatViewController: GAITrackedViewController  , UITableViewDataSource , UI
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChatDetailViewIdentifier") as! ChatDetailViewController
-        let dictData = self.chatData[indexPath.row]
+        var dictData = self.chatData[indexPath.row]
+        
+        if ((CommonUtil.getUserId()) == dictData["senderId"] as! String){
+            dictData["receiverId"] = dictData["receiverId"]
+            
+        }else{
+            dictData["receiverId"] = dictData["senderId"]
+        }
+
         vc.dictChatData = dictData
         vc.strName = dictData["receiverName"] as! String
-        vc.strChatId = dictData["chatId"] as! String
         vc.strChatMessage = dictData["chatMessage"] as! String
         vc.strReceiverId = dictData["receiverId"] as! String
         vc.strMessageId =  dictData["messageId"] as! String
