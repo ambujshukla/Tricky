@@ -129,15 +129,15 @@ class ChatDetailViewController : GAITrackedViewController, UITableViewDelegate, 
          -receiverId
          */
         var receiverId = ""
-        if self.strReceiverId == CommonUtil.getUserId()
-        {
-            receiverId = self.strSenderId
-        }else
-        {
-            receiverId = self.strReceiverId
-        }
+//        if self.strReceiverId == CommonUtil.getUserId()
+//        {
+//            receiverId = self.strSenderId
+//        }else
+//        {
+//            receiverId = self.strReceiverId
+//        }
         
-        let params = ["version" : "1.0" , "os" : "2" , "language" : "english","userId":CommonUtil.getUserId(), "messageId" : self.strMessageId ,"receiverId" :receiverId, "lastMessageDateTime" : self.lastTimeSyncTime]  as [String : Any]
+        let params = ["version" : "1.0" , "os" : "2" , "language" : "english","userId":CommonUtil.getUserId(), "messageId" : self.strMessageId ,"receiverId" :self.strReceiverId, "lastMessageDateTime" : self.lastTimeSyncTime]  as [String : Any]
         
         print(params)
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOSTAndPullToRefresh(isShowLoder: shouldShowLoader, strURL: kBaseUrl, strServiceName: "getChatMessageList", parameter: params, success: { (obj) in
@@ -193,23 +193,6 @@ class ChatDetailViewController : GAITrackedViewController, UITableViewDelegate, 
         self.arrChat.removeAll()
         self.doCallGetChatMessageWS(shouldShowLoader: true)
     }
-    
-//    func scrollToBottomMessage() {
-//        if self.arrChat.count == 0 {
-//            return
-//        }
-//        
-//       // if self.tblView.numberOfRows(inSection: 0) > 0 {
-//            
-//     //   let bottomMessageIndex  = IndexPath(item: self.tblView.numberOfRows(inSection: (0)-1), section:0)
-//        // NSIndexPath(forRow: self.tblView.numberOfRowsInSection(0) - 1,
-//                                           //  inSection: 0)
-//      //  self.tblView.scrollToRow(at: bottomMessageIndex, at: .bottom,
-//                                     //         animated: false)
-//        }
-//    }
-    
-
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -305,16 +288,8 @@ class ChatDetailViewController : GAITrackedViewController, UITableViewDelegate, 
         {
             return
         }
-        var receiverId = ""
-        if self.strReceiverId == CommonUtil.getUserId()
-        {
-            receiverId = self.strSenderId
-        }else
-        {
-            receiverId = self.strReceiverId
-        }
 
-        let params = ["version" : "1.0" , "os" : "2" , "language" : "english","userId":CommonUtil.getUserId(), "messageId" : self.strMessageId,"receiverId" :receiverId, "message": self.txtChat.text, "type" : "0","lastMessageDateTime" : self.doGetCurrentTime(),"status" : "0"]  as [String : Any]
+        let params = ["version" : "1.0" , "os" : "2" , "language" : "english","userId":CommonUtil.getUserId(), "messageId" : self.strMessageId,"receiverId" :self.strReceiverId, "message": self.txtChat.text, "type" : "0","lastMessageDateTime" : self.doGetCurrentTime(),"status" : "0"]  as [String : Any]
         print(params)
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOSTAndPullToRefresh(isShowLoder: false, strURL: kBaseUrl, strServiceName: "sendChatMessage", parameter: params, success: { (obj) in
             if(obj["status"] as! String == "1")
