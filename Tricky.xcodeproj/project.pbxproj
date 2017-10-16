@@ -87,6 +87,7 @@
 		31AFA4951F8FFB3F0024D0ED /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 31AFA4921F8FFB3F0024D0ED /* Roboto-Light.ttf */; };
 		31AFA4961F8FFB3F0024D0ED /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 31AFA4931F8FFB3F0024D0ED /* Roboto-Medium.ttf */; };
 		31AFA4971F8FFB3F0024D0ED /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 31AFA4941F8FFB3F0024D0ED /* Roboto-Regular.ttf */; };
+		31B5C2AA1F953F6A005AC16C /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 31B5C2A71F953DE9005AC16C /* libz.tbd */; };
 		31B72F691F475A15007D24E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B72F681F475A15007D24E6 /* AppDelegate.swift */; };
 		31B72F6E1F475A15007D24E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31B72F6C1F475A15007D24E6 /* Main.storyboard */; };
 		31B72F701F475A15007D24E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31B72F6F1F475A15007D24E6 /* Assets.xcassets */; };
@@ -201,6 +202,7 @@
 		31AFA4921F8FFB3F0024D0ED /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
 		31AFA4931F8FFB3F0024D0ED /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		31AFA4941F8FFB3F0024D0ED /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		31B5C2A71F953DE9005AC16C /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		31B72F651F475A14007D24E6 /* Tricky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tricky.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31B72F681F475A15007D24E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		31B72F6D1F475A15007D24E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31B5C2AA1F953F6A005AC16C /* libz.tbd in Frameworks */,
 				98D0C745BBA0DAB0082F2BFD /* Pods_Tricky.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -534,6 +537,7 @@
 		DF8FBFA2C338CEF7CC87E771 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				31B5C2A71F953DE9005AC16C /* libz.tbd */,
 				AFA49A12562E72DD1E969AA9 /* Pods_Tricky.framework */,
 			);
 			name = Frameworks;

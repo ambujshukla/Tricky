@@ -73,7 +73,7 @@ class PostViewController: GAITrackedViewController , UITableViewDelegate , UITab
 
     func doCallWS(isComeFromPullToRefresh : Bool)
     {
-        let params = ["version" : "1.0" , "os" : "ios" , "language" : "english","userId":CommonUtil.getUserId(), "showPostOnlyMyContact" :"0", "filterVulgarMessage" : "\(self.offSet)","limit" : "\(self.limit)","offset" : "0"] as [String : Any]
+        let params = ["version" : "1.0" , "os" : "ios" , "language" : CommanUtility.getCurrentLanguage(),"userId":CommonUtil.getUserId(), "showPostOnlyMyContact" :"0", "filterVulgarMessage" : "\(self.offSet)","limit" : "\(self.limit)","offset" : "0"] as [String : Any]
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOSTAndPullToRefresh(isShowLoder: !isComeFromPullToRefresh , strURL: kBaseUrl, strServiceName: "GetAllPost", parameter: params, success: { (responseObject) in
             print(responseObject)
             if (responseObject["status"] as! String  == "1")

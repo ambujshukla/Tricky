@@ -59,7 +59,7 @@ class HomeMessageController: GAITrackedViewController , UITableViewDelegate , UI
     {
         self.view.endEditing(true)
         //UpdateProfile
-        let dictData = ["version" : "1.0" , "os" : "2" , "language" : "english","userId": CommonUtil.getUserId() ,"filterVulgar" : CommonUtil.filterVulgerMsg(),"messageForOnlyRegisterUser":CommonUtil.isBlockUser(),"offset":"\(self.offSet)","limit" : "\(self.limit)","showOnlyFavorite":"0"] as [String : Any]
+        let dictData = ["version" : "1.0" , "os" : "2" , "language" : CommanUtility.getCurrentLanguage(),"userId": CommonUtil.getUserId() ,"filterVulgar" : CommonUtil.filterVulgerMsg(),"messageForOnlyRegisterUser":CommonUtil.isBlockUser(),"offset":"\(self.offSet)","limit" : "\(self.limit)","showOnlyFavorite":"0"] as [String : Any]
         
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOSTAndPullToRefresh(isShowLoder :isShowLoader ,strURL: kBaseUrl, strServiceName: "getRecSentList", parameter: dictData , success: { (obj) in
             print("this is object \(obj)")

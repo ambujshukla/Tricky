@@ -53,7 +53,7 @@ class MyPostViewController: UIViewController , UITableViewDelegate , UITableView
     
     func doCallWS()
     {
-        let params = ["version" : "1.0" , "os" : "ios" , "language" : "english","userId":CommonUtil.getUserId(), "filterVulgarMessage" :"0", "offset" : "\(self.offSet)","limit" : "\(self.limit)"] as [String : Any]
+        let params = ["version" : "1.0" , "os" : "ios" , "language" : CommanUtility.getCurrentLanguage(),"userId":CommonUtil.getUserId(), "filterVulgarMessage" :"0", "offset" : "\(self.offSet)","limit" : "\(self.limit)"] as [String : Any]
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "GetMyPost", parameter: params, success: { (responseObject) in
             print(responseObject)
             if (responseObject["status"] as! String  == "1")
@@ -92,7 +92,7 @@ class MyPostViewController: UIViewController , UITableViewDelegate , UITableView
         CommonUtil.showAlertInSwift_3Format("txt_msg_dlt".localized(), title: "Alert", btnCancel: "txt_no".localized(), btnOk: "txt_yes".localized(), crl: self, successBlock: { (no) in
             let dictData = self.arrPostListData[sender.tag]
             
-            let params = ["version" : "1.0" , "os" : "ios" , "language" : "english","userId":CommonUtil.getUserId(),"postId" :dictData["postId"]!] as [String : Any]
+            let params = ["version" : "1.0" , "os" : "ios" , "language" : CommanUtility.getCurrentLanguage(),"userId":CommonUtil.getUserId(),"postId" :dictData["postId"]!] as [String : Any]
             WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "deletePost", parameter: params, success: { (responseObject) in
                 print(responseObject)
                 if (responseObject["status"] as! String  == "1")

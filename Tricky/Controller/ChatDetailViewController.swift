@@ -117,9 +117,8 @@ class ChatDetailViewController : GAITrackedViewController, UITableViewDelegate, 
     func doCallGetChatMessageWS(shouldShowLoader : Bool)
     {
         
-        let params = ["version" : "1.0" , "os" : "2" , "language" : "english","userId":CommonUtil.getUserId(), "messageId" : self.strMessageId ,"receiverId" :self.strReceiverId, "lastMessageDateTime" : self.lastTimeSyncTime]  as [String : Any]
-        
-        print(params)
+        let params = ["version" : "1.0" , "os" : "2" , "language" : CommanUtility.getCurrentLanguage(),"userId":CommonUtil.getUserId(), "messageId" : self.strMessageId ,"receiverId" :self.strReceiverId, "lastMessageDateTime" : self.lastTimeSyncTime]  as [String : Any]
+                print(params)
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOSTAndPullToRefresh(isShowLoder: shouldShowLoader, strURL: kBaseUrl, strServiceName: "getChatMessageList", parameter: params, success: { (obj) in
             print(obj)
             if let chatData : Array<Dictionary<String,AnyObject>> = obj["responseData"] as? Array<Dictionary<String,AnyObject>>
@@ -269,7 +268,8 @@ class ChatDetailViewController : GAITrackedViewController, UITableViewDelegate, 
             return
         }
 
-        let params = ["version" : "1.0" , "os" : "2" , "language" : "english","userId":CommonUtil.getUserId(), "messageId" : self.strMessageId,"receiverId" :self.strReceiverId, "message": self.txtChat.text, "type" : "0","lastMessageDateTime" : self.doGetCurrentTime(),"status" : "0"]  as [String : Any]
+        let params = ["version" : "1.0" , "os" : "2" , "language" : CommanUtility.getCurrentLanguage(),"userId":CommonUtil.getUserId(), "messageId" : self.strMessageId,"receiverId" :self.strReceiverId, "message": self.txtChat.text, "type" : "0","lastMessageDateTime" : self.doGetCurrentTime(),"status" : "0"]  as [String : Any]
+
         print(params)
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOSTAndPullToRefresh(isShowLoder: false, strURL: kBaseUrl, strServiceName: "sendChatMessage", parameter: params, success: { (obj) in
             if(obj["status"] as! String == "1")
@@ -318,24 +318,21 @@ class ChatDetailViewController : GAITrackedViewController, UITableViewDelegate, 
         let predicate = NSPredicate(format: "(((senderId = %@ AND receiverId = %@) || (receiverId = %@ AND senderId = %@)) && chatId = %@ && timeStamp > %d)", self.strSenderId, self.strReceiverId,self.strSenderId, self.strReceiverId,self.strMessageId,self.lastTimeStamp)
         
         let objs = realm.objects(ChatData.self).filter(predicate)
-        self.arrChat .append(objectsIn: objs)
-        
-        if self.arrChat.count > 0
+        if objs.count > 0
         {
-            let chatTempData = self.arrChat.last
-            self.lastTimeSyncTime = (chatTempData?.time)!
-            self.lastTimeStamp = (chatTempData?.timeStamp)!
-            self.tblView.reloadData()
+            self.arrChat .append(objectsIn: objs)
             
-            DispatchQueue.main.async() {
-                () -> Void in
-                if self.arrChat.count > 0 {
-                    let indexPath = IndexPath(row : self.arrChat.count - 1 , section : 0)
-                    self.tblView.scrollToRow(at: indexPath, at: .bottom, animated: false)
-                    
-                }
+            if self.arrChat.count > 0
+            {
+                let chatTempData = self.arrChat.last
+                self.lastTimeSyncTime = (chatTempData?.time)!
+                self.lastTimeStamp = (chatTempData?.timeStamp)!
+                self.tblView.reloadData()
+                DispatchQueue.main.async(execute: { () -> Void in
+                    let indexPath = IndexPath(row: self.arrChat.count-1, section: 0)
+                    self.tblView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+                })
             }
-
         }
     }
     

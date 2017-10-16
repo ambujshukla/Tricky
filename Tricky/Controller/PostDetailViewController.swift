@@ -34,7 +34,7 @@ class PostDetailViewController: GAITrackedViewController , UITableViewDelegate ,
     
     func doCallWS()
     {
-        let params = ["version" : "1.0" , "os" : "ios" , "language" : "english","userId":CommonUtil.getUserId(), "postId" :self.strPostId, "limit" : "\(self.limit)","offset" : "\(self.offSet)", "showOnlyFav" : "0"] as [String : Any]
+        let params = ["version" : "1.0" , "os" : "ios" , "language" : CommanUtility.getCurrentLanguage(),"userId":CommonUtil.getUserId(), "postId" :self.strPostId, "limit" : "\(self.limit)","offset" : "\(self.offSet)", "showOnlyFav" : "0"] as [String : Any]
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "GetPostReplyList", parameter: params, success: { (responseObject) in
             print(responseObject)
             if (responseObject["status"] as! String  == "1")
@@ -164,7 +164,7 @@ class PostDetailViewController: GAITrackedViewController , UITableViewDelegate ,
         CommonUtil.showAlertInSwift_3Format("txt_msg_dlt".localized(), title: "Alert", btnCancel: "txt_no".localized(), btnOk: "txt_yes".localized(), crl: self, successBlock: { (no) in
             let dictData = self.arrPostDetailListData[sender.tag]
             
-            let params = ["version" : "1.0" , "os" : "ios" , "language" : "english","userId":CommonUtil.getUserId(),"postId" :dictData["postMessageId"]!] as [String : Any]
+            let params = ["version" : "1.0" , "os" : "ios" , "language" : CommanUtility.getCurrentLanguage(),"userId":CommonUtil.getUserId(),"postId" :dictData["postMessageId"]!] as [String : Any]
             WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "deletePost", parameter: params, success: { (responseObject) in
                 print(responseObject)
                 if (responseObject["status"] as! String  == "1")

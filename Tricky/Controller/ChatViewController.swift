@@ -69,7 +69,7 @@ class ChatViewController: GAITrackedViewController  , UITableViewDataSource , UI
     
     func doCallWebServiceForGetChatList(isComeFromPullToRefresh : Bool , isShowLoader : Bool)
     {
-        let dictData = ["userId" : CommonUtil.getUserId() , "os" : "2" , "version" : "1.0" , "language" : "english" , "limit" : "10" , "offset" : "0"] as [String : Any]
+        let dictData = ["userId" : CommonUtil.getUserId() , "os" : "2" , "version" : "1.0" , "language" : CommanUtility.getCurrentLanguage() , "limit" : "10" , "offset" : "0"] as [String : Any]
         
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOSTAndPullToRefresh(isShowLoder :isShowLoader , strURL: kBaseUrl , strServiceName: "chatList", parameter: dictData, success: { (obj) in
             print(obj)
@@ -152,7 +152,7 @@ class ChatViewController: GAITrackedViewController  , UITableViewDataSource , UI
         CommonUtil.showAlertInSwift_3Format("Are you sure you want to delete?", title: "Alert", btnCancel: "txt_no".localized(), btnOk: "txt_yes".localized(), crl: self, successBlock: { (no) in
             let dictData = self.chatData[sender.tag]
             
-            let params = ["version" : "1.0" , "os" : "ios" , "language" : "english","userId":dictData["userId"]!,"chatId" :dictData["chatId"]!] as [String : Any]
+            let params = ["version" : "1.0" , "os" : "ios" , "language" : CommanUtility.getCurrentLanguage(),"userId":dictData["userId"]!,"chatId" :dictData["chatId"]!] as [String : Any]
             WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "deleteChat", parameter: params, success: { (responseObject) in
                 print(responseObject)
                 if (responseObject["status"] as! String  == "1")
