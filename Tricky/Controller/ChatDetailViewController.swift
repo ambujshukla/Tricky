@@ -274,7 +274,12 @@ class ChatDetailViewController : GAITrackedViewController, UITableViewDelegate, 
     
     @IBAction func doClickSend(id : UIButton)
     {
-        
+       let strMessage = self.txtChat.text.trimmingCharacters(in: .whitespacesAndNewlines)
+
+        if !(CommonUtil.checkNullString(strMessage))
+        {
+            return
+        }
         var receiverId = ""
         if self.strReceiverId == CommonUtil.getUserId()
         {
