@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Localize_Swift
 
 class CommanUtility: NSObject {
     
@@ -253,6 +254,21 @@ class CommanUtility: NSObject {
         dateFormatter.dateFormat = format
         let date = dateFormatter.date(from: time)
         return date!
+    }
+    
+    class func getCurrentLanguage() -> String
+    {
+        if Localize.currentLanguage() == "zh-Hant" {
+            return "chinese"
+        }else if Localize.currentLanguage() == "es"
+        {
+            return "spanish"
+        }else if Localize.currentLanguage() == "pt-PT"
+        {
+            return "portuguese"
+        }else{
+            return "english"
+        }
     }
 }
 

@@ -89,7 +89,7 @@ class ProfileViewController: GAITrackedViewController, UITableViewDelegate,UITab
     
     func doCallGetProfile()
     {
-        let dictData = ["version" : "1.0" , "os" : "ios" , "language" : "english","userId": CommonUtil.getUserId()]  as [String : Any]
+        let dictData = ["version" : "1.0" , "os" : "ios" , "language" : CommanUtility.getCurrentLanguage(),"userId": CommonUtil.getUserId()]  as [String : Any]
         
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "getProfile", parameter: dictData , success: { (obj) in
             
@@ -266,7 +266,7 @@ class ProfileViewController: GAITrackedViewController, UITableViewDelegate,UITab
     {
         self.view.endEditing(true)
         //UpdateProfile
-        let dictData = ["version" : "1.0" , "os" : "2" , "language" : "english","userId":CommonUtil.getUserId(), "mobileNo" : self.dictData["1"]!,"fullName" : self.dictData["0"]!] as [String : Any]
+        let dictData = ["version" : "1.0" , "os" : "2" , "language" : CommanUtility.getCurrentLanguage(),"userId":CommonUtil.getUserId(), "mobileNo" : self.dictData["1"]!,"fullName" : self.dictData["0"]!] as [String : Any]
         
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "UpdateProfile", parameter: dictData , success: { (obj) in
             
