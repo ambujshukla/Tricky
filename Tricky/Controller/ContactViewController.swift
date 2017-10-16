@@ -96,7 +96,9 @@
                 ContactPickerUtils.sharedContactPicker.getContctFromContactBook(target: self) { (contacts, error) in
                     DispatchQueue.main.async {
                         self.contactsArray = contacts
-                        self.doCallSyncContactsWS(isShowLoader: isShowLoader)
+                    DispatchQueue.global(qos: .background).async{
+                    self.doCallSyncContactsWS(isShowLoader: isShowLoader)
+                        }
                     }
                 }
         }
