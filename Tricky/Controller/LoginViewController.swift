@@ -158,6 +158,7 @@ class LoginViewController: GAITrackedViewController
         vc.isFromSignUp = false
         vc.strMobileNo = self.txtMobile.text
         vc.strCountryCode = self.btnCountryCode.titleLabel?.text
+        vc.signUP = "0"
      //   vc.strOTP = "\(String(describing: OTPData.otp!))"
         self.navigationController?.pushViewController(vc, animated: true)
     }

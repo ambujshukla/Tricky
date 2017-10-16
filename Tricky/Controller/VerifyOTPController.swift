@@ -24,6 +24,7 @@ class VerifyOTPController: GAITrackedViewController
     @IBOutlet weak var lblTimer : UILabel!
     var timer = Timer()
     var time = 15
+    var signUP : String = ""
     
     var isFromForgotPasswordScren : Bool = false
     
@@ -105,10 +106,10 @@ class VerifyOTPController: GAITrackedViewController
 //        }
     }
     
-    func doCallWebAPIForLogin(isSignUp : String)
+    func doCallWebAPIForLogin()
     {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let dictData = ["mobileNo" :self.strMobileNo ,"deviceToken":appDelegate.strDeviceToken , "otp" : self.tfOtp.text! , "countryCode" : "+91" , "os" :"2" ,"version" : "1.0.0" ,"language" : "english" , "isSignUp" : isSignUp] as [String : Any]
+        let dictData = ["mobileNo" :self.strMobileNo ,"deviceToken":appDelegate.strDeviceToken , "otp" : self.tfOtp.text! , "countryCode" : "+91" , "os" :"2" ,"version" : "1.0.0" ,"language" : "english"] as [String : Any]
         print(dictData)
         
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: METHOD_LOGIN, parameter: dictData , success: { (obj) in
@@ -133,11 +134,11 @@ class VerifyOTPController: GAITrackedViewController
         
     }
     
-    func doCallWebAPIForRegistration(isSignUp : String)
+    func doCallWebAPIForRegistration()
     {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
 
-        let dictData = ["version" : "1.0" , "os" : "2" , "language" : "english" , "mobileNo": self.strMobileNo  , "url":self.strLink , "deviceToken" : appDelegate.strDeviceToken , "countryCode" : "+91" , "otp" : self.strOTP , "isSignUp" : isSignUp] as [String : Any]
+        let dictData = ["version" : "1.0" , "os" : "2" , "language" : "english" , "mobileNo": self.strMobileNo  , "url":self.strLink , "deviceToken" : appDelegate.strDeviceToken , "countryCode" : "+91" , "otp" : self.strOTP ] as [String : Any]
         
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "register", parameter: dictData , success: { (obj) in
             let regData = Mapper<RegistrationModel>().map(JSON: obj)
@@ -166,7 +167,7 @@ class VerifyOTPController: GAITrackedViewController
     
     func doCallServiceForGenrateOTP() {
         
-        let dictData = ["mobileNo" :self.strMobileNo , "countryCode" : self.strCountryCode] as [String : Any]
+        let dictData = ["mobileNo" :self.strMobileNo , "countryCode" : self.strCountryCode , "isSignUp" : self.signUP] as [String : Any]
         print(dictData)
         
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: METHOD_OTP, parameter: dictData , success: { (obj) in
@@ -204,10 +205,10 @@ class VerifyOTPController: GAITrackedViewController
             CommonUtil.setData("countryCode", value: self.strCountryCode! as NSString)
             self.btnResend.isEnabled = false
             if isFromSignUp {
-                self.doCallWebAPIForRegistration(isSignUp : "1")
+                self.doCallWebAPIForRegistration()
             }
             else{
-                self.doCallWebAPIForLogin(isSignUp : "0")
+                self.doCallWebAPIForLogin()
             }
             }else{
                 CommonUtil.showTotstOnWindow(strMessgae: "txt_opt_check".localized())

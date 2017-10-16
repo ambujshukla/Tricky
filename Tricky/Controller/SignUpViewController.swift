@@ -198,6 +198,7 @@ class SignUpViewController: GAITrackedViewController {
         vc.strMobileNo = self.txtMobile.text
         vc.strLink = self.txtLink.text
         vc.strCountryCode = self.btnCountryCode.titleLabel?.text
+        vc.signUP = "1"
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
