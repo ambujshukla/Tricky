@@ -51,6 +51,7 @@ class ContactTableViewCell: UITableViewCell {
     func setAppUserContactListData(dictData : [String : AnyObject]){
         self.lblName?.text = dictData["userName"] as? String
         self.lblNumber?.text = dictData["userNumber"] as? String
+        self.btnBlockOrInvite.isHidden = true
     }
     
     

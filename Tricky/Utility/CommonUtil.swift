@@ -612,7 +612,7 @@ class CommonUtil: NSObject {
         {
             return data as? String
         }
-        return nil
+        return ""
     }
     
     class func setBooleanValue(_ key : NSString , value : Bool)

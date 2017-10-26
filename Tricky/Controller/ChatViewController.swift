@@ -69,6 +69,9 @@ class ChatViewController: GAITrackedViewController  , UITableViewDataSource , UI
     
     func doCallWebServiceForGetChatList(isComeFromPullToRefresh : Bool , isShowLoader : Bool)
     {
+        
+        
+        
         let dictData = ["userId" : CommonUtil.getUserId() , "os" : "2" , "version" : "1.0" , "language" : CommanUtility.getCurrentLanguage() , "limit" : "10" , "offset" : "0"] as [String : Any]
         
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOSTAndPullToRefresh(isShowLoder :isShowLoader , strURL: kBaseUrl , strServiceName: "chatList", parameter: dictData, success: { (obj) in
@@ -128,14 +131,6 @@ class ChatViewController: GAITrackedViewController  , UITableViewDataSource , UI
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChatDetailViewIdentifier") as! ChatDetailViewController
         var dictData = self.chatData[indexPath.row]
-        
-        if ((CommonUtil.getUserId()) == dictData["senderId"] as! String){
-            dictData["receiverId"] = dictData["receiverId"]
-            
-        }else{
-            dictData["receiverId"] = dictData["senderId"]
-        }
-
         vc.dictChatData = dictData
         vc.strName = dictData["receiverName"] as! String
         vc.strChatMessage = dictData["chatMessage"] as! String
@@ -157,7 +152,9 @@ class ChatViewController: GAITrackedViewController  , UITableViewDataSource , UI
                 print(responseObject)
                 if (responseObject["status"] as! String  == "1")
                 {
+                    self.totalCount = self.totalCount - 1
                     self.chatData .remove(at: sender.tag)
+                    
                 }
                 else {
                 }

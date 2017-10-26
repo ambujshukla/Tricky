@@ -258,17 +258,20 @@ class CommanUtility: NSObject {
     
     class func getCurrentLanguage() -> String
     {
-        if Localize.currentLanguage() == "zh-Hant" {
-            return "chinese"
-        }else if Localize.currentLanguage() == "es"
-        {
-            return "spanish"
-        }else if Localize.currentLanguage() == "pt-PT"
-        {
-            return "portuguese"
-        }else{
-            return "english"
+        var strLang = "1"
+        if Localize.currentLanguage() == "en"{
+            strLang = "1"
         }
+        else if Localize.currentLanguage() == "zh-Hant"{
+            strLang = "2"
+        }
+        else if Localize.currentLanguage() == "es"{
+            strLang = "3"
+        }
+        else if Localize.currentLanguage() == "pt-PT"{
+            strLang = "4"
+        }
+        return strLang
     }
 }
 

@@ -1,3 +1,8 @@
+
+
+
+
+
 //
 //  MessageViewController.swift
 //  Tricky
@@ -41,12 +46,24 @@ class HomeMessageController: GAITrackedViewController , UITableViewDelegate , UI
         super.viewDidLoad()
         self.decorateUI()
         self.doGetMessageList(isComeFromPullToRefresh:  false , isShowLoader:  true)
+       // let appDelegate = UIApplication.shared.delegate as! AppDelegate
+
+        //appDelegate.isRefreshmsg = false
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         // Set screen name.
         self.screenName = "Message Home";
+        
+//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//        if (appDelegate.isRefreshmsg == true){
+//            self.doGetMessageList(isComeFromPullToRefresh:  false , isShowLoader:  true)
+//appDelegate.isRefreshmsg = false
+//        }
+        
+        
     }
     
     func handleRefresh(_ refreshControl: UIRefreshControl) {
@@ -251,7 +268,12 @@ class HomeMessageController: GAITrackedViewController , UITableViewDelegate , UI
         let dictData = self.arrMessageList[indexPath.row]
         if let senderId = dictData["senderId"] as? String {
             
-            if senderId == CommonUtil.getUserId()  {
+            if senderId == ""{
+                cellToReturn = self.doConfigReciverCellFromLink(dictData: dictData, indexPath: indexPath, tableView: tableView)
+
+            }
+            
+            else if senderId == CommonUtil.getUserId()  {
                 cellToReturn = self.doConfigReciverCell(dictData: dictData, indexPath: indexPath, tableView: tableView)
             }else{
                 cellToReturn = self.doConfigSenderCell(dictData: dictData, indexPath: indexPath, tableView: tableView)
@@ -297,11 +319,13 @@ class HomeMessageController: GAITrackedViewController , UITableViewDelegate , UI
         {
             cell.btnfavourite.isSelected = false
         }
-        cell.lblMessage.text = (dictData["message"] as? String)?.replacingOccurrences(of: "+", with: " ")
+        cell.lblMessage.text = (dictData["message"] as? String)?.removingPercentEncoding
+    
+        //let str = (dictData["message"] as? String)?.utf8
+        
         
         let date : Date = CommanUtility.convertAStringIntodDte(time : (dictData["time"] as? String)! , formate : "yyyy-MM-dd HH:mm:ss")
         cell.lblTime.text = CommonUtil.timeAgoSinceDate(date, currentDate: Date(), numericDates: true)
-        
         cell.btnfavourite.tag = indexPath.row
         cell.btnDelete.tag = indexPath.row
         cell.btnfavourite.addTarget(self, action: #selector(self.doActionOnFavouriteButton(sender:)), for: .touchUpInside)
@@ -309,9 +333,48 @@ class HomeMessageController: GAITrackedViewController , UITableViewDelegate , UI
         cell.selectionStyle = .none
         return cell
     }
+
+    func doConfigReciverCellFromLink(dictData : [String : AnyObject] , indexPath : IndexPath , tableView : UITableView) -> UITableViewCell{
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell3", for: indexPath) as! MessageTableViewCell
+        //  cell.lblTo.text = "To: \(dictData["recieverName"] as! String)"
+        
+        let isFavourite = dictData["isFavorite"] as! Bool
+        if isFavourite {
+            cell.btnfavourite.isSelected = true
+        }
+        else
+        {
+            cell.btnfavourite.isSelected = false
+        }
+        cell.lblMessage.text = dictData["message"] as? String
+        
+        let date : Date = CommanUtility.convertAStringIntodDte(time : (dictData["time"] as? String)! , formate : "yyyy-MM-dd HH:mm:ss")
+        cell.lblTime.text = CommonUtil.timeAgoSinceDate(date, currentDate: Date(), numericDates: true)
+        
+        cell.btnfavourite.tag = indexPath.row
+        cell.btnDelete.tag = indexPath.row
+        cell.btnfavourite.addTarget(self, action: #selector(self.doCallServiceForRemoveMessage(sender:)), for: .touchUpInside)
+        cell.btnDelete.addTarget(self, action: #selector(self.doActionOnDeleteMessage(sender:)), for: .touchUpInside)
+        cell.selectionStyle = .none
+        return cell
+        
+    }
+
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let dictData = self.arrMessageList[indexPath.row]
+        
+        if let senderId = dictData["senderId"] as? String {
+
+            if senderId == ""{
+                return
+            }
+        }
+        else{
+            return
+        }
+        
         if dictData["senderId"] as! String == CommonUtil.getUserId()  {
             return
         }
@@ -325,15 +388,6 @@ class HomeMessageController: GAITrackedViewController , UITableViewDelegate , UI
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChatDetailViewIdentifier") as! ChatDetailViewController
             
             var dictLocalData = self.arrMessageList[indexPath.row]
-            
-            if ((CommonUtil.getUserId()) == dictLocalData["senderId"] as! String){
-                dictLocalData["receiverId"] = dictLocalData["receiverId"]
-
-                
-            }else{
-                dictLocalData["receiverId"] = dictLocalData["senderId"]
-            
-            }
             vc.dictChatData = dictLocalData
             vc.strChatMessage = vc.dictChatData["message"] as! String
             vc.strName = vc.dictChatData["senderName"] as! String
@@ -354,18 +408,20 @@ class HomeMessageController: GAITrackedViewController , UITableViewDelegate , UI
     
     func doActionOnReply(sender : UIButton) {
         
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChatDetailViewIdentifier") as! ChatDetailViewController
-        var dictLocalData = self.arrMessageList[sender.tag]
-        
-        if ((CommonUtil.getUserId()) == dictLocalData["senderId"] as! String){
-            dictLocalData["receiverId"] = dictLocalData["senderId"]
+        let dictData = self.arrMessageList[sender.tag]
 
+        if let senderId = dictData["senderId"] as? String {
             
-        }else{
-            dictLocalData["receiverId"] = dictLocalData["receiverId"]
-
+            if senderId == ""{
+                return
+            }
         }
-        vc.dictChatData = dictLocalData
+        else{
+            return
+        }
+        
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChatDetailViewIdentifier") as! ChatDetailViewController
+        vc.dictChatData = dictData
         vc.strChatMessage = vc.dictChatData["message"] as! String
         vc.strName = vc.dictChatData["senderName"] as! String
         vc.strMessageId = vc.dictChatData["messageId"] as! String

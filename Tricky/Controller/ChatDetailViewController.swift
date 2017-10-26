@@ -11,8 +11,10 @@ import IQKeyboardManager
 import UITextView_Placeholder;
 import DZNEmptyDataSet
 import RealmSwift
+import Localize_Swift
 
-class ChatDetailViewController : GAITrackedViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
+
+class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
 {
     @IBOutlet weak var tblView : UITableView!
     @IBOutlet weak var btnSend : UIButton!
@@ -31,12 +33,13 @@ class ChatDetailViewController : GAITrackedViewController, UITableViewDelegate, 
     var offSet : Int = 0
     var strName : String = ""
     var arrChat = List<ChatData>()
+    var strChatId : String = ""
     var strReceiverId : String = ""
     var strChatMessage : String = ""
     var strMessageId : String = ""
     var strSenderId : String = ""
     var timerToRefreshChat = Timer()
-
+    
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(self.handleRefresh(_:)), for: UIControlEvents.valueChanged)
@@ -54,23 +57,6 @@ class ChatDetailViewController : GAITrackedViewController, UITableViewDelegate, 
         self.configureInitialParameters()
         self.decorateUI()
         self.doCallGetChatMessageWS(shouldShowLoader: true)
-        IQKeyboardManager.shared().isEnabled = true
-        
-        IQKeyboardManager.shared().isEnableAutoToolbar = false
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(true)
-        IQKeyboardManager.shared().isEnabled = true
-        
-        IQKeyboardManager.shared().isEnableAutoToolbar = true
-
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-
-        self.screenName = "Chat Detail";
     }
     
     override func viewDidLayoutSubviews() {
@@ -90,14 +76,13 @@ class ChatDetailViewController : GAITrackedViewController, UITableViewDelegate, 
         tblView.tableHeaderView = headerView
     }
     
-    
     func decorateUI()
     {
         self.navigationController?.navigationBar.barTintColor = color(red: 56, green: 192, blue: 110)
         
         self.tblView.addSubview(self.refreshControl)
         
-        CommanUtility.decorateNavigationbarWithBackButtonAndTitle(target: self, leftselect: #selector(doClickBack), strTitle:"" , strBackImag: BACK_BUTTON, strFontName: "Arial", size: 20, color: UIColor.white)
+        CommanUtility.decorateNavigationbarWithBackButtonAndTitle(target: self, leftselect: #selector(doClickBack), strTitle: "" , strBackImag: BACK_BUTTON, strFontName: "Arial", size: 20, color: UIColor.white)
         
         self.tblView.backgroundColor = UIColor.clear
         //  self.imgBG.image = UIImage(named : CHAT_BG)
@@ -111,14 +96,46 @@ class ChatDetailViewController : GAITrackedViewController, UITableViewDelegate, 
         self.viewBottom.layer.borderWidth = 1.0
         self.viewBottom.layer.borderColor = UIColor.gray.cgColor
         
-        self.headerView.label.text = self.strChatMessage
+        self.headerView.label.text = self.strChatMessage.removingPercentEncoding
     }
     
     func doCallGetChatMessageWS(shouldShowLoader : Bool)
     {
+        /*
+         
+         Request
+         -lastMessageDateTime  (send chats after this time update)     Ex: 2017-08-01 12:23:23
+         -chatId
+         -messageId(New Added)
+         -userId
+         -receiverId
+         */
+        var receiverId = ""
+        if self.strReceiverId == CommonUtil.getUserId()
+        {
+            receiverId = self.strSenderId
+        }else
+        {
+            receiverId = self.strReceiverId
+        }
         
-        let params = ["version" : "1.0" , "os" : "2" , "language" : CommanUtility.getCurrentLanguage(),"userId":CommonUtil.getUserId(), "messageId" : self.strMessageId ,"receiverId" :self.strReceiverId, "lastMessageDateTime" : self.lastTimeSyncTime]  as [String : Any]
-                print(params)
+        var strLang = "1"
+        if Localize.currentLanguage() == "en"{
+            strLang = "1"
+        }
+        else if Localize.currentLanguage() == "zh-Hant"{
+            strLang = "2"
+        }
+        else if Localize.currentLanguage() == "es"{
+            strLang = "3"
+        }
+        else if Localize.currentLanguage() == "pt-PT"{
+            strLang = "4"
+        }
+        
+        let params = ["version" : "1.0" , "os" : "2" , "language" : strLang,"userId":CommonUtil.getUserId(), "messageId" : self.strMessageId ,"receiverId" :receiverId, "lastMessageDateTime" : self.lastTimeSyncTime,]  as [String : Any]
+        
+        print(params)
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOSTAndPullToRefresh(isShowLoder: shouldShowLoader, strURL: kBaseUrl, strServiceName: "getChatMessageList", parameter: params, success: { (obj) in
             print(obj)
             if let chatData : Array<Dictionary<String,AnyObject>> = obj["responseData"] as? Array<Dictionary<String,AnyObject>>
@@ -141,7 +158,7 @@ class ChatDetailViewController : GAITrackedViewController, UITableViewDelegate, 
     func configureInitialParameters()
     {
         self.timerToRefreshChat = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(doRefreshChat), userInfo: nil, repeats: true)
-
+        
         let realm = try! Realm()
         try! realm.write {
             realm.deleteAll()
@@ -180,15 +197,21 @@ class ChatDetailViewController : GAITrackedViewController, UITableViewDelegate, 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.arrChat.count
     }
-
+    
+    
+    //    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    //
+    //        let viewCustom  = CustomHeaderView()
+    //        viewCustom.label.text = self.strChatMessage
+    //        return viewCustom
+    //    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellToShow : UITableViewCell!
         let chatData : ChatData = self.arrChat[indexPath.row] as! ChatData
         if chatData.senderId == CommonUtil.getUserId() {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cellChat2") as! ChatTableViewCell
-            cell.lblMessage.text = chatData.message.replacingOccurrences(of: "+", with: " ")
-
+            cell.lblMessage.text = chatData.message.removingPercentEncoding
             cell.imgBG.backgroundColor = UIColor.clear
             if let time = chatData.time as? String {
                 let date : Date = CommanUtility.convertAStringIntodDte(time : (time) , formate : "yyyy-MM-dd HH:mm:ss")
@@ -198,8 +221,7 @@ class ChatDetailViewController : GAITrackedViewController, UITableViewDelegate, 
             cellToShow = cell
         }else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cellChat1") as! ChatTableViewCell
-            cell.lblMessage.text = chatData.message.replacingOccurrences(of: "+", with: " ")
-
+            cell.lblMessage.text = chatData.message.removingPercentEncoding
             cell.imgBG.backgroundColor = UIColor.clear
             if let time = chatData.time as? String {
                 let date : Date = CommanUtility.convertAStringIntodDte(time : (time) , formate : "yyyy-MM-dd HH:mm:ss")
@@ -261,15 +283,33 @@ class ChatDetailViewController : GAITrackedViewController, UITableViewDelegate, 
     
     @IBAction func doClickSend(id : UIButton)
     {
-       let strMessage = self.txtChat.text.trimmingCharacters(in: .whitespacesAndNewlines)
-
-        if !(CommonUtil.checkNullString(strMessage))
+        
+        var receiverId = ""
+        if self.strReceiverId == CommonUtil.getUserId()
         {
-            return
+            receiverId = self.strSenderId
+        }else
+        {
+            receiverId = self.strReceiverId
         }
-
-        let params = ["version" : "1.0" , "os" : "2" , "language" : CommanUtility.getCurrentLanguage(),"userId":CommonUtil.getUserId(), "messageId" : self.strMessageId,"receiverId" :self.strReceiverId, "message": self.txtChat.text, "type" : "0","lastMessageDateTime" : self.doGetCurrentTime(),"status" : "0"]  as [String : Any]
-
+        
+        
+        var strLang = "1"
+        if Localize.currentLanguage() == "en"{
+            strLang = "1"
+        }
+        else if Localize.currentLanguage() == "zh-Hant"{
+            strLang = "2"
+        }
+        else if Localize.currentLanguage() == "es"{
+            strLang = "3"
+        }
+        else if Localize.currentLanguage() == "pt-PT"{
+            strLang = "4"
+        }
+        
+        
+        let params = ["version" : "1.0" , "os" : "2" , "language" : strLang,"userId":CommonUtil.getUserId(), "messageId" : self.strMessageId,"receiverId" :receiverId, "message": self.txtChat.text, "type" : "0","lastMessageDateTime" : self.doGetCurrentTime(),"status" : "0"]  as [String : Any]
         print(params)
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOSTAndPullToRefresh(isShowLoder: false, strURL: kBaseUrl, strServiceName: "sendChatMessage", parameter: params, success: { (obj) in
             if(obj["status"] as! String == "1")
@@ -318,21 +358,27 @@ class ChatDetailViewController : GAITrackedViewController, UITableViewDelegate, 
         let predicate = NSPredicate(format: "(((senderId = %@ AND receiverId = %@) || (receiverId = %@ AND senderId = %@)) && chatId = %@ && timeStamp > %d)", self.strSenderId, self.strReceiverId,self.strSenderId, self.strReceiverId,self.strMessageId,self.lastTimeStamp)
         
         let objs = realm.objects(ChatData.self).filter(predicate)
-        if objs.count > 0
+        
+        //        if objs.count > 9
+        //        {
+        //            for i in 0..<10
+        //            {
+        //                self.arrChat .append(objs[i])
+        //            }
+        //        }else{
+        //            self.arrChat .append(objectsIn: objs)
+        //        }
+        
+        self.arrChat .append(objectsIn: objs)
+        
+        if self.arrChat.count > 0
         {
-            self.arrChat .append(objectsIn: objs)
-            
-            if self.arrChat.count > 0
-            {
-                let chatTempData = self.arrChat.last
-                self.lastTimeSyncTime = (chatTempData?.time)!
-                self.lastTimeStamp = (chatTempData?.timeStamp)!
-                self.tblView.reloadData()
-                DispatchQueue.main.async(execute: { () -> Void in
-                    let indexPath = IndexPath(row: self.arrChat.count-1, section: 0)
-                    self.tblView.scrollToRow(at: indexPath, at: .bottom, animated: true)
-                })
-            }
+            let chatTempData = self.arrChat.last
+            self.lastTimeSyncTime = (chatTempData?.time)!
+            self.lastTimeStamp = (chatTempData?.timeStamp)!
+            self.tblView.reloadData()
+            //   perform(#selector(scrollToBottom), with: nil, afterDelay: 1.0)
+            //perform(#selector(scrollToBottom()), with: nil, afterDelay: 1.0, inModes: [.commonModes])
         }
     }
     
@@ -342,29 +388,35 @@ class ChatDetailViewController : GAITrackedViewController, UITableViewDelegate, 
         {
             let realm = try! Realm()
             
-         //   let predicate = NSPredicate(format: "messageId = %@", dictData["messageId"] as! String)
-          //  let arrTempChat = realm.objects(ChatData.self).filter(predicate)
-         //   if arrTempChat.count == 0
-          //  {
-                let chatObj = ChatData()
-                chatObj.chatId = self.strMessageId
-                chatObj.message = dictData["message"] as!  String
-                chatObj.time = dictData["time"] as!  String
-                chatObj.senderId = dictData["senderId"] as!  String
-                if let val = dictData["isFavorite"] {
-                    chatObj.isFavorite = val as! Int
-                }else{
-                    chatObj.isFavorite = 0
-                }
-                chatObj.type = dictData["type"] as!  String
-                chatObj.messageId = dictData["messageId"] as!  String
-                chatObj.timeStamp = self .doGetTimeStamp(date: dictData["time"] as!  String)
+            //   let predicate = NSPredicate(format: "messageId = %@", dictData["messageId"] as! String)
+            //  let arrTempChat = realm.objects(ChatData.self).filter(predicate)
+            //   if arrTempChat.count == 0
+            //  {
+            let chatObj = ChatData()
+            chatObj.chatId = self.strMessageId
+            chatObj.message = dictData["message"] as!  String
+            chatObj.time = dictData["time"] as!  String
+            chatObj.senderId = dictData["senderId"] as!  String
+            if let val = dictData["isFavorite"] {
+                chatObj.isFavorite = val as! Int
+            }else{
+                chatObj.isFavorite = 0
+            }
+            chatObj.type = dictData["type"] as!  String
+            chatObj.messageId = dictData["messageId"] as!  String
+            chatObj.timeStamp = self .doGetTimeStamp(date: dictData["time"] as!  String)
+            if chatObj.senderId == self.strReceiverId
+            {
+                chatObj.receiverId = self.dictChatData["senderId"] as! String
+            }else
+            {
                 chatObj.receiverId = self.strReceiverId
-                try! realm.write
-                {
-                    realm.add(chatObj)
-                }
-           // }
+            }
+            try! realm.write
+            {
+                realm.add(chatObj)
+            }
+            // }
         }
     }
     

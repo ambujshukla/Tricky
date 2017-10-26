@@ -24,6 +24,7 @@ class VerifyOTPController: GAITrackedViewController
     @IBOutlet weak var lblTimer : UILabel!
     var timer = Timer()
     var time = 15
+    var strInfoMsg : String!
     
     var isFromForgotPasswordScren : Bool = false
     
@@ -60,7 +61,7 @@ class VerifyOTPController: GAITrackedViewController
     
     func decorateUI ()
     {
-        self.lblInfo.text = "otp_info".localized()
+        self.lblInfo.text = self.strInfoMsg
         self.btnOTP.backgroundColor = UIColor.white
         
         self.btnOTP.setTitleColor(UIColor.white, for: .normal)
@@ -108,7 +109,7 @@ class VerifyOTPController: GAITrackedViewController
     func doCallWebAPIForLogin()
     {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let dictData = ["mobileNo" :self.strMobileNo ,"deviceToken":appDelegate.strDeviceToken , "otp" : self.tfOtp.text! , "countryCode" : "+91" , "os" :"2" ,"version" : "1.0.0" ,"language" : CommanUtility.getCurrentLanguage()] as [String : Any]
+        let dictData = ["mobileNo" :self.strMobileNo ,"deviceToken":appDelegate.strDeviceToken , "otp" : self.tfOtp.text! , "countryCode" : self.strCountryCode , "os" :"2" ,"version" : "1.0" ,"language" : CommanUtility.getCurrentLanguage()] as [String : Any]
         print(dictData)
         
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: METHOD_LOGIN, parameter: dictData , success: { (obj) in
@@ -137,7 +138,7 @@ class VerifyOTPController: GAITrackedViewController
     {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
 
-        let dictData = ["version" : "1.0" , "os" : "2" , "language" : CommanUtility.getCurrentLanguage() , "mobileNo": self.strMobileNo  , "url":self.strLink , "deviceToken" : appDelegate.strDeviceToken , "countryCode" : "+91" , "otp" : self.strOTP ] as [String : Any]
+        let dictData = ["version" : "1.0" , "os" : "2" , "language" : CommanUtility.getCurrentLanguage() , "mobileNo": self.strMobileNo  , "url":self.strLink , "deviceToken" : appDelegate.strDeviceToken , "countryCode" :  self.strCountryCode , "otp" : self.tfOtp.text! ] as [String : Any]
         
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "register", parameter: dictData , success: { (obj) in
             let regData = Mapper<RegistrationModel>().map(JSON: obj)

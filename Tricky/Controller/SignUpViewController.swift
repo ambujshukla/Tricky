@@ -12,7 +12,7 @@ import ObjectMapper
 import SafariServices
 
 
-class SignUpViewController: GAITrackedViewController {
+class SignUpViewController: GAITrackedViewController , UITextFieldDelegate {
     
     //  @IBOutlet weak var lblTitle : UILabel!
     //  @IBOutlet weak var lblMobile : UILabel!
@@ -196,8 +196,9 @@ class SignUpViewController: GAITrackedViewController {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "VerifyOTPController") as! VerifyOTPController
         vc.isFromSignUp = true
         vc.strMobileNo = self.txtMobile.text
-        vc.strLink = self.txtLink.text
+        vc.strLink = self.txtLink.text?.lowercased()
         vc.strCountryCode = self.btnCountryCode.titleLabel?.text
+        vc.strInfoMsg = OTPData.info_msg
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -249,5 +250,26 @@ class SignUpViewController: GAITrackedViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        // Get invalid characters
+        let invalidChars = NSCharacterSet.alphanumerics.inverted
+        
+        // Make new string with invalid characters trimmed
+        let newString = string.trimmingCharacters(in: invalidChars)
+        
+        if newString.characters.count < string.characters.count {
+            // If there are less characters than we started with after trimming
+            // this means there was an invalid character in the input.
+            // Don't let the change go through
+            return false
+        } else {
+            // Otherwise let the change go through
+            return true
+        }
+        
     }
 }

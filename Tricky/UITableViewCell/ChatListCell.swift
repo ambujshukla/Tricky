@@ -28,10 +28,10 @@ class ChatListCell: UITableViewCell {
     func doSetDataOnCell(dictData : [String : AnyObject]){
         
         if let value = dictData["chatMessage"] as? String {
-            self.lblName.text = (value )
+            self.lblName.text = (value ).removingPercentEncoding
         }
         if let message = dictData["recentMessage"] as? String {
-            self.lblMessage.text = message.replacingOccurrences(of: "+", with: " ")
+            self.lblMessage.text = message.removingPercentEncoding
 
         }
         if let time = dictData["recentMessageTime"] as? String {

@@ -82,7 +82,7 @@
 "txt_yes" = "sí";
 "txt_no" = "no";
 
-"txt_logout" = "¿Desea cerrar la aplicación?";
+"txt_logout1" = "¿Desea cerrar la aplicación?";
 "txt_copied" = "Enlace copiado en el portapapeles";
 
 "txt_please_enter_post" = "Ingrese mensaje.";

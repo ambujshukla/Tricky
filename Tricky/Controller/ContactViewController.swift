@@ -245,6 +245,7 @@
         } else if (self.contactShowFrom == 2){
            cell.setCompleteContactListDataOn(dictData: dataContacts)
         } else{
+        
            cell.setAppUserContactListData(dictData: dataContacts)
         }
         cell.btnBlockOrInvite.tag = indexPath.row

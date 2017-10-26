@@ -86,7 +86,7 @@
 "txt_yes" = "sim";
 "txt_no" = "não";
 
-"txt_logout" = "Deseja efetuar o logout do aplicativo?";
+"txt_logout1" = "Deseja efetuar o logout do aplicativo?";
 "txt_copied" = "Link copiado para a área de transferência";
 
 "txt_please_enter_post" = "Digite a mensagem da mensagem.";

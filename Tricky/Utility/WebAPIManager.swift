@@ -101,6 +101,9 @@ class WebAPIManager: NSObject {
             print("Result: \(response.result)")                         // response serialization result
             CommonUtil.hideLoader()
             if let json = response.result.value {
+                
+                
+                
                 success(json as! [String : Any])
             }
             else{

@@ -15,11 +15,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     var strDeviceToken : String!
+    var isRefreshmsg = false
     
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions:
         [UIApplicationLaunchOptionsKey: Any]?) -> Bool
     {
+        
+        UIApplication.shared.applicationIconBadgeNumber = 0
+        
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         if (UserDefaults.standard.bool(forKey: "isLanguageSelected") == true)
         {
@@ -56,17 +60,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
             // iOS 7 support
         else {
+            
+        
             application.registerForRemoteNotifications(matching: [.badge, .sound, .alert])
         }
         UIApplication.shared.statusBarStyle = .lightContent
         
         //Google Analytics
-        guard let gai = GAI.sharedInstance() else {
-            assert(false, "Google Analytics not configured correctly")
-        }
-        gai.tracker(withTrackingId: "UA-105626100-1")
+         let gai = GAI.sharedInstance()
+        gai?.tracker(withTrackingId: "UA-105626100-1")
         // Optional: automatically report uncaught exceptions.
-        gai.trackUncaughtExceptions = true
+        gai?.trackUncaughtExceptions = true
 
         return true
     }

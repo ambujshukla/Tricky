@@ -19,7 +19,7 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
     @IBOutlet weak var lblEmail : UILabel!
     @IBOutlet weak var lblSent : UILabel!
     @IBOutlet weak var lblReceived : UILabel!
-    private var tap: UITapGestureRecognizer!
+    //private var tap: UITapGestureRecognizer!
     
     var controller : UINavigationController!
     
@@ -36,9 +36,9 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
     
     func decorateUI ()
     {
-        self.tap = UITapGestureRecognizer.init(target: self, action: #selector(doClickProfile(tapG:)))
-        self.tap.delegate = self
-        self.view.addGestureRecognizer(self.tap)
+       // self.tap = UITapGestureRecognizer.init(target: self, action: #selector(doClickProfile(tapG:)))
+        //self.tap.delegate = self
+        //self.view.addGestureRecognizer(self.tap)
         
         self.imgProfile.layer.cornerRadius = self.imgProfile.frame.size.width / 2
         self.imgProfile.layer.masksToBounds = true
@@ -53,7 +53,7 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
         }
         
         //, "My Post" ,"txt_display_all_anonymous_post".localized()
-        self.menuData = ["txt_home".localized() ,"txt_block_users".localized() , "txt_contacts".localized() , "txt_favorite".localized() , "txt_language".localized() , "txt_filter_vulgar".localized() , "txt_block_unauthorized".localized() , "txt_logout".localized()];
+        self.menuData = ["txt_home".localized() ,"txt_block_users".localized() , "txt_contacts".localized() , "txt_favorite".localized() , "txt_language".localized() , "txt_filter_vulgar".localized() , "txt_block_unauthorized".localized()];
         
         self.tblMenu.tableFooterView = UIView()
         self.lblSent.textColor = UIColor.white
@@ -161,6 +161,9 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
         //        }
         
         if (indexPath.row == 0) {
+            
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.isRefreshmsg = true
             self.revealViewController().revealToggle(animated: true)
             self.revealViewController().pushFrontViewController(self.controller, animated: true)
         }else if (indexPath.row == 1)
@@ -210,7 +213,7 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
         self.revealViewController().pushFrontViewController(navController, animated: true)
     }
     
-    @IBAction func doClickProfile(tapG : UITapGestureRecognizer)
+    @IBAction func doClickProfile()
     {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfileViewIdentifier") as! ProfileViewController
         let contrlHome = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
@@ -218,6 +221,7 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
         navController.setViewControllers([contrlHome , vc], animated: true)
         self.revealViewController().pushFrontViewController(navController, animated: true)
     }
+    
     
     @IBAction func doClickCopyLink()
     {

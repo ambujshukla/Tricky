@@ -82,7 +82,7 @@
 "txt_yes" = "是";
 "txt_no" = "没有";
 
-"txt_logout" = "您是否要注销程序？";
+"txt_logout1" = "您是否要注销程序？";
 "txt_copied" = "链接已复制到剪贴板";
 
 "txt_please_enter_post" = "請輸入訊息。";

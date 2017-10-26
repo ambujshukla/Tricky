@@ -16,6 +16,8 @@ class OTPModel: Mappable {
     var responseCode    : String?
     var responseMessage    : String?
     var otp : String?
+    var info_msg : String?
+
     
     required init?(map: Map) {
         mapping(map: map)
@@ -26,6 +28,8 @@ class OTPModel: Mappable {
         responseMessage      <- map["responseMessage"]
         responseCode       <- map["responseCode"]
         otp       <- map["otp"]
+        info_msg       <- map["info_msg"]
+
         
     }
 }

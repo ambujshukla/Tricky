@@ -37,7 +37,7 @@ class MessageTableViewCell: UITableViewCell {
         if let reveiverName = dictData["recieverName"] as? String {
             if (self.lblTo != nil)
             {
-                self.lblTo.text = "To: \(reveiverName)"
+              //  self.lblTo.text = "To: \(reveiverName)"
             }
         }
         let isFavourite = dictData["isFavorite"] as! Bool

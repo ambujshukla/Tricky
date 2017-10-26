@@ -84,7 +84,7 @@
 "txt_yes" = "Yes";
 "txt_no" = "No";
 
-"txt_logout" = "Do you want to Logout from the app?";
+"txt_logout1" = "Do you want to Logout from the app?";
 "txt_copied" = "Link copied to clipboard";
 
 "txt_please_enter_post" = "Please enter post message.";
@@ -92,7 +92,7 @@
 "txt_contacts" = "Contacts";
 "txt_favorite" = "Favorite";
 "txt_AllContact" = "All Contacts";
-"txt_select_cont" = "Select Contact";
+"txt_select_cont" = "User";
 
 
 
