@@ -15,6 +15,9 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var lblType : UILabel!
     var Vcs = [UIViewController]()
     
+    var contactsArray = NSMutableArray()
+    var arrMainData = [[String : AnyObject]]()
+    
     var tabs = [
         ViewPagerTab(title: "txt_msg".localized(), image: UIImage(named: "fries")),
         ViewPagerTab(title: "txt_chat".localized(), image: UIImage(named: "hamburger"))
@@ -26,6 +29,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         self.doCustomSetUp()
         NotificationCenter.default.addObserver(self, selector: #selector(doShowAlert), name: Notification.Name("logoutAlert"), object: nil)
+        self.doGetContactFromConactBook(isShowLoader: false)
         
         // Do any additional setup after loading the view.
     }
@@ -92,6 +96,65 @@ class HomeViewController: UIViewController {
         
         
     }
+    
+    func doGetContactFromConactBook(isShowLoader : Bool){
+        if isShowLoader {
+            CommonUtil.showLoader()
+        }
+        DispatchQueue.global(qos: .background).async
+            {
+                ContactPickerUtils.sharedContactPicker.getContctFromContactBook(target: self) { (contacts, error) in
+                    DispatchQueue.main.async {
+                        self.contactsArray = contacts
+                        DispatchQueue.global(qos: .background).async{
+                            self.doCallSyncContactsWS(isShowLoader: isShowLoader)
+                        }
+                    }
+                }
+        }
+    }
+    
+    func doCallSyncContactsWS(isShowLoader : Bool)
+    {
+        var arrayTempContacts = [[String : String]]()
+        for model in self.contactsArray
+        {
+            var dictContactsData = [String : String]()
+            let contact: ContactModel
+            contact =  model as! ContactModel
+            
+            for phoneNo in contact.phoneNumbers
+            {
+                let string = phoneNo.phoneNumber as AnyObject // string starts as "hello[]
+                let badchar = CharacterSet(charactersIn: "\"-() ")
+                let cleanedstring = string.components(separatedBy: badchar).joined()
+                dictContactsData["userNumber"] =  cleanedstring.stringByRemovingWhitespaces as String
+                dictContactsData["userName"] = contact.fullName! as String
+            }
+            arrayTempContacts.append(dictContactsData)
+        }
+        let data = ["data" : arrayTempContacts]
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
+            let theJSONText = String(data: jsonData,
+                                     encoding: .utf8)
+            
+            let dictData = ["version" : "1.0" , "os" : "2" , "language" : CommanUtility.getCurrentLanguage(),"userId":CommonUtil.getUserId(), "requestData" : theJSONText!] as [String : Any]
+            WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOSTAndPullToRefresh(isShowLoder :isShowLoader , strURL: kBaseUrl, strServiceName: "SyncContact", parameter: dictData, success: { (obj) in
+                if let dictContactsData = obj["responseData"] as? [[String : AnyObject]]
+                {
+                    self.arrMainData.append(contentsOf: dictContactsData)
+                    CommanUtility.saveObjectInPreference(arrData: self.arrMainData, key: "contact")
+                    
+                }
+            }) { (error) in
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+ 
+    
 }
 
 
