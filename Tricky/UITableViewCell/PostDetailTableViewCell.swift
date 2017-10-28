@@ -2,7 +2,7 @@
 //  PostDetailTableViewCell.swift
 //  Tricky
 //
-//  Created by Shweta Shukla on 03/09/17.
+//  Created by gopalsara on 03/09/17.
 //  Copyright © 2017 Gopal Sara. All rights reserved.
 //
 

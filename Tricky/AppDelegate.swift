@@ -16,11 +16,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var strDeviceToken : String!
     var isRefreshmsg = false
-    
+    var isLanguageChanged : Bool = false
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions:
         [UIApplicationLaunchOptionsKey: Any]?) -> Bool
     {
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "YYYY-MM-dd'T'dd:mm:ss"
+//        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+//        
+//        let dt = dateFormatter.date(from: "2017-10-20'T'11:20:22")
+//        dateFormatter.timeZone = TimeZone.current
+//        dateFormatter.dateFormat = "YYYY-MM-dd'T'dd:mm:ss"
+//        
+//        print(dateFormatter.string(from: dt!))
         
         UIApplication.shared.applicationIconBadgeNumber = 0
         

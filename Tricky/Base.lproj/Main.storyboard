@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="xEq-rw-oed">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="17A365" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="xEq-rw-oed">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -568,6 +568,7 @@
                                                         <constraint firstItem="UaW-Do-tFC" firstAttribute="top" secondItem="BTF-80-VYd" secondAttribute="top" constant="9" id="gje-17-DdY"/>
                                                         <constraint firstItem="Gvh-hU-RU4" firstAttribute="leading" secondItem="BTF-80-VYd" secondAttribute="leading" constant="8" id="oSU-ua-Z7S"/>
                                                         <constraint firstAttribute="trailing" secondItem="UaW-Do-tFC" secondAttribute="trailing" constant="12" id="qaa-Uf-MS1"/>
+                                                        <constraint firstAttribute="trailing" secondItem="B6w-24-C1D" secondAttribute="trailing" constant="8" id="s8z-Qw-LTn"/>
                                                         <constraint firstItem="mwT-sT-SB4" firstAttribute="width" secondItem="BTF-80-VYd" secondAttribute="width" multiplier="242:304" id="y75-aQ-erT"/>
                                                         <constraint firstItem="mwT-sT-SB4" firstAttribute="leading" secondItem="BTF-80-VYd" secondAttribute="leading" constant="4" id="zsp-0t-D9f"/>
                                                     </constraints>
@@ -658,6 +659,7 @@
                                                         <constraint firstItem="bXU-Pg-Mo1" firstAttribute="top" secondItem="8KQ-uR-umY" secondAttribute="bottom" constant="5" id="dSe-bI-46Q"/>
                                                         <constraint firstItem="iGY-ZW-caj" firstAttribute="width" secondItem="CCL-Mt-PTo" secondAttribute="width" multiplier="242:304" id="eqs-t8-9dr"/>
                                                         <constraint firstItem="iGY-ZW-caj" firstAttribute="leading" secondItem="CCL-Mt-PTo" secondAttribute="leading" constant="4" id="fTx-37-a6g"/>
+                                                        <constraint firstAttribute="trailing" secondItem="eiD-hi-2VP" secondAttribute="trailing" constant="8" id="gFf-aC-j1g"/>
                                                         <constraint firstItem="eiD-hi-2VP" firstAttribute="top" secondItem="bXU-Pg-Mo1" secondAttribute="bottom" constant="2" id="l3N-lh-fDH"/>
                                                         <constraint firstItem="iGY-ZW-caj" firstAttribute="centerY" secondItem="8KQ-uR-umY" secondAttribute="centerY" id="m1y-I4-Cnt"/>
                                                         <constraint firstAttribute="trailing" secondItem="W5S-DL-gH1" secondAttribute="trailing" constant="12" id="nMy-ky-QbG"/>
@@ -1092,6 +1094,7 @@
                                                         <constraint firstAttribute="bottom" secondItem="k9A-LB-RBg" secondAttribute="bottom" constant="11" id="jbL-b0-Vnp"/>
                                                         <constraint firstItem="DlV-V4-Pli" firstAttribute="width" secondItem="TI3-z1-n4U" secondAttribute="width" multiplier="6:304" id="mwl-Wh-Qz1"/>
                                                         <constraint firstAttribute="trailing" secondItem="DlV-V4-Pli" secondAttribute="trailing" constant="12" id="njQ-F7-5zb"/>
+                                                        <constraint firstAttribute="trailing" secondItem="k9A-LB-RBg" secondAttribute="trailing" constant="8" id="pVD-dR-QUJ"/>
                                                         <constraint firstAttribute="trailing" secondItem="Ka5-Gl-AJ1" secondAttribute="trailing" constant="8" id="tXW-Hq-4VC"/>
                                                         <constraint firstItem="DlV-V4-Pli" firstAttribute="leading" secondItem="Lkv-OE-xSN" secondAttribute="trailing" constant="8" id="yqv-2S-cbQ"/>
                                                         <constraint firstItem="Ka5-Gl-AJ1" firstAttribute="leading" secondItem="TI3-z1-n4U" secondAttribute="leading" constant="8" id="zzf-XX-UzP"/>
@@ -1178,6 +1181,7 @@
                                                         <constraint firstItem="qa0-D3-XPR" firstAttribute="centerY" secondItem="bbd-4z-mTg" secondAttribute="centerY" id="HK3-BJ-uom"/>
                                                         <constraint firstItem="Keb-qG-xJN" firstAttribute="leading" secondItem="DMV-Na-tb5" secondAttribute="leading" constant="10" id="Ilq-I3-EzI"/>
                                                         <constraint firstItem="2F7-o5-10g" firstAttribute="leading" secondItem="DMV-Na-tb5" secondAttribute="leading" constant="4" id="Kad-yD-jKW"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Keb-qG-xJN" secondAttribute="trailing" constant="8" id="cFP-4I-gvo"/>
                                                         <constraint firstItem="bbd-4z-mTg" firstAttribute="height" secondItem="DMV-Na-tb5" secondAttribute="height" multiplier="6:80" id="dw9-be-j9G"/>
                                                         <constraint firstItem="bbd-4z-mTg" firstAttribute="width" secondItem="DMV-Na-tb5" secondAttribute="width" multiplier="6:304" id="g12-9i-A5Y"/>
                                                         <constraint firstAttribute="trailing" secondItem="YCS-ee-9EO" secondAttribute="trailing" constant="8" id="gYc-5u-jg0"/>
@@ -1277,6 +1281,7 @@
                                                         <constraint firstAttribute="bottom" secondItem="Zo7-M0-a7E" secondAttribute="bottom" constant="13" id="YsL-Pd-Pz7"/>
                                                         <constraint firstItem="MXv-ap-nBj" firstAttribute="leading" secondItem="2mB-Ys-1ph" secondAttribute="trailing" constant="8" id="Zl3-CH-KPL"/>
                                                         <constraint firstAttribute="trailing" secondItem="MXv-ap-nBj" secondAttribute="trailing" constant="12" id="byk-Jh-6he"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Zo7-M0-a7E" secondAttribute="trailing" constant="8" id="d3P-F6-Ca8"/>
                                                         <constraint firstItem="MXv-ap-nBj" firstAttribute="top" secondItem="fE6-ud-1Yx" secondAttribute="top" constant="9" id="p8q-eO-mlp"/>
                                                         <constraint firstItem="MXv-ap-nBj" firstAttribute="height" secondItem="fE6-ud-1Yx" secondAttribute="height" multiplier="6:80" id="ugV-fI-qh0"/>
                                                         <constraint firstAttribute="trailing" secondItem="NGb-Wf-LuE" secondAttribute="trailing" constant="8" id="wEy-cR-fx5"/>

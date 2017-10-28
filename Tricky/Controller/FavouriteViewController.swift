@@ -40,7 +40,7 @@ class FavouriteViewController: GAITrackedViewController , UITableViewDelegate , 
         self.view.endEditing(true)
         
         
-        let dictData = ["version" : "1.0" , "os" : "ios" , "language" : CommanUtility.getCurrentLanguage(),"userId":CommonUtil.getUserId(),"filterVulgar" : CommonUtil.getDataForKey("filterMessage") ?? "0","messageForOnlyRegisterUser":CommonUtil.getDataForKey("isBlockUser") ?? "1","offset":"0","limit" : "1000","showOnlyFavorite":"1"] as [String : Any]
+        let dictData = ["version" : "1.0" , "os" : "2" , "language" : CommanUtility.getCurrentLanguage(),"userId":CommonUtil.getUserId(),"filterVulgar" : CommonUtil.getDataForKey("filterMessage") ?? "0","messageForOnlyRegisterUser":CommonUtil.getDataForKey("isBlockUser") ?? "1","offset":"0","limit" : "1000","showOnlyFavorite":"1"] as [String : Any]
         
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "getRecSentList", parameter: dictData , success: { (obj) in
             
@@ -81,6 +81,12 @@ class FavouriteViewController: GAITrackedViewController , UITableViewDelegate , 
         
         self.tblFav.emptyDataSetSource = self
         self.tblFav.emptyDataSetDelegate = self
+        
+        let revealViewController: SWRevealViewController? = self.revealViewController()
+        if revealViewController != nil {
+            CommanUtility.decorateNavigationbarWithRevealToggleButton(target : revealViewController!, strTitle: "txt_trickychat".localized(), strBackButtonImage: "menuicon", selector: #selector(SWRevealViewController.revealToggle(_:)) , controller : self , color:  color(red: 56, green: 152, blue: 108) )
+            navigationController?.navigationBar.addGestureRecognizer(revealViewController!.panGestureRecognizer())
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

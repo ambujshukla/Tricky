@@ -10,8 +10,8 @@ import UIKit
 import Alamofire
 
 class WebAPIManager: NSObject {
-
-
+    
+    
     //MARK :- Shared Instance
     
     class var  sharedWebAPIManager: WebAPIManager {
@@ -27,14 +27,21 @@ class WebAPIManager: NSObject {
         
         return Static.instance!
     }
-
+    
     
     func doCallServiceForTesting(strURL : String , strServiceName : String , parameter : [String : Any] , success: @escaping (_ obj : [String: Any]) -> Void , failure: @escaping (_ error: NSError?) -> Void){
+        
+        var dictParam :[String:AnyObject] = [:]
+        dictParam = parameter as [String : AnyObject]
+        dictParam["version"] = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as AnyObject
+        dictParam["os"] = "2" as AnyObject
+        dictParam["language"] = CommanUtility.getCurrentLanguage() as AnyObject
+        print("dictparam1 data\(dictParam)")
         
         var request = URLRequest(url: URL(string: "\(strURL)\(strServiceName)")!)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        let values = parameter
+        let values = dictParam
         request.httpBody = try! JSONSerialization.data(withJSONObject: values)
         
         Alamofire.request(request)
@@ -48,20 +55,20 @@ class WebAPIManager: NSObject {
                         print(responseString)
                     }
                     failure(response.result.error! as NSError?)
-
+                    
                     
                 case .success(let responseObject):
                     print(responseObject)
                     if let json = response.result.value {
                         
-                            success(json as! [String : Any])
+                        success(json as! [String : Any])
                         
                         
                     }
                     else{
                         failure(response.result.error! as NSError?)
                     }
-
+                    
                 }
         }
     }
@@ -73,8 +80,14 @@ class WebAPIManager: NSObject {
             CommonUtil.showLoader()
         }
         
-        
-        Alamofire.request(completeURL, method: .post, parameters : parameter, encoding: URLEncoding.default , headers: nil).responseJSON { response in
+        var dictParam :[String:AnyObject] = [:]
+        dictParam = parameter as [String : AnyObject]
+        dictParam["version"] = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as AnyObject
+        dictParam["os"] = "2" as AnyObject
+        dictParam["language"] = CommanUtility.getCurrentLanguage() as AnyObject
+        print("dictparam2 data\(dictParam)")
+
+        Alamofire.request(completeURL, method: .post, parameters : dictParam, encoding: URLEncoding.default , headers: nil).responseJSON { response in
             
             print("Request: \(String(describing: response.request))")   // original url request
             print("Response: \(String(describing: response.response))") // http url response
@@ -91,11 +104,19 @@ class WebAPIManager: NSObject {
     
     func doCallWebAPIForPOST (strURL : String , strServiceName : String , parameter : [String : Any] , success: @escaping (_ obj : [String: Any]) -> Void , failure: @escaping (_ error: NSError?) -> Void)
     {
-       let completeURL = "\(strURL)\(strServiceName)"
-      CommonUtil.showLoader()
+        let completeURL = "\(strURL)\(strServiceName)"
+        CommonUtil.showLoader()
         
-        Alamofire.request(completeURL, method: .post, parameters : parameter, encoding: URLEncoding.default , headers: nil).responseJSON { response in
+        var dictParam :[String:AnyObject] = [:]
+        dictParam = parameter as [String : AnyObject]
+        dictParam["version"] = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as AnyObject
+        dictParam["os"] = "2" as AnyObject
+        dictParam["language"] = CommanUtility.getCurrentLanguage() as AnyObject
         
+        print("dictparam3 data\(dictParam)")
+
+        Alamofire.request(completeURL, method: .post, parameters : dictParam, encoding: URLEncoding.default , headers: nil).responseJSON { response in
+            
             print("Request: \(String(describing: response.request))")   // original url request
             print("Response: \(String(describing: response.response))") // http url response
             print("Result: \(response.result)")                         // response serialization result
@@ -113,27 +134,27 @@ class WebAPIManager: NSObject {
     }
     
     
-    func doCallWebAPIForGET(strURL : String , strServiceName : String , success: @escaping (_ obj : [String: Any]) -> Void , failure: @escaping (_ error: NSError?) -> Void) -> Void {
-        
-        let completeURL = "\(strURL)\(strServiceName)"
-        print("this is complete URL \(completeURL)")
-        
-        Alamofire.request("\(strURL)\(strServiceName)").responseJSON { response in
-            print("Request: \(String(describing: response.request))")   // original url request
-            print("Response: \(String(describing: response.response))") // http url response
-            print("Result: \(response.result)")                         // response serialization result
-            
-            if let json = response.result.value {
-            success(json as! [String : Any])
-            }
-            else{
-                failure(response.result.error! as NSError?)
-            }
-            
-//            if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
-//                print("Data: \(utf8Text)") // original server data as UTF8 string
+//    func doCallWebAPIForGET(strURL : String , strServiceName : String , success: @escaping (_ obj : [String: Any]) -> Void , failure: @escaping (_ error: NSError?) -> Void) -> Void {
+//        
+//        let completeURL = "\(strURL)\(strServiceName)"
+//        print("this is complete URL \(completeURL)")
+//        
+//        Alamofire.request("\(strURL)\(strServiceName)").responseJSON { response in
+//            print("Request: \(String(describing: response.request))")   // original url request
+//            print("Response: \(String(describing: response.response))") // http url response
+//            print("Result: \(response.result)")                         // response serialization result
+//            
+//            if let json = response.result.value {
+//                success(json as! [String : Any])
 //            }
-        }
-    }
+//            else{
+//                failure(response.result.error! as NSError?)
+//            }
+//            
+//            //            if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
+//            //                print("Data: \(utf8Text)") // original server data as UTF8 string
+//            //            }
+//        }
+ //   }
     
 }

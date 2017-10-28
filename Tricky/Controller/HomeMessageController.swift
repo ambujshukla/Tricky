@@ -15,7 +15,7 @@ import UIKit
 import AAPopUp
 import DZNEmptyDataSet
 
-class HomeMessageController: GAITrackedViewController , UITableViewDelegate , UITableViewDataSource,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate{
+class HomeMessageController: GAITrackedViewController , UITableViewDelegate , UITableViewDataSource,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate,ContactsPostDelegate{
     
     @IBOutlet weak var tblMessage : UITableView!
     @IBOutlet weak var btnPlus : UIButton!
@@ -403,6 +403,7 @@ class HomeMessageController: GAITrackedViewController , UITableViewDelegate , UI
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ContactViewController") as! ContactViewController
         vc.contactShowFrom = 3
         vc.isFromMenu = false
+        vc.delegate = self
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -485,6 +486,10 @@ class HomeMessageController: GAITrackedViewController , UITableViewDelegate , UI
         return  NSAttributedString(string:"txt_no_record".localized(), attributes:
             [NSForegroundColorAttributeName: UIColor.white,
              NSFontAttributeName: UIFont(name: Font_Helvetica_Neue, size: 14.0)!])
+    }
+    
+    func sendingMessageDone() {
+       self.doGetMessageList(isComeFromPullToRefresh: true, isShowLoader: true)
     }
 }
 

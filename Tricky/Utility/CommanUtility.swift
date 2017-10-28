@@ -157,6 +157,30 @@ class CommanUtility: NSObject {
    
     }
     
+   class func convertUTCToLocal(dateTime:String) -> String {
+    print(dateTime)
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+//        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+//        
+//        let dt = dateFormatter.date(from: date)
+//        dateFormatter.timeZone = TimeZone.current
+//        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+//        
+//        return dateFormatter.string(from: dt!)
+    // create dateFormatter with UTC time format
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+    dateFormatter.timeZone = NSTimeZone(name: "UTC")! as TimeZone
+    let date = dateFormatter.date(from: dateTime)// create   date from string
+    
+    // change to a readable time format and change to local time zone
+    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+    dateFormatter.timeZone = NSTimeZone.local
+    let timeStamp = dateFormatter.string(from: date!)
+    return timeStamp
+    }
+    
     class func doChangeTimeFormat(time : String, firstFormat : String, SecondFormat : String) -> String
     {
         let time = time

@@ -8,9 +8,15 @@
  
  import UIKit
  import DZNEmptyDataSet
+ 
+ @objc protocol ContactsPostDelegate{
+    @objc optional func sendingMessageDone()
+ }
 
- class ContactViewController: GAITrackedViewController , UITableViewDelegate , UITableViewDataSource,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UISearchBarDelegate {
+ class ContactViewController: GAITrackedViewController , UITableViewDelegate , UITableViewDataSource,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UISearchBarDelegate, UserPostDelegate {
     
+    var delegate:ContactsPostDelegate?
+
     var contactsArray = NSMutableArray()
     var arrSyncContacts = [[String : AnyObject]]()
     {
@@ -20,21 +26,18 @@
     }
     
     var arrMainData = [[String : AnyObject]]()
-
     
     @IBOutlet weak var imgBg : UIImageView!
     var isFromMenu : Bool = false
     var contactShowFrom : Int = 0
     var searchBar : UISearchBar!
     var shouldSearchStart : Bool = false
-
-
     
     @IBOutlet weak var tblContact : UITableView!
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
-
         self.decorateUI()
     }
     
@@ -52,7 +55,7 @@
             self.searchBar.placeholder = "txt_search".localized()
             self.searchBar.delegate = self
             self.searchBar.isHidden = true
-
+            
             self.navigationController?.navigationBar.barTintColor = color(red: 148, green: 108, blue: 139)
         }
         else{
@@ -71,14 +74,19 @@
         self.tblContact.emptyDataSetSource = self
         self.tblContact.emptyDataSetDelegate = self
         self.arrMainData = CommanUtility.getObjectFromPrefrence(key: "contact")
-       if self.arrMainData.count > 0{
-        self.doCustmizeData()
-        self.doGetContactFromConactBook(isShowLoader: false)
+        if self.arrMainData.count > 0{
+            self.doCustmizeData()
+            self.doGetContactFromConactBook(isShowLoader: false)
         }
-       else{
-        self.doGetContactFromConactBook(isShowLoader:  true)
+        else{
+            self.doGetContactFromConactBook(isShowLoader:  true)
         }
         
+        let revealViewController: SWRevealViewController? = self.revealViewController()
+        if revealViewController != nil {
+            CommanUtility.decorateNavigationbarWithRevealToggleButton(target : revealViewController!, strTitle: "txt_trickychat".localized(), strBackButtonImage: "menuicon", selector: #selector(SWRevealViewController.revealToggle(_:)) , controller : self , color:  color(red: 56, green: 152, blue: 108) )
+            navigationController?.navigationBar.addGestureRecognizer(revealViewController!.panGestureRecognizer())
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -96,8 +104,8 @@
                 ContactPickerUtils.sharedContactPicker.getContctFromContactBook(target: self) { (contacts, error) in
                     DispatchQueue.main.async {
                         self.contactsArray = contacts
-                    DispatchQueue.global(qos: .background).async{
-                    self.doCallSyncContactsWS(isShowLoader: isShowLoader)
+                        DispatchQueue.global(qos: .background).async{
+                            self.doCallSyncContactsWS(isShowLoader: isShowLoader)
                         }
                     }
                 }
@@ -118,7 +126,7 @@
             
             strTitle = "txt_select_cont".localized()
             self.imgBg.image = UIImage(named : ALL_CONTACTS_BG)
-
+            
         }
         CommanUtility.decorateNavigationbarWithBackButton(target: self, strTitle: strTitle, strBackButtonImage: BACK_BUTTON, selector: #selector(self.goTOBack), color: color(red: 142, green: 110, blue: 137))
     }
@@ -179,7 +187,7 @@
         {
             self.doFilterIsOnAppData()
         }
-
+        
     }
     
     func doFilterIsOnAppData(){
@@ -240,13 +248,13 @@
         let dataContacts = self.arrSyncContacts[indexPath.row]
         
         if self.contactShowFrom == 1 {
-          cell.setBlockContactListData(dictData: dataContacts)
+            cell.setBlockContactListData(dictData: dataContacts)
             
         } else if (self.contactShowFrom == 2){
-           cell.setCompleteContactListDataOn(dictData: dataContacts)
+            cell.setCompleteContactListDataOn(dictData: dataContacts)
         } else{
-        
-           cell.setAppUserContactListData(dictData: dataContacts)
+            
+            cell.setAppUserContactListData(dictData: dataContacts)
         }
         cell.btnBlockOrInvite.tag = indexPath.row
         cell.btnBlockOrInvite.addTarget(self, action: #selector(self.doBlockOrUnblockUser(sender:)), for: .touchUpInside)
@@ -261,13 +269,16 @@
             let dictData = self.arrSyncContacts[indexPath.row] as [String : AnyObject]
             let userId = dictData["userId"] as! String
             let userName = dictData["userName"] as! String
-             vc.strTitle = userName
+            vc.strTitle = userName
             vc.strUserId = userId
+            vc.delegate = self
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     
-    
+    func sendingMessageDone() {
+        self.delegate?.sendingMessageDone!()
+    }
     
     func doBlockOrUnblockUser(sender : UIButton)
     {
@@ -288,12 +299,12 @@
             }) { (obj) in
                 print("ok")
             }
-      
+            
             
             
         }
         else{
-       self.doActionOnShare(sender: sender)
+            self.doActionOnShare(sender: sender)
         }
     }
     
@@ -304,7 +315,7 @@
         let vc = UIActivityViewController(activityItems: [shareText ], applicationActivities: [])
         present(vc, animated: true, completion: nil)
     }
-
+    
     
     func doCallServiceForBlockAndUnblock(sender : UIButton , dataContacts : [String : AnyObject]) {
         
