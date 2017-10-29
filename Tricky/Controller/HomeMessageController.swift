@@ -245,6 +245,7 @@ class HomeMessageController: GAITrackedViewController , UITableViewDelegate , UI
             }
             
         }) { (error) in
+            
         }
     }
     

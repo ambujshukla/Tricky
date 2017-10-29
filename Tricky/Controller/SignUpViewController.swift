@@ -13,17 +13,8 @@ import SafariServices
 
 
 class SignUpViewController: GAITrackedViewController , UITextFieldDelegate {
-    
-    //  @IBOutlet weak var lblTitle : UILabel!
-    //  @IBOutlet weak var lblMobile : UILabel!
-    //  @IBOutlet weak var lblPassword : UILabel!
-    //  @IBOutlet weak var lblUrl : UILabel!
-    //  @IBOutlet weak var lblPhoto : UILabel!
-    //  @IBOutlet weak var lblNotifications : UILabel!
     @IBOutlet weak var lblTnC : UILabel!
-    //  @IBOutlet weak var lblNoFileChoosen : UILabel!
     
-    //  @IBOutlet weak var txtSelectCode : UITextField!
     @IBOutlet weak var txtMobile : UITextField!
     @IBOutlet weak var txtLink : UITextField!
     @IBOutlet weak var txtDomain : UITextField!
@@ -46,7 +37,6 @@ class SignUpViewController: GAITrackedViewController , UITextFieldDelegate {
     {
         super.viewDidLoad()
         self.decorateUI()
-        // Do any additional setup after loading the view.
     }
     
     override func viewDidAppear(_ animated: Bool)

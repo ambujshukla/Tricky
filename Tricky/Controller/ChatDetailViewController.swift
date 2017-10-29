@@ -101,15 +101,12 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
     
     func doCallGetChatMessageWS(shouldShowLoader : Bool)
     {
-        /*
-         
-         Request
-         -lastMessageDateTime  (send chats after this time update)     Ex: 2017-08-01 12:23:23
-         -chatId
-         -messageId(New Added)
-         -userId
-         -receiverId
-         */
+        if !(CommonUtil.isConnectedToInternet())
+        {
+            CommonUtil.showTotstOnWindow(strMessgae: "txt_network_not_available".localized())
+            return
+        }
+        
         var receiverId = ""
         if self.strReceiverId == CommonUtil.getUserId()
         {
@@ -133,7 +130,7 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
             strLang = "4"
         }
         
-        let params = ["version" : "1.0" , "os" : "2" , "language" : strLang,"userId":CommonUtil.getUserId(), "messageId" : self.strMessageId ,"receiverId" :receiverId, "lastMessageDateTime" : self.lastTimeSyncTime,]  as [String : Any]
+        let params = ["version" : "1.0" , "os" : "2" , "language" : strLang,"userId":CommonUtil.getUserId(), "messageId" : self.strMessageId ,"receiverId" :receiverId, "lastMessageDateTime" : self.lastTimeSyncTime]  as [String : Any]
         
         print(params)
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOSTAndPullToRefresh(isShowLoder: shouldShowLoader, strURL: kBaseUrl, strServiceName: "getChatMessageList", parameter: params, success: { (obj) in

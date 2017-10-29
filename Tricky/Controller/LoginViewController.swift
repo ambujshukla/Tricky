@@ -127,8 +127,8 @@ class LoginViewController: GAITrackedViewController
         print(boolValue,message)
     }
     
-    func doCallServiceForGenrateOTP() {
-        
+    func doCallServiceForGenrateOTP()
+    {
         let dictData = ["mobileNo" :(self.txtMobile.text!) , "countryCode" : (self.btnCountryCode.titleLabel?.text)! , "isSignUp" : "0"] as [String : Any]
         print(dictData)
         

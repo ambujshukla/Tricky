@@ -9,7 +9,7 @@
 import UIKit
 import SVProgressHUD
 import SystemConfiguration
-//import GIFProgressHUD
+import Alamofire
 import Toast_Swift
 
 // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
@@ -1013,8 +1013,10 @@ class CommonUtil: NSObject {
         }
         
     }
-
-    
+        class func isConnectedToInternet() ->Bool
+        {
+            return NetworkReachabilityManager()!.isReachable
+        }
 }
 
 extension UIViewController{

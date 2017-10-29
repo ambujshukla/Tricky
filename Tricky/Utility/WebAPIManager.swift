@@ -24,13 +24,16 @@ class WebAPIManager: NSObject {
             
             Static.instance = WebAPIManager()
         }
-        
         return Static.instance!
     }
     
-    
-    func doCallServiceForTesting(strURL : String , strServiceName : String , parameter : [String : Any] , success: @escaping (_ obj : [String: Any]) -> Void , failure: @escaping (_ error: NSError?) -> Void){
-        
+    func doCallServiceForTesting(strURL : String , strServiceName : String , parameter : [String : Any] , success: @escaping (_ obj : [String: Any]) -> Void , failure: @escaping (_ error: NSError?) -> Void)
+    {
+        if !(CommonUtil.isConnectedToInternet())
+        {
+            CommonUtil.showTotstOnWindow(strMessgae: "txt_network_not_available".localized())
+            return
+        }
         var dictParam :[String:AnyObject] = [:]
         dictParam = parameter as [String : AnyObject]
         dictParam["version"] = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as AnyObject
@@ -74,7 +77,11 @@ class WebAPIManager: NSObject {
     }
     
     func doCallWebAPIForPOSTAndPullToRefresh(isShowLoder : Bool , strURL : String , strServiceName : String , parameter : [String : Any] , success: @escaping (_ obj : [String: Any]) -> Void , failure: @escaping (_ error: NSError?) -> Void){
-        
+        if !(CommonUtil.isConnectedToInternet())
+        {
+            CommonUtil.showTotstOnWindow(strMessgae: "txt_network_not_available".localized())
+            return
+        }
         let completeURL = "\(strURL)\(strServiceName)"
         if isShowLoder {
             CommonUtil.showLoader()
@@ -86,7 +93,7 @@ class WebAPIManager: NSObject {
         dictParam["os"] = "2" as AnyObject
         dictParam["language"] = CommanUtility.getCurrentLanguage() as AnyObject
         print("dictparam2 data\(dictParam)")
-
+        
         Alamofire.request(completeURL, method: .post, parameters : dictParam, encoding: URLEncoding.default , headers: nil).responseJSON { response in
             
             print("Request: \(String(describing: response.request))")   // original url request
@@ -104,6 +111,11 @@ class WebAPIManager: NSObject {
     
     func doCallWebAPIForPOST (strURL : String , strServiceName : String , parameter : [String : Any] , success: @escaping (_ obj : [String: Any]) -> Void , failure: @escaping (_ error: NSError?) -> Void)
     {
+        if !(CommonUtil.isConnectedToInternet())
+        {
+            CommonUtil.showTotstOnWindow(strMessgae: "txt_network_not_available".localized())
+            return
+        }
         let completeURL = "\(strURL)\(strServiceName)"
         CommonUtil.showLoader()
         
@@ -114,7 +126,7 @@ class WebAPIManager: NSObject {
         dictParam["language"] = CommanUtility.getCurrentLanguage() as AnyObject
         
         print("dictparam3 data\(dictParam)")
-
+        
         Alamofire.request(completeURL, method: .post, parameters : dictParam, encoding: URLEncoding.default , headers: nil).responseJSON { response in
             
             print("Request: \(String(describing: response.request))")   // original url request
@@ -134,27 +146,27 @@ class WebAPIManager: NSObject {
     }
     
     
-//    func doCallWebAPIForGET(strURL : String , strServiceName : String , success: @escaping (_ obj : [String: Any]) -> Void , failure: @escaping (_ error: NSError?) -> Void) -> Void {
-//        
-//        let completeURL = "\(strURL)\(strServiceName)"
-//        print("this is complete URL \(completeURL)")
-//        
-//        Alamofire.request("\(strURL)\(strServiceName)").responseJSON { response in
-//            print("Request: \(String(describing: response.request))")   // original url request
-//            print("Response: \(String(describing: response.response))") // http url response
-//            print("Result: \(response.result)")                         // response serialization result
-//            
-//            if let json = response.result.value {
-//                success(json as! [String : Any])
-//            }
-//            else{
-//                failure(response.result.error! as NSError?)
-//            }
-//            
-//            //            if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
-//            //                print("Data: \(utf8Text)") // original server data as UTF8 string
-//            //            }
-//        }
- //   }
+    //    func doCallWebAPIForGET(strURL : String , strServiceName : String , success: @escaping (_ obj : [String: Any]) -> Void , failure: @escaping (_ error: NSError?) -> Void) -> Void {
+    //
+    //        let completeURL = "\(strURL)\(strServiceName)"
+    //        print("this is complete URL \(completeURL)")
+    //
+    //        Alamofire.request("\(strURL)\(strServiceName)").responseJSON { response in
+    //            print("Request: \(String(describing: response.request))")   // original url request
+    //            print("Response: \(String(describing: response.response))") // http url response
+    //            print("Result: \(response.result)")                         // response serialization result
+    //
+    //            if let json = response.result.value {
+    //                success(json as! [String : Any])
+    //            }
+    //            else{
+    //                failure(response.result.error! as NSError?)
+    //            }
+    //
+    //            //            if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
+    //            //                print("Data: \(utf8Text)") // original server data as UTF8 string
+    //            //            }
+    //        }
+    //   }
     
 }
