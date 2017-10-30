@@ -213,7 +213,7 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
             if let time = chatData.time as? String {
                 let date : Date = CommanUtility.convertAStringIntodDte(time : (time) , formate : "yyyy-MM-dd HH:mm:ss")
                 let convertedTime = CommanUtility.convertUTCToLocal(dateTime: time)
-                cell.lblTime.text = CommanUtility.doChangeTimeFormat(time: convertedTime, firstFormat: "yyyy-MM-dd HH:mm:ss", SecondFormat: "hh:mm a")
+                cell.lblTime.text = CommanUtility.doChangeTimeFormat(time: convertedTime, firstFormat: "yyyy-MM-dd HH:mm:ss", SecondFormat: "hh:mm a ,dd-MM-yyyy")
              //   cell.lblTime.text = CommonUtil.timeAgoSinceDate(date, currentDate: Date(), numericDates: true)
             }
             
@@ -226,7 +226,7 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
                 let date : Date = CommanUtility.convertAStringIntodDte(time : (time) , formate : "yyyy-MM-dd HH:mm:ss")
               //  cell.lblTime.text = CommonUtil.timeAgoSinceDate(date, currentDate: Date(), numericDates: true)
                let convertedTime = CommanUtility.convertUTCToLocal(dateTime: time)
-                cell.lblTime.text = CommanUtility.doChangeTimeFormat(time: convertedTime, firstFormat: "yyyy-MM-dd HH:mm:ss", SecondFormat: "hh:mm a")
+                cell.lblTime.text = CommanUtility.doChangeTimeFormat(time: convertedTime, firstFormat: "yyyy-MM-dd HH:mm:ss", SecondFormat: "hh:mm a ,dd-MM-yyyy")
             }
             cellToShow = cell
         }
