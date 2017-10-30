@@ -165,18 +165,18 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             appDelegate.isRefreshmsg = true
 
-            if appDelegate.isLanguageChanged {
+          //  if appDelegate.isLanguageChanged {
               //  let vc = self.storyboard?.instantiateViewController(withIdentifier: "HomeMessageController") as! HomeMessageController
                 let contrlHome = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
                 let navController = UINavigationController.init()
                 navController.setViewControllers([contrlHome], animated: true)
                 self.revealViewController().pushFrontViewController(navController, animated: true)
                 appDelegate.isLanguageChanged = false
-            }else
-            {
-                self.revealViewController().revealToggle(animated: true)
-                self.revealViewController().pushFrontViewController(self.controller, animated: true)
-            }
+//            }else
+//            {
+//                self.revealViewController().revealToggle(animated: true)
+//                self.revealViewController().pushFrontViewController(self.controller, animated: true)
+//            }
         }else if (indexPath.row == 1)
         {
             self.doNavigateToContactsView(showContactsFrom: 1)

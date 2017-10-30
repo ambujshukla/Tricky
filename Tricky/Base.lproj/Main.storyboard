@@ -700,6 +700,17 @@
                                     <action selector="doClickPlus" destination="ksW-ER-j8B" eventType="touchUpInside" id="7b4-hL-Wgm"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kfd-iw-kjz">
+                                <rect key="frame" x="140.5" y="160" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="2Ag-RN-02D"/>
+                                    <constraint firstAttribute="width" constant="40" id="5VY-PU-hiw"/>
+                                </constraints>
+                                <state key="normal" image="refreshicon"/>
+                                <connections>
+                                    <action selector="doClickRefreshButton" destination="ksW-ER-j8B" eventType="touchUpInside" id="d74-jM-93S"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -708,11 +719,13 @@
                             <constraint firstItem="ENO-Ib-Fsj" firstAttribute="top" secondItem="fWr-lE-hX7" secondAttribute="bottom" id="BY1-8m-v79"/>
                             <constraint firstAttribute="trailing" secondItem="b6u-h4-fre" secondAttribute="trailing" id="LV0-3a-KVt"/>
                             <constraint firstAttribute="bottom" secondItem="j58-wh-dEg" secondAttribute="bottom" constant="15" id="TcZ-WE-5uT"/>
+                            <constraint firstItem="Kfd-iw-kjz" firstAttribute="top" secondItem="If7-H4-XM0" secondAttribute="bottom" multiplier="188:667" id="Xac-wa-lsF"/>
                             <constraint firstItem="fWr-lE-hX7" firstAttribute="top" secondItem="If7-H4-XM0" secondAttribute="top" id="aPO-ir-2la"/>
                             <constraint firstAttribute="trailing" secondItem="j58-wh-dEg" secondAttribute="trailing" constant="15" id="bPx-6b-AUv"/>
                             <constraint firstItem="fWr-lE-hX7" firstAttribute="leading" secondItem="If7-H4-XM0" secondAttribute="leading" id="fxG-iu-fPj"/>
                             <constraint firstItem="j58-wh-dEg" firstAttribute="height" secondItem="If7-H4-XM0" secondAttribute="height" multiplier="40:568" id="tqV-Vx-GmV"/>
                             <constraint firstAttribute="trailing" secondItem="fWr-lE-hX7" secondAttribute="trailing" id="uIg-TA-97E"/>
+                            <constraint firstItem="Kfd-iw-kjz" firstAttribute="centerX" secondItem="If7-H4-XM0" secondAttribute="centerX" id="vSh-aR-N4x"/>
                             <constraint firstItem="b6u-h4-fre" firstAttribute="leading" secondItem="If7-H4-XM0" secondAttribute="leading" id="w5w-68-YTk"/>
                         </constraints>
                     </view>
@@ -720,6 +733,7 @@
                     <connections>
                         <outlet property="activityView" destination="b9d-d4-2Oz" id="SGy-zp-RxB"/>
                         <outlet property="btnPlus" destination="j58-wh-dEg" id="Ffi-Ah-EjF"/>
+                        <outlet property="btnRefresh" destination="Kfd-iw-kjz" id="ipB-OG-MXf"/>
                         <outlet property="tblMessage" destination="b6u-h4-fre" id="W7r-Wi-lNp"/>
                         <outlet property="vwFotter" destination="0vt-qx-VBC" id="TJS-Lj-mR5"/>
                     </connections>
@@ -839,9 +853,21 @@
                                     <outlet property="delegate" destination="Pca-eO-o5Y" id="Qt1-Lf-R5Q"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F5w-Hh-2Gv">
+                                <rect key="frame" x="140" y="160" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="UD4-3h-8Mv"/>
+                                    <constraint firstAttribute="height" constant="40" id="vrU-iR-x3E"/>
+                                </constraints>
+                                <state key="normal" image="refreshicon"/>
+                                <connections>
+                                    <action selector="doClickRefreshButton" destination="Pca-eO-o5Y" eventType="touchUpInside" id="j8t-no-I8x"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="F5w-Hh-2Gv" firstAttribute="top" secondItem="b1u-oN-tQd" secondAttribute="bottom" multiplier="188:667" id="Bcc-Ie-JqI"/>
                             <constraint firstItem="YnQ-u0-ubr" firstAttribute="top" secondItem="nJl-eG-ELW" secondAttribute="bottom" id="Iuo-qv-irs"/>
                             <constraint firstItem="YnQ-u0-ubr" firstAttribute="top" secondItem="l7J-zc-fSY" secondAttribute="bottom" id="MSX-m8-wKc"/>
                             <constraint firstItem="nJl-eG-ELW" firstAttribute="top" secondItem="b1u-oN-tQd" secondAttribute="top" id="QSV-h8-KhU"/>
@@ -852,12 +878,14 @@
                             <constraint firstItem="l7J-zc-fSY" firstAttribute="top" secondItem="b1u-oN-tQd" secondAttribute="top" id="ila-XQ-bzu"/>
                             <constraint firstItem="nJl-eG-ELW" firstAttribute="leading" secondItem="b1u-oN-tQd" secondAttribute="leading" id="ja0-xD-zpZ"/>
                             <constraint firstAttribute="trailing" secondItem="nJl-eG-ELW" secondAttribute="trailing" id="pU0-7M-lGB"/>
+                            <constraint firstItem="F5w-Hh-2Gv" firstAttribute="centerX" secondItem="b1u-oN-tQd" secondAttribute="centerX" id="pj0-AB-BS7"/>
                             <constraint firstAttribute="trailing" secondItem="l7J-zc-fSY" secondAttribute="trailing" id="rAJ-fb-CJZ"/>
                             <constraint firstItem="YnQ-u0-ubr" firstAttribute="top" secondItem="nJl-eG-ELW" secondAttribute="bottom" id="z1l-Eh-YpV"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="activityView" destination="h3r-g7-drk" id="Xja-rW-YTA"/>
+                        <outlet property="btnRefresh" destination="F5w-Hh-2Gv" id="XLS-Be-2lo"/>
                         <outlet property="tblChat" destination="l7J-zc-fSY" id="Xj2-u2-cHn"/>
                         <outlet property="vwFotter" destination="IiS-hH-yhC" id="pMS-vG-s0e"/>
                     </connections>

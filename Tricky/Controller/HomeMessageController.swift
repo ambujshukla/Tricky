@@ -19,6 +19,7 @@ class HomeMessageController: GAITrackedViewController , UITableViewDelegate , UI
     
     @IBOutlet weak var tblMessage : UITableView!
     @IBOutlet weak var btnPlus : UIButton!
+    @IBOutlet weak var btnRefresh : UIButton!
     
     var arrMessageList = [[String : AnyObject]]()
     {
@@ -74,6 +75,7 @@ class HomeMessageController: GAITrackedViewController , UITableViewDelegate , UI
     
     func doGetMessageList(isComeFromPullToRefresh : Bool , isShowLoader : Bool)
     {
+        self.btnRefresh.isHidden = true
         self.view.endEditing(true)
         //UpdateProfile
         let dictData = ["version" : "1.0" , "os" : "2" , "language" : CommanUtility.getCurrentLanguage(),"userId": CommonUtil.getUserId() ,"filterVulgar" : CommonUtil.filterVulgerMsg(),"messageForOnlyRegisterUser":CommonUtil.isBlockUser(),"offset":"\(self.offSet)","limit" : "\(self.limit)","showOnlyFavorite":"0"] as [String : Any]
@@ -108,6 +110,10 @@ class HomeMessageController: GAITrackedViewController , UITableViewDelegate , UI
                 self.activityView.stopAnimating()
                 self.vwFotter.isHidden = true
                 UserManager.sharedUserManager.doSetReceiveMsgAndSentMessage(strSentMsg: "0", strReceiveMsg: "0")
+            }
+            if !(self.arrMessageList.count > 0)
+            {
+                self.btnRefresh.isHidden = false
             }
         }) { (error) in
             self.activityView.stopAnimating()
@@ -183,7 +189,10 @@ class HomeMessageController: GAITrackedViewController , UITableViewDelegate , UI
             {
                 CommonUtil.showTotstOnWindow(strMessgae: responseObject["responseMessage"] as! String)
             }
-            
+            if !(self.arrMessageList.count > 0)
+            {
+                self.btnRefresh.isHidden = false
+            }
         }) { (error) in
         }
     }
@@ -214,7 +223,7 @@ class HomeMessageController: GAITrackedViewController , UITableViewDelegate , UI
         self.tblMessage.emptyDataSetSource = self
         self.tblMessage.emptyDataSetDelegate = self
         self.hideAndShowFotterView(isHideFotter: true, isAnimateActivityInd: false)
-        
+        self.btnRefresh.isHidden = true
     }
     
     func doActionOnFavouriteButton(sender : UIButton) {
@@ -492,6 +501,12 @@ class HomeMessageController: GAITrackedViewController , UITableViewDelegate , UI
     func sendingMessageDone() {
        self.doGetMessageList(isComeFromPullToRefresh: true, isShowLoader: true)
     }
+    
+    @IBAction func doClickRefreshButton()
+    {
+        self.doGetMessageList(isComeFromPullToRefresh:  false , isShowLoader:  true)
+    }
+
 }
 
 extension Date {
@@ -512,5 +527,6 @@ extension Date {
         if let second = difference.second, second > 0 { return seconds }
         return ""
     }
+    
     
 }
