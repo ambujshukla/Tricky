@@ -46,9 +46,6 @@ class HomeMessageController: GAITrackedViewController , UITableViewDelegate , UI
         super.viewDidLoad()
         self.decorateUI()
         self.doGetMessageList(isComeFromPullToRefresh:  false , isShowLoader:  true)
-       // let appDelegate = UIApplication.shared.delegate as! AppDelegate
-
-        //appDelegate.isRefreshmsg = false
 
     }
 
@@ -56,13 +53,6 @@ class HomeMessageController: GAITrackedViewController , UITableViewDelegate , UI
         super.viewWillAppear(true)
         // Set screen name.
         self.screenName = "Message Home";
-        
-//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//        if (appDelegate.isRefreshmsg == true){
-//            self.doGetMessageList(isComeFromPullToRefresh:  false , isShowLoader:  true)
-//appDelegate.isRefreshmsg = false
-//        }
-        
         
     }
     
@@ -97,8 +87,9 @@ class HomeMessageController: GAITrackedViewController , UITableViewDelegate , UI
                     }
                     for(_, element) in result.enumerated()
                     {
-                        self.arrMessageList .append(element as [String : AnyObject])
+                        //self.arrMessageList .append(element as [String : AnyObject])
                     }
+                    
                 }
                 else {
                     self.hideAndShowFotterView(isHideFotter: true, isAnimateActivityInd: false)

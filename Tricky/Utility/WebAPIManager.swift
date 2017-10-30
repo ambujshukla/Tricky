@@ -72,9 +72,8 @@ class WebAPIManager: NSObject {
         if isShowLoder {
             CommonUtil.showLoader()
         }
-        
-        
-        Alamofire.request(completeURL, method: .post, parameters : parameter, encoding: URLEncoding.default , headers: nil).responseJSON { response in
+        let url =  URL(string: completeURL.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)
+        Alamofire.request(url!, method: .post, parameters : parameter, encoding: URLEncoding.default , headers: nil).responseJSON { response in
             
             print("Request: \(String(describing: response.request))")   // original url request
             print("Response: \(String(describing: response.response))") // http url response
