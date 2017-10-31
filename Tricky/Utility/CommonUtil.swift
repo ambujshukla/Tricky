@@ -1009,7 +1009,7 @@ class CommonUtil: NSObject {
         } else if (components.second! >= 3) {
             return "\(components.second!)s"
         } else {
-            return "Just now"
+            return "txt_just_now".localized()
         }
         
     }

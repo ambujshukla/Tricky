@@ -160,6 +160,7 @@
             WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOSTAndPullToRefresh(isShowLoder :isShowLoader , strURL: kBaseUrl, strServiceName: "SyncContact", parameter: dictData, success: { (obj) in
                 if let dictContactsData = obj["responseData"] as? [[String : AnyObject]]
                 {
+                    print(dictContactsData)
                     self.arrMainData.removeAll()
                     self.arrMainData.append(contentsOf: dictContactsData)
                     CommanUtility.saveObjectInPreference(arrData: self.arrMainData, key: "contact")
@@ -167,8 +168,10 @@
                     
                 }
             }) { (error) in
+                CommonUtil.hideLoader()
             }
         } catch {
+            CommonUtil.hideLoader()
             print(error.localizedDescription)
         }
     }

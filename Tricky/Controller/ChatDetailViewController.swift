@@ -213,8 +213,15 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
             if let time = chatData.time as? String {
                 let date : Date = CommanUtility.convertAStringIntodDte(time : (time) , formate : "yyyy-MM-dd HH:mm:ss")
                 let convertedTime = CommanUtility.convertUTCToLocal(dateTime: time)
-                cell.lblTime.text = CommanUtility.doChangeTimeFormat(time: convertedTime, firstFormat: "yyyy-MM-dd HH:mm:ss", SecondFormat: "hh:mm a ,dd-MM-yyyy")
-             //   cell.lblTime.text = CommonUtil.timeAgoSinceDate(date, currentDate: Date(), numericDates: true)
+
+                let today = Calendar.current.isDateInToday(date)
+                if today == true
+                {
+                    cell.lblTime.text = CommanUtility.doChangeTimeFormat(time: convertedTime, firstFormat: "yyyy-MM-dd HH:mm:ss", SecondFormat: "hh:mm a")
+                }else
+                {
+                    cell.lblTime.text = CommanUtility.doChangeTimeFormat(time: convertedTime, firstFormat: "yyyy-MM-dd HH:mm:ss", SecondFormat: "hh:mm a ,dd-MM-yyyy")
+                }
             }
             
             cellToShow = cell
@@ -224,9 +231,17 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
             cell.imgBG.backgroundColor = UIColor.clear
             if let time = chatData.time as? String {
                 let date : Date = CommanUtility.convertAStringIntodDte(time : (time) , formate : "yyyy-MM-dd HH:mm:ss")
-              //  cell.lblTime.text = CommonUtil.timeAgoSinceDate(date, currentDate: Date(), numericDates: true)
-               let convertedTime = CommanUtility.convertUTCToLocal(dateTime: time)
-                cell.lblTime.text = CommanUtility.doChangeTimeFormat(time: convertedTime, firstFormat: "yyyy-MM-dd HH:mm:ss", SecondFormat: "hh:mm a ,dd-MM-yyyy")
+                
+                let convertedTime = CommanUtility.convertUTCToLocal(dateTime: time)
+                
+                let today = Calendar.current.isDateInToday(date)
+                if today == true
+                {
+                    cell.lblTime.text = CommanUtility.doChangeTimeFormat(time: convertedTime, firstFormat: "yyyy-MM-dd HH:mm:ss", SecondFormat: "hh:mm a")
+                }else
+                {
+                    cell.lblTime.text = CommanUtility.doChangeTimeFormat(time: convertedTime, firstFormat: "yyyy-MM-dd HH:mm:ss", SecondFormat: "hh:mm a ,dd-MM-yyyy")
+                }
             }
             cellToShow = cell
         }

@@ -99,7 +99,6 @@
 
 "otp_info" = "No asista a la llamada entrante. Recibirá una llamada perdida. Ingrese los últimos 4 dígitos del número de llamada perdida";
 
-
 "txt_message_user_blocked" = "Has bloqueado a este usuario";
 "txt_share" = "Te invito a que me envíes un mensaje de forma anónima en la aplicación TrickyChat";
 "txt_send_message" = "Envía un mensaje secreto aquí ...";
@@ -127,4 +126,6 @@
 "txt_sent" = "Expedido";
 "txt_received" = "Recibido";
 "txt_please_enter_mobile" = "Ingrese el móvil no.";
+
+"txt_just_now" = "justo ahora";
 

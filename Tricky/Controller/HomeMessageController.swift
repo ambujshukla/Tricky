@@ -469,7 +469,7 @@ class HomeMessageController: GAITrackedViewController , UITableViewDelegate , UI
     {
         let dictData = self.arrMessageList[sender.tag]
         let shareText = dictData["message"]
-        
+        let shareTrickyText = "kychat"
         var yOrigin : Int = 600
         
         if (shareText?.length)! <= 20 {
@@ -488,7 +488,7 @@ class HomeMessageController: GAITrackedViewController , UITableViewDelegate , UI
         
         let image = CommanUtility.textToImage(drawText: shareText as! NSString, inImage: #imageLiteral(resourceName: "sharemessage"), atPoint: CGPoint(x : 120 , y : yOrigin))
         
-        let vc = UIActivityViewController(activityItems: [image], applicationActivities: [])
+        let vc = UIActivityViewController(activityItems: [image,shareTrickyText], applicationActivities: [])
         present(vc, animated: true, completion: nil)
     }
     func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString?

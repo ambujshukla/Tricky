@@ -580,7 +580,7 @@
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = SNQG7M8Z3K;
 						LastSwiftMigration = 0830;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -971,14 +971,14 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Tricky/Tricky.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Naresh Velmurugan (SNQG7M8Z3K)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Naresh Velmurugan (SNQG7M8Z3K)";
-				DEVELOPMENT_TEAM = SNQG7M8Z3K;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Tricky/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Tricky.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "202e560f-fd76-487c-8a8d-1cc14c5a2daa";
-				PROVISIONING_PROFILE_SPECIFIER = TrickyChat;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Tricky/Utility/SWrevealViewController/Tricky-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -995,14 +995,14 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Tricky/Tricky.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Naresh Velmurugan (SNQG7M8Z3K)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Naresh Velmurugan (SNQG7M8Z3K)";
-				DEVELOPMENT_TEAM = SNQG7M8Z3K;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Tricky/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Tricky.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "202e560f-fd76-487c-8a8d-1cc14c5a2daa";
-				PROVISIONING_PROFILE_SPECIFIER = TrickyChat;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Tricky/Utility/SWrevealViewController/Tricky-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;

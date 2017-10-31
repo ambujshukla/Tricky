@@ -125,3 +125,5 @@
 "txt_sent" = "發送";
 "txt_received" = "收到";
 "txt_please_enter_mobile" = "請輸入手機號碼";
+
+"txt_just_now" = "現在";
