@@ -152,9 +152,35 @@ class CommanUtility: NSObject {
         let dateFormatter = DateFormatter()
         dateFormatter.timeZone = NSTimeZone(name: "UTC")! as TimeZone
         dateFormatter.dateFormat = formate
-        let fullDate = dateFormatter.date(from: time)
-        return fullDate!
-   
+        if let fullDate = dateFormatter.date(from: time)
+        {
+            return fullDate
+        }
+        return Date()
+    }
+    
+    class func convertUTCToLocal(dateTime:String) -> String {
+        print(dateTime)
+        //        let dateFormatter = DateFormatter()
+        //        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        //        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+        //
+        //        let dt = dateFormatter.date(from: date)
+        //        dateFormatter.timeZone = TimeZone.current
+        //        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        //
+        //        return dateFormatter.string(from: dt!)
+        // create dateFormatter with UTC time format
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        dateFormatter.timeZone = NSTimeZone(name: "UTC")! as TimeZone
+        let date = dateFormatter.date(from: dateTime)// create   date from string
+        
+        // change to a readable time format and change to local time zone
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        dateFormatter.timeZone = NSTimeZone.local
+        let timeStamp = dateFormatter.string(from: date!)
+        return timeStamp
     }
     
     class func doChangeTimeFormat(time : String, firstFormat : String, SecondFormat : String) -> String
@@ -173,39 +199,39 @@ class CommanUtility: NSObject {
         
         return time2
     }
-//    class func textToImage(drawText text: NSString, inImage image: UIImage, atPoint point: CGPoint) -> UIImage
-//    {
-//        let image = UIImage(named: "bear.jpeg")
-//        return image!
-//    }
+    //    class func textToImage(drawText text: NSString, inImage image: UIImage, atPoint point: CGPoint) -> UIImage
+    //    {
+    //        let image = UIImage(named: "bear.jpeg")
+    //        return image!
+    //    }
     
-        class func textToImage(drawText text: NSString, inImage image: UIImage, atPoint point: CGPoint) -> UIImage
-        {
-    
-            let textColor = UIColor.black
-            let textFont = UIFont(name: "Roboto-Medium", size: 50)!
-    
-            let scale = UIScreen.main.scale
-            UIGraphicsBeginImageContextWithOptions(image.size, false, scale)
-    
-            let style = NSMutableParagraphStyle()
-            style.alignment = NSTextAlignment.center
-    
-            let textFontAttributes = [
-                NSFontAttributeName: textFont,
-                NSParagraphStyleAttributeName: style ,
-                NSForegroundColorAttributeName: textColor,
-                ] as [String : Any]
-            image.draw(in: CGRect(origin: CGPoint.zero, size: CGSize(width : image.size.width , height : image.size.height)))
-    
-            let rect = CGRect(origin: point, size: CGSize(width : image.size.width-280 , height : image.size.height-230))
-            text.draw(in: rect, withAttributes: textFontAttributes)
-    
-            let newImage = UIGraphicsGetImageFromCurrentImageContext()
-            UIGraphicsEndImageContext()
-    
-            return newImage!
-        }
+    class func textToImage(drawText text: NSString, inImage image: UIImage, atPoint point: CGPoint) -> UIImage
+    {
+        
+        let textColor = UIColor.black
+        let textFont = UIFont(name: "Roboto-Medium", size: 50)!
+        
+        let scale = UIScreen.main.scale
+        UIGraphicsBeginImageContextWithOptions(image.size, false, scale)
+        
+        let style = NSMutableParagraphStyle()
+        style.alignment = NSTextAlignment.center
+        
+        let textFontAttributes = [
+            NSFontAttributeName: textFont,
+            NSParagraphStyleAttributeName: style ,
+            NSForegroundColorAttributeName: textColor,
+            ] as [String : Any]
+        image.draw(in: CGRect(origin: CGPoint.zero, size: CGSize(width : image.size.width , height : image.size.height)))
+        
+        let rect = CGRect(origin: point, size: CGSize(width : image.size.width-280 , height : image.size.height-230))
+        text.draw(in: rect, withAttributes: textFontAttributes)
+        
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage!
+    }
     
     class func imageFrom(text: String , size:CGSize) -> UIImage {
         

@@ -36,7 +36,7 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
     
     func decorateUI ()
     {
-       // self.tap = UITapGestureRecognizer.init(target: self, action: #selector(doClickProfile(tapG:)))
+        // self.tap = UITapGestureRecognizer.init(target: self, action: #selector(doClickProfile(tapG:)))
         //self.tap.delegate = self
         //self.view.addGestureRecognizer(self.tap)
         
@@ -164,8 +164,19 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
             
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             appDelegate.isRefreshmsg = true
-            self.revealViewController().revealToggle(animated: true)
-            self.revealViewController().pushFrontViewController(self.controller, animated: true)
+
+          //  if appDelegate.isLanguageChanged {
+              //  let vc = self.storyboard?.instantiateViewController(withIdentifier: "HomeMessageController") as! HomeMessageController
+                let contrlHome = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+                let navController = UINavigationController.init()
+                navController.setViewControllers([contrlHome], animated: true)
+                self.revealViewController().pushFrontViewController(navController, animated: true)
+                appDelegate.isLanguageChanged = false
+//            }else
+//            {
+//                self.revealViewController().revealToggle(animated: true)
+//                self.revealViewController().pushFrontViewController(self.controller, animated: true)
+//            }
         }else if (indexPath.row == 1)
         {
             self.doNavigateToContactsView(showContactsFrom: 1)
@@ -188,11 +199,11 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
             self.revealViewController().pushFrontViewController(navController, animated: true)
         }else if(indexPath.row == 5)
         {
-//            let controller = self.storyboard?.instantiateViewController(withIdentifier: "MyPostViewController") as! MyPostViewController
-//            let contrlHome = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-//            let navController = UINavigationController.init()
-//            navController.setViewControllers([contrlHome , controller], animated: true)
-//            self.revealViewController().pushFrontViewController(navController, animated: true)
+            //            let controller = self.storyboard?.instantiateViewController(withIdentifier: "MyPostViewController") as! MyPostViewController
+            //            let contrlHome = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+            //            let navController = UINavigationController.init()
+            //            navController.setViewControllers([contrlHome , controller], animated: true)
+            //            self.revealViewController().pushFrontViewController(navController, animated: true)
             
         }else  if (indexPath.row == 7)
         {
@@ -234,9 +245,9 @@ class MenuViewController: UIViewController , UITableViewDataSource , UITableView
         let link = "\("txt_share".localized()) \(self.lblEmail.text!)"
         let shareItems:Array = [link]
         let activityViewController:UIActivityViewController = UIActivityViewController(activityItems: shareItems, applicationActivities: nil)
-         present(activityViewController, animated: true, completion: nil)
+        present(activityViewController, animated: true, completion: nil)
         
-          }
+    }
     
     //Mark TapGestureDelegate
     // UIGestureRecognizerDelegate method

@@ -101,15 +101,12 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
     
     func doCallGetChatMessageWS(shouldShowLoader : Bool)
     {
-        /*
-         
-         Request
-         -lastMessageDateTime  (send chats after this time update)     Ex: 2017-08-01 12:23:23
-         -chatId
-         -messageId(New Added)
-         -userId
-         -receiverId
-         */
+        if !(CommonUtil.isConnectedToInternet())
+        {
+            CommonUtil.showTotstOnWindow(strMessgae: "txt_network_not_available".localized())
+            return
+        }
+        
         var receiverId = ""
         if self.strReceiverId == CommonUtil.getUserId()
         {
@@ -133,7 +130,7 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
             strLang = "4"
         }
         
-        let params = ["version" : "1.0" , "os" : "2" , "language" : strLang,"userId":CommonUtil.getUserId(), "messageId" : self.strMessageId ,"receiverId" :receiverId, "lastMessageDateTime" : self.lastTimeSyncTime,]  as [String : Any]
+        let params = ["version" : "1.0" , "os" : "2" , "language" : strLang,"userId":CommonUtil.getUserId(), "messageId" : self.strMessageId ,"receiverId" :receiverId, "lastMessageDateTime" : self.lastTimeSyncTime]  as [String : Any]
         
         print(params)
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOSTAndPullToRefresh(isShowLoder: shouldShowLoader, strURL: kBaseUrl, strServiceName: "getChatMessageList", parameter: params, success: { (obj) in
@@ -215,7 +212,9 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
             cell.imgBG.backgroundColor = UIColor.clear
             if let time = chatData.time as? String {
                 let date : Date = CommanUtility.convertAStringIntodDte(time : (time) , formate : "yyyy-MM-dd HH:mm:ss")
-                cell.lblTime.text = CommonUtil.timeAgoSinceDate(date, currentDate: Date(), numericDates: true)
+                let convertedTime = CommanUtility.convertUTCToLocal(dateTime: time)
+                cell.lblTime.text = CommanUtility.doChangeTimeFormat(time: convertedTime, firstFormat: "yyyy-MM-dd HH:mm:ss", SecondFormat: "hh:mm a ,dd-MM-yyyy")
+             //   cell.lblTime.text = CommonUtil.timeAgoSinceDate(date, currentDate: Date(), numericDates: true)
             }
             
             cellToShow = cell
@@ -225,7 +224,9 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
             cell.imgBG.backgroundColor = UIColor.clear
             if let time = chatData.time as? String {
                 let date : Date = CommanUtility.convertAStringIntodDte(time : (time) , formate : "yyyy-MM-dd HH:mm:ss")
-                cell.lblTime.text = CommonUtil.timeAgoSinceDate(date, currentDate: Date(), numericDates: true)
+              //  cell.lblTime.text = CommonUtil.timeAgoSinceDate(date, currentDate: Date(), numericDates: true)
+               let convertedTime = CommanUtility.convertUTCToLocal(dateTime: time)
+                cell.lblTime.text = CommanUtility.doChangeTimeFormat(time: convertedTime, firstFormat: "yyyy-MM-dd HH:mm:ss", SecondFormat: "hh:mm a ,dd-MM-yyyy")
             }
             cellToShow = cell
         }

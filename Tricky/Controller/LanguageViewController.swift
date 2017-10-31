@@ -27,8 +27,8 @@ class LanguageViewController: UIViewController, UITableViewDataSource , UITableV
         // Dispose of any resources that can be recreated.
     }
     
-    func decorateUI() {
-        
+    func decorateUI()
+    {
         if Localize.currentLanguage() == "zh-Hant" {
             index = 1
         }else if Localize.currentLanguage() == "es"
@@ -40,9 +40,15 @@ class LanguageViewController: UIViewController, UITableViewDataSource , UITableV
         }else{
             index = 0
         }
+        
         self.tblLanguage.tableFooterView = UIView()
         CommanUtility.decorateNavigationbarWithBackButton(target: self, strTitle: "txt_language".localized(), strBackButtonImage: BACK_BUTTON , selector: #selector(self.goTOBack), color: color(red: 107, green: 108, blue: 180))
         
+        let revealViewController: SWRevealViewController? = self.revealViewController()
+        if revealViewController != nil {
+            CommanUtility.decorateNavigationbarWithRevealToggleButton(target : revealViewController!, strTitle: "txt_trickychat".localized(), strBackButtonImage: "menuicon", selector: #selector(SWRevealViewController.revealToggle(_:)) , controller : self , color:  color(red: 56, green: 152, blue: 108) )
+            navigationController?.navigationBar.addGestureRecognizer(revealViewController!.panGestureRecognizer())
+        }
         self.btnContinue.isHidden = UserDefaults.standard.bool(forKey: "isLanguageSelected")
         
         if (UserDefaults.standard.bool(forKey: "isLanguageSelected") != true)
@@ -135,6 +141,8 @@ class LanguageViewController: UIViewController, UITableViewDataSource , UITableV
                 default:
                     print("")
                 }
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                appDelegate.isLanguageChanged = true
                 self.title = "txt_language".localized()
                 self.tblLanguage.reloadData()
         }))

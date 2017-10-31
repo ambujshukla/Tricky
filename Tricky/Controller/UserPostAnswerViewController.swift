@@ -11,6 +11,10 @@ import Localize_Swift
 import ObjectMapper
 import KMPlaceholderTextView
 
+@objc protocol UserPostDelegate{
+    @objc optional func sendingMessageDone()
+}
+
 class UserPostAnswerViewController: GAITrackedViewController,UITextViewDelegate {
     
     @IBOutlet weak var txtViewComment : KMPlaceholderTextView!
@@ -22,6 +26,8 @@ class UserPostAnswerViewController: GAITrackedViewController,UITextViewDelegate 
     var strUserId : String = ""
     var strTitle : String = ""
     
+    var delegate:UserPostDelegate?
+
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -70,6 +76,7 @@ class UserPostAnswerViewController: GAITrackedViewController,UITextViewDelegate 
             
             if sendMessageData?.status == "1"
             {
+                self.delegate?.sendingMessageDone!()
                 CommonUtil.showTotstOnWindow(strMessgae: (sendMessageData?.responseMessage)!)
                 let controller = self.getHomeViewController()
                 self.navigationController?.popToViewController(controller!, animated: true)

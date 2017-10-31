@@ -13,17 +13,8 @@ import SafariServices
 
 
 class SignUpViewController: GAITrackedViewController , UITextFieldDelegate {
-    
-    //  @IBOutlet weak var lblTitle : UILabel!
-    //  @IBOutlet weak var lblMobile : UILabel!
-    //  @IBOutlet weak var lblPassword : UILabel!
-    //  @IBOutlet weak var lblUrl : UILabel!
-    //  @IBOutlet weak var lblPhoto : UILabel!
-    //  @IBOutlet weak var lblNotifications : UILabel!
     @IBOutlet weak var lblTnC : UILabel!
-    //  @IBOutlet weak var lblNoFileChoosen : UILabel!
     
-    //  @IBOutlet weak var txtSelectCode : UITextField!
     @IBOutlet weak var txtMobile : UITextField!
     @IBOutlet weak var txtLink : UITextField!
     @IBOutlet weak var txtDomain : UITextField!
@@ -46,7 +37,6 @@ class SignUpViewController: GAITrackedViewController , UITextFieldDelegate {
     {
         super.viewDidLoad()
         self.decorateUI()
-        // Do any additional setup after loading the view.
     }
     
     override func viewDidAppear(_ animated: Bool)
@@ -257,19 +247,29 @@ class SignUpViewController: GAITrackedViewController , UITextFieldDelegate {
         
         // Get invalid characters
         let invalidChars = NSCharacterSet.alphanumerics.inverted
-        
         // Make new string with invalid characters trimmed
         let newString = string.trimmingCharacters(in: invalidChars)
-        
+//        if let _ = string.rangeOfCharacter(from: NSCharacterSet.uppercaseLetters) {
+//            // Do not allow upper case letters
+//            return false
+//        }
         if newString.characters.count < string.characters.count {
-            // If there are less characters than we started with after trimming
-            // this means there was an invalid character in the input.
+                        // this means there was an invalid character in the input.
             // Don't let the change go through
             return false
         } else {
             // Otherwise let the change go through
             return true
         }
-        
     }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+    self.txtLink.text = textField.text?.lowercased()
+
+    }
+    
+    
 }

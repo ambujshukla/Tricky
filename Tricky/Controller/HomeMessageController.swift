@@ -15,10 +15,11 @@ import UIKit
 import AAPopUp
 import DZNEmptyDataSet
 
-class HomeMessageController: GAITrackedViewController , UITableViewDelegate , UITableViewDataSource,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate{
+class HomeMessageController: GAITrackedViewController , UITableViewDelegate , UITableViewDataSource,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate,ContactsPostDelegate{
     
     @IBOutlet weak var tblMessage : UITableView!
     @IBOutlet weak var btnPlus : UIButton!
+    @IBOutlet weak var btnRefresh : UIButton!
     
     var arrMessageList = [[String : AnyObject]]()
     {
@@ -64,6 +65,7 @@ class HomeMessageController: GAITrackedViewController , UITableViewDelegate , UI
     
     func doGetMessageList(isComeFromPullToRefresh : Bool , isShowLoader : Bool)
     {
+        self.btnRefresh.isHidden = true
         self.view.endEditing(true)
         //UpdateProfile
         let dictData = ["version" : "1.0" , "os" : "2" , "language" : CommanUtility.getCurrentLanguage(),"userId": CommonUtil.getUserId() ,"filterVulgar" : CommonUtil.filterVulgerMsg(),"messageForOnlyRegisterUser":CommonUtil.isBlockUser(),"offset":"\(self.offSet)","limit" : "\(self.limit)","showOnlyFavorite":"0"] as [String : Any]
@@ -87,7 +89,7 @@ class HomeMessageController: GAITrackedViewController , UITableViewDelegate , UI
                     }
                     for(_, element) in result.enumerated()
                     {
-                        //self.arrMessageList .append(element as [String : AnyObject])
+                        self.arrMessageList .append(element as [String : AnyObject])
                     }
                     
                 }
@@ -99,6 +101,10 @@ class HomeMessageController: GAITrackedViewController , UITableViewDelegate , UI
                 self.activityView.stopAnimating()
                 self.vwFotter.isHidden = true
                 UserManager.sharedUserManager.doSetReceiveMsgAndSentMessage(strSentMsg: "0", strReceiveMsg: "0")
+            }
+            if !(self.arrMessageList.count > 0)
+            {
+                self.btnRefresh.isHidden = false
             }
         }) { (error) in
             self.activityView.stopAnimating()
@@ -174,7 +180,10 @@ class HomeMessageController: GAITrackedViewController , UITableViewDelegate , UI
             {
                 CommonUtil.showTotstOnWindow(strMessgae: responseObject["responseMessage"] as! String)
             }
-            
+            if !(self.arrMessageList.count > 0)
+            {
+                self.btnRefresh.isHidden = false
+            }
         }) { (error) in
         }
     }
@@ -205,7 +214,7 @@ class HomeMessageController: GAITrackedViewController , UITableViewDelegate , UI
         self.tblMessage.emptyDataSetSource = self
         self.tblMessage.emptyDataSetDelegate = self
         self.hideAndShowFotterView(isHideFotter: true, isAnimateActivityInd: false)
-        
+        self.btnRefresh.isHidden = true
     }
     
     func doActionOnFavouriteButton(sender : UIButton) {
@@ -236,6 +245,7 @@ class HomeMessageController: GAITrackedViewController , UITableViewDelegate , UI
             }
             
         }) { (error) in
+            
         }
     }
     
@@ -394,6 +404,7 @@ class HomeMessageController: GAITrackedViewController , UITableViewDelegate , UI
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ContactViewController") as! ContactViewController
         vc.contactShowFrom = 3
         vc.isFromMenu = false
+        vc.delegate = self
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -468,7 +479,7 @@ class HomeMessageController: GAITrackedViewController , UITableViewDelegate , UI
         
         let image = CommanUtility.textToImage(drawText: shareText as! NSString, inImage: #imageLiteral(resourceName: "sharemessage"), atPoint: CGPoint(x : 120 , y : yOrigin))
         
-        let vc = UIActivityViewController(activityItems: [image], applicationActivities: [])
+        let vc = UIActivityViewController(activityItems: [image , "#trickychat @trickychat"] , applicationActivities: [])
         present(vc, animated: true, completion: nil)
     }
     func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString?
@@ -477,6 +488,16 @@ class HomeMessageController: GAITrackedViewController , UITableViewDelegate , UI
             [NSForegroundColorAttributeName: UIColor.white,
              NSFontAttributeName: UIFont(name: Font_Helvetica_Neue, size: 14.0)!])
     }
+    
+    func sendingMessageDone() {
+       self.doGetMessageList(isComeFromPullToRefresh: true, isShowLoader: true)
+    }
+    
+    @IBAction func doClickRefreshButton()
+    {
+        self.doGetMessageList(isComeFromPullToRefresh:  false , isShowLoader:  true)
+    }
+
 }
 
 extension Date {
@@ -497,5 +518,6 @@ extension Date {
         if let second = difference.second, second > 0 { return seconds }
         return ""
     }
+    
     
 }

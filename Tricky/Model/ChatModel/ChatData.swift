@@ -2,7 +2,7 @@
 //  ChatData.swift
 //  Tricky
 //
-//  Created by Shweta Shukla on 27/09/17.
+//  Created by gopalsara on 27/09/17.
 //  Copyright © 2017 Gopal Sara. All rights reserved.
 //
 

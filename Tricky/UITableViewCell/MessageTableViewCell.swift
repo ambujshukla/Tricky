@@ -27,8 +27,10 @@ class MessageTableViewCell: UITableViewCell {
     
     func decorateTableViewCell(dictData : [String : AnyObject]) {
         print("")
-        self.lblMessage.text = (dictData["message"] as? String)?.replacingOccurrences(of: "+", with: " ")
+//        self.lblMessage.text = (dictData["message"] as? String)?.replacingOccurrences(of: "+", with: " ")
         
+        self.lblMessage.text = (dictData["message"] as? String)
+
         let date : Date = CommanUtility.convertAStringIntodDte(time : (dictData["time"] as? String)! , formate : "yyyy-MM-dd HH:mm:ss")
         
         self.lblTime.text = CommonUtil.timeAgoSinceDate(date, currentDate: Date(), numericDates: true)

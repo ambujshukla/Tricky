@@ -12,7 +12,8 @@ import DZNEmptyDataSet
 class ChatViewController: GAITrackedViewController  , UITableViewDataSource , UITableViewDelegate,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate{
     
     @IBOutlet weak var tblChat : UITableView!
-    
+    @IBOutlet weak var btnRefresh : UIButton!
+
     var chatData =  [[String : AnyObject]](){
         didSet {
             self.tblChat.reloadData()
@@ -24,7 +25,6 @@ class ChatViewController: GAITrackedViewController  , UITableViewDataSource , UI
     var offSet : Int = 0
     @IBOutlet weak var activityView : UIActivityIndicatorView!
     @IBOutlet weak var vwFotter : UIView!
-
 
     
     lazy var refreshControl: UIRefreshControl = {
@@ -60,6 +60,7 @@ class ChatViewController: GAITrackedViewController  , UITableViewDataSource , UI
     
     
     func decorateUI() {
+        self.btnRefresh.isHidden = true
         self.tblChat.addSubview(self.refreshControl)
         self.doCallWebServiceForGetChatList(isComeFromPullToRefresh:  false , isShowLoader:  true)
         self.tblChat.emptyDataSetSource = self
@@ -69,16 +70,13 @@ class ChatViewController: GAITrackedViewController  , UITableViewDataSource , UI
     
     func doCallWebServiceForGetChatList(isComeFromPullToRefresh : Bool , isShowLoader : Bool)
     {
-        
-        
-        
+        self.btnRefresh.isHidden = true
         let dictData = ["userId" : CommonUtil.getUserId() , "os" : "2" , "version" : "1.0" , "language" : CommanUtility.getCurrentLanguage() , "limit" : "10" , "offset" : "0"] as [String : Any]
         
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOSTAndPullToRefresh(isShowLoder :isShowLoader , strURL: kBaseUrl , strServiceName: "chatList", parameter: dictData, success: { (obj) in
             print(obj)
             if (obj["status"] as! String == "1"){
                 
-
                 if let result : Array<Dictionary<String, Any>> = obj["responseData"] as? Array<Dictionary<String, Any>>
                 {
                 self.totalCount = obj["totalRecordCount"] as! Int
@@ -95,7 +93,10 @@ class ChatViewController: GAITrackedViewController  , UITableViewDataSource , UI
             else{
                 CommonUtil.showTotstOnWindow(strMessgae: obj["responseMessage"] as! String)
                 self.hideAndShowFotterView(isHideFotter: true, isAnimateActivityInd: false)
-
+            }
+            if !(self.chatData.count > 0)
+            {
+                self.btnRefresh.isHidden = false
             }
         }) { (error) in
             self.hideAndShowFotterView(isHideFotter: true, isAnimateActivityInd: false)
@@ -147,7 +148,7 @@ class ChatViewController: GAITrackedViewController  , UITableViewDataSource , UI
         CommonUtil.showAlertInSwift_3Format("Are you sure you want to delete?", title: "Alert", btnCancel: "txt_no".localized(), btnOk: "txt_yes".localized(), crl: self, successBlock: { (no) in
             let dictData = self.chatData[sender.tag]
             
-            let params = ["version" : "1.0" , "os" : "ios" , "language" : CommanUtility.getCurrentLanguage(),"userId":dictData["userId"]!,"chatId" :dictData["chatId"]!] as [String : Any]
+            let params = ["version" : "1.0" , "os" : "ios" , "language" : CommanUtility.getCurrentLanguage(),"userId":CommonUtil.getUserId(),"chatId" :dictData["chatId"]!] as [String : Any]
             WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "deleteChat", parameter: params, success: { (responseObject) in
                 print(responseObject)
                 if (responseObject["status"] as! String  == "1")
@@ -157,6 +158,10 @@ class ChatViewController: GAITrackedViewController  , UITableViewDataSource , UI
                     
                 }
                 else {
+                }
+                if !(self.chatData.count > 0)
+                {
+                    self.btnRefresh.isHidden = false
                 }
             }) { (error) in
                 print("")
@@ -195,5 +200,9 @@ class ChatViewController: GAITrackedViewController  , UITableViewDataSource , UI
            return  NSAttributedString(string:"txt_no_record".localized(), attributes:
             [NSForegroundColorAttributeName: UIColor.white,
              NSFontAttributeName: UIFont(name: Font_Helvetica_Neue, size: 14.0)!])
+    }
+    @IBAction func doClickRefreshButton()
+    {
+        self.doCallWebServiceForGetChatList(isComeFromPullToRefresh:  false , isShowLoader:  true)
     }
 }
