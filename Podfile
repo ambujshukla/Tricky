@@ -20,6 +20,7 @@ target 'Tricky' do
     pod 'RealmSwift'
     pod 'KMPlaceholderTextView', '~> 1.3.0'
     pod 'Google/Analytics'
+    pod 'StatusProvider'
     # pod 'ReachabilitySwift', '~> 2.4'
 # Pods
 end

@@ -47,9 +47,6 @@ class HomeMessageController: GAITrackedViewController , UITableViewDelegate , UI
         super.viewDidLoad()
         self.decorateUI()
         self.doGetMessageList(isComeFromPullToRefresh:  false , isShowLoader:  true)
-       // let appDelegate = UIApplication.shared.delegate as! AppDelegate
-
-        //appDelegate.isRefreshmsg = false
 
     }
 
@@ -57,13 +54,6 @@ class HomeMessageController: GAITrackedViewController , UITableViewDelegate , UI
         super.viewWillAppear(true)
         // Set screen name.
         self.screenName = "Message Home";
-        
-//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//        if (appDelegate.isRefreshmsg == true){
-//            self.doGetMessageList(isComeFromPullToRefresh:  false , isShowLoader:  true)
-//appDelegate.isRefreshmsg = false
-//        }
-        
         
     }
     
@@ -101,6 +91,7 @@ class HomeMessageController: GAITrackedViewController , UITableViewDelegate , UI
                     {
                         self.arrMessageList .append(element as [String : AnyObject])
                     }
+                    
                 }
                 else {
                     self.hideAndShowFotterView(isHideFotter: true, isAnimateActivityInd: false)
@@ -469,7 +460,7 @@ class HomeMessageController: GAITrackedViewController , UITableViewDelegate , UI
     {
         let dictData = self.arrMessageList[sender.tag]
         let shareText = dictData["message"]
-        let shareTrickyText = "kychat"
+        let shareTrickyText = "#tickychat @trickychat"
         var yOrigin : Int = 600
         
         if (shareText?.length)! <= 20 {
@@ -489,6 +480,7 @@ class HomeMessageController: GAITrackedViewController , UITableViewDelegate , UI
         let image = CommanUtility.textToImage(drawText: shareText as! NSString, inImage: #imageLiteral(resourceName: "sharemessage"), atPoint: CGPoint(x : 120 , y : yOrigin))
         
         let vc = UIActivityViewController(activityItems: [image,shareTrickyText], applicationActivities: [])
+
         present(vc, animated: true, completion: nil)
     }
     func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString?

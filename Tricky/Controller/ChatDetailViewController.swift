@@ -242,6 +242,7 @@ class ChatDetailViewController : UIViewController, UITableViewDelegate, UITableV
                 {
                     cell.lblTime.text = CommanUtility.doChangeTimeFormat(time: convertedTime, firstFormat: "yyyy-MM-dd HH:mm:ss", SecondFormat: "hh:mm a ,dd-MM-yyyy")
                 }
+
             }
             cellToShow = cell
         }

@@ -392,7 +392,7 @@ class FavouriteViewController: GAITrackedViewController , UITableViewDelegate , 
         
         let image = CommanUtility.textToImage(drawText: shareText as! NSString, inImage: #imageLiteral(resourceName: "sharemessage"), atPoint: CGPoint(x : 120 , y : yOrigin))
         
-        let vc = UIActivityViewController(activityItems: [image], applicationActivities: [])
+        let vc = UIActivityViewController(activityItems: [image,"#trickychat @trickychat"], applicationActivities: [])
         present(vc, animated: true, completion: nil)
     }
     

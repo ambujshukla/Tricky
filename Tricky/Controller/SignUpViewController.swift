@@ -247,19 +247,29 @@ class SignUpViewController: GAITrackedViewController , UITextFieldDelegate {
         
         // Get invalid characters
         let invalidChars = NSCharacterSet.alphanumerics.inverted
-        
         // Make new string with invalid characters trimmed
         let newString = string.trimmingCharacters(in: invalidChars)
-        
+//        if let _ = string.rangeOfCharacter(from: NSCharacterSet.uppercaseLetters) {
+//            // Do not allow upper case letters
+//            return false
+//        }
         if newString.characters.count < string.characters.count {
-            // If there are less characters than we started with after trimming
-            // this means there was an invalid character in the input.
+                        // this means there was an invalid character in the input.
             // Don't let the change go through
             return false
         } else {
             // Otherwise let the change go through
             return true
         }
-        
     }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+    self.txtLink.text = textField.text?.lowercased()
+
+    }
+    
+    
 }

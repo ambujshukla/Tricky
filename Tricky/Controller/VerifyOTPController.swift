@@ -139,6 +139,7 @@ class VerifyOTPController: GAITrackedViewController
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
 
         let dictData = ["version" : "1.0" , "os" : "2" , "language" : CommanUtility.getCurrentLanguage() , "mobileNo": self.strMobileNo  , "url":self.strLink , "deviceToken" : appDelegate.strDeviceToken , "countryCode" :  self.strCountryCode , "otp" : self.tfOtp.text! ] as [String : Any]
+        print(dictData)
         
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "register", parameter: dictData , success: { (obj) in
             let regData = Mapper<RegistrationModel>().map(JSON: obj)

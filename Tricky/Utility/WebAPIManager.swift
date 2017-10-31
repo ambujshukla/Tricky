@@ -86,6 +86,8 @@ class WebAPIManager: NSObject {
         if isShowLoder {
             CommonUtil.showLoader()
         }
+        let url =  URL(string: completeURL.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)
+        Alamofire.request(url!, method: .post, parameters : parameter, encoding: URLEncoding.default , headers: nil).responseJSON { response in
         
         var dictParam :[String:AnyObject] = [:]
         dictParam = parameter as [String : AnyObject]
@@ -107,6 +109,7 @@ class WebAPIManager: NSObject {
                 failure(response.result.error! as NSError?)
             }
         }
+    }
     }
     
     func doCallWebAPIForPOST (strURL : String , strServiceName : String , parameter : [String : Any] , success: @escaping (_ obj : [String: Any]) -> Void , failure: @escaping (_ error: NSError?) -> Void)
