@@ -26,6 +26,8 @@
     }
     
     var arrMainData = [[String : AnyObject]]()
+    var arrLocalData = [[String : AnyObject]]()
+
     
     @IBOutlet weak var imgBg : UIImageView!
     var isFromMenu : Bool = false
@@ -87,6 +89,25 @@
             CommanUtility.decorateNavigationbarWithRevealToggleButton(target : revealViewController!, strTitle: "txt_trickychat".localized(), strBackButtonImage: "menuicon", selector: #selector(SWRevealViewController.revealToggle(_:)) , controller : self , color:  color(red: 56, green: 152, blue: 108) )
             navigationController?.navigationBar.addGestureRecognizer(revealViewController!.panGestureRecognizer())
         }
+        var strTitle = "txt_AllContact".localized()
+        if (self.contactShowFrom == 1){
+            // Set screen name.
+            self.screenName = "Blocked Contacts";
+            strTitle = "txt_block_users".localized()
+            self.imgBg.image = UIImage(named : BLOCK_LIST_BG)
+        }else if(self.contactShowFrom == 2)
+        {
+            self.screenName = "Contact";
+            strTitle = "txt_contacts".localized()
+            self.imgBg.image = UIImage(named : ALL_CONTACTS_BG)
+        }
+        else if(self.contactShowFrom == 3){
+            
+            strTitle = "txt_select_cont".localized()
+            self.imgBg.image = UIImage(named : ALL_CONTACTS_BG)
+            
+        }
+        CommanUtility.decorateNavigationbarWithBackButton(target: self, strTitle: strTitle, strBackButtonImage: BACK_BUTTON, selector: #selector(self.goTOBack), color: color(red: 142, green: 110, blue: 137))
     }
     
     override func didReceiveMemoryWarning() {
@@ -110,25 +131,7 @@
                     }
                 }
         }
-        var strTitle = "txt_AllContact".localized()
-        if (self.contactShowFrom == 1){
-            // Set screen name.
-            self.screenName = "Blocked Contacts";
-            strTitle = "txt_block_users".localized()
-            self.imgBg.image = UIImage(named : BLOCK_LIST_BG)
-        }else if(self.contactShowFrom == 2)
-        {
-            self.screenName = "Contact";
-            strTitle = "txt_contacts".localized()
-            self.imgBg.image = UIImage(named : ALL_CONTACTS_BG)
-        }
-        else if(self.contactShowFrom == 3){
-            
-            strTitle = "txt_select_cont".localized()
-            self.imgBg.image = UIImage(named : ALL_CONTACTS_BG)
-            
-        }
-        CommanUtility.decorateNavigationbarWithBackButton(target: self, strTitle: strTitle, strBackButtonImage: BACK_BUTTON, selector: #selector(self.goTOBack), color: color(red: 142, green: 110, blue: 137))
+
     }
     
     func doCallSyncContactsWS(isShowLoader : Bool)
@@ -165,7 +168,7 @@
                     self.arrMainData.append(contentsOf: dictContactsData)
                     CommanUtility.saveObjectInPreference(arrData: self.arrMainData, key: "contact")
                     self.doCustmizeData()
-                    
+                    CommonUtil.hideLoader()
                 }
             }) { (error) in
                 CommonUtil.hideLoader()
@@ -190,19 +193,23 @@
         {
             self.doFilterIsOnAppData()
         }
-        
     }
     
     func doFilterIsOnAppData(){
-        self.arrSyncContacts = self.arrSyncContacts.filter{ (($0["isOnApp"] as AnyObject)) as! NSNumber == 1 }
+        self.arrLocalData = self.arrSyncContacts.filter{ (($0["isOnApp"] as AnyObject)) as! NSNumber == 1 }
+        self.arrSyncContacts = self.arrLocalData
     }
     
     func doFilterBlockContactLis() {
-        self.arrSyncContacts = self.arrSyncContacts.filter{ (($0["isBlock"] as AnyObject)) as! NSNumber == 1 }
+        self.arrLocalData = self.arrSyncContacts.filter{ (($0["isBlock"] as AnyObject)) as! NSNumber == 1 }
+        self.arrSyncContacts = self.arrLocalData
+
     }
     
     func doFilterAllContactWhichIsNotBlock() {
-        self.arrSyncContacts = self.arrSyncContacts.filter{ (($0["isBlock"] as AnyObject)) as! NSNumber != 1 }
+        self.arrLocalData = self.arrSyncContacts.filter{ (($0["isBlock"] as AnyObject)) as! NSNumber != 1 }
+        self.arrSyncContacts = self.arrLocalData
+
     }
     
     func goTOBack()
@@ -212,10 +219,10 @@
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         let predicate = NSPredicate(format: "SELF contains %@", searchBar.text!)
-        self.arrSyncContacts = self.arrMainData.filter { predicate.evaluate(with: $0["userName"]) }
+        self.arrSyncContacts = self.arrLocalData.filter { predicate.evaluate(with: $0["userName"]) }
         
         if (searchBar.text?.isEmpty)! {
-            self.arrSyncContacts = self.arrMainData
+            self.arrSyncContacts = self.arrLocalData
         }
         self.tblContact.reloadData()
     }
@@ -322,10 +329,21 @@
     
     func doCallServiceForBlockAndUnblock(sender : UIButton , dataContacts : [String : AnyObject]) {
         
+        var data = dataContacts
+        
         let blockUserId = dataContacts["userId"]!
         let dictData = ["version" : "1.0" , "os" : "1" , "language" : CommanUtility.getCurrentLanguage(),"userId":CommonUtil.getUserId(),"blockUserId":blockUserId] as [String : Any]
         WebAPIManager.sharedWebAPIManager.doCallWebAPIForPOST(strURL: kBaseUrl, strServiceName: "blockUser", parameter: dictData, success: { (responseObject) in
             
+            let index = self.arrMainData.index(where: {$0["userNumber"] as! String == data["userNumber"] as! String})
+            
+            if (sender.isSelected){
+              data["isBlock"] = 0 as AnyObject
+            }else{
+              data["isBlock"] = 1 as AnyObject
+            }
+            self.arrMainData[index!] = data
+            CommanUtility.saveObjectInPreference(arrData: self.arrMainData, key: "contact")
             self.arrSyncContacts.remove(at: sender.tag)
             CommonUtil.showTotstOnWindow(strMessgae: responseObject["responseMessage"]! as! String)
             
