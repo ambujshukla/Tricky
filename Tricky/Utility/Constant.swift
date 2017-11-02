@@ -117,19 +117,6 @@ func userVarifyDictionary (_ secretToken : String)-> Dictionary<String, AnyObjec
     
 }
 
-func userFrameCodeDictionry (_ frameId : String )-> Dictionary<String, AnyObject>
-{
-    let dict =  ["frameId" : frameId]
-    return dict as Dictionary<String, AnyObject>
-    
-}
-
-func clientFrameCodeDictionry (_ frameId : String )-> Dictionary<String, AnyObject>
-{
-    let dict =  ["frame_code" : frameId]
-    return dict as Dictionary<String, AnyObject>
-    
-}
 
 
 func userSetUpProfileDictionry (_ email : String , fullName : String , user_picture : String, firstName :String)-> Dictionary<String, AnyObject>
