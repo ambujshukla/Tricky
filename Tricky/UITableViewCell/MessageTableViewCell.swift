@@ -2,8 +2,6 @@
 //  MessageTableViewCell.swift
 //  Tricky
 //
-//  Created by gopal sara on 22/08/17.
-//  Copyright © 2017 Gopal Sara. All rights reserved.
 //
 
 

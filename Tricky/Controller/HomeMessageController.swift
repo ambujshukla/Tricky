@@ -7,8 +7,6 @@
 //  MessageViewController.swift
 //  Tricky
 //
-//  Created by gopal sara on 19/08/17.
-//  Copyright © 2017 gopal sara. All rights reserved.
 //
 
 import UIKit

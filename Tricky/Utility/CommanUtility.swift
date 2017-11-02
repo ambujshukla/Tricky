@@ -1,10 +1,5 @@
 //
 //  CommanUtility.swift
-//  indj_GUI
-//
-//  Created by gopalsara on 15/07/17.
-//  Copyright © 2017 padio. All rights reserved.
-//
 
 import UIKit
 import Localize_Swift

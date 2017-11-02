@@ -1,9 +1,5 @@
 //
 //  WebAPIManager.swift
-//  inDJ
-//
-//  Created by gopalsara on 27/07/17.
-//  Copyright © 2017 padio. All rights reserved.
 //
 
 import UIKit

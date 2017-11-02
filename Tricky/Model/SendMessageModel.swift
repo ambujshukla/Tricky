@@ -2,8 +2,6 @@
 //  SendMessageModel.swift
 //  Tricky
 //
-//  Created by gopal sara on 06/09/17.
-//  Copyright © 2017 Gopal Sara. All rights reserved.
 //
 
 import UIKit

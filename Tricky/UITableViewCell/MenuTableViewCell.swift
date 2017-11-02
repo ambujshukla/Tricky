@@ -2,8 +2,6 @@
 //  MenuTableViewCell.swift
 //  Tricky
 //
-//  Created by gopalsara on 10/09/17.
-//  Copyright © 2017 Gopal Sara. All rights reserved.
 //
 
 import UIKit

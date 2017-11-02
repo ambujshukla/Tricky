@@ -2,8 +2,6 @@
 //  PostTableViewCell.swift
 //  Tricky
 //
-//  Created by gopal sara on 25/08/17.
-//  Copyright © 2017 Gopal Sara. All rights reserved.
 //
 
 import UIKit

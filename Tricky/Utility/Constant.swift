@@ -1,9 +1,5 @@
 //
 //  Constant.swift
-//  PhotoSpring
-//
-//  Created by gopalsara on 10/08/16.
-//  Copyright © 2016 CDN Software Solutions Indore. All rights reserved.
 //
 
 import Foundation
@@ -28,30 +24,8 @@ let Font_Robitto_Light = "Roboto-Light"
 
 
 
-let kLoginService        = "users/login"
-let kReistration         = "register"
-let kUserVarification    = "users/checkVerfication"
-let kResendVarification  = "resendVerification"
-let kUpdateProfile       = "users/updateProfile"
-let kForgotPassword      = "users/forgotPassword"
-let kFrame               = "users/frame"
-let kRestPassword        = "resetPassword"
-let kUserProfile         = "users/profile"
-let kUserFrameList       = "frame/list"
-let kSharePhoto           = "users/sharePhotos"
-let kUserFrameConnList    = "frame/connection"
-let KuserLogs             = "userLogs"
-let KClientFrameConnection = "getFrameConnectionClient"
-let KuserLogout           = "users/logout"
-let KusersDeleteFrameClient    = "users/deleteFrameClient"
-let Kterms                = "terms"
-let Kprivacy              = "privacy"
-let KinviteFriend         = "inviteFriendViaEmail"
-
 
 // Custom Cell Identifier
-let cellPopup = "popUpCell"
-let App_Name = "Photo Spring"
 
 let UNIVERSAL_WIDTH = UIScreen.main.bounds.size.width
 let UNIVERSAL_HEIGHT = UIScreen.main.bounds.size.height
@@ -61,74 +35,15 @@ let HEIGHT_FACTOR : CGFloat = UNIVERSAL_HEIGHT/568.0
 
 ////// ******************* NOTIFICATION NAME ************************************////
 
-let GO_TO_LETS_SEND_NOTIFIER = "GoToLetsSendViewController"
-let GET_PUSH_NOTIFIER = "GetPush"
-let DATA_FETCH_COMPELETION_NOTIFIER = "DataFetchCompletionNotificationFromDB"
-let SELECTED_FRAME_NOTIFIER = "GetSelectedFrame"
-let REFRESH_SETTING_DATA = "RefreshSettingData"
-let WIFIORCELULAR = "WifiOrCelular"
-let CELULAR_MSG_ALERT = "Your current settings will allow photos from this device to automatically be uploaded to the frame via Wi-Fi or Cellular. This may affect your cell phone data plan"
 
 ////////*******************  NAVIGATION TITLE NAME **********************************//
 
-let ADD_FRIEND_TITLE = "Add Frame"
-let VERIFY_EMAIL_TITLE = "Verify your email"
-let FORGOT_TITLE = "Forgot Password"
-let MANAGE_FRMAE_TITLE = "Manage Frames"
-let GIVE_THEM_TITLE = "Connect via Frame Code"
-let LOGIN_TITLE = "Login"
-let FRMAE_SETUP = "Frame Setup"
-let FRIEND_FRMAE_TITLE = "Friend's frames"
-let ADD_TITLE = "Add Title"
-let SEND_PHOTO_TITLE = "Send Photos"
-let SELECT_RECIPIENT_TITLE = "Select Recipients"
-let SETUP_TITLE = "Setup your profile"
-let RESET_PASS_TITLE = "Reset Password"
-let SETTING_TITLE = "Settings"
-let SIGNUP_TITLE = "Sign up"
-let TERM_SERVICE_TITLE = "Terms of Services"
-let TERM_POLICY_TITLE = "Terms and Policy"
-let FRAME_TITLE = "Frame"
 //**********************************************ViewControllerIdentifier **************************************************************//
 
 
-let HOMEVIEW = "HomeViewController"
-let EMAIL_VERIFY_VIEW = "EmailVerifyViewController"
-let PROFILE_SETUP = "ProfileSetupViewController"
-let ADD_FRAME_VIEW = "AddFrameCodeViewController"
-let REENTER_VIEW = "ReEnterPasswordViewController"
-let TERM_COND_VIEW = "TermsAndPolicyViewController"
-let MANAGE_FRAME_SETUP = "ManageFrameSetupViewController"
-let LETS_SEND_VIEW =  "LetsSendViewController"
-let OWNER_FRAME_VIEW = "OwnerFrameViewController"
-let MANAGE_FRAME_VIEW = "ManageFrameViewController"
-let FRAME_VIEW = "FrameViewController"
-let VIEW_CTR = "ViewController"
-let PHOTO_SEND_VIEW = "PhotoSendViewController"
-let HOME_POPUP_VIEW = "HomePopOverViewController"
-let PROFILE_VIEW = "ProfileViewController"
-let SETTING_VIEW = "SettingViewController"
-let DEVICE_VIEW = "DeviceViewController"
-let FRIEND_VIEW = "FriendsViewController"
-let ACCOUNT_VIEW = "AccountViewController"
-let GIVETHEM_VIEW = "GiveThemFrameCodeController"
-let PHOTO_SENDING_VIEW = "PhotoSendingViewController"
-let SEARCH_VIEW = "SearchFrameViewController"
-let SETTINEG_DETAIL = "SettingDetailViewController"
-let TERM_VIEW = "T_CViewController"
-let FORGOT_VIEW = "ForgotPasswordViewController"
-let LOGIN_VIEW = "LoginViewController"
-let SIGNUP_VIEW = "SignUpViewController"
-let REQUEST_SEND_VIEW = "RequestSentViewController"
 
 //*********************** Error Message ******************************************//
 
-let NO_FRAME_ALERT = "No frame added"
-let NETWORK_ERROR = "Please check internet connection"
-let NO_FRAME_AVAILABLE = "Frame not available"
-let NO_FRAME_SELECTED = "Frame not selected"
-let FRAME_DELETE = "frame deleted successfully"
-let PROFILE_ALERT = "Please select profile image"
 
 //************************ Universal Images ***********************************//
 
@@ -178,15 +93,6 @@ let HARD_CODE_DEVICETOEKN = "666485c3ad9e3e171bbfe29ab1c56d24361438689344409dd30
 
 /////////////////////////////////// Alert Title And Message /////////////////////////////
 
-let DeleteFrame = "Delete Frame"
-let Delete_Frame_Message = "If you delete this frame you will no longer be able to send photos or videos to it."
-let AlertTitle = "Delete Friend"
-let AlertMessage = "Will be disconnected from this frame and will no longer be able to send photos or videos?"
-let AlertDelete = "Delete"
-let AlertCancel = "Cancel"
-let TERM_CONDITION_TITLE = "termAndConditions"
-let Alert_OK = "OK"
-let SERVER_ERROR = "PhotoSpring is having problems reaching its servers in the Cloud. Please check your Internet connection and try again"
 // ****************************************************************************************** //
 
 /**

@@ -2,8 +2,6 @@
 //  ChatData.swift
 //  Tricky
 //
-//  Created by gopalsara on 27/09/17.
-//  Copyright © 2017 Gopal Sara. All rights reserved.
 //
 
 import UIKit

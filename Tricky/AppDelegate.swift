@@ -2,8 +2,6 @@
 //  AppDelegate.swift
 //  Tricky
 //
-//  Created by gopalsara on 18/08/17.
-//  Copyright © 2017 Gopal Sara. All rights reserved.
 //
 
 import UIKit
